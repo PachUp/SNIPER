@@ -1,0 +1,47 @@
+[
+  {
+    "id": "i1",
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "sector": "Information Technology",
+    "thesis": "Custom AI accelerator ramp plus VMware software attach create a durable growth-and-margin story underappreciated versus pure GPU names.",
+    "upsidePct": 21.2,
+    "levels": { "ep": 164.0, "tp": 200.0, "sl": 148.0 }
+  },
+  {
+    "id": "i2",
+    "ticker": "UNH",
+    "name": "UnitedHealth",
+    "sector": "Health Care",
+    "thesis": "Sentiment overhang on utilization is overdone; Optum and membership growth support a return to double-digit EPS growth.",
+    "upsidePct": 22.4,
+    "levels": { "ep": 489.0, "tp": 600.0, "sl": 445.0 }
+  },
+  {
+    "id": "i3",
+    "ticker": "DIS",
+    "name": "Walt Disney",
+    "sector": "Communication Services",
+    "thesis": "Streaming inflection to sustained profitability plus parks resilience sets up a multi-year re-rating from depressed multiples.",
+    "upsidePct": 27.6,
+    "levels": { "ep": 97.5, "tp": 125.0, "sl": 86.0 }
+  },
+  {
+    "id": "i4",
+    "ticker": "FCX",
+    "name": "Freeport-McMoRan",
+    "sector": "Materials",
+    "thesis": "Structural copper deficit from electrification meets constrained supply; highest-quality pure-play leverage to the theme.",
+    "upsidePct": 29.5,
+    "levels": { "ep": 44.5, "tp": 58.0, "sl": 38.5 }
+  },
+  {
+    "id": "i5",
+    "ticker": "WMT",
+    "name": "Walmart",
+    "sector": "Consumer Staples",
+    "thesis": "High-margin advertising and membership are re-rating a defensive retailer into a profitable-growth compounder.",
+    "upsidePct": 19.4,
+    "levels": { "ep": 66.5, "tp": 80.0, "sl": 60.0 }
+  }
+]

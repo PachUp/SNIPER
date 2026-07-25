@@ -1,0 +1,118 @@
+{
+  "name": "SNIPER House Portfolio",
+  "updated": "2026-06-20T13:00:00Z",
+  "holdings": [
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft",
+      "sector": "Information Technology",
+      "reasoning": "Core AI compounder anchoring the book with low volatility and high quality.",
+      "weightPct": 12,
+      "levels": { "ep": 444.0, "tp": 525.0, "sl": 404.0 }
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly",
+      "sector": "Health Care",
+      "reasoning": "Best secular growth in healthcare; obesity TAM remains underestimated.",
+      "weightPct": 11,
+      "levels": { "ep": 824.0, "tp": 980.0, "sl": 745.0 }
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPMorgan Chase",
+      "sector": "Financials",
+      "reasoning": "Highest-quality bank; rate optionality with downside protection.",
+      "weightPct": 10,
+      "levels": { "ep": 197.0, "tp": 235.0, "sl": 179.0 }
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet",
+      "sector": "Communication Services",
+      "reasoning": "Cloud margin inflection plus cheap relative valuation.",
+      "weightPct": 10,
+      "levels": { "ep": 174.0, "tp": 215.0, "sl": 158.0 }
+    },
+    {
+      "ticker": "XOM",
+      "name": "Exxon Mobil",
+      "sector": "Energy",
+      "reasoning": "Energy ballast and inflation hedge with strong cash returns.",
+      "weightPct": 9,
+      "levels": { "ep": 112.0, "tp": 138.0, "sl": 101.0 }
+    },
+    {
+      "ticker": "COST",
+      "name": "Costco",
+      "sector": "Consumer Staples",
+      "reasoning": "Defensive quality compounder smoothing portfolio drawdowns.",
+      "weightPct": 9,
+      "levels": { "ep": 844.0, "tp": 960.0, "sl": 770.0 }
+    },
+    {
+      "ticker": "CAT",
+      "name": "Caterpillar",
+      "sector": "Industrials",
+      "reasoning": "Infrastructure and capex cycle exposure with pricing power.",
+      "weightPct": 8,
+      "levels": { "ep": 331.0, "tp": 390.0, "sl": 300.0 }
+    },
+    {
+      "ticker": "NEE",
+      "name": "NextEra Energy",
+      "sector": "Utilities",
+      "reasoning": "Low-beta rate-base compounder with renewables growth.",
+      "weightPct": 7,
+      "levels": { "ep": 71.5, "tp": 86.0, "sl": 65.0 }
+    },
+    {
+      "ticker": "PLD",
+      "name": "Prologis",
+      "sector": "Real Estate",
+      "reasoning": "Logistics REIT with embedded rent upside and secular demand.",
+      "weightPct": 7,
+      "levels": { "ep": 109.0, "tp": 135.0, "sl": 99.0 }
+    },
+    {
+      "ticker": "LIN",
+      "name": "Linde",
+      "sector": "Materials",
+      "reasoning": "Defensive industrial-gas oligopoly with steady compounding.",
+      "weightPct": 7,
+      "levels": { "ep": 431.0, "tp": 505.0, "sl": 392.0 }
+    }
+  ],
+  "performance": {
+    "1W": [
+      { "t": "Mon", "pct": 0 },
+      { "t": "Tue", "pct": 0.6 },
+      { "t": "Wed", "pct": 0.3 },
+      { "t": "Thu", "pct": 1.1 },
+      { "t": "Fri", "pct": 1.8 },
+      { "t": "Sat", "pct": 1.7 },
+      { "t": "Sun", "pct": 2.2 }
+    ],
+    "1M": [
+      { "t": "Wk1", "pct": 0 },
+      { "t": "Wk2", "pct": 1.4 },
+      { "t": "Wk3", "pct": 0.9 },
+      { "t": "Wk4", "pct": 3.1 },
+      { "t": "Wk5", "pct": 4.6 }
+    ],
+    "1Y": [
+      { "t": "Jul", "pct": 0 },
+      { "t": "Aug", "pct": 2.5 },
+      { "t": "Sep", "pct": -1.2 },
+      { "t": "Oct", "pct": 3.4 },
+      { "t": "Nov", "pct": 6.8 },
+      { "t": "Dec", "pct": 9.1 },
+      { "t": "Jan", "pct": 7.5 },
+      { "t": "Feb", "pct": 11.2 },
+      { "t": "Mar", "pct": 13.9 },
+      { "t": "Apr", "pct": 12.1 },
+      { "t": "May", "pct": 16.4 },
+      { "t": "Jun", "pct": 19.7 }
+    ]
+  }
+}

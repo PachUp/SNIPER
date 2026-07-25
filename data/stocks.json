@@ -1,0 +1,1292 @@
+[
+  {
+    "ticker": "XOM",
+    "name": "Exxon Mobil",
+    "sector": "Energy",
+    "price": 112.4,
+    "fairValue": 138.0,
+    "upsidePct": 22.8,
+    "beta": 0.92,
+    "sharpe": 1.05,
+    "reasoning": "Integrated major with disciplined capex, strong free cash flow, and a fortress balance sheet. Pricing in conservative oil assumptions leaves room to the upside.",
+    "levels": {
+      "ep": 112.0,
+      "tp": 138.0,
+      "sl": 101.0
+    },
+    "alternatives": [
+      "CVX",
+      "COP",
+      "SLB"
+    ]
+  },
+  {
+    "ticker": "CVX",
+    "name": "Chevron",
+    "sector": "Energy",
+    "price": 150.2,
+    "fairValue": 178.0,
+    "upsidePct": 18.5,
+    "beta": 1.02,
+    "sharpe": 0.98,
+    "reasoning": "High-quality upstream portfolio and shareholder returns. Permian growth underpins durable cash generation.",
+    "levels": {
+      "ep": 150.0,
+      "tp": 178.0,
+      "sl": 136.0
+    },
+    "alternatives": [
+      "XOM",
+      "COP",
+      "SLB"
+    ]
+  },
+  {
+    "ticker": "COP",
+    "name": "ConocoPhillips",
+    "sector": "Energy",
+    "price": 108.9,
+    "fairValue": 134.0,
+    "upsidePct": 23.0,
+    "beta": 1.18,
+    "sharpe": 0.91,
+    "reasoning": "Low-cost shale inventory with a variable return framework. Leverage to commodity upside with capital discipline.",
+    "levels": {
+      "ep": 108.5,
+      "tp": 134.0,
+      "sl": 97.0
+    },
+    "alternatives": [
+      "XOM",
+      "CVX",
+      "SLB"
+    ]
+  },
+  {
+    "ticker": "SLB",
+    "name": "Schlumberger",
+    "sector": "Energy",
+    "price": 44.1,
+    "fairValue": 58.0,
+    "upsidePct": 31.5,
+    "beta": 1.42,
+    "sharpe": 0.82,
+    "reasoning": "Global oilfield services leader levered to international and offshore capex cycle. Higher beta expression of the energy theme.",
+    "levels": {
+      "ep": 44.0,
+      "tp": 58.0,
+      "sl": 38.0
+    },
+    "alternatives": [
+      "XOM",
+      "CVX",
+      "COP"
+    ]
+  },
+  {
+    "ticker": "LIN",
+    "name": "Linde",
+    "sector": "Materials",
+    "price": 432.0,
+    "fairValue": 505.0,
+    "upsidePct": 16.9,
+    "beta": 0.95,
+    "sharpe": 1.22,
+    "reasoning": "Industrial gas oligopoly with pricing power and long-term contracts. Defensive compounder within Materials.",
+    "levels": {
+      "ep": 431.0,
+      "tp": 505.0,
+      "sl": 392.0
+    },
+    "alternatives": [
+      "NUE",
+      "FCX",
+      "NEM"
+    ]
+  },
+  {
+    "ticker": "NUE",
+    "name": "Nucor",
+    "sector": "Materials",
+    "price": 158.5,
+    "fairValue": 192.0,
+    "upsidePct": 21.1,
+    "beta": 1.25,
+    "sharpe": 0.95,
+    "reasoning": "Best-in-class US steel producer with mini-mill cost advantage and infrastructure tailwinds.",
+    "levels": {
+      "ep": 158.0,
+      "tp": 192.0,
+      "sl": 142.0
+    },
+    "alternatives": [
+      "LIN",
+      "FCX",
+      "NEM"
+    ]
+  },
+  {
+    "ticker": "FCX",
+    "name": "Freeport-McMoRan",
+    "sector": "Materials",
+    "price": 44.8,
+    "fairValue": 58.0,
+    "upsidePct": 29.5,
+    "beta": 1.65,
+    "sharpe": 0.78,
+    "reasoning": "Pure-play copper leverage to electrification and grid demand. Higher beta cyclical expression.",
+    "levels": {
+      "ep": 44.5,
+      "tp": 58.0,
+      "sl": 38.5
+    },
+    "alternatives": [
+      "LIN",
+      "NUE",
+      "NEM"
+    ]
+  },
+  {
+    "ticker": "NEM",
+    "name": "Newmont",
+    "sector": "Materials",
+    "price": 41.2,
+    "fairValue": 52.0,
+    "upsidePct": 26.2,
+    "beta": 0.72,
+    "sharpe": 0.7,
+    "reasoning": "Largest gold miner; portfolio hedge with upside if real rates fall. Low beta diversifier.",
+    "levels": {
+      "ep": 41.0,
+      "tp": 52.0,
+      "sl": 36.0
+    },
+    "alternatives": [
+      "LIN",
+      "NUE",
+      "FCX"
+    ]
+  },
+  {
+    "ticker": "CAT",
+    "name": "Caterpillar",
+    "sector": "Industrials",
+    "price": 332.0,
+    "fairValue": 390.0,
+    "upsidePct": 17.5,
+    "beta": 1.1,
+    "sharpe": 1.08,
+    "reasoning": "Infrastructure, mining, and energy capex beneficiary with strong pricing and dealer network.",
+    "levels": {
+      "ep": 331.0,
+      "tp": 390.0,
+      "sl": 300.0
+    },
+    "alternatives": [
+      "HON",
+      "GE",
+      "UNP"
+    ]
+  },
+  {
+    "ticker": "GE",
+    "name": "GE Aerospace",
+    "sector": "Industrials",
+    "price": 168.0,
+    "fairValue": 205.0,
+    "upsidePct": 22.0,
+    "beta": 1.2,
+    "sharpe": 1.15,
+    "reasoning": "Aftermarket-rich aerospace franchise with secular flight-hour growth and margin expansion.",
+    "levels": {
+      "ep": 167.0,
+      "tp": 205.0,
+      "sl": 150.0
+    },
+    "alternatives": [
+      "CAT",
+      "HON",
+      "UNP"
+    ]
+  },
+  {
+    "ticker": "UNP",
+    "name": "Union Pacific",
+    "sector": "Industrials",
+    "price": 232.0,
+    "fairValue": 268.0,
+    "upsidePct": 15.5,
+    "beta": 0.96,
+    "sharpe": 1.0,
+    "reasoning": "Wide-moat rail with pricing power and operating-ratio improvement potential.",
+    "levels": {
+      "ep": 231.0,
+      "tp": 268.0,
+      "sl": 210.0
+    },
+    "alternatives": [
+      "CAT",
+      "GE",
+      "HON"
+    ]
+  },
+  {
+    "ticker": "HON",
+    "name": "Honeywell",
+    "sector": "Industrials",
+    "price": 205.0,
+    "fairValue": 240.0,
+    "upsidePct": 17.1,
+    "beta": 0.98,
+    "sharpe": 1.03,
+    "reasoning": "Diversified industrial tech with automation and aerospace exposure and steady cash returns.",
+    "levels": {
+      "ep": 204.0,
+      "tp": 240.0,
+      "sl": 186.0
+    },
+    "alternatives": [
+      "CAT",
+      "GE",
+      "UNP"
+    ]
+  },
+  {
+    "ticker": "AMZN",
+    "name": "Amazon",
+    "sector": "Consumer Discretionary",
+    "price": 184.0,
+    "fairValue": 230.0,
+    "upsidePct": 25.0,
+    "beta": 1.15,
+    "sharpe": 1.25,
+    "reasoning": "AWS reacceleration plus retail margin recovery and advertising growth drive operating leverage.",
+    "levels": {
+      "ep": 183.0,
+      "tp": 230.0,
+      "sl": 164.0
+    },
+    "alternatives": [
+      "HD",
+      "MCD",
+      "NKE",
+      "TSLA"
+    ]
+  },
+  {
+    "ticker": "TSLA",
+    "name": "Tesla",
+    "sector": "Consumer Discretionary",
+    "price": 245.0,
+    "fairValue": 300.0,
+    "upsidePct": 22.4,
+    "beta": 2.0,
+    "sharpe": 0.65,
+    "reasoning": "Optionality on autonomy and energy storage. Highest beta name in the sleeve; size accordingly.",
+    "levels": {
+      "ep": 244.0,
+      "tp": 300.0,
+      "sl": 210.0
+    },
+    "alternatives": [
+      "AMZN",
+      "NKE",
+      "HD",
+      "MCD"
+    ]
+  },
+  {
+    "ticker": "HD",
+    "name": "Home Depot",
+    "sector": "Consumer Discretionary",
+    "price": 345.0,
+    "fairValue": 400.0,
+    "upsidePct": 15.9,
+    "beta": 0.95,
+    "sharpe": 1.05,
+    "reasoning": "Category-killer with pro-customer growth; housing turnover normalization is a catalyst.",
+    "levels": {
+      "ep": 344.0,
+      "tp": 400.0,
+      "sl": 314.0
+    },
+    "alternatives": [
+      "MCD",
+      "AMZN",
+      "NKE",
+      "TSLA"
+    ]
+  },
+  {
+    "ticker": "NKE",
+    "name": "Nike",
+    "sector": "Consumer Discretionary",
+    "price": 76.0,
+    "fairValue": 95.0,
+    "upsidePct": 25.0,
+    "beta": 1.05,
+    "sharpe": 0.6,
+    "reasoning": "Turnaround story with brand strength; margin reset creates favorable risk/reward.",
+    "levels": {
+      "ep": 75.5,
+      "tp": 95.0,
+      "sl": 67.0
+    },
+    "alternatives": [
+      "HD",
+      "AMZN",
+      "MCD",
+      "TSLA"
+    ]
+  },
+  {
+    "ticker": "MCD",
+    "name": "McDonald's",
+    "sector": "Consumer Discretionary",
+    "price": 262.0,
+    "fairValue": 305.0,
+    "upsidePct": 16.4,
+    "beta": 0.7,
+    "sharpe": 1.12,
+    "reasoning": "Defensive franchise model with global value positioning; low beta anchor for the sleeve.",
+    "levels": {
+      "ep": 261.0,
+      "tp": 305.0,
+      "sl": 238.0
+    },
+    "alternatives": [
+      "HD",
+      "AMZN",
+      "NKE",
+      "TSLA"
+    ]
+  },
+  {
+    "ticker": "PG",
+    "name": "Procter & Gamble",
+    "sector": "Consumer Staples",
+    "price": 165.0,
+    "fairValue": 190.0,
+    "upsidePct": 15.2,
+    "beta": 0.45,
+    "sharpe": 1.1,
+    "reasoning": "Premium staples portfolio with pricing power and consistent organic growth. Low-beta ballast.",
+    "levels": {
+      "ep": 164.0,
+      "tp": 190.0,
+      "sl": 150.0
+    },
+    "alternatives": [
+      "KO",
+      "PEP",
+      "COST",
+      "WMT"
+    ]
+  },
+  {
+    "ticker": "KO",
+    "name": "Coca-Cola",
+    "sector": "Consumer Staples",
+    "price": 62.0,
+    "fairValue": 73.0,
+    "upsidePct": 17.7,
+    "beta": 0.55,
+    "sharpe": 1.05,
+    "reasoning": "Global beverage moat with pricing and emerging-market volume growth. Defensive compounder.",
+    "levels": {
+      "ep": 61.5,
+      "tp": 73.0,
+      "sl": 56.0
+    },
+    "alternatives": [
+      "PG",
+      "PEP",
+      "COST",
+      "WMT"
+    ]
+  },
+  {
+    "ticker": "PEP",
+    "name": "PepsiCo",
+    "sector": "Consumer Staples",
+    "price": 168.0,
+    "fairValue": 198.0,
+    "upsidePct": 17.9,
+    "beta": 0.58,
+    "sharpe": 1.02,
+    "reasoning": "Snacks and beverages powerhouse with durable pricing and category leadership.",
+    "levels": {
+      "ep": 167.0,
+      "tp": 198.0,
+      "sl": 152.0
+    },
+    "alternatives": [
+      "PG",
+      "KO",
+      "COST",
+      "WMT"
+    ]
+  },
+  {
+    "ticker": "COST",
+    "name": "Costco",
+    "sector": "Consumer Staples",
+    "price": 845.0,
+    "fairValue": 960.0,
+    "upsidePct": 13.6,
+    "beta": 0.8,
+    "sharpe": 1.3,
+    "reasoning": "Membership flywheel with unmatched value proposition; premium but highest-quality staple.",
+    "levels": {
+      "ep": 844.0,
+      "tp": 960.0,
+      "sl": 770.0
+    },
+    "alternatives": [
+      "PG",
+      "KO",
+      "PEP",
+      "WMT"
+    ]
+  },
+  {
+    "ticker": "WMT",
+    "name": "Walmart",
+    "sector": "Consumer Staples",
+    "price": 67.0,
+    "fairValue": 80.0,
+    "upsidePct": 19.4,
+    "beta": 0.52,
+    "sharpe": 1.18,
+    "reasoning": "Omnichannel scale plus high-margin advertising and membership optionality.",
+    "levels": {
+      "ep": 66.5,
+      "tp": 80.0,
+      "sl": 60.0
+    },
+    "alternatives": [
+      "PG",
+      "KO",
+      "PEP",
+      "COST"
+    ]
+  },
+  {
+    "ticker": "UNH",
+    "name": "UnitedHealth",
+    "sector": "Health Care",
+    "price": 490.0,
+    "fairValue": 600.0,
+    "upsidePct": 22.4,
+    "beta": 0.75,
+    "sharpe": 1.05,
+    "reasoning": "Integrated managed care plus Optum services; durable double-digit earnings growth.",
+    "levels": {
+      "ep": 489.0,
+      "tp": 600.0,
+      "sl": 445.0
+    },
+    "alternatives": [
+      "JNJ",
+      "ABBV",
+      "LLY",
+      "PFE"
+    ]
+  },
+  {
+    "ticker": "JNJ",
+    "name": "Johnson & Johnson",
+    "sector": "Health Care",
+    "price": 152.0,
+    "fairValue": 178.0,
+    "upsidePct": 17.1,
+    "beta": 0.6,
+    "sharpe": 0.98,
+    "reasoning": "Diversified pharma and medtech with strong pipeline; low-beta defensive anchor.",
+    "levels": {
+      "ep": 151.0,
+      "tp": 178.0,
+      "sl": 138.0
+    },
+    "alternatives": [
+      "UNH",
+      "ABBV",
+      "LLY",
+      "PFE"
+    ]
+  },
+  {
+    "ticker": "LLY",
+    "name": "Eli Lilly",
+    "sector": "Health Care",
+    "price": 825.0,
+    "fairValue": 980.0,
+    "upsidePct": 18.8,
+    "beta": 0.9,
+    "sharpe": 1.4,
+    "reasoning": "Incretin franchise leadership with massive obesity TAM; premium growth compounder.",
+    "levels": {
+      "ep": 824.0,
+      "tp": 980.0,
+      "sl": 745.0
+    },
+    "alternatives": [
+      "UNH",
+      "JNJ",
+      "ABBV",
+      "PFE"
+    ]
+  },
+  {
+    "ticker": "PFE",
+    "name": "Pfizer",
+    "sector": "Health Care",
+    "price": 28.0,
+    "fairValue": 35.0,
+    "upsidePct": 25.0,
+    "beta": 0.65,
+    "sharpe": 0.55,
+    "reasoning": "Post-COVID reset with oncology pipeline optionality and high dividend yield. Value turnaround.",
+    "levels": {
+      "ep": 27.8,
+      "tp": 35.0,
+      "sl": 24.5
+    },
+    "alternatives": [
+      "UNH",
+      "JNJ",
+      "ABBV",
+      "LLY"
+    ]
+  },
+  {
+    "ticker": "ABBV",
+    "name": "AbbVie",
+    "sector": "Health Care",
+    "price": 168.0,
+    "fairValue": 195.0,
+    "upsidePct": 16.1,
+    "beta": 0.68,
+    "sharpe": 1.0,
+    "reasoning": "Immunology franchise transitioning past Humira with Skyrizi/Rinvoq growth ramp.",
+    "levels": {
+      "ep": 167.0,
+      "tp": 195.0,
+      "sl": 152.0
+    },
+    "alternatives": [
+      "UNH",
+      "JNJ",
+      "LLY",
+      "PFE"
+    ]
+  },
+  {
+    "ticker": "JPM",
+    "name": "JPMorgan Chase",
+    "sector": "Financials",
+    "price": 198.0,
+    "fairValue": 238.59,
+    "upsidePct": 20.5,
+    "beta": 1.1,
+    "sharpe": 1.12,
+    "reasoning": "Best-in-class universal bank with fortress balance sheet and rate-cycle optionality.",
+    "levels": {
+      "ep": 197.0,
+      "tp": 235.0,
+      "sl": 179.0
+    },
+    "alternatives": [
+      "BAC",
+      "GS",
+      "V",
+      "MA"
+    ]
+  },
+  {
+    "ticker": "BAC",
+    "name": "Bank of America",
+    "sector": "Financials",
+    "price": 39.0,
+    "fairValue": 48.0,
+    "upsidePct": 23.1,
+    "beta": 1.3,
+    "sharpe": 0.9,
+    "reasoning": "Deposit franchise leverage to rates with improving efficiency; higher beta bank expression.",
+    "levels": {
+      "ep": 38.8,
+      "tp": 48.0,
+      "sl": 34.5
+    },
+    "alternatives": [
+      "JPM",
+      "GS",
+      "V",
+      "MA"
+    ]
+  },
+  {
+    "ticker": "GS",
+    "name": "Goldman Sachs",
+    "sector": "Financials",
+    "price": 460.0,
+    "fairValue": 545.0,
+    "upsidePct": 18.5,
+    "beta": 1.35,
+    "sharpe": 0.95,
+    "reasoning": "Capital markets recovery plus asset management growth; cyclical upside lever.",
+    "levels": {
+      "ep": 459.0,
+      "tp": 545.0,
+      "sl": 415.0
+    },
+    "alternatives": [
+      "JPM",
+      "BAC",
+      "V",
+      "MA"
+    ]
+  },
+  {
+    "ticker": "V",
+    "name": "Visa",
+    "sector": "Financials",
+    "price": 275.0,
+    "fairValue": 331.38,
+    "upsidePct": 20.5,
+    "beta": 0.95,
+    "sharpe": 1.3,
+    "reasoning": "Payments toll-road with secular cash-to-card shift and strong free cash flow.",
+    "levels": {
+      "ep": 274.0,
+      "tp": 320.0,
+      "sl": 250.0
+    },
+    "alternatives": [
+      "JPM",
+      "BAC",
+      "GS",
+      "MA"
+    ]
+  },
+  {
+    "ticker": "MA",
+    "name": "Mastercard",
+    "sector": "Financials",
+    "price": 460.0,
+    "fairValue": 554.3,
+    "upsidePct": 20.5,
+    "beta": 1.0,
+    "sharpe": 1.32,
+    "reasoning": "Global payments duopoly with value-added services growth and pricing power.",
+    "levels": {
+      "ep": 459.0,
+      "tp": 535.0,
+      "sl": 418.0
+    },
+    "alternatives": [
+      "JPM",
+      "BAC",
+      "GS",
+      "V"
+    ]
+  },
+  {
+    "ticker": "AAPL",
+    "name": "Apple",
+    "sector": "Information Technology",
+    "price": 212.0,
+    "fairValue": 245.0,
+    "upsidePct": 15.6,
+    "beta": 1.05,
+    "sharpe": 1.2,
+    "reasoning": "Services growth and installed-base monetization with on-device AI upgrade cycle.",
+    "levels": {
+      "ep": 211.0,
+      "tp": 245.0,
+      "sl": 192.0
+    },
+    "alternatives": [
+      "MSFT",
+      "AVGO",
+      "NVDA",
+      "AMD"
+    ]
+  },
+  {
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "sector": "Information Technology",
+    "price": 445.0,
+    "fairValue": 525.0,
+    "upsidePct": 18.0,
+    "beta": 0.95,
+    "sharpe": 1.45,
+    "reasoning": "Azure AI leadership plus Copilot monetization across the enterprise stack.",
+    "levels": {
+      "ep": 444.0,
+      "tp": 525.0,
+      "sl": 404.0
+    },
+    "alternatives": [
+      "AAPL",
+      "AVGO",
+      "NVDA",
+      "AMD"
+    ]
+  },
+  {
+    "ticker": "NVDA",
+    "name": "NVIDIA",
+    "sector": "Information Technology",
+    "price": 122.0,
+    "fairValue": 150.0,
+    "upsidePct": 23.0,
+    "beta": 1.7,
+    "sharpe": 1.3,
+    "reasoning": "Accelerated-computing standard with full-stack moat; high beta growth engine.",
+    "levels": {
+      "ep": 121.5,
+      "tp": 150.0,
+      "sl": 105.0
+    },
+    "alternatives": [
+      "AAPL",
+      "MSFT",
+      "AVGO",
+      "AMD"
+    ]
+  },
+  {
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "sector": "Information Technology",
+    "price": 165.0,
+    "fairValue": 200.0,
+    "upsidePct": 21.2,
+    "beta": 1.15,
+    "sharpe": 1.28,
+    "reasoning": "Custom AI silicon plus VMware software synergy; diversified semis and software cash flow.",
+    "levels": {
+      "ep": 164.0,
+      "tp": 200.0,
+      "sl": 148.0
+    },
+    "alternatives": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AMD"
+    ]
+  },
+  {
+    "ticker": "AMD",
+    "name": "Advanced Micro Devices",
+    "sector": "Information Technology",
+    "price": 158.0,
+    "fairValue": 200.0,
+    "upsidePct": 26.6,
+    "beta": 1.75,
+    "sharpe": 0.85,
+    "reasoning": "Data-center GPU and CPU share gains; high beta challenger to the AI leader.",
+    "levels": {
+      "ep": 157.0,
+      "tp": 200.0,
+      "sl": 137.0
+    },
+    "alternatives": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AVGO"
+    ]
+  },
+  {
+    "ticker": "GOOGL",
+    "name": "Alphabet",
+    "sector": "Communication Services",
+    "price": 175.0,
+    "fairValue": 215.0,
+    "upsidePct": 22.9,
+    "beta": 1.05,
+    "sharpe": 1.25,
+    "reasoning": "Search durability plus Cloud profitability inflection and Gemini AI distribution.",
+    "levels": {
+      "ep": 174.0,
+      "tp": 215.0,
+      "sl": 158.0
+    },
+    "alternatives": [
+      "META",
+      "NFLX",
+      "DIS",
+      "T"
+    ]
+  },
+  {
+    "ticker": "META",
+    "name": "Meta Platforms",
+    "sector": "Communication Services",
+    "price": 500.0,
+    "fairValue": 610.0,
+    "upsidePct": 22.0,
+    "beta": 1.25,
+    "sharpe": 1.2,
+    "reasoning": "AI-driven ad efficiency and engagement; massive free cash flow funds optionality.",
+    "levels": {
+      "ep": 499.0,
+      "tp": 610.0,
+      "sl": 450.0
+    },
+    "alternatives": [
+      "GOOGL",
+      "NFLX",
+      "DIS",
+      "T"
+    ]
+  },
+  {
+    "ticker": "NFLX",
+    "name": "Netflix",
+    "sector": "Communication Services",
+    "price": 640.0,
+    "fairValue": 771.2,
+    "upsidePct": 20.5,
+    "beta": 1.3,
+    "sharpe": 1.1,
+    "reasoning": "Ad tier and password-sharing monetization driving margin expansion and FCF growth.",
+    "levels": {
+      "ep": 639.0,
+      "tp": 750.0,
+      "sl": 575.0
+    },
+    "alternatives": [
+      "GOOGL",
+      "META",
+      "DIS",
+      "T"
+    ]
+  },
+  {
+    "ticker": "DIS",
+    "name": "Walt Disney",
+    "sector": "Communication Services",
+    "price": 98.0,
+    "fairValue": 125.0,
+    "upsidePct": 27.6,
+    "beta": 1.15,
+    "sharpe": 0.6,
+    "reasoning": "Streaming profitability turn plus parks resilience; value re-rating opportunity.",
+    "levels": {
+      "ep": 97.5,
+      "tp": 125.0,
+      "sl": 86.0
+    },
+    "alternatives": [
+      "GOOGL",
+      "META",
+      "NFLX",
+      "T"
+    ]
+  },
+  {
+    "ticker": "T",
+    "name": "AT&T",
+    "sector": "Communication Services",
+    "price": 19.0,
+    "fairValue": 23.0,
+    "upsidePct": 21.1,
+    "beta": 0.6,
+    "sharpe": 0.7,
+    "reasoning": "Deleveraging telecom with stable wireless subs and high dividend yield. Low-beta income.",
+    "levels": {
+      "ep": 18.9,
+      "tp": 23.0,
+      "sl": 16.8
+    },
+    "alternatives": [
+      "GOOGL",
+      "META",
+      "NFLX",
+      "DIS"
+    ]
+  },
+  {
+    "ticker": "NEE",
+    "name": "NextEra Energy",
+    "sector": "Utilities",
+    "price": 72.0,
+    "fairValue": 86.0,
+    "upsidePct": 19.4,
+    "beta": 0.55,
+    "sharpe": 0.95,
+    "reasoning": "Regulated utility plus renewables growth pipeline; best-in-class rate-base compounder.",
+    "levels": {
+      "ep": 71.5,
+      "tp": 86.0,
+      "sl": 65.0
+    },
+    "alternatives": [
+      "DUK",
+      "SO",
+      "AEP"
+    ]
+  },
+  {
+    "ticker": "DUK",
+    "name": "Duke Energy",
+    "sector": "Utilities",
+    "price": 105.0,
+    "fairValue": 122.0,
+    "upsidePct": 16.2,
+    "beta": 0.45,
+    "sharpe": 0.9,
+    "reasoning": "Constructive regulatory jurisdictions and steady rate-base growth; defensive yield.",
+    "levels": {
+      "ep": 104.0,
+      "tp": 122.0,
+      "sl": 95.0
+    },
+    "alternatives": [
+      "NEE",
+      "SO",
+      "AEP"
+    ]
+  },
+  {
+    "ticker": "SO",
+    "name": "Southern Company",
+    "sector": "Utilities",
+    "price": 82.0,
+    "fairValue": 95.0,
+    "upsidePct": 15.9,
+    "beta": 0.48,
+    "sharpe": 0.92,
+    "reasoning": "Vogtle nuclear online de-risks the story; reliable regulated earnings and dividend.",
+    "levels": {
+      "ep": 81.5,
+      "tp": 95.0,
+      "sl": 74.0
+    },
+    "alternatives": [
+      "NEE",
+      "DUK",
+      "AEP"
+    ]
+  },
+  {
+    "ticker": "AEP",
+    "name": "American Electric Power",
+    "sector": "Utilities",
+    "price": 92.0,
+    "fairValue": 108.0,
+    "upsidePct": 17.4,
+    "beta": 0.5,
+    "sharpe": 0.88,
+    "reasoning": "Transmission-heavy rate base with data-center load growth tailwind.",
+    "levels": {
+      "ep": 91.5,
+      "tp": 108.0,
+      "sl": 83.0
+    },
+    "alternatives": [
+      "NEE",
+      "DUK",
+      "SO"
+    ]
+  },
+  {
+    "ticker": "PLD",
+    "name": "Prologis",
+    "sector": "Real Estate",
+    "price": 110.0,
+    "fairValue": 135.0,
+    "upsidePct": 22.7,
+    "beta": 1.05,
+    "sharpe": 0.85,
+    "reasoning": "Logistics REIT with embedded rent mark-to-market and e-commerce demand.",
+    "levels": {
+      "ep": 109.0,
+      "tp": 135.0,
+      "sl": 99.0
+    },
+    "alternatives": [
+      "AMT",
+      "O",
+      "SPG"
+    ]
+  },
+  {
+    "ticker": "AMT",
+    "name": "American Tower",
+    "sector": "Real Estate",
+    "price": 195.0,
+    "fairValue": 235.0,
+    "upsidePct": 20.5,
+    "beta": 0.85,
+    "sharpe": 0.82,
+    "reasoning": "Tower REIT with contractual escalators and global data-traffic growth.",
+    "levels": {
+      "ep": 194.0,
+      "tp": 235.0,
+      "sl": 176.0
+    },
+    "alternatives": [
+      "PLD",
+      "O",
+      "SPG"
+    ]
+  },
+  {
+    "ticker": "O",
+    "name": "Realty Income",
+    "sector": "Real Estate",
+    "price": 55.0,
+    "fairValue": 66.0,
+    "upsidePct": 20.0,
+    "beta": 0.7,
+    "sharpe": 0.78,
+    "reasoning": "Net-lease monthly dividend payer; low-beta income with rate-cut sensitivity.",
+    "levels": {
+      "ep": 54.5,
+      "tp": 66.0,
+      "sl": 49.0
+    },
+    "alternatives": [
+      "PLD",
+      "AMT",
+      "SPG"
+    ]
+  },
+  {
+    "ticker": "SPG",
+    "name": "Simon Property Group",
+    "sector": "Real Estate",
+    "price": 150.0,
+    "fairValue": 180.0,
+    "upsidePct": 20.0,
+    "beta": 1.4,
+    "sharpe": 0.72,
+    "reasoning": "Class-A mall REIT with resilient occupancy and high dividend; higher beta real estate.",
+    "levels": {
+      "ep": 149.0,
+      "tp": 180.0,
+      "sl": 134.0
+    },
+    "alternatives": [
+      "PLD",
+      "AMT",
+      "O"
+    ]
+  },
+  {
+    "ticker": "IBM",
+    "name": "IBM",
+    "sector": "Information Technology",
+    "price": 185.0,
+    "fairValue": 230.0,
+    "upsidePct": 24.3,
+    "beta": 0.85,
+    "sharpe": 1.05,
+    "reasoning": "Hybrid cloud and AI software mix with sticky enterprise contracts.",
+    "levels": {
+      "ep": 184.0,
+      "tp": 230.0,
+      "sl": 166.0
+    },
+    "alternatives": [
+      "MSFT",
+      "ORCL",
+      "AAPL"
+    ]
+  },
+  {
+    "ticker": "UBER",
+    "name": "Uber Technologies",
+    "sector": "Industrials",
+    "price": 72.5,
+    "fairValue": 95.0,
+    "upsidePct": 31.0,
+    "beta": 1.35,
+    "sharpe": 0.88,
+    "reasoning": "Mobility and delivery platform with improving margins and free cash flow.",
+    "levels": {
+      "ep": 72.0,
+      "tp": 95.0,
+      "sl": 64.0
+    },
+    "alternatives": [
+      "LYFT",
+      "DASH",
+      "AMZN"
+    ]
+  },
+  {
+    "ticker": "CMCSA",
+    "name": "Comcast",
+    "sector": "Communication Services",
+    "price": 41.2,
+    "fairValue": 52.0,
+    "upsidePct": 26.2,
+    "beta": 0.95,
+    "sharpe": 0.9,
+    "reasoning": "Broadband cash engine plus media assets; valuation discount to peers.",
+    "levels": {
+      "ep": 41.0,
+      "tp": 52.0,
+      "sl": 36.5
+    },
+    "alternatives": [
+      "T",
+      "DIS",
+      "NFLX"
+    ]
+  },
+  {
+    "ticker": "SPOT",
+    "name": "Spotify",
+    "sector": "Communication Services",
+    "price": 310.0,
+    "fairValue": 390.0,
+    "upsidePct": 25.8,
+    "beta": 1.45,
+    "sharpe": 0.8,
+    "reasoning": "Audio platform scaling advertising and margins after subscriber growth.",
+    "levels": {
+      "ep": 308.0,
+      "tp": 390.0,
+      "sl": 275.0
+    },
+    "alternatives": [
+      "NFLX",
+      "DIS",
+      "ROKU"
+    ]
+  },
+  {
+    "ticker": "DASH",
+    "name": "DoorDash",
+    "sector": "Consumer Discretionary",
+    "price": 145.0,
+    "fairValue": 185.0,
+    "upsidePct": 27.6,
+    "beta": 1.4,
+    "sharpe": 0.75,
+    "reasoning": "US delivery leader with network effects and expanding categories.",
+    "levels": {
+      "ep": 144.0,
+      "tp": 185.0,
+      "sl": 128.0
+    },
+    "alternatives": [
+      "UBER",
+      "AMZN",
+      "LYFT"
+    ]
+  },
+  {
+    "ticker": "DAL",
+    "name": "Delta Air Lines",
+    "sector": "Industrials",
+    "price": 48.5,
+    "fairValue": 62.0,
+    "upsidePct": 27.8,
+    "beta": 1.25,
+    "sharpe": 0.7,
+    "reasoning": "Premium network airline with loyalty cash flows and capacity discipline.",
+    "levels": {
+      "ep": 48.0,
+      "tp": 62.0,
+      "sl": 42.0
+    },
+    "alternatives": [
+      "UBER",
+      "BA",
+      "GE"
+    ]
+  },
+  {
+    "ticker": "LYFT",
+    "name": "Lyft",
+    "sector": "Industrials",
+    "price": 14.8,
+    "fairValue": 19.5,
+    "upsidePct": 31.8,
+    "beta": 1.55,
+    "sharpe": 0.55,
+    "reasoning": "Rideshare pure-play with cost cuts and path to sustained profitability.",
+    "levels": {
+      "ep": 14.5,
+      "tp": 19.5,
+      "sl": 12.5
+    },
+    "alternatives": [
+      "UBER",
+      "DASH",
+      "DAL"
+    ]
+  },
+  {
+    "ticker": "YUM",
+    "name": "Yum! Brands",
+    "sector": "Consumer Discretionary",
+    "price": 135.0,
+    "fairValue": 168.0,
+    "upsidePct": 24.4,
+    "beta": 0.9,
+    "sharpe": 1.1,
+    "reasoning": "Asset-light franchise model (KFC, Taco Bell, Pizza Hut) with global growth.",
+    "levels": {
+      "ep": 134.0,
+      "tp": 168.0,
+      "sl": 120.0
+    },
+    "alternatives": [
+      "MCD",
+      "SBUX",
+      "NKE"
+    ]
+  },
+  {
+    "ticker": "ROKU",
+    "name": "Roku",
+    "sector": "Communication Services",
+    "price": 68.0,
+    "fairValue": 92.0,
+    "upsidePct": 35.3,
+    "beta": 1.7,
+    "sharpe": 0.5,
+    "reasoning": "Connected TV platform with advertising upside if engagement stays sticky.",
+    "levels": {
+      "ep": 67.0,
+      "tp": 92.0,
+      "sl": 58.0
+    },
+    "alternatives": [
+      "NFLX",
+      "DIS",
+      "SPOT"
+    ]
+  },
+  {
+    "ticker": "LULU",
+    "name": "Lululemon",
+    "sector": "Consumer Discretionary",
+    "price": 290.0,
+    "fairValue": 360.0,
+    "upsidePct": 24.1,
+    "beta": 1.2,
+    "sharpe": 0.95,
+    "reasoning": "Premium athletic brand with international expansion and membership flywheel.",
+    "levels": {
+      "ep": 288.0,
+      "tp": 360.0,
+      "sl": 255.0
+    },
+    "alternatives": [
+      "NKE",
+      "SBUX",
+      "AMZN"
+    ]
+  }
+]

@@ -1,0 +1,1934 @@
+#!/usr/bin/env python3
+"""
+Portfolio builder: maximize model upside with portfolio β kept in 0.5–1.25.
+
+Universe = eligible famous household names (≥20% upside) + all FvIndustries names with model upside ≥ 35%
+(beta, upside, price, FV from refreshed industry JSON files).
+
+Modes:
+  1) Full auto — optimize weights across the whole universe:
+       python3 Builder
+
+  2) You pick 1–4 anchors from the famous stocks; Builder auto-fills to 12 total (picks + auto):
+       python3 Builder --pick IBM UBER DIS
+       python3 Builder --pick JPM MA V --size 12
+       python3 Builder --list-famous
+
+Pick mode: choose 1–4 from ``FAMOUS_STOCKS`` (≥20% upside); auto-fill rest from ≥35% universe.
+Your picks capped at 10% each; auto-fill gets 5–10% by Sharpe (≥1 → 8–10%, <1 → 5–8%) with β in 0.5–1.25.
+Auto names stay at least 3% below pick weight. Up to 12 names total (your picks + auto-fill); uses only as many as needed.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import sys
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Optional
+
+try:
+    import numpy as np
+    from scipy.optimize import minimize
+except ImportError as e:
+    print("Install numpy and scipy: pip install numpy scipy", file=sys.stderr)
+    raise SystemExit(1) from e
+
+_ROOT = Path(__file__).resolve().parent
+DEFAULT_FV_DIR = _ROOT.parent / "FvIndustries-0-0-"
+DEFAULT_UNIVERSE = _ROOT / "extracted_symbols_newest.json"
+DEFAULT_OUTPUT = DEFAULT_FV_DIR / "portfolios.json"
+DEFAULT_SHARPE_FILE = DEFAULT_FV_DIR / "all_stocks_sharpe_ratios.json"
+
+# Curated famous manual-pick list: household names with ≥ FAMOUS_MIN_UPSIDE_PCT upside at runtime.
+FAMOUS_STOCKS: tuple[str, ...] = (
+    "DIS", "NFLX", "JPM", "IBM", "UBER", "T", "CMCSA",
+    "MA", "V", "SPOT", "DASH", "DAL",
+    "LYFT", "YUM", "ROKU", "LULU",
+)
+# Well-known mega-caps kept in pool for when valuations recover above 20%.
+FAMOUS_RESERVE: tuple[str, ...] = (
+    "MSFT", "GOOG", "AMZN", "META", "NVDA", "TSLA", "KO", "F", "AMD",
+    "XOM", "CVX", "JNJ", "COST",
+)
+FAMOUS_CANDIDATES: tuple[str, ...] = FAMOUS_STOCKS + FAMOUS_RESERVE
+FAMOUS_MIN_UPSIDE_PCT = 20.0
+MAX_MANUAL_PICKS = 4
+MIN_MANUAL_PICKS = 1
+MIN_PICK_PORTFOLIO_SIZE = 2
+MAX_PICK_PORTFOLIO_SIZE = 12
+PICK_AUTO_WEIGHT_GAP = 0.0  # auto may use same 10% cap as picks (Sharpe tiers apply below that)
+MIN_HOLDING_WEIGHT = 0.05  # drop auto-fill legs below 5% (pointless dust)
+
+MIN_UPSIDE_PCT = 35.0
+TARGET_BETA_MIN = 0.5
+TARGET_BETA_MAX = 1.25
+FILLER_BETA_AIM = 0.875  # midpoint for auto-fill stock selection
+MAX_WEIGHT = 0.25  # cap single-name weight for diversification
+PICK_MAX_WEIGHT = 0.10  # max weight per manual pick
+AUTO_HIGH_SHARPE_THRESHOLD = 1.0
+AUTO_WEIGHT_MIN_LOW = 0.05  # auto, Sharpe < 1
+AUTO_WEIGHT_MAX_LOW = 0.08
+AUTO_WEIGHT_MIN_HIGH = 0.08  # auto, Sharpe >= 1
+AUTO_WEIGHT_MAX_HIGH = 0.10
+DEFAULT_PORTFOLIO_SIZE = 12  # pick mode: max total slots (picks + auto); fewer is fine
+DEFAULT_FILL_COUNT = 6  # used only when --fill is passed explicitly
+BETA_SWITCH_TOLERANCE = 0.3  # replacement β must be within ± this of the name being swapped
+
+
+@dataclass(frozen=True)
+class Stock:
+    symbol: str
+    beta: float
+    upside_pct: Optional[float]
+    price: Optional[float]
+    fair_value: Optional[float]
+    industry: str
+    sector: str
+    famous: bool
+    high_upside: bool
+    sharpe_ratio: Optional[float] = None
+
+
+def load_famous_stocks_file(path: Path) -> tuple[str, ...]:
+    """Load admin famous list: ``{"stocks": [{"symbol": "DIS", "name": "..."}]}`` or ``{"symbols": ["DIS", ...]}``."""
+    data = json.loads(path.read_text(encoding="utf-8"))
+    raw = data.get("stocks") or data.get("symbols") or []
+    if not isinstance(raw, list) or not raw:
+        raise ValueError(f"no stocks in {path}")
+    if isinstance(raw[0], dict):
+        return tuple(str(item["symbol"]).upper() for item in raw if item.get("symbol"))
+    return tuple(str(sym).upper() for sym in raw)
+
+
+def apply_famous_stocks_override(symbols: tuple[str, ...]) -> None:
+    global FAMOUS_STOCKS, FAMOUS_CANDIDATES
+    FAMOUS_STOCKS = symbols
+    FAMOUS_CANDIDATES = FAMOUS_STOCKS + FAMOUS_RESERVE
+
+
+# Admin disqualifications: symbol → replacement (None = exclude only, no substitute).
+SYMBOL_OVERRIDES: dict[str, Optional[str]] = {}
+
+
+def load_symbol_overrides_file(path: Path) -> dict[str, Optional[str]]:
+    """
+    Load ``{"entries": [{"symbol": "AA", "replacement": "MPC", "note": "..."}]}``.
+    ``replacement`` null/omitted = exclude from universe only.
+    """
+    data = json.loads(path.read_text(encoding="utf-8"))
+    raw = data.get("entries") or []
+    out: dict[str, Optional[str]] = {}
+    if not isinstance(raw, list):
+        return out
+    for item in raw:
+        if not isinstance(item, dict):
+            continue
+        sym = str(item.get("symbol", "")).upper().strip()
+        if not sym:
+            continue
+        repl_raw = item.get("replacement")
+        if repl_raw is None or repl_raw == "":
+            out[sym] = None
+        else:
+            out[sym] = str(repl_raw).upper().strip()
+    return out
+
+
+def apply_symbol_overrides(overrides: dict[str, Optional[str]]) -> None:
+    global SYMBOL_OVERRIDES
+    SYMBOL_OVERRIDES = {k.upper(): (v.upper() if v else None) for k, v in overrides.items()}
+
+
+def is_symbol_disqualified(sym: str) -> bool:
+    return sym.upper() in SYMBOL_OVERRIDES
+
+
+def replacement_for_disqualified(sym: str) -> Optional[str]:
+    return SYMBOL_OVERRIDES.get(sym.upper())
+
+
+def _resolve_override_chain(sym: str) -> str:
+    """Follow replacement chain; stop if exclude-only or cycle."""
+    seen: set[str] = set()
+    cur = sym.upper()
+    while cur in SYMBOL_OVERRIDES:
+        if cur in seen:
+            break
+        seen.add(cur)
+        nxt = SYMBOL_OVERRIDES[cur]
+        if not nxt:
+            return cur
+        cur = nxt.upper()
+    return cur
+
+
+def load_sector_maps(universe_path: Path) -> tuple[dict[str, str], dict[str, str]]:
+    """symbol → sector, finviz industry name → sector (from extracted_symbols JSON)."""
+    symbol_to_sector: dict[str, str] = {}
+    industry_to_sector: dict[str, str] = {}
+    try:
+        data = json.loads(universe_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return symbol_to_sector, industry_to_sector
+    for sector, groups in (data.get("sectors") or {}).items():
+        if not isinstance(groups, dict):
+            continue
+        for _gics_industry, finviz_groups in groups.items():
+            if not isinstance(finviz_groups, dict):
+                continue
+            for finviz_industry, companies in finviz_groups.items():
+                if finviz_industry:
+                    industry_to_sector[str(finviz_industry)] = str(sector)
+                if not isinstance(companies, list):
+                    continue
+                for c in companies:
+                    if not isinstance(c, dict):
+                        continue
+                    sym = c.get("symbol")
+                    if sym:
+                        symbol_to_sector[str(sym).upper()] = str(sector)
+                    orig = c.get("original_finviz_industry")
+                    if orig:
+                        industry_to_sector[str(orig)] = str(sector)
+    return symbol_to_sector, industry_to_sector
+
+
+def resolve_sector(
+    symbol: str,
+    industry: str,
+    symbol_to_sector: dict[str, str],
+    industry_to_sector: dict[str, str],
+) -> str:
+    return symbol_to_sector.get(symbol.upper()) or industry_to_sector.get(industry) or ""
+
+
+def load_sharpe_map(sharpe_path: Path) -> dict[str, float]:
+    """symbol → 1y Sharpe ratio (from ``all_stocks_sharpe_ratios.json``)."""
+    out: dict[str, float] = {}
+    try:
+        data = json.loads(sharpe_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return out
+    for row in data.get("stocks") or []:
+        if not isinstance(row, dict):
+            continue
+        sym = row.get("symbol")
+        sh = row.get("sharpe_ratio")
+        if sym and isinstance(sh, (int, float)) and math.isfinite(float(sh)):
+            out[str(sym).upper()] = float(sh)
+    return out
+
+
+def apply_sharpe_map(stocks: dict[str, Stock], sharpe_map: dict[str, float]) -> dict[str, Stock]:
+    if not sharpe_map:
+        return stocks
+    out: dict[str, Stock] = {}
+    for sym, s in stocks.items():
+        sh = sharpe_map.get(s.symbol.upper())
+        out[sym] = Stock(
+            symbol=s.symbol,
+            beta=s.beta,
+            upside_pct=s.upside_pct,
+            price=s.price,
+            fair_value=s.fair_value,
+            industry=s.industry,
+            sector=s.sector,
+            famous=s.famous,
+            high_upside=s.high_upside,
+            sharpe_ratio=sh,
+        )
+    return out
+
+
+def _portfolio_beta_in_band(beta: float) -> bool:
+    return TARGET_BETA_MIN - 1e-4 <= beta <= TARGET_BETA_MAX + 1e-4
+
+
+def _upside_weighted_start(
+    n: int,
+    upsides: np.ndarray,
+    bounds: list[tuple[float, float]],
+) -> np.ndarray:
+    raw = np.array([max(float(upsides[i]), 0.0) for i in range(n)], dtype=float)
+    if float(raw.sum()) <= 0:
+        raw = np.ones(n, dtype=float)
+    x0 = raw / raw.sum()
+    for i, (lo, hi) in enumerate(bounds):
+        x0[i] = float(np.clip(x0[i], lo, hi))
+    total = float(x0.sum())
+    return x0 / total if total > 0 else np.full(n, 1.0 / n)
+
+
+def famous_eligible_symbols(all_stocks: dict[str, Stock]) -> tuple[str, ...]:
+    """Any ``FAMOUS_CANDIDATES`` name with model upside ≥ ``FAMOUS_MIN_UPSIDE_PCT``."""
+    return tuple(
+        sym
+        for sym in FAMOUS_CANDIDATES
+        if sym in all_stocks
+        and all_stocks[sym].upside_pct is not None
+        and float(all_stocks[sym].upside_pct) >= FAMOUS_MIN_UPSIDE_PCT
+    )
+
+
+def famous_manual_pick_symbols(all_stocks: dict[str, Stock]) -> tuple[str, ...]:
+    """The 16 ``FAMOUS_STOCKS`` that currently meet the ≥20% upside manual-pick bar."""
+    return tuple(
+        sym
+        for sym in FAMOUS_STOCKS
+        if sym in all_stocks
+        and not is_symbol_disqualified(sym)
+        and all_stocks[sym].upside_pct is not None
+        and float(all_stocks[sym].upside_pct) >= FAMOUS_MIN_UPSIDE_PCT
+    )
+
+
+def print_famous_pick_menu(all_stocks: dict[str, Stock], manual_eligible: tuple[str, ...]) -> None:
+    """Show the 16-name manual pick menu (pick 1–6, Builder fills to 9–12 total)."""
+    print(
+        f"\nPick 1–{MAX_MANUAL_PICKS} from these {len(FAMOUS_STOCKS)} famous stocks "
+        f"(≥{FAMOUS_MIN_UPSIDE_PCT:.0f}% upside). Builder fills to "
+        f"{MIN_PICK_PORTFOLIO_SIZE}–{MAX_PICK_PORTFOLIO_SIZE} names total (your picks + auto, only as many as needed); "
+        f"auto weights stay ≥{PICK_AUTO_WEIGHT_GAP * 100:.0f}% below your picks:\n"
+    )
+    for i, sym in enumerate(FAMOUS_STOCKS, 1):
+        s = all_stocks.get(sym)
+        if not s:
+            print(f"  {i:2d}. {sym:<6}  (not in FvIndustries)")
+            continue
+        up = f"{s.upside_pct:+.1f}%" if s.upside_pct is not None else "n/a"
+        mark = "✓" if sym in manual_eligible else "✗"
+        print(f"  {i:2d}. {sym:<6}  β={s.beta:.2f}  upside={up}  {mark}")
+    print(
+        f"\nExample: python3 Builder --pick UBER DIS JPM --size 12"
+    )
+
+
+def famous_picks_json(
+    all_stocks: dict[str, Stock],
+    manual_eligible: tuple[str, ...],
+) -> dict:
+    """Machine-readable famous shortlist for the SNIPER website."""
+    picks = []
+    for sym in FAMOUS_STOCKS:
+        s = all_stocks.get(sym)
+        if not s:
+            picks.append(
+                {
+                    "symbol": sym,
+                    "eligible": False,
+                    "reason": "not_in_fv",
+                }
+            )
+            continue
+        eligible = sym in manual_eligible
+        picks.append(
+            {
+                "symbol": sym,
+                "eligible": eligible,
+                "beta": round(s.beta, 3),
+                "upside_pct": round(s.upside_pct, 1) if s.upside_pct is not None else None,
+                "price": round(s.price, 2) if s.price is not None else None,
+                "fair_value": round(s.fair_value, 2) if s.fair_value is not None else None,
+                "industry": s.industry,
+                "sector": s.sector or None,
+                "sharpe_ratio": round(s.sharpe_ratio, 3) if s.sharpe_ratio is not None else None,
+                "reason": None if eligible else "below_min_upside_or_disqualified",
+            }
+        )
+    return {
+        "min_manual_picks": MIN_MANUAL_PICKS,
+        "max_manual_picks": MAX_MANUAL_PICKS,
+        "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+        "eligible": [p["symbol"] for p in picks if p.get("eligible")],
+        "picks": picks,
+        "built_at": datetime.now(timezone.utc).isoformat(),
+    }
+
+
+def load_fv_stocks(
+    fv_dir: Path,
+    *,
+    symbol_to_sector: dict[str, str],
+    industry_to_sector: dict[str, str],
+) -> dict[str, Stock]:
+    out: dict[str, Stock] = {}
+    for fp in sorted(fv_dir.glob("*_industry_fair_values.json")):
+        try:
+            data = json.loads(fp.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if not isinstance(data, list):
+            continue
+        for block in data:
+            industry = (block.get("meta") or {}).get("group_name") or ""
+            for v in block.get("valuations") or []:
+                if not isinstance(v, dict) or v.get("error"):
+                    continue
+                sym = v.get("symbol")
+                if not sym:
+                    continue
+                meta = v.get("meta") or {}
+                beta = meta.get("beta")
+                if not isinstance(beta, (int, float)) or not math.isfinite(float(beta)):
+                    continue
+                bd = v.get("blended_detail") or {}
+                price = bd.get("stock_price")
+                fv = v.get("blended_fair_value")
+                upside = None
+                if isinstance(price, (int, float)) and isinstance(fv, (int, float)) and price > 0:
+                    upside = (float(fv) / float(price) - 1.0) * 100.0
+                row = Stock(
+                    symbol=str(sym),
+                    beta=float(beta),
+                    upside_pct=upside,
+                    price=float(price) if isinstance(price, (int, float)) else None,
+                    fair_value=float(fv) if isinstance(fv, (int, float)) else None,
+                    industry=str(industry),
+                    sector=resolve_sector(str(sym), str(industry), symbol_to_sector, industry_to_sector),
+                    famous=False,
+                    high_upside=upside is not None and upside >= MIN_UPSIDE_PCT,
+                )
+                prev = out.get(row.symbol)
+                if prev is None or (row.upside_pct or -1e9) > (prev.upside_pct or -1e9):
+                    out[row.symbol] = row
+    return out
+
+
+def build_universe(all_stocks: dict[str, Stock], famous_eligible: tuple[str, ...]) -> list[Stock]:
+    picked: dict[str, Stock] = {}
+    famous_set = set(famous_eligible)
+    for sym in famous_eligible:
+        if sym in all_stocks:
+            s = all_stocks[sym]
+            picked[sym] = Stock(
+                symbol=s.symbol,
+                beta=s.beta,
+                upside_pct=s.upside_pct,
+                price=s.price,
+                fair_value=s.fair_value,
+                industry=s.industry,
+                sector=s.sector,
+                famous=True,
+                high_upside=s.high_upside,
+                sharpe_ratio=s.sharpe_ratio,
+            )
+    for s in all_stocks.values():
+        if is_symbol_disqualified(s.symbol):
+            continue
+        if s.high_upside:
+            prev = picked.get(s.symbol)
+            flags = Stock(
+                symbol=s.symbol,
+                beta=s.beta,
+                upside_pct=s.upside_pct,
+                price=s.price,
+                fair_value=s.fair_value,
+                industry=s.industry,
+                sector=s.sector,
+                famous=s.symbol in famous_set,
+                high_upside=True,
+                sharpe_ratio=s.sharpe_ratio,
+            )
+            if prev is None or (flags.upside_pct or -1e9) > (prev.upside_pct or -1e9):
+                picked[s.symbol] = flags
+    return sorted(picked.values(), key=lambda x: x.symbol)
+
+
+def _feasible_beta_range(betas: np.ndarray) -> tuple[float, float]:
+    return float(np.min(betas)), float(np.max(betas))
+
+
+def _normalize_symbols(symbols: list[str]) -> list[str]:
+    out: list[str] = []
+    seen: set[str] = set()
+    for raw in symbols:
+        sym = raw.strip().upper()
+        if not sym or sym in seen:
+            continue
+        seen.add(sym)
+        out.append(sym)
+    return out
+
+
+def _meets_min_upside(s: Stock, min_pct: float = MIN_UPSIDE_PCT) -> bool:
+    return s.upside_pct is not None and float(s.upside_pct) >= min_pct
+
+
+def select_diversified_fillers(
+    candidates: list[Stock],
+    *,
+    count: int,
+    target_avg_beta: float,
+    used_industries: set[str],
+    used_sectors: Optional[set[str]] = None,
+) -> list[Stock]:
+    """Greedy pick: admin replacements first, then upside, industry/sector spread and β fit."""
+    chosen: list[Stock] = []
+    pool = list(candidates)
+    industries = set(used_industries)
+    sectors = set(used_sectors or ())
+    chosen_syms: set[str] = set()
+
+    def pick_replacement_for_slot() -> Optional[Stock]:
+        """Prefer admin replacement symbols (e.g. AA → MPC) when still available."""
+        best: Optional[tuple[float, Stock]] = None
+        for _disq, repl in SYMBOL_OVERRIDES.items():
+            if not repl or repl in chosen_syms:
+                continue
+            for c in pool:
+                if c.symbol != repl or not _meets_min_upside(c):
+                    continue
+                score = float(c.upside_pct or 0)
+                if best is None or score > best[0]:
+                    best = (score, c)
+        return best[1] if best else None
+
+    for _slot in range(count):
+        if not pool:
+            break
+        repl_pick = pick_replacement_for_slot()
+        if repl_pick is not None:
+            pick = repl_pick
+        else:
+            ideal_beta = target_avg_beta
+            best: Optional[tuple[float, Stock]] = None
+            for c in pool:
+                if not _meets_min_upside(c):
+                    continue
+                upside_score = float(c.upside_pct or 0) / 100.0
+                beta_penalty = abs(c.beta - ideal_beta) * 0.12
+                industry_bonus = 0.15 if c.industry not in industries else 0.0
+                sector_bonus = 0.12 if c.sector and c.sector not in sectors else 0.0
+                score = upside_score - beta_penalty + industry_bonus + sector_bonus
+                if best is None or score > best[0]:
+                    best = (score, c)
+            if best is None:
+                break
+            pick = best[1]
+        chosen.append(pick)
+        chosen_syms.add(pick.symbol)
+        pool.remove(pick)
+        industries.add(pick.industry)
+        if pick.sector:
+            sectors.add(pick.sector)
+    return chosen
+
+
+def _beta_within_switch_band(stock_beta: float, reference_beta: float, tolerance: float) -> bool:
+    return abs(float(stock_beta) - float(reference_beta)) <= tolerance + 1e-9
+
+
+def _pick_best_alternative(
+    candidates: list[Stock],
+    reference_beta: Optional[float],
+) -> Optional[Stock]:
+    if not candidates:
+        return None
+    if reference_beta is not None:
+        candidates.sort(key=lambda s: (-float(s.upside_pct or 0), abs(s.beta - reference_beta)))
+    else:
+        candidates.sort(key=lambda s: -float(s.upside_pct or 0))
+    return candidates[0]
+
+
+def best_replacement_alternative(
+    universe: list[Stock],
+    *,
+    industry: str,
+    sector: str,
+    exclude: set[str],
+    reference_beta: Optional[float] = None,
+    beta_tolerance: float = BETA_SWITCH_TOLERANCE,
+    min_upside_pct: float = 0.0,
+) -> Optional[tuple[Stock, str]]:
+    """
+    Find replacement with upside ≥ ``min_upside_pct``: same industry first, then same sector.
+    Replacement β must be within ``beta_tolerance`` of ``reference_beta``.
+    Returns ``(stock, "industry"|"sector")`` or ``None``.
+    """
+    def _eligible(s: Stock) -> bool:
+        if s.symbol in exclude or not _meets_min_upside(s, min_upside_pct):
+            return False
+        if reference_beta is not None and not _beta_within_switch_band(s.beta, reference_beta, beta_tolerance):
+            return False
+        return True
+
+    industry_alts = [s for s in universe if _eligible(s) and s.industry == industry]
+    pick = _pick_best_alternative(industry_alts, reference_beta)
+    if pick is not None:
+        return pick, "industry"
+
+    if sector:
+        sector_alts = [
+            s for s in universe if _eligible(s) and s.sector == sector and s.industry != industry
+        ]
+        pick = _pick_best_alternative(sector_alts, reference_beta)
+        if pick is not None:
+            return pick, "sector"
+        sector_alts = [s for s in universe if _eligible(s) and s.sector == sector]
+        pick = _pick_best_alternative(sector_alts, reference_beta)
+        if pick is not None:
+            return pick, "sector"
+    return None
+
+
+def suggest_industry_switches(
+    universe: list[Stock],
+    holdings: list[dict],
+    portfolio_symbols: set[str],
+) -> list[dict]:
+    """For each negative-upside holding, suggest industry then sector replacement."""
+    by_sym = {s.symbol: s for s in universe}
+    out: list[dict] = []
+    for h in holdings:
+        up = h.get("upside_pct")
+        if up is None or up >= 0:
+            continue
+        src = by_sym.get(h["symbol"])
+        sector = h.get("sector") or (src.sector if src else "")
+        repl = best_replacement_alternative(
+            universe,
+            industry=h["industry"],
+            sector=sector,
+            exclude=portfolio_symbols,
+            reference_beta=h.get("beta"),
+        )
+        if repl is None:
+            out.append(
+                {
+                    "from_symbol": h["symbol"],
+                    "from_upside_pct": up,
+                    "from_beta": h.get("beta"),
+                    "industry": h["industry"],
+                    "sector": sector or None,
+                    "to_symbol": None,
+                    "note": (
+                        f"no industry/sector alternative with positive upside "
+                        f"and β within ±{BETA_SWITCH_TOLERANCE} of {h.get('beta')}"
+                    ),
+                }
+            )
+            continue
+        alt, level = repl
+        out.append(
+            {
+                "from_symbol": h["symbol"],
+                "from_upside_pct": up,
+                "from_beta": h.get("beta"),
+                "industry": h["industry"],
+                "sector": sector or None,
+                "to_symbol": alt.symbol,
+                "to_industry": alt.industry,
+                "to_sector": alt.sector or None,
+                "to_upside_pct": round(float(alt.upside_pct), 1),
+                "to_beta": round(alt.beta, 3),
+                "switch_level": level,
+            }
+        )
+    return out
+
+
+def _user_pick_indices(stocks: list[Stock], user_picks: list[str]) -> list[int]:
+    pick_set = set(user_picks)
+    return [i for i, s in enumerate(stocks) if s.symbol in pick_set]
+
+
+def optimize_weights(
+    stocks: list[Stock],
+    max_weight: float,
+    *,
+    min_weight: Optional[float] = None,
+) -> Optional[np.ndarray]:
+    """Maximize weighted upside subject to β in [TARGET_BETA_MIN, TARGET_BETA_MAX]."""
+    n = len(stocks)
+    if n == 0:
+        return None
+    betas = np.array([s.beta for s in stocks], dtype=float)
+    upsides = np.array([s.upside_pct if s.upside_pct is not None else 0.0 for s in stocks], dtype=float)
+
+    if min_weight is None and n <= 10:
+        min_weight = max(0.05, 0.75 / n)
+    floor = float(min_weight or 0.0)
+    if floor * n > 1.0 + 1e-9:
+        floor = 1.0 / n
+    bounds = [(floor, max_weight)] * n
+
+    x0 = _upside_weighted_start(n, upsides, bounds)
+
+    def objective(w: np.ndarray) -> float:
+        return float(-np.dot(w, upsides))
+
+    constraints: list[dict] = [
+        {"type": "eq", "fun": lambda w: np.sum(w) - 1.0},
+        {"type": "ineq", "fun": lambda w: float(np.dot(w, betas) - TARGET_BETA_MIN)},
+        {"type": "ineq", "fun": lambda w: float(TARGET_BETA_MAX - np.dot(w, betas))},
+    ]
+
+    res = minimize(objective, x0, method="SLSQP", bounds=bounds, constraints=constraints, options={"maxiter": 5000})
+    if res.x is None:
+        return None
+    w = np.array(res.x, dtype=float)
+    for i, (lo, hi) in enumerate(bounds):
+        w[i] = float(np.clip(w[i], lo, hi))
+    total = float(w.sum())
+    if total <= 0:
+        return None
+    w = w / total
+    if not _portfolio_beta_in_band(float(np.dot(w, betas))):
+        return None
+    return w
+
+
+def _pick_max_weight() -> float:
+    return PICK_MAX_WEIGHT
+
+
+def _pick_auto_max_weight() -> float:
+    """Max weight per auto name (Sharpe ≥ 1 tier)."""
+    return AUTO_WEIGHT_MAX_HIGH
+
+
+def _pick_weight_meta() -> dict:
+    return {
+        "pick_max_weight_pct": round(PICK_MAX_WEIGHT * 100, 1),
+        "auto_max_weight_pct": round(AUTO_WEIGHT_MAX_HIGH * 100, 1),
+        "auto_min_weight_pct_low_sharpe": round(AUTO_WEIGHT_MIN_LOW * 100, 1),
+        "auto_max_weight_pct_low_sharpe": round(AUTO_WEIGHT_MAX_LOW * 100, 1),
+        "auto_min_weight_pct_high_sharpe": round(AUTO_WEIGHT_MIN_HIGH * 100, 1),
+        "auto_high_sharpe_threshold": AUTO_HIGH_SHARPE_THRESHOLD,
+        "pick_auto_weight_gap_pct": round(PICK_AUTO_WEIGHT_GAP * 100, 1),
+    }
+
+
+def _auto_weight_bounds_for_sharpe(sharpe: Optional[float]) -> tuple[float, float]:
+    if sharpe is not None and math.isfinite(sharpe) and sharpe >= AUTO_HIGH_SHARPE_THRESHOLD:
+        return AUTO_WEIGHT_MIN_HIGH, AUTO_WEIGHT_MAX_HIGH
+    return AUTO_WEIGHT_MIN_LOW, AUTO_WEIGHT_MAX_LOW
+
+
+def _target_auto_weight_from_sharpe(sharpe: Optional[float]) -> float:
+    lo, hi = _auto_weight_bounds_for_sharpe(sharpe)
+    if sharpe is None or not math.isfinite(sharpe):
+        return lo
+    s = float(sharpe)
+    if s >= AUTO_HIGH_SHARPE_THRESHOLD:
+        t = min(1.0, max(0.0, s - AUTO_HIGH_SHARPE_THRESHOLD))
+        return lo + t * (hi - lo)
+    t = min(1.0, max(0.0, s))
+    return lo + t * (hi - lo)
+
+
+def _auto_weight_bounds_arrays(
+    stocks: list[Stock], auto_idx: list[int]
+) -> tuple[np.ndarray, np.ndarray]:
+    mins = np.array([_auto_weight_bounds_for_sharpe(stocks[i].sharpe_ratio)[0] for i in auto_idx])
+    maxs = np.array([_auto_weight_bounds_for_sharpe(stocks[i].sharpe_ratio)[1] for i in auto_idx])
+    return mins, maxs
+
+
+def _assign_auto_weights_by_sharpe(
+    stocks: list[Stock],
+    auto_idx: list[int],
+    auto_budget: float,
+) -> np.ndarray:
+    """Spread auto budget across names; higher Sharpe → higher weight within tier bounds."""
+    m = len(auto_idx)
+    if m == 0 or auto_budget <= 0:
+        return np.array([], dtype=float)
+    targets = np.array([_target_auto_weight_from_sharpe(stocks[i].sharpe_ratio) for i in auto_idx])
+    mins, maxs = _auto_weight_bounds_arrays(stocks, auto_idx)
+    w = np.clip(targets, mins, maxs)
+    total = float(w.sum())
+
+    # Add slack to highest-Sharpe names first (stay within tier caps).
+    if total + 1e-9 < auto_budget:
+        slack = auto_budget - total
+        order = sorted(
+            range(m),
+            key=lambda j: (
+                float(stocks[auto_idx[j]].sharpe_ratio or -999.0),
+                float(targets[j]),
+            ),
+            reverse=True,
+        )
+        for j in order:
+            if slack <= 1e-9:
+                break
+            room = float(maxs[j] - w[j])
+            if room <= 1e-12:
+                continue
+            add = min(room, slack)
+            w[j] += add
+            slack -= add
+
+    # Trim from lowest-Sharpe names first (stay above tier floors).
+    total = float(w.sum())
+    if total > auto_budget + 1e-9:
+        excess = total - auto_budget
+        order = sorted(
+            range(m),
+            key=lambda j: (
+                float(stocks[auto_idx[j]].sharpe_ratio or -999.0),
+                float(targets[j]),
+            ),
+        )
+        for j in order:
+            if excess <= 1e-9:
+                break
+            reducible = float(w[j] - mins[j])
+            if reducible <= 1e-12:
+                continue
+            cut = min(reducible, excess)
+            w[j] -= cut
+            excess -= cut
+
+    return w
+
+
+def _min_auto_fill_count(n_picks: int) -> int:
+    """Fewest auto names needed to deploy the auto budget at tier caps."""
+    pick_cap = PICK_MAX_WEIGHT
+    auto_budget = 1.0 - n_picks * pick_cap
+    if auto_budget <= 1e-9:
+        return 0
+    # Plan for low-Sharpe tier (max 8% each) so budget can always deploy.
+    if AUTO_WEIGHT_MAX_LOW <= 1e-9:
+        return 10**9
+    return int(math.ceil(auto_budget / AUTO_WEIGHT_MAX_LOW))
+
+
+def _effective_auto_cap(auto_budget: float, n_auto: int) -> float:
+    """Per-name auto cap; rises when slot-limited so the full auto budget still deploys."""
+    ideal = _pick_auto_max_weight()
+    if n_auto <= 0:
+        return ideal
+    per_slot = auto_budget / n_auto
+    return max(ideal, per_slot)
+
+
+def resolve_pick_fill_plan(
+    n_picks: int,
+    *,
+    size: int,
+    fill_override: Optional[int],
+) -> tuple[int, int] | dict:
+    """Return ``(total_size, fill_count)`` where total_size includes manual picks."""
+    pick_cap = PICK_MAX_WEIGHT
+    pick_weight_total = n_picks * pick_cap
+    if pick_weight_total > 1.0 + 1e-9:
+        return {
+            "error": (
+                f"too many picks at {pick_cap * 100:.0f}% cap "
+                f"({n_picks} picks = {pick_weight_total * 100:.0f}% > 100%)"
+            ),
+        }
+
+    auto_budget = 1.0 - pick_weight_total
+    if auto_budget <= 1e-9:
+        return n_picks, 0
+
+    min_auto = _min_auto_fill_count(n_picks)
+    max_auto_slots = MAX_PICK_PORTFOLIO_SIZE - n_picks
+    if max_auto_slots < 1:
+        return {
+            "error": (
+                f"too many manual picks ({n_picks}) for {MAX_PICK_PORTFOLIO_SIZE} total slots "
+                f"(need at least 1 auto-fill slot)."
+            ),
+        }
+
+    if fill_override is not None:
+        if fill_override == 0:
+            return n_picks, 0
+        fill_count = fill_override
+        total = n_picks + fill_count
+    else:
+        fill_count = min(min_auto, max_auto_slots, max(0, size - n_picks))
+        total = n_picks + fill_count
+
+    if total < MIN_PICK_PORTFOLIO_SIZE or total > MAX_PICK_PORTFOLIO_SIZE:
+        return {
+            "error": (
+                f"portfolio size must be {MIN_PICK_PORTFOLIO_SIZE}–{MAX_PICK_PORTFOLIO_SIZE} total "
+                f"including your picks (got {total})."
+            ),
+        }
+    if fill_count < 1:
+        return {
+            "error": (
+                f"need at least 1 auto-fill slot ({n_picks} picks + auto = {total} total, "
+                f"max {MAX_PICK_PORTFOLIO_SIZE})."
+            ),
+        }
+    if fill_count > max_auto_slots:
+        return {
+            "error": (
+                f"only {max_auto_slots} auto-fill slots available "
+                f"({n_picks} picks + {max_auto_slots} auto = {MAX_PICK_PORTFOLIO_SIZE} total)."
+            ),
+        }
+
+    per_slot = auto_budget / fill_count
+    if per_slot > AUTO_WEIGHT_MAX_HIGH + 1e-6:
+        return {
+            "error": (
+                f"with {n_picks} picks + {fill_count} auto-fill ({total} total slots), "
+                f"auto needs {per_slot * 100:.1f}% per name but auto max is "
+                f"{AUTO_WEIGHT_MAX_HIGH * 100:.0f}%. Use fewer picks or more auto slots."
+            ),
+            "total_slots": total,
+            "max_portfolio_size": MAX_PICK_PORTFOLIO_SIZE,
+        }
+    return total, fill_count
+
+
+def _nudge_portfolio_beta_into_band(
+    w: np.ndarray,
+    betas: np.ndarray,
+    auto_idx: list[int],
+    auto_cap: float,
+    *,
+    auto_caps: Optional[np.ndarray] = None,
+    auto_mins: Optional[np.ndarray] = None,
+    max_iter: int = 200,
+) -> np.ndarray:
+    """Shift auto weight toward higher/lower β names until portfolio β is in band."""
+    w = np.array(w, dtype=float)
+    if not auto_idx:
+        return w
+
+    def cap_for(i: int, j: int) -> float:
+        if auto_caps is not None:
+            return float(auto_caps[j])
+        return auto_cap
+
+    def min_for(i: int, j: int) -> float:
+        if auto_mins is not None:
+            return float(auto_mins[j])
+        return 0.0
+
+    idx_map = {i: j for j, i in enumerate(auto_idx)}
+
+    for _ in range(max_iter):
+        port_beta = float(np.dot(w, betas))
+        if _portfolio_beta_in_band(port_beta):
+            return w
+        if port_beta < TARGET_BETA_MIN:
+            need = TARGET_BETA_MIN - port_beta
+            best: Optional[tuple[float, int, int]] = None
+            for lo in auto_idx:
+                if w[lo] <= min_for(lo, idx_map[lo]) + 1e-9:
+                    continue
+                for hi in auto_idx:
+                    if lo == hi or betas[hi] <= betas[lo]:
+                        continue
+                    delta = float(betas[hi] - betas[lo])
+                    transfer = min(
+                        need / delta,
+                        w[lo] - min_for(lo, idx_map[lo]),
+                        cap_for(hi, idx_map[hi]) - w[hi],
+                    )
+                    if transfer <= 1e-9:
+                        continue
+                    if best is None or transfer > best[0]:
+                        best = (transfer, lo, hi)
+            if best is None:
+                break
+            transfer, lo, hi = best
+            w[lo] -= transfer
+            w[hi] += transfer
+            continue
+        need = port_beta - TARGET_BETA_MAX
+        best = None
+        for hi in auto_idx:
+            if w[hi] <= min_for(hi, idx_map[hi]) + 1e-9:
+                continue
+            for lo in auto_idx:
+                if lo == hi or betas[lo] >= betas[hi]:
+                    continue
+                delta = float(betas[hi] - betas[lo])
+                transfer = min(
+                    need / delta,
+                    w[hi] - min_for(hi, idx_map[hi]),
+                    cap_for(lo, idx_map[lo]) - w[lo],
+                )
+                if transfer <= 1e-9:
+                    continue
+                if best is None or transfer > best[0]:
+                    best = (transfer, hi, lo)
+        if best is None:
+            break
+        transfer, hi, lo = best
+        w[hi] -= transfer
+        w[lo] += transfer
+    return w
+
+
+def optimize_pick_portfolio_weights(
+    stocks: list[Stock],
+    user_picks: list[str],
+    max_weight: float = MAX_WEIGHT,
+) -> Optional[np.ndarray]:
+    """
+    Phase 1: each manual pick at ``PICK_MAX_WEIGHT`` (10%).
+    Phase 2: auto names weighted by Sharpe tier (≥1 → 8–10%, <1 → 5–8%), β in 0.5–1.25.
+    """
+    n = len(stocks)
+    pick_idx = _user_pick_indices(stocks, user_picks)
+    if not pick_idx:
+        return optimize_weights(stocks, max_weight)
+
+    auto_idx = [i for i in range(n) if i not in set(pick_idx)]
+    pick_cap = PICK_MAX_WEIGHT
+    betas = np.array([s.beta for s in stocks], dtype=float)
+
+    w = np.zeros(n, dtype=float)
+    for i in pick_idx:
+        w[i] = pick_cap
+    pick_sum = float(w.sum())
+    if pick_sum > 1.0 + 1e-9:
+        scale = 1.0 / pick_sum
+        for i in pick_idx:
+            w[i] = pick_cap * scale
+        pick_sum = 1.0
+
+    auto_budget = 1.0 - pick_sum
+    if not auto_idx or auto_budget <= 1e-9:
+        return w if _portfolio_beta_in_band(float(np.dot(w, betas))) else None
+
+    auto_mins, auto_maxs = _auto_weight_bounds_arrays(stocks, auto_idx)
+    auto_cap = float(np.max(auto_maxs))
+    x = _assign_auto_weights_by_sharpe(stocks, auto_idx, auto_budget)
+    for j, i in enumerate(auto_idx):
+        w[i] = float(x[j])
+
+    w = _nudge_portfolio_beta_into_band(
+        w, betas, auto_idx, auto_cap, auto_caps=auto_maxs, auto_mins=auto_mins
+    )
+    port_beta = float(np.dot(w, betas))
+    if not _portfolio_beta_in_band(port_beta):
+        return None
+    for j, i in enumerate(auto_idx):
+        if w[i] > auto_maxs[j] + 1e-5 or w[i] + 1e-5 < auto_mins[j]:
+            return None
+    if any(w[i] >= pick_cap - 1e-6 for i in auto_idx):
+        return None
+    return w
+
+
+def _fallback_pick_portfolio_weights(
+    n: int,
+    pick_idx: list[int],
+    auto_idx: list[int],
+    pick_cap: float,
+    auto_cap: float,
+    auto_budget: float,
+    upsides: Optional[np.ndarray] = None,
+    stocks: Optional[list[Stock]] = None,
+) -> np.ndarray:
+    """Assign picks at cap; spread auto budget by Sharpe tier."""
+    w = np.zeros(n, dtype=float)
+    for i in pick_idx:
+        w[i] = pick_cap
+    if auto_idx and auto_budget > 0 and stocks is not None:
+        x = _assign_auto_weights_by_sharpe(stocks, auto_idx, auto_budget)
+        for j, i in enumerate(auto_idx):
+            w[i] = float(x[j])
+    elif auto_idx and auto_budget > 0:
+        each = min(auto_cap, auto_budget / len(auto_idx))
+        for i in auto_idx:
+            w[i] = each
+    total = float(w.sum())
+    if total <= 0:
+        return np.full(n, 1.0 / n)
+    return w
+
+
+def apply_auto_filler_switches(
+    portfolio_stocks: list[Stock],
+    weights: np.ndarray,
+    auto_filled: set[str],
+    universe: list[Stock],
+    max_weight: float,
+    user_picks: Optional[list[str]] = None,
+) -> tuple[list[Stock], np.ndarray, list[dict]]:
+    """Swap auto-filled legs below min upside for same-industry/sector names ≥ min upside."""
+    stocks = list(portfolio_stocks)
+    applied: list[dict] = []
+    portfolio_syms = {s.symbol for s in stocks}
+
+    changed = True
+    while changed:
+        changed = False
+        for i, s in enumerate(stocks):
+            if s.symbol not in auto_filled:
+                continue
+            if _meets_min_upside(s):
+                continue
+            repl = best_replacement_alternative(
+                universe,
+                industry=s.industry,
+                sector=s.sector,
+                exclude=portfolio_syms,
+                reference_beta=s.beta,
+                min_upside_pct=MIN_UPSIDE_PCT,
+            )
+            if repl is None:
+                continue
+            alt, level = repl
+            applied.append(
+                {
+                    "from_symbol": s.symbol,
+                    "from_upside_pct": round(float(s.upside_pct), 1),
+                    "to_symbol": alt.symbol,
+                    "to_upside_pct": round(float(alt.upside_pct), 1),
+                    "industry": s.industry,
+                    "sector": s.sector,
+                    "to_industry": alt.industry,
+                    "switch_level": level,
+                    "auto_applied": True,
+                }
+            )
+            portfolio_syms.discard(s.symbol)
+            portfolio_syms.add(alt.symbol)
+            stocks[i] = alt
+            changed = True
+            break
+
+    if user_picks:
+        new_w = optimize_pick_portfolio_weights(stocks, user_picks, max_weight)
+    else:
+        new_w = optimize_weights(stocks, max_weight=max_weight)
+    if new_w is not None:
+        weights = new_w
+    return stocks, weights, applied
+
+
+def prefer_famous_auto_fillers(
+    portfolio_stocks: list[Stock],
+    weights: np.ndarray,
+    auto_filled: set[str],
+    universe: list[Stock],
+    max_weight: float,
+    famous_eligible: tuple[str, ...],
+    user_picks: Optional[list[str]] = None,
+) -> tuple[list[Stock], np.ndarray, list[dict], set[str]]:
+    """Swap non-famous auto-filled legs for famous names with similar β and upside ≥ min threshold."""
+    stocks = list(portfolio_stocks)
+    applied: list[dict] = []
+    portfolio_syms = {s.symbol for s in stocks}
+    by_sym = {s.symbol: s for s in universe}
+
+    changed = True
+    while changed:
+        changed = False
+        for i, s in enumerate(stocks):
+            if s.symbol not in auto_filled or s.famous:
+                continue
+            best: Optional[tuple[tuple[float, float], Stock]] = None
+            for sym in famous_eligible:
+                if sym in portfolio_syms:
+                    continue
+                alt = by_sym.get(sym)
+                if alt is None or not _meets_min_upside(alt):
+                    continue
+                if not _beta_within_switch_band(alt.beta, s.beta, BETA_SWITCH_TOLERANCE):
+                    continue
+                if float(alt.upside_pct) < float(s.upside_pct or 0):
+                    continue  # never swap to lower upside
+                score = (float(alt.upside_pct), -abs(alt.beta - s.beta))
+                if best is None or score > best[0]:
+                    best = (score, alt)
+            if best is None:
+                continue
+            alt = best[1]
+            trial = list(stocks)
+            trial[i] = alt
+            if user_picks:
+                new_w = optimize_pick_portfolio_weights(trial, user_picks, max_weight)
+            else:
+                new_w = optimize_weights(trial, max_weight=max_weight)
+            if new_w is None:
+                continue
+            if user_picks:
+                auto_idx = [i for i, s in enumerate(trial) if s.symbol not in set(user_picks)]
+                if any(new_w[i] < MIN_HOLDING_WEIGHT for i in auto_idx):
+                    continue
+            applied.append(
+                {
+                    "from_symbol": s.symbol,
+                    "from_beta": round(s.beta, 3),
+                    "from_upside_pct": round(float(s.upside_pct or 0), 1),
+                    "to_symbol": alt.symbol,
+                    "to_beta": round(alt.beta, 3),
+                    "to_upside_pct": round(float(alt.upside_pct), 1),
+                    "auto_applied": True,
+                }
+            )
+            auto_filled.discard(s.symbol)
+            auto_filled.add(alt.symbol)
+            portfolio_syms.discard(s.symbol)
+            portfolio_syms.add(alt.symbol)
+            stocks = trial
+            weights = new_w
+            changed = True
+            break
+
+    return stocks, weights, applied, auto_filled
+
+
+def prune_dust_holdings(
+    portfolio_stocks: list[Stock],
+    weights: np.ndarray,
+    auto_filled: set[str],
+    *,
+    max_weight: float,
+    user_picks: list[str],
+) -> tuple[list[Stock], np.ndarray, set[str], list[str]]:
+    """Drop auto-fill legs below ``MIN_HOLDING_WEIGHT`` and re-optimize."""
+    stocks = list(portfolio_stocks)
+    w = np.array(weights, dtype=float)
+    removed: list[str] = []
+    pick_set = set(user_picks)
+
+    while True:
+        dust = [
+            i
+            for i, s in enumerate(stocks)
+            if s.symbol in auto_filled and w[i] < MIN_HOLDING_WEIGHT
+        ]
+        if not dust:
+            break
+        keep = [i for i in range(len(stocks)) if i not in dust]
+        if len(keep) <= len(pick_set):
+            break
+        for i in sorted(dust, reverse=True):
+            removed.append(stocks[i].symbol)
+            auto_filled.discard(stocks[i].symbol)
+        stocks = [stocks[i] for i in keep]
+        w = np.array([w[i] for i in keep], dtype=float)
+        new_w = optimize_pick_portfolio_weights(stocks, user_picks, max_weight)
+        if new_w is None:
+            break
+        w = new_w
+
+    return stocks, w, auto_filled, removed
+
+
+def apply_admin_override_swaps(
+    portfolio_stocks: list[Stock],
+    weights: np.ndarray,
+    universe: list[Stock],
+    auto_set: set[str],
+    *,
+    max_weight: float,
+    user_picks: list[str],
+) -> tuple[list[Stock], np.ndarray, set[str], list[dict]]:
+    """Swap auto-fill legs that match admin disqualifications to their replacements."""
+    if not SYMBOL_OVERRIDES:
+        return portfolio_stocks, weights, auto_set, []
+    by_sym = {s.symbol: s for s in universe}
+    pick_set = set(user_picks)
+    applied: list[dict] = []
+    stocks = list(portfolio_stocks)
+    w = np.array(weights, dtype=float)
+
+    i = 0
+    while i < len(stocks):
+        s = stocks[i]
+        if s.symbol not in SYMBOL_OVERRIDES or s.symbol in pick_set:
+            i += 1
+            continue
+        repl = replacement_for_disqualified(s.symbol)
+        if not repl:
+            i += 1
+            continue
+        repl = _resolve_override_chain(repl)
+        if repl == s.symbol or repl in pick_set:
+            i += 1
+            continue
+        if repl not in by_sym:
+            applied.append(
+                {
+                    "from_symbol": s.symbol,
+                    "to_symbol": repl,
+                    "note": "replacement not in universe",
+                    "applied": False,
+                }
+            )
+            i += 1
+            continue
+
+        existing = next((j for j, x in enumerate(stocks) if x.symbol == repl), None)
+        if existing is not None and existing != i:
+            w[existing] = float(w[existing] + w[i])
+            applied.append(
+                {
+                    "from_symbol": s.symbol,
+                    "to_symbol": repl,
+                    "merged_weight_pct": round(float(w[existing]) * 100.0, 2),
+                    "applied": True,
+                }
+            )
+            auto_set.discard(s.symbol)
+            auto_set.add(repl)
+            stocks.pop(i)
+            w = np.delete(w, i)
+            continue
+
+        stocks[i] = by_sym[repl]
+        auto_set.discard(s.symbol)
+        auto_set.add(repl)
+        applied.append({"from_symbol": s.symbol, "to_symbol": repl, "applied": True})
+        i += 1
+
+    new_w = optimize_pick_portfolio_weights(stocks, user_picks, max_weight)
+    if new_w is not None:
+        w = new_w
+    return stocks, w, auto_set, applied
+
+
+def finalize_pick_portfolio(
+    portfolio_stocks: list[Stock],
+    weights: np.ndarray,
+    universe: list[Stock],
+    *,
+    max_weight: float,
+    user_picks: list[str],
+    auto_filled_syms: list[str],
+    extra: dict,
+    famous_eligible: tuple[str, ...],
+) -> dict:
+    auto_set = set(auto_filled_syms)
+    stocks, weights, auto_swaps = apply_auto_filler_switches(
+        portfolio_stocks, weights, auto_set, universe, max_weight, user_picks
+    )
+    famous_swaps: list[dict] = []
+    if not user_picks:
+        stocks, weights, famous_swaps, auto_set = prefer_famous_auto_fillers(
+            stocks, weights, auto_set, universe, max_weight, famous_eligible, user_picks
+        )
+    stocks, weights, auto_set, pruned = prune_dust_holdings(
+        stocks,
+        weights,
+        auto_set,
+        max_weight=max_weight,
+        user_picks=user_picks,
+    )
+    stocks, weights, auto_set, override_swaps = apply_admin_override_swaps(
+        stocks,
+        weights,
+        universe,
+        auto_set,
+        max_weight=max_weight,
+        user_picks=user_picks,
+    )
+    summary = portfolio_summary(stocks, weights, user_picks=user_picks)
+    portfolio_syms = {s.symbol for s in stocks}
+    switches = suggest_industry_switches(universe, summary["holdings"], portfolio_syms)
+    result_extra = {**extra, "auto_filled": [s.symbol for s in stocks if s.symbol in auto_set]}
+    if pruned:
+        result_extra["pruned_dust"] = pruned
+    if override_swaps:
+        result_extra["admin_override_swaps"] = override_swaps
+    return {
+        **result_extra,
+        **summary,
+        "auto_switches_applied": auto_swaps,
+        "famous_swaps_applied": famous_swaps,
+        "switch_suggestions": switches,
+    }
+
+
+def complete_portfolio_from_picks(
+    universe: list[Stock],
+    picks: list[str],
+    *,
+    fill_count: int = DEFAULT_FILL_COUNT,
+    max_weight: float = MAX_WEIGHT,
+    famous_eligible: tuple[str, ...],
+) -> dict:
+    """
+    User picks 1–4 anchors from ``FAMOUS_STOCKS``; auto-select ``fill_count`` diversified
+    names from the wider universe with β in 0.5–1.25 and maximum upside.
+    """
+    manual_set = set(famous_eligible)
+    not_famous = [p for p in picks if p not in manual_set]
+    if not_famous:
+        return {
+            "error": (
+                f"manual picks must be from the 16 famous stocks with ≥{FAMOUS_MIN_UPSIDE_PCT:.0f}% upside: "
+                + ", ".join(not_famous)
+            ),
+            "allowed_picks": list(famous_eligible),
+            "famous_stocks": list(FAMOUS_STOCKS),
+            "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+            "max_manual_picks": MAX_MANUAL_PICKS,
+        }
+
+    by_sym = {s.symbol: s for s in universe}
+    disqualified_picks = [p for p in picks if is_symbol_disqualified(p)]
+    if disqualified_picks:
+        return {
+            "error": (
+                f"admin-disqualified symbols cannot be picked: {', '.join(disqualified_picks)}"
+            ),
+            "disqualified_picks": disqualified_picks,
+            "allowed_picks": list(famous_eligible),
+        }
+    missing = [p for p in picks if p not in by_sym]
+    if missing:
+        return {
+            "error": f"not in FvIndustries valuations: {', '.join(missing)}",
+            "allowed_picks": list(famous_eligible),
+            "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+        }
+
+    anchors = [by_sym[p] for p in picks]
+    anchor_industries = {a.industry for a in anchors}
+    anchor_sectors = {a.sector for a in anchors if a.sector}
+
+    if fill_count == 0:
+        portfolio_stocks = anchors
+        weights = optimize_pick_portfolio_weights(
+            portfolio_stocks, picks, max_weight
+        )
+        if weights is None:
+            cap = PICK_MAX_WEIGHT
+            weights = np.array([min(cap, 1.0 / len(anchors))] * len(anchors))
+            weights = weights / weights.sum()
+        anchor_beta_sum = sum(a.beta for a in anchors)
+        return finalize_pick_portfolio(
+            portfolio_stocks,
+            weights,
+            universe,
+            max_weight=max_weight,
+            user_picks=picks,
+            auto_filled_syms=[],
+            extra={
+                "mode": "pick_and_fill",
+                "target_beta_min": TARGET_BETA_MIN,
+                "target_beta_max": TARGET_BETA_MAX,
+                **_pick_weight_meta(),
+                "user_picks": picks,
+                "auto_filled": [],
+                "required_filler_beta_avg": None,
+                "anchor_beta_avg": round(anchor_beta_sum / len(anchors), 3),
+                "famous_stocks": list(FAMOUS_STOCKS),
+                "max_manual_picks": MAX_MANUAL_PICKS,
+                "portfolio_size": len(anchors),
+                "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+            },
+            famous_eligible=famous_eligible,
+        )
+
+    total_names = len(anchors) + fill_count
+    if total_names < 2:
+        return {"error": "need at least 2 names total (picks + fill)"}
+
+    anchor_beta_sum = sum(a.beta for a in anchors)
+    # Equal-weight portfolio: avg beta = (sum anchor betas + sum filler betas) / total_names.
+    required_filler_beta_avg = (FILLER_BETA_AIM * total_names - anchor_beta_sum) / fill_count
+
+    b_min = min(s.beta for s in universe)
+    b_max = max(s.beta for s in universe)
+    if required_filler_beta_avg < b_min - 0.05 or required_filler_beta_avg > b_max + 0.05:
+        return {
+            "error": (
+                f"cannot hit β={TARGET_BETA_MIN}–{TARGET_BETA_MAX} with {len(anchors)} picks + {fill_count} fillers "
+                f"(need filler avg β≈{required_filler_beta_avg:.2f}, universe {b_min:.2f}–{b_max:.2f})"
+            ),
+            "anchors": [{"symbol": a.symbol, "beta": a.beta} for a in anchors],
+            "required_filler_beta_avg": round(required_filler_beta_avg, 3),
+        }
+
+    pick_syms = {a.symbol for a in anchors}
+    manual_famous = set(FAMOUS_STOCKS)
+    candidates = [
+        s
+        for s in universe
+        if s.symbol not in pick_syms
+        and s.symbol not in manual_famous
+        and not is_symbol_disqualified(s.symbol)
+        and _meets_min_upside(s)
+    ]
+    fillers = select_diversified_fillers(
+        candidates,
+        count=fill_count,
+        target_avg_beta=required_filler_beta_avg,
+        used_industries=anchor_industries,
+        used_sectors=anchor_sectors,
+    )
+    if len(fillers) < fill_count:
+        return {"error": f"only found {len(fillers)} filler candidates (wanted {fill_count})"}
+
+    portfolio_stocks = anchors + fillers
+    weights = optimize_pick_portfolio_weights(
+        portfolio_stocks, picks, max_weight
+    )
+    if weights is None:
+        pick_cap = PICK_MAX_WEIGHT
+        auto_cap = _pick_auto_max_weight()
+        pick_idx = _user_pick_indices(portfolio_stocks, picks)
+        auto_idx = [i for i in range(len(portfolio_stocks)) if i not in set(pick_idx)]
+        auto_budget = 1.0 - len(pick_idx) * pick_cap
+        if auto_budget < 0:
+            auto_budget = 0.0
+        weights = _fallback_pick_portfolio_weights(
+            len(portfolio_stocks),
+            pick_idx,
+            auto_idx,
+            pick_cap,
+            auto_cap,
+            auto_budget,
+            stocks=portfolio_stocks,
+        )
+        auto_mins, auto_maxs = _auto_weight_bounds_arrays(portfolio_stocks, auto_idx)
+        betas = np.array([s.beta for s in portfolio_stocks], dtype=float)
+        weights = _nudge_portfolio_beta_into_band(
+            weights, betas, auto_idx, auto_cap, auto_caps=auto_maxs, auto_mins=auto_mins
+        )
+
+    return finalize_pick_portfolio(
+        portfolio_stocks,
+        weights,
+        universe,
+        max_weight=max_weight,
+        user_picks=picks,
+        auto_filled_syms=[f.symbol for f in fillers],
+        extra={
+            "mode": "pick_and_fill",
+            "target_beta_min": TARGET_BETA_MIN,
+            "target_beta_max": TARGET_BETA_MAX,
+            **_pick_weight_meta(),
+            "user_picks": picks,
+            "auto_filled": [f.symbol for f in fillers],
+            "required_filler_beta_avg": round(required_filler_beta_avg, 3),
+            "anchor_beta_avg": round(anchor_beta_sum / len(anchors), 3),
+            "famous_stocks": list(FAMOUS_STOCKS),
+            "max_manual_picks": MAX_MANUAL_PICKS,
+            "portfolio_size": total_names,
+            "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+        },
+        famous_eligible=famous_eligible,
+    )
+
+
+def print_pick_report(result: dict) -> None:
+    if "error" in result:
+        print(f"ERROR: {result['error']}")
+        if "allowed_picks" in result:
+            print(f"\nPick from: {', '.join(result['allowed_picks'])}")
+        if "anchors" in result:
+            for a in result["anchors"]:
+                print(f"  pick {a['symbol']} β={a['beta']:.2f}")
+        return
+
+    beta_lo = result.get("target_beta_min", TARGET_BETA_MIN)
+    beta_hi = result.get("target_beta_max", TARGET_BETA_MAX)
+    print(f"Target β={beta_lo}–{beta_hi}")
+    print(f"Your picks ({len(result['user_picks'])}): {', '.join(result['user_picks'])}  (anchor avg β={result['anchor_beta_avg']})")
+    if result.get("user_pick_weight_pct") is not None:
+        cap = result.get("pick_max_weight_pct", "?")
+        auto_hi = result.get("auto_max_weight_pct", "?")
+        auto_lo = result.get("auto_max_weight_pct_low_sharpe", "?")
+        sharpe_thr = result.get("auto_high_sharpe_threshold", 1.0)
+        print(
+            f"Your pick weight: {result['user_pick_weight_pct']:.1f}% of portfolio "
+            f"(max {cap}% each; auto {auto_lo}–{auto_hi}% by Sharpe, ≥{sharpe_thr} → 8–10%)"
+        )
+    if result["auto_filled"]:
+        print(f"Auto-filled ({len(result['auto_filled'])}): {', '.join(result['auto_filled'])}  (target filler avg β={result['required_filler_beta_avg']})")
+    else:
+        print("Auto-filled: none (all names are your picks)")
+    print(
+        f"\nPortfolio β={result['portfolio_beta']}  weighted upside={result['portfolio_upside_pct']:+.1f}%  "
+        f"({result['holdings_count']} names)\n"
+    )
+    for h in result["holdings"]:
+        tags = []
+        if h["symbol"] in result["user_picks"]:
+            tags.append("YOUR PICK")
+        else:
+            tags.append("auto")
+        if h["famous"]:
+            tags.append("★")
+        if h["high_upside"]:
+            tags.append(f"+{int(MIN_UPSIDE_PCT)}%+")
+        up = f"{h['upside_pct']:+.1f}%" if h["upside_pct"] is not None else "n/a"
+        sh = f"{h['sharpe_ratio']:.2f}" if h.get("sharpe_ratio") is not None else "n/a"
+        print(
+            f"  {h['weight_pct']:5.1f}%  {h['symbol']:<6}  β={h['beta']:.2f}  "
+            f"upside={up}  Sharpe={sh}  {h['industry'][:28]}  [{' '.join(tags)}]"
+        )
+
+    auto_swaps = result.get("auto_switches_applied") or []
+    if auto_swaps:
+        print("Auto-switched (below min upside → ≥35% replacement; industry/sector; β within ±0.3):")
+        for sw in auto_swaps:
+            lvl = sw.get("switch_level", "industry")
+            dest = sw.get("to_industry", sw.get("industry", ""))
+            print(
+                f"  {sw['from_symbol']} ({sw['from_upside_pct']:+.1f}%) → "
+                f"{sw['to_symbol']} ({sw['to_upside_pct']:+.1f}%)  "
+                f"[{lvl}: {dest}]"
+            )
+        print()
+
+    famous_swaps = result.get("famous_swaps_applied") or []
+    if famous_swaps:
+        print("Swapped to famous names (similar β, upside ≥35%):")
+        for sw in famous_swaps:
+            print(
+                f"  {sw['from_symbol']} (β={sw['from_beta']}, {sw['from_upside_pct']:+.1f}%) → "
+                f"{sw['to_symbol']} (β={sw['to_beta']}, {sw['to_upside_pct']:+.1f}%)"
+            )
+        print()
+
+    suggestions = result.get("switch_suggestions") or []
+    if suggestions:
+        print("Switch suggestions (negative upside; industry then sector; replacement β within ±0.3):")
+        for sw in suggestions:
+            if sw.get("to_symbol"):
+                who = "YOUR PICK" if sw["from_symbol"] in result.get("user_picks", []) else "holding"
+                lvl = sw.get("switch_level", "industry")
+                dest_ind = sw.get("to_industry", "")
+                dest_sec = sw.get("to_sector", sw.get("sector", ""))
+                if lvl == "sector":
+                    where = f"sector {dest_sec} → {dest_ind}"
+                else:
+                    where = sw["industry"]
+                print(
+                    f"  {sw['from_symbol']} (β={sw.get('from_beta', '?')}, {sw['from_upside_pct']:+.1f}%) → "
+                    f"{sw['to_symbol']} (β={sw.get('to_beta', '?')}, {sw['to_upside_pct']:+.1f}%)  "
+                    f"[{where}]  ({who})"
+                )
+            else:
+                sec = sw.get("sector")
+                extra = f" / sector {sec}" if sec else ""
+                print(
+                    f"  {sw['from_symbol']} ({sw['from_upside_pct']:+.1f}%)  "
+                    f"[{sw['industry']}{extra}] — {sw.get('note', 'no alternative')}"
+                )
+        print()
+    print()
+
+
+def portfolio_summary(
+    stocks: list[Stock],
+    weights: np.ndarray,
+    *,
+    user_picks: Optional[list[str]] = None,
+) -> dict:
+    betas = np.array([s.beta for s in stocks])
+    upsides = np.array([s.upside_pct if s.upside_pct is not None else 0.0 for s in stocks])
+    sharpes = np.array([s.sharpe_ratio for s in stocks])
+    pick_set = set(user_picks or [])
+    holdings = []
+    user_pick_weight = 0.0
+    for s, w in zip(stocks, weights):
+        if w <= MIN_HOLDING_WEIGHT - 1e-9:
+            continue
+        if s.symbol in pick_set:
+            user_pick_weight += float(w)
+        holdings.append(
+            {
+                "symbol": s.symbol,
+                "weight_pct": round(float(w) * 100.0, 2),
+                "beta": round(s.beta, 3),
+                "upside_pct": round(s.upside_pct, 1) if s.upside_pct is not None else None,
+                "sharpe_ratio": round(s.sharpe_ratio, 3) if s.sharpe_ratio is not None else None,
+                "price": round(s.price, 2) if s.price is not None else None,
+                "fair_value": round(s.fair_value, 2) if s.fair_value is not None else None,
+                "industry": s.industry,
+                "sector": s.sector or None,
+                "famous": s.famous,
+                "high_upside": s.high_upside,
+                "user_pick": s.symbol in pick_set,
+            }
+        )
+    holdings.sort(key=lambda h: h["weight_pct"], reverse=True)
+    port_sharpe = float(np.dot(weights, np.nan_to_num(sharpes, nan=0.0)))
+    out = {
+        "holdings_count": len(holdings),
+        "portfolio_beta": round(float(np.dot(weights, betas)), 4),
+        "portfolio_upside_pct": round(float(np.dot(weights, upsides)), 2),
+        "portfolio_sharpe_weighted": round(port_sharpe, 3),
+        "holdings": holdings,
+        "beta_band": {"min": TARGET_BETA_MIN, "max": TARGET_BETA_MAX},
+        "built_at": datetime.now(timezone.utc).isoformat(),
+    }
+    if user_picks:
+        out["user_picks"] = list(user_picks)
+        out["user_pick_weight_pct"] = round(user_pick_weight * 100.0, 2)
+    return out
+
+
+def build_portfolios(
+    stocks: list[Stock],
+    max_weight: float,
+    famous_eligible: tuple[str, ...],
+) -> dict:
+    betas = [s.beta for s in stocks]
+    b_min, b_max = min(betas), max(betas)
+    universe_meta = {
+        "symbols": len(stocks),
+        "famous_count": sum(1 for s in stocks if s.famous),
+        "high_upside_count": sum(1 for s in stocks if s.high_upside),
+        "beta_min": round(b_min, 3),
+        "beta_max": round(b_max, 3),
+        "beta_mean": round(sum(betas) / len(betas), 3),
+        "target_beta_min": TARGET_BETA_MIN,
+        "target_beta_max": TARGET_BETA_MAX,
+        "min_upside_threshold_pct": MIN_UPSIDE_PCT,
+        "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+        "famous_symbols": list(famous_eligible),
+        "famous_stocks": list(FAMOUS_STOCKS),
+        "famous_candidates": list(FAMOUS_CANDIDATES),
+    }
+    w = optimize_weights(stocks, max_weight=max_weight)
+    entry: dict = {
+        "target_beta_min": TARGET_BETA_MIN,
+        "target_beta_max": TARGET_BETA_MAX,
+    }
+    if w is None:
+        entry["error"] = (
+            f"infeasible for β={TARGET_BETA_MIN}–{TARGET_BETA_MAX} "
+            f"(universe beta range {b_min:.2f}–{b_max:.2f})"
+        )
+        return {"universe": universe_meta, "portfolio": entry}
+    entry.update(portfolio_summary(stocks, w))
+    return {"universe": universe_meta, "portfolio": entry}
+
+
+def print_report(result: dict) -> None:
+    uni = result["universe"]
+    print(
+        f"Universe: {uni['symbols']} stocks "
+        f"({uni['famous_count']} famous, {uni['high_upside_count']} with >{uni['min_upside_threshold_pct']:.0f}% upside)"
+    )
+    print(
+        f"Beta range: {uni['beta_min']} – {uni['beta_max']} (mean {uni['beta_mean']})  "
+        f"| target {uni['target_beta_min']}–{uni['target_beta_max']}\n"
+    )
+    p = result["portfolio"]
+    if "error" in p:
+        print(f"FAILED — {p['error']}\n")
+        return
+    print(
+        f"Portfolio β={p['portfolio_beta']}  weighted upside={p['portfolio_upside_pct']:+.1f}%  "
+        f"({p['holdings_count']} names)"
+    )
+    for h in p["holdings"][:15]:
+        flags = []
+        if h["famous"]:
+            flags.append("★")
+        if h["high_upside"]:
+            flags.append(f"+{int(MIN_UPSIDE_PCT)}%+")
+        flag = " ".join(flags)
+        up = f"{h['upside_pct']:+.1f}%" if h["upside_pct"] is not None else "n/a"
+        print(f"  {h['weight_pct']:5.1f}%  {h['symbol']:<6}  β={h['beta']:.2f}  upside={up}  {flag}")
+    if p["holdings_count"] > 15:
+        print(f"  ... +{p['holdings_count'] - 15} more")
+    print()
+
+
+def main() -> None:
+    global MIN_UPSIDE_PCT
+
+    ap = argparse.ArgumentParser(
+        description="Build high-upside portfolios (β 0.5–1.25) from famous + high-upside Fv stocks"
+    )
+    ap.add_argument("--fv-dir", type=Path, default=DEFAULT_FV_DIR)
+    ap.add_argument("--max-weight", type=float, default=MAX_WEIGHT, help="Max weight per name (default 0.25)")
+    ap.add_argument("-o", "--output", type=Path, default=None, help="Write JSON result")
+    ap.add_argument(
+        "--pick",
+        nargs="+",
+        default=None,
+        help="1–4 tickers from famous stocks (≥20% upside); Builder fills remaining slots to 12 total",
+    )
+    ap.add_argument(
+        "--overrides-file",
+        type=Path,
+        default=None,
+        help="JSON file with admin symbol disqualifications and replacements",
+    )
+    ap.add_argument(
+        "--famous-file",
+        type=Path,
+        default=None,
+        help="JSON file overriding FAMOUS_STOCKS (admin list)",
+    )
+    ap.add_argument(
+        "--json-stdout",
+        action="store_true",
+        help="Write portfolio JSON to stdout (pick mode only)",
+    )
+    ap.add_argument(
+        "--list-famous",
+        action="store_true",
+        help="Print the 16 famous manual-pick options and exit",
+    )
+    ap.add_argument(
+        "--list-famous-json",
+        action="store_true",
+        help="Print eligible famous manual-pick options as JSON and exit",
+    )
+    ap.add_argument(
+        "--size",
+        type=int,
+        default=DEFAULT_PORTFOLIO_SIZE,
+        help=(
+            f"Max total slots in pick mode (your picks + auto-fill): "
+            f"up to {MAX_PICK_PORTFOLIO_SIZE} (default {DEFAULT_PORTFOLIO_SIZE}). "
+            f"Builder uses only as many names as needed."
+        ),
+    )
+    ap.add_argument(
+        "--fill",
+        type=int,
+        default=None,
+        help="Auto names to add (overrides size−picks). Use 0 for picks-only portfolio",
+    )
+    ap.add_argument("--min-upside", type=float, default=MIN_UPSIDE_PCT, help="Min model upside %% for filler pool (default 35)")
+    ap.add_argument(
+        "--sharpe-file",
+        type=Path,
+        default=DEFAULT_SHARPE_FILE,
+        help="JSON with 1y Sharpe ratios for weight tilting",
+    )
+    ap.add_argument(
+        "--universe",
+        type=Path,
+        default=DEFAULT_UNIVERSE,
+        help="extracted_symbols JSON for symbol→sector mapping",
+    )
+    args = ap.parse_args()
+
+    MIN_UPSIDE_PCT = float(args.min_upside)
+
+    if args.famous_file:
+        try:
+            apply_famous_stocks_override(load_famous_stocks_file(args.famous_file))
+        except (OSError, json.JSONDecodeError, ValueError) as e:
+            print(f"Invalid --famous-file: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    if args.overrides_file:
+        try:
+            apply_symbol_overrides(load_symbol_overrides_file(args.overrides_file))
+        except (OSError, json.JSONDecodeError, ValueError) as e:
+            print(f"Invalid --overrides-file: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    symbol_to_sector, industry_to_sector = load_sector_maps(args.universe)
+    all_stocks = load_fv_stocks(
+        args.fv_dir,
+        symbol_to_sector=symbol_to_sector,
+        industry_to_sector=industry_to_sector,
+    )
+    sharpe_map = load_sharpe_map(args.sharpe_file)
+    all_stocks = apply_sharpe_map(all_stocks, sharpe_map)
+    if not all_stocks:
+        print(f"No stocks loaded from {args.fv_dir}", file=sys.stderr)
+        sys.exit(1)
+
+    famous_eligible = famous_eligible_symbols(all_stocks)
+    manual_eligible = famous_manual_pick_symbols(all_stocks)
+
+    if args.list_famous_json:
+        print(json.dumps(famous_picks_json(all_stocks, manual_eligible)))
+        return
+
+    if args.list_famous:
+        print_famous_pick_menu(all_stocks, manual_eligible)
+        reserve_eligible = [sym for sym in FAMOUS_RESERVE if sym in famous_eligible]
+        if reserve_eligible:
+            print(f"\nReserve mega-caps also ≥{FAMOUS_MIN_UPSIDE_PCT:.0f}% today: {', '.join(reserve_eligible)}")
+        excluded_reserve = [
+            sym for sym in FAMOUS_RESERVE if sym in all_stocks and sym not in famous_eligible
+        ]
+        if excluded_reserve:
+            print(f"\nReserve (<{FAMOUS_MIN_UPSIDE_PCT:.0f}% upside today):")
+            for sym in excluded_reserve:
+                s = all_stocks[sym]
+                up = f"{s.upside_pct:+.1f}%" if s.upside_pct is not None else "n/a"
+                print(f"  {sym:<6}  upside={up}")
+        return
+
+    universe = build_universe(all_stocks, famous_eligible)
+    if len(universe) < 2:
+        print("Need at least 2 stocks in universe", file=sys.stderr)
+        sys.exit(1)
+
+    if args.pick:
+        picks = _normalize_symbols(args.pick)
+        if len(picks) < MIN_MANUAL_PICKS:
+            print(f"Pick at least {MIN_MANUAL_PICKS} famous stock (max {MAX_MANUAL_PICKS}).", file=sys.stderr)
+            print_famous_pick_menu(all_stocks, manual_eligible)
+            sys.exit(1)
+        if len(picks) > MAX_MANUAL_PICKS:
+            print(f"At most {MAX_MANUAL_PICKS} manual picks from the famous list.", file=sys.stderr)
+            print_famous_pick_menu(all_stocks, manual_eligible)
+            sys.exit(1)
+        if len(picks) > args.size:
+            print(
+                f"Too many picks ({len(picks)}) for --size {args.size}. "
+                f"Use fewer picks or raise --size (up to {MAX_PICK_PORTFOLIO_SIZE}).",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        if not (MIN_PICK_PORTFOLIO_SIZE <= args.size <= MAX_PICK_PORTFOLIO_SIZE):
+            print(
+                f"Pick mode portfolio size must be {MIN_PICK_PORTFOLIO_SIZE}–{MAX_PICK_PORTFOLIO_SIZE} "
+                f"(got {args.size}).",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        plan = resolve_pick_fill_plan(
+            len(picks),
+            size=args.size,
+            fill_override=args.fill,
+        )
+        if isinstance(plan, dict):
+            print(f"ERROR: {plan['error']}", file=sys.stderr)
+            sys.exit(1)
+        portfolio_size, fill_count = plan
+        result = complete_portfolio_from_picks(
+            universe,
+            picks,
+            fill_count=fill_count,
+            max_weight=args.max_weight,
+            famous_eligible=manual_eligible,
+        )
+        if "error" in result:
+            if args.json_stdout:
+                print(json.dumps(result), file=sys.stdout)
+            else:
+                print_pick_report(result)
+            sys.exit(1)
+        if args.json_stdout:
+            print(json.dumps(result), file=sys.stdout)
+            return
+        print_pick_report(result)
+        out = args.output or DEFAULT_FV_DIR / "portfolio_pick.json"
+    else:
+        result = build_portfolios(
+            universe, max_weight=args.max_weight, famous_eligible=famous_eligible
+        )
+        print_report(result)
+        out = args.output or DEFAULT_OUTPUT
+
+    if out:
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(result, indent=2), encoding="utf-8")
+        print(f"Wrote → {out}")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "n1",
+    "tickers": ["NVDA"],
+    "line": "Nvidia won a big new chip deal.",
+    "details": "A major cloud company agreed to buy a large amount of Nvidia's AI chips over the next few years. More orders usually means more sales and profit, which is why investors see this as good news for Nvidia.",
+    "sentiment": "good",
+    "source": "MarketWire",
+    "sourceUrl": "https://example.com/nvda-supply-deal",
+    "timestamp": "2026-06-20T13:30:00Z"
+  },
+  {
+    "id": "n2",
+    "tickers": ["TSLA"],
+    "line": "Tesla cut prices, so it earns less per car.",
+    "details": "Tesla lowered the price of its cars again to attract more buyers. Selling more cars is good, but making less money on each one can shrink profits in the short term, so investors were cautious.",
+    "sentiment": "bad",
+    "source": "AutoDaily",
+    "sourceUrl": "https://example.com/tsla-price-cut",
+    "timestamp": "2026-06-20T12:10:00Z"
+  },
+  {
+    "id": "n3",
+    "tickers": ["LLY"],
+    "line": "Lilly's weight-loss drug did well in testing.",
+    "details": "In a large study, Eli Lilly's weight-loss treatment helped patients more than expected. Strong results make it more likely the drug sells well, which could boost the company's future earnings.",
+    "sentiment": "good",
+    "source": "PharmaTimes",
+    "sourceUrl": "https://example.com/lly-data",
+    "timestamp": "2026-06-20T11:45:00Z"
+  },
+  {
+    "id": "n4",
+    "tickers": ["JPM"],
+    "line": "JPMorgan expects to make more money this year.",
+    "details": "The bank raised its own forecast for how much it will earn this year, mostly because it's making more from lending. When a company expects higher profits, investors often view the stock more positively.",
+    "sentiment": "good",
+    "source": "FinanceWire",
+    "sourceUrl": "https://example.com/jpm-nii",
+    "timestamp": "2026-06-20T10:20:00Z"
+  },
+  {
+    "id": "n5",
+    "tickers": ["DIS"],
+    "line": "Disney's streaming service is now making a profit.",
+    "details": "Disney's streaming business (like Disney+) finally earns more than it costs to run, ahead of schedule. Turning a money-losing unit into a profitable one is a healthy sign for the whole company.",
+    "sentiment": "good",
+    "source": "MediaPost",
+    "sourceUrl": "https://example.com/dis-streaming",
+    "timestamp": "2026-06-20T09:05:00Z"
+  },
+  {
+    "id": "n6",
+    "tickers": ["PFE"],
+    "line": "A Pfizer drug failed its main test.",
+    "details": "One of Pfizer's experimental drugs didn't work well enough in a key trial. Failed trials mean the company may not get a new product it was counting on, which can weigh on the stock.",
+    "sentiment": "bad",
+    "source": "BioStreet",
+    "sourceUrl": "https://example.com/pfe-trial",
+    "timestamp": "2026-06-19T22:40:00Z"
+  },
+  {
+    "id": "n7",
+    "tickers": ["XOM", "CVX"],
+    "line": "Oil prices rose, which helps oil companies.",
+    "details": "The price of oil went up because there was less of it available than expected. Oil companies like Exxon and Chevron earn more when oil is expensive, so higher prices tend to lift their stocks.",
+    "sentiment": "good",
+    "source": "EnergyBeat",
+    "sourceUrl": "https://example.com/crude-rally",
+    "timestamp": "2026-06-19T20:15:00Z"
+  },
+  {
+    "id": "n8",
+    "tickers": ["AMD"],
+    "line": "AMD revealed a new AI chip to rival Nvidia.",
+    "details": "AMD announced a powerful new chip aimed at the fast-growing AI market, where Nvidia is the leader. If AMD can win customers, it could grow sales, though it still has to prove it can compete.",
+    "sentiment": "good",
+    "source": "ChipReport",
+    "sourceUrl": "https://example.com/amd-launch",
+    "timestamp": "2026-06-19T18:50:00Z"
+  },
+  {
+    "id": "n9",
+    "tickers": ["NKE"],
+    "line": "Nike warned that its sales are slowing down.",
+    "details": "Nike told investors that stores are ordering fewer of its products, a sign that demand is softening. Slower sales can mean lower profits, which is why the market reacted negatively.",
+    "sentiment": "bad",
+    "source": "RetailWire",
+    "sourceUrl": "https://example.com/nke-demand",
+    "timestamp": "2026-06-19T16:30:00Z"
+  },
+  {
+    "id": "n10",
+    "tickers": ["MSFT"],
+    "line": "Microsoft's AI business is growing quickly.",
+    "details": "Microsoft's cloud and AI services are bringing in money faster than expected. Fast growth in a high-margin business like this is exactly what investors like to see.",
+    "sentiment": "good",
+    "source": "CloudDaily",
+    "sourceUrl": "https://example.com/msft-azure",
+    "timestamp": "2026-06-19T14:05:00Z"
+  },
+  {
+    "id": "n11",
+    "tickers": ["FCX"],
+    "line": "Copper prices fell, which hurts mining companies.",
+    "details": "Copper got cheaper after weaker economic data from China, a big buyer of metals. Miners like Freeport earn less when copper prices drop, so their stocks tend to fall too.",
+    "sentiment": "bad",
+    "source": "MetalsToday",
+    "sourceUrl": "https://example.com/copper-dip",
+    "timestamp": "2026-06-19T11:20:00Z"
+  },
+  {
+    "id": "n12",
+    "tickers": ["GOOGL"],
+    "line": "Google's cloud business is making more profit.",
+    "details": "Google's cloud division is becoming more profitable as more businesses use its AI tools. A more profitable cloud unit adds to Alphabet's overall earnings, which investors welcomed.",
+    "sentiment": "good",
+    "source": "TechLedger",
+    "sourceUrl": "https://example.com/googl-cloud",
+    "timestamp": "2026-06-19T09:00:00Z"
+  }
+]
