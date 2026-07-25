@@ -1,5 +1,19 @@
 # Soft-launch guide (friends / testers)
 
+## Deploy (you do this once)
+
+Vercel CLI needs a one-time login on this Mac:
+
+```bash
+cd /Users/noambelinkis/Documents/SNIPER
+npx vercel login          # browser login
+./scripts/deploy-vercel.sh
+```
+
+Or: push this repo to GitHub → [vercel.com/new](https://vercel.com/new) → import → set env vars below → Deploy.
+
+Paste the production URL into [SHARE_BLURB.md](SHARE_BLURB.md).
+
 ## What this launch is
 - Shareable Vercel URL for friends
 - Portfolios stay in each browser (`localStorage`) — no accounts
