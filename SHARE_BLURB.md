@@ -1,6 +1,6 @@
 # Share with friends
 
-**Production URL:** _(run `./scripts/deploy-vercel.sh` after `npx vercel login`, then paste URL here)_
+**Production URL:** _(torn down — not deployed)_
 
 ```
 Hey — trying a draft of SNIPER (stock portfolio helper). Feedback welcome.

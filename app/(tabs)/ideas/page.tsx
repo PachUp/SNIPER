@@ -1,91 +1,80 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Idea } from "@/lib/types";
-import { money, pct } from "@/lib/format";
+import type { Idea, Stock } from "@/lib/types";
 import { useI18n } from "@/components/LanguageProvider";
+import ReasoningPopup from "@/components/ReasoningPopup";
+import CompactStockRow from "@/components/CompactStockRow";
+
+function ideaToStock(idea: Idea): Stock {
+  return {
+    ticker: idea.ticker,
+    name: idea.name,
+    sector: idea.sector,
+    industry: idea.industry,
+    price: idea.levels.ep,
+    fairValue: idea.levels.tp,
+    upsidePct: idea.upsidePct,
+    beta: 1,
+    sharpe: 0,
+    business: idea.business,
+    reasoning: idea.entry || idea.thesis,
+    numbers: idea.numbers,
+    levels: idea.levels,
+    alternatives: [],
+  };
+}
 
 export default function IdeasPage() {
-  const { t, sector } = useI18n();
+  const { t } = useI18n();
   const [ideas, setIdeas] = useState<Idea[]>([]);
   const [loading, setLoading] = useState(true);
+  const [popup, setPopup] = useState<Stock | null>(null);
 
   useEffect(() => {
     fetch("/api/ideas")
       .then((r) => r.json())
-      .then((d: Idea[]) => setIdeas(d))
+      .then((d: Idea[]) => {
+        setIdeas(d);
+        for (const idea of d) {
+          const img = new Image();
+          img.src = `/logos/${encodeURIComponent(idea.ticker)}.png?v=native`;
+        }
+      })
       .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div>
-      <div className="mb-4">
-        <h1 className="text-xl font-bold tracking-wide">{t("ideas.title")}</h1>
-        <p className="text-xs text-terminal-muted">{t("ideas.subtitle")}</p>
+    <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
+      <div className="shrink-0">
+        <h1 className="text-base font-bold tracking-wide sm:text-lg">
+          {t("ideas.title")}
+        </h1>
+        <p className="text-[10px] text-terminal-muted">
+          {t("ideas.subtitle")} · {t("perf.tapRow")}
+        </p>
       </div>
 
       {loading ? (
-        <div className="py-16 text-center text-terminal-muted">
+        <div className="flex flex-1 items-center justify-center text-terminal-muted">
           {t("common.loading")}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+        <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto sm:grid-cols-2 lg:grid-cols-3">
           {ideas.map((idea) => (
-            <div
+            <CompactStockRow
               key={idea.id}
-              className="rounded-xl border border-terminal-border bg-terminal-panel p-5"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold">{idea.ticker}</span>
-                    <span className="text-sm text-terminal-muted">
-                      {idea.name}
-                    </span>
-                  </div>
-                  <div className="text-[11px] uppercase tracking-wider text-terminal-muted">
-                    {sector(idea.sector)}
-                  </div>
-                </div>
-                <span className="rounded-full bg-terminal-good/10 px-3 py-1 text-sm font-bold text-terminal-good">
-                  {t("common.potential", { v: pct(idea.upsidePct) })}
-                </span>
-              </div>
-
-              <p className="mt-3 text-sm leading-relaxed text-terminal-text">
-                {idea.thesis}
-              </p>
-
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs">
-                <div className="rounded-lg border border-terminal-border bg-terminal-bg p-2">
-                  <div className="text-[10px] tracking-wider text-terminal-muted">
-                    {t("level.ep")}
-                  </div>
-                  <div className="mt-1 font-bold text-terminal-accent">
-                    {money(idea.levels.ep)}
-                  </div>
-                </div>
-                <div className="rounded-lg border border-terminal-border bg-terminal-bg p-2">
-                  <div className="text-[10px] tracking-wider text-terminal-muted">
-                    {t("level.tp")}
-                  </div>
-                  <div className="mt-1 font-bold text-terminal-good">
-                    {money(idea.levels.tp)}
-                  </div>
-                </div>
-                <div className="rounded-lg border border-terminal-border bg-terminal-bg p-2">
-                  <div className="text-[10px] tracking-wider text-terminal-muted">
-                    {t("level.sl")}
-                  </div>
-                  <div className="mt-1 font-bold text-terminal-bad">
-                    {money(idea.levels.sl)}
-                  </div>
-                </div>
-              </div>
-            </div>
+              ticker={idea.ticker}
+              name={idea.name}
+              onClick={() => setPopup(ideaToStock(idea))}
+            />
           ))}
         </div>
       )}
+
+      {popup ? (
+        <ReasoningPopup stock={popup} onClose={() => setPopup(null)} />
+      ) : null}
     </div>
   );
 }

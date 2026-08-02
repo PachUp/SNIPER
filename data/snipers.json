@@ -1,118 +1,240 @@
 {
   "name": "SNIPER House Portfolio",
-  "updated": "2026-06-20T13:00:00Z",
+  "updated": "2026-07-27T03:23:25Z",
   "holdings": [
     {
-      "ticker": "MSFT",
-      "name": "Microsoft",
+      "ticker": "IBM",
+      "name": "IBM",
       "sector": "Information Technology",
-      "reasoning": "Core AI compounder anchoring the book with low volatility and high quality.",
-      "weightPct": 12,
-      "levels": { "ep": 444.0, "tp": 525.0, "sl": 404.0 }
-    },
-    {
-      "ticker": "LLY",
-      "name": "Eli Lilly",
-      "sector": "Health Care",
-      "reasoning": "Best secular growth in healthcare; obesity TAM remains underestimated.",
-      "weightPct": 11,
-      "levels": { "ep": 824.0, "tp": 980.0, "sl": 745.0 }
-    },
-    {
-      "ticker": "JPM",
-      "name": "JPMorgan Chase",
-      "sector": "Financials",
-      "reasoning": "Highest-quality bank; rate optionality with downside protection.",
+      "business": "IBM sells hybrid cloud, AI software, and IT consulting services to large enterprises worldwide.",
+      "reasoning": "Software mix and consulting tied to hybrid cloud are lifting margins \u2014 the upgrade story is recurring software, not old hardware \u2014 profits up about 546%; cash flow up $10.0B \u2192 $11.6B; top-half growth (#5/12) in Information Technology Services.",
       "weightPct": 10,
-      "levels": { "ep": 197.0, "tp": 235.0, "sl": 179.0 }
+      "levels": {
+        "ep": 228,
+        "tp": 427.91,
+        "sl": 189
+      }
     },
     {
-      "ticker": "GOOGL",
-      "name": "Alphabet",
-      "sector": "Communication Services",
-      "reasoning": "Cloud margin inflection plus cheap relative valuation.",
+      "ticker": "CHWY",
+      "name": "Chewy",
+      "sector": "Consumer Discretionary",
+      "business": "Chewy sells pet food, pharmacy, and supplies online to U.S. pet owners.",
+      "reasoning": "Repeat Autoship orders and higher-margin own brands are lifting earnings as pet spending stays resilient \u2014 cash flow jumped $9M \u2192 $562M; profits up about 347%; top-half growth (#5/12) in Specialty Retail.",
       "weightPct": 10,
-      "levels": { "ep": 174.0, "tp": 215.0, "sl": 158.0 }
+      "levels": {
+        "ep": 23.68,
+        "tp": 32.03,
+        "sl": 18.77
+      }
     },
     {
-      "ticker": "XOM",
-      "name": "Exxon Mobil",
-      "sector": "Energy",
-      "reasoning": "Energy ballast and inflation hedge with strong cash returns.",
-      "weightPct": 9,
-      "levels": { "ep": 112.0, "tp": 138.0, "sl": 101.0 }
+      "ticker": "RELY",
+      "name": "Remitly",
+      "sector": "Information Technology",
+      "business": "Remitly operates a digital remittance platform that lets immigrants send money abroad.",
+      "reasoning": "More cross-border money transfers and a slightly higher fee per transfer are compounding; the corridor network is the moat \u2014 cash flow jumped $-23M \u2192 $296M; ~78% below our fair value; profits up about 1291%.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 23.86,
+        "tp": 42.37,
+        "sl": 21.47
+      }
     },
     {
-      "ticker": "COST",
-      "name": "Costco",
-      "sector": "Consumer Staples",
-      "reasoning": "Defensive quality compounder smoothing portfolio drawdowns.",
-      "weightPct": 9,
-      "levels": { "ep": 844.0, "tp": 960.0, "sl": 770.0 }
-    },
-    {
-      "ticker": "CAT",
-      "name": "Caterpillar",
+      "ticker": "BA",
+      "name": "Boeing",
       "sector": "Industrials",
-      "reasoning": "Infrastructure and capex cycle exposure with pricing power.",
-      "weightPct": 8,
-      "levels": { "ep": 331.0, "tp": 390.0, "sl": 300.0 }
+      "business": "Boeing designs and builds commercial airplanes, defense systems, and space vehicles.",
+      "reasoning": "737 MAX deliveries and defense cash are the recovery spine \u2014 hitting production targets is what rebuilds trust in Boeing's earnings.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 209.52,
+        "tp": 261.9,
+        "sl": 188.57
+      }
     },
     {
-      "ticker": "NEE",
-      "name": "NextEra Energy",
-      "sector": "Utilities",
-      "reasoning": "Low-beta rate-base compounder with renewables growth.",
-      "weightPct": 7,
-      "levels": { "ep": 71.5, "tp": 86.0, "sl": 65.0 }
+      "ticker": "DAL",
+      "name": "Delta Air Lines",
+      "sector": "Industrials",
+      "business": "Delta Air Lines operates a U.S. network passenger airline with hubs in Atlanta, Detroit, Minneapolis, and New York.",
+      "reasoning": "Premium seats and strong ticket prices are carrying Delta even as jet fuel jumps with oil \u2014 the brand is the ballast \u2014 cash flow jumped $16M \u2192 $3.8B; #2 growth rank of 6 in Airlines; profits up about 280%.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 84.54,
+        "tp": 117.51,
+        "sl": 76.09
+      }
     },
     {
-      "ticker": "PLD",
-      "name": "Prologis",
-      "sector": "Real Estate",
-      "reasoning": "Logistics REIT with embedded rent upside and secular demand.",
-      "weightPct": 7,
-      "levels": { "ep": 109.0, "tp": 135.0, "sl": 99.0 }
+      "ticker": "TSLA",
+      "name": "Tesla",
+      "sector": "Consumer Discretionary",
+      "business": "Tesla designs and manufactures electric vehicles, energy storage, and solar products.",
+      "reasoning": "Car volume, energy storage, and self-driving optionality remain the stacked story; near-term trading is about deliveries and margins \u2014 cash flow jumped $3.5B \u2192 $6.2B; #2 growth rank of 6 in Auto Manufacturers; profits down about 70%.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 369.57,
+        "tp": 425,
+        "sl": 332.61
+      }
     },
     {
-      "ticker": "LIN",
-      "name": "Linde",
-      "sector": "Materials",
-      "reasoning": "Defensive industrial-gas oligopoly with steady compounding.",
-      "weightPct": 7,
-      "levels": { "ep": 431.0, "tp": 505.0, "sl": 392.0 }
+      "ticker": "FLR",
+      "name": "Fluor",
+      "sector": "Industrials",
+      "business": "Fluor provides engineering, procurement, and construction services for energy, infrastructure, and industrial projects worldwide.",
+      "reasoning": "A big engineering backlog and energy-transition projects can support revenue for years if projects stay on track.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 52.19,
+        "tp": 124.06,
+        "sl": 46.97
+      }
+    },
+    {
+      "ticker": "HAL",
+      "name": "Halliburton",
+      "sector": "Energy",
+      "business": "Halliburton provides oilfield services and equipment for drilling, completions, and production worldwide.",
+      "reasoning": "When oil is high, oilfield work picks up; Halliburton's international mix helps if US fracking slows.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 33.36,
+        "tp": 41.7,
+        "sl": 30.02
+      }
+    },
+    {
+      "ticker": "INCY",
+      "name": "Incyte",
+      "sector": "Health Care",
+      "business": "Incyte discovers and commercializes oncology and inflammation medicines.",
+      "reasoning": "Jakafi drug cash funds the pipeline while cancer-drug optionality keeps the biotech upside intact \u2014 cheaper than peers at 16\u00d7 earnings vs 37\u00d7 median; cash flow jumped $568M \u2192 $1.4B; ~73% below our fair value.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 115.65,
+        "tp": 199.74,
+        "sl": 104.09
+      }
+    },
+    {
+      "ticker": "CMCSA",
+      "name": "Comcast",
+      "sector": "Communication Services",
+      "business": "Comcast provides cable broadband, wireless, and NBCUniversal media and streaming services.",
+      "reasoning": "Broadband and NBCU cash fund the dividend while streaming losses narrow \u2014 cable customer loss is the risk, not the media assets \u2014 cheaper than peers at 5\u00d7 earnings vs 10\u00d7 median; ~78% below our fair value; profits up about 269%.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 23.78,
+        "tp": 42.36,
+        "sl": 21.4
+      }
     }
   ],
   "performance": {
     "1W": [
-      { "t": "Mon", "pct": 0 },
-      { "t": "Tue", "pct": 0.6 },
-      { "t": "Wed", "pct": 0.3 },
-      { "t": "Thu", "pct": 1.1 },
-      { "t": "Fri", "pct": 1.8 },
-      { "t": "Sat", "pct": 1.7 },
-      { "t": "Sun", "pct": 2.2 }
+      {
+        "t": "Mon",
+        "pct": 0
+      },
+      {
+        "t": "Tue",
+        "pct": 0.6
+      },
+      {
+        "t": "Wed",
+        "pct": 0.3
+      },
+      {
+        "t": "Thu",
+        "pct": 1.1
+      },
+      {
+        "t": "Fri",
+        "pct": 1.8
+      },
+      {
+        "t": "Sat",
+        "pct": 1.7
+      },
+      {
+        "t": "Sun",
+        "pct": 2.2
+      }
     ],
     "1M": [
-      { "t": "Wk1", "pct": 0 },
-      { "t": "Wk2", "pct": 1.4 },
-      { "t": "Wk3", "pct": 0.9 },
-      { "t": "Wk4", "pct": 3.1 },
-      { "t": "Wk5", "pct": 4.6 }
+      {
+        "t": "Wk1",
+        "pct": 0
+      },
+      {
+        "t": "Wk2",
+        "pct": 1.4
+      },
+      {
+        "t": "Wk3",
+        "pct": 0.9
+      },
+      {
+        "t": "Wk4",
+        "pct": 3.1
+      },
+      {
+        "t": "Wk5",
+        "pct": 4.6
+      }
     ],
     "1Y": [
-      { "t": "Jul", "pct": 0 },
-      { "t": "Aug", "pct": 2.5 },
-      { "t": "Sep", "pct": -1.2 },
-      { "t": "Oct", "pct": 3.4 },
-      { "t": "Nov", "pct": 6.8 },
-      { "t": "Dec", "pct": 9.1 },
-      { "t": "Jan", "pct": 7.5 },
-      { "t": "Feb", "pct": 11.2 },
-      { "t": "Mar", "pct": 13.9 },
-      { "t": "Apr", "pct": 12.1 },
-      { "t": "May", "pct": 16.4 },
-      { "t": "Jun", "pct": 19.7 }
+      {
+        "t": "Jul",
+        "pct": 0
+      },
+      {
+        "t": "Aug",
+        "pct": 2.5
+      },
+      {
+        "t": "Sep",
+        "pct": -1.2
+      },
+      {
+        "t": "Oct",
+        "pct": 3.4
+      },
+      {
+        "t": "Nov",
+        "pct": 6.8
+      },
+      {
+        "t": "Dec",
+        "pct": 9.1
+      },
+      {
+        "t": "Jan",
+        "pct": 7.5
+      },
+      {
+        "t": "Feb",
+        "pct": 11.2
+      },
+      {
+        "t": "Mar",
+        "pct": 13.9
+      },
+      {
+        "t": "Apr",
+        "pct": 12.1
+      },
+      {
+        "t": "May",
+        "pct": 16.4
+      },
+      {
+        "t": "Jun",
+        "pct": 19.7
+      }
     ]
   }
 }

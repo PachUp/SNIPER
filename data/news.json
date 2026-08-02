@@ -1,122 +1,192 @@
 [
   {
     "id": "n1",
-    "tickers": ["NVDA"],
-    "line": "Nvidia won a big new chip deal.",
-    "details": "A major cloud company agreed to buy a large amount of Nvidia's AI chips over the next few years. More orders usually means more sales and profit, which is why investors see this as good news for Nvidia.",
-    "sentiment": "good",
-    "source": "MarketWire",
-    "sourceUrl": "https://example.com/nvda-supply-deal",
-    "timestamp": "2026-06-20T13:30:00Z"
+    "tickers": ["MSFT", "META", "AAPL", "AMZN", "GOOGL", "NVDA"],
+    "line": "Wall Street fell again as investors sold big AI stocks.",
+    "details": "The S&P 500 dropped about 0.6% last week and the Nasdaq fell harder, even after some tech companies beat earnings. Investors worried that AI companies are spending too much on chips and data centers without enough profit to show for it yet. That pressure hits large tech names across the market.",
+    "sentiment": "bad",
+    "source": "Yahoo Finance",
+    "sourceUrl": "https://ts2.tech/en/wall-street-drops-for-second-week-as-investors-react-to-ai-earnings-beats-fed-decision-in-focus/",
+    "timestamp": "2026-07-26T18:00:00Z"
   },
   {
     "id": "n2",
-    "tickers": ["TSLA"],
-    "line": "Tesla cut prices, so it earns less per car.",
-    "details": "Tesla lowered the price of its cars again to attract more buyers. Selling more cars is good, but making less money on each one can shrink profits in the short term, so investors were cautious.",
-    "sentiment": "bad",
-    "source": "AutoDaily",
-    "sourceUrl": "https://example.com/tsla-price-cut",
-    "timestamp": "2026-06-20T12:10:00Z"
+    "tickers": ["XOM", "CVX", "COP", "OXY", "MPC", "VLO"],
+    "line": "Oil jumped back above $100 a barrel.",
+    "details": "Brent crude climbed past $100 after fresh Middle East shipping risks. Higher oil can help energy companies earn more, but it can also raise inflation worries and make the Fed less friendly to stocks overall.",
+    "sentiment": "good",
+    "source": "Capital Street FX",
+    "sourceUrl": "https://www.capitalstreetfx.com/market-analysis/week-ahead-wall-street-faces-key-tests-as-fed-holds/",
+    "timestamp": "2026-07-25T16:30:00Z"
   },
   {
     "id": "n3",
-    "tickers": ["LLY"],
-    "line": "Lilly's weight-loss drug did well in testing.",
-    "details": "In a large study, Eli Lilly's weight-loss treatment helped patients more than expected. Strong results make it more likely the drug sells well, which could boost the company's future earnings.",
-    "sentiment": "good",
-    "source": "PharmaTimes",
-    "sourceUrl": "https://example.com/lly-data",
-    "timestamp": "2026-06-20T11:45:00Z"
+    "tickers": ["JPM", "BAC", "WFC", "C", "GS", "MS"],
+    "line": "Markets await the Federal Reserve's next rate decision.",
+    "details": "The Fed meets this week, and investors expect rates to stay on hold for now. Banks and rate-sensitive stocks can move sharply on the statement and press conference, especially if officials sound more worried about inflation after the oil spike.",
+    "sentiment": "bad",
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262054300-weekly-preview-fed-apple-microsoft-meta-amazon-earnings-reports-tradingkey",
+    "timestamp": "2026-07-26T12:00:00Z"
   },
   {
     "id": "n4",
-    "tickers": ["JPM"],
-    "line": "JPMorgan expects to make more money this year.",
-    "details": "The bank raised its own forecast for how much it will earn this year, mostly because it's making more from lending. When a company expects higher profits, investors often view the stock more positively.",
+    "tickers": ["MSFT", "META", "AAPL", "AMZN"],
+    "line": "Four of the biggest tech companies report earnings this week.",
+    "details": "Microsoft and Meta report Wednesday; Apple and Amazon follow Thursday. Together they are a huge slice of the S&P 500, so their results and AI spending plans can move the whole market.",
     "sentiment": "good",
-    "source": "FinanceWire",
-    "sourceUrl": "https://example.com/jpm-nii",
-    "timestamp": "2026-06-20T10:20:00Z"
+    "source": "Fortune",
+    "sourceUrl": "https://fortune.com/2026/07/26/big-tech-earnings-meta-microsoft-apple-amazon-market-revolt-ai-spending/",
+    "timestamp": "2026-07-26T14:30:00Z"
   },
   {
     "id": "n5",
-    "tickers": ["DIS"],
-    "line": "Disney's streaming service is now making a profit.",
-    "details": "Disney's streaming business (like Disney+) finally earns more than it costs to run, ahead of schedule. Turning a money-losing unit into a profitable one is a healthy sign for the whole company.",
-    "sentiment": "good",
-    "source": "MediaPost",
-    "sourceUrl": "https://example.com/dis-streaming",
-    "timestamp": "2026-06-20T09:05:00Z"
+    "tickers": ["GOOGL", "TSLA", "INTC", "NVDA", "AMD"],
+    "line": "Big tech lost hundreds of billions in one rough session.",
+    "details": "Even after beating sales forecasts, Alphabet, Tesla, and Intel fell hard as traders punished heavy AI spending. Mega-cap tech can drag the whole market down when that group sells off together.",
+    "sentiment": "bad",
+    "source": "StockTi",
+    "sourceUrl": "https://stockti.com/wall-street-slips-again-as-ai-earnings-fail-to-impress-fed-decision-looms",
+    "timestamp": "2026-07-24T21:00:00Z"
   },
   {
     "id": "n6",
-    "tickers": ["PFE"],
-    "line": "A Pfizer drug failed its main test.",
-    "details": "One of Pfizer's experimental drugs didn't work well enough in a key trial. Failed trials mean the company may not get a new product it was counting on, which can weigh on the stock.",
+    "tickers": ["XOM", "CVX", "DAL", "UAL", "AAL", "LUV"],
+    "line": "Rising oil is good for energy, harder for airlines.",
+    "details": "When crude jumps, oil producers often gain while airlines face higher jet-fuel costs. That split is why energy and travel stocks can move in opposite directions on the same headline.",
     "sentiment": "bad",
-    "source": "BioStreet",
-    "sourceUrl": "https://example.com/pfe-trial",
-    "timestamp": "2026-06-19T22:40:00Z"
+    "source": "Pomegra News",
+    "sourceUrl": "https://pomegra.io/news/big-tech-fed-decision-100-oil-collide-this-week",
+    "timestamp": "2026-07-24T15:00:00Z"
   },
   {
     "id": "n7",
-    "tickers": ["XOM", "CVX"],
-    "line": "Oil prices rose, which helps oil companies.",
-    "details": "The price of oil went up because there was less of it available than expected. Oil companies like Exxon and Chevron earn more when oil is expensive, so higher prices tend to lift their stocks.",
+    "tickers": ["V", "MA", "AXP", "PYPL"],
+    "line": "Payments stocks watch consumer spending into busy earnings week.",
+    "details": "Card networks and payment firms are sensitive to travel, shopping, and overall consumer strength. With Visa and other consumer names reporting soon, investors are watching whether spending stays resilient despite higher oil and rates.",
     "sentiment": "good",
-    "source": "EnergyBeat",
-    "sourceUrl": "https://example.com/crude-rally",
-    "timestamp": "2026-06-19T20:15:00Z"
+    "source": "Yahoo Finance",
+    "sourceUrl": "https://uk.finance.yahoo.com/news/4-big-tech-earnings-reports-a-fed-meeting-and-100-oil-its-the-busiest-week-of-the-quarter-100000261.html",
+    "timestamp": "2026-07-25T11:00:00Z"
   },
   {
     "id": "n8",
-    "tickers": ["AMD"],
-    "line": "AMD revealed a new AI chip to rival Nvidia.",
-    "details": "AMD announced a powerful new chip aimed at the fast-growing AI market, where Nvidia is the leader. If AMD can win customers, it could grow sales, though it still has to prove it can compete.",
-    "sentiment": "good",
-    "source": "ChipReport",
-    "sourceUrl": "https://example.com/amd-launch",
-    "timestamp": "2026-06-19T18:50:00Z"
+    "tickers": ["NFLX"],
+    "line": "Netflix beat earnings, but the stock still fell hard.",
+    "details": "Netflix made a little more profit than expected and bought back a record amount of its own shares. Investors still sold the stock because growth looked a bit slower and the company will share viewing data less often.",
+    "sentiment": "bad",
+    "source": "Motley Fool",
+    "sourceUrl": "https://www.fool.com/investing/2026/07/26/netflix-record-buybacks-rising-margins-and-a-slate/",
+    "timestamp": "2026-07-26T14:00:00Z"
   },
   {
     "id": "n9",
-    "tickers": ["NKE"],
-    "line": "Nike warned that its sales are slowing down.",
-    "details": "Nike told investors that stores are ordering fewer of its products, a sign that demand is softening. Slower sales can mean lower profits, which is why the market reacted negatively.",
-    "sentiment": "bad",
-    "source": "RetailWire",
-    "sourceUrl": "https://example.com/nke-demand",
-    "timestamp": "2026-06-19T16:30:00Z"
+    "tickers": ["T"],
+    "line": "AT&T raised its buyback plan to about $10 billion.",
+    "details": "AT&T reported solid second-quarter results and said it will buy back more of its own stock this year — about $10 billion instead of $8 billion. Bigger buybacks return cash to shareholders and often support the share price.",
+    "sentiment": "good",
+    "source": "Motley Fool",
+    "sourceUrl": "https://www.fool.com/investing/2026/07/26/att-beat-on-earnings-announced-a-10-billion-buybac/",
+    "timestamp": "2026-07-26T12:30:00Z"
   },
   {
     "id": "n10",
-    "tickers": ["MSFT"],
-    "line": "Microsoft's AI business is growing quickly.",
-    "details": "Microsoft's cloud and AI services are bringing in money faster than expected. Fast growth in a high-margin business like this is exactly what investors like to see.",
+    "tickers": ["UBER", "DASH"],
+    "line": "Uber offered to buy Delivery Hero for about $15 billion.",
+    "details": "Uber wants to buy European food-delivery company Delivery Hero to grow Uber Eats outside the U.S. Big deals can boost long-term growth, but they also add cost and regulatory risk, so the stock has been mixed.",
     "sentiment": "good",
-    "source": "CloudDaily",
-    "sourceUrl": "https://example.com/msft-azure",
-    "timestamp": "2026-06-19T14:05:00Z"
+    "source": "Uber IR",
+    "sourceUrl": "https://investor.uber.com/news-events/news/press-release-details/2026/Uber-Announces-Acquisition-Offer-for-Delivery-Hero/default.aspx",
+    "timestamp": "2026-07-23T12:00:00Z"
   },
   {
     "id": "n11",
-    "tickers": ["FCX"],
-    "line": "Copper prices fell, which hurts mining companies.",
-    "details": "Copper got cheaper after weaker economic data from China, a big buyer of metals. Miners like Freeport earn less when copper prices drop, so their stocks tend to fall too.",
-    "sentiment": "bad",
-    "source": "MetalsToday",
-    "sourceUrl": "https://example.com/copper-dip",
-    "timestamp": "2026-06-19T11:20:00Z"
+    "tickers": ["DIS"],
+    "line": "Disney partnered with Kraft Heinz to sell more food in parks.",
+    "details": "Disney and Kraft Heinz agreed on a multiyear deal for themed dining across parks and cruises. The idea is to raise how much each guest spends — good for Disney's parks business if guests buy more.",
+    "sentiment": "good",
+    "source": "Invezz",
+    "sourceUrl": "https://invezz.com/uk/news/2026/07/24/disney-stock-gets-new-theme-park-sales-boost-from-kraft-heinz-deal/",
+    "timestamp": "2026-07-24T16:40:00Z"
   },
   {
     "id": "n12",
-    "tickers": ["GOOGL"],
-    "line": "Google's cloud business is making more profit.",
-    "details": "Google's cloud division is becoming more profitable as more businesses use its AI tools. A more profitable cloud unit adds to Alphabet's overall earnings, which investors welcomed.",
+    "tickers": ["V"],
+    "line": "Visa said World Cup travel boosted card spending.",
+    "details": "Visa reported that cross-border payments near World Cup match cities jumped about 20%. More travel and event spending usually means more fees for card networks like Visa ahead of its next earnings report.",
     "sentiment": "good",
-    "source": "TechLedger",
-    "sourceUrl": "https://example.com/googl-cloud",
-    "timestamp": "2026-06-19T09:00:00Z"
+    "source": "American Banker",
+    "sourceUrl": "https://www.americanbanker.com/payments/news/visa-reports-world-cup-payment-spikes",
+    "timestamp": "2026-07-23T20:15:00Z"
+  },
+  {
+    "id": "n13",
+    "tickers": ["CMCSA"],
+    "line": "Comcast's Peacock streaming service turned a profit.",
+    "details": "In Comcast's latest quarter, Peacock made money for the first time. That is a big milestone for a streaming app that lost money for years, and it comes as Comcast prepares to split its media and cable businesses.",
+    "sentiment": "good",
+    "source": "CNBC",
+    "sourceUrl": "https://www.cnbc.com/2026/07/23/comcast-earnings-nbcuniversal-strength-split.html",
+    "timestamp": "2026-07-23T18:00:00Z"
+  },
+  {
+    "id": "n14",
+    "tickers": ["IBM", "JPM"],
+    "line": "JPMorgan upgraded IBM, pointing to stronger software profits.",
+    "details": "A JPMorgan analyst raised IBM to Overweight, saying software now drives most of the company's profit. An upgrade from a major bank can attract more buyers to the stock.",
+    "sentiment": "good",
+    "source": "Yahoo Finance",
+    "sourceUrl": "https://finance.yahoo.com/video/trending-jpmorgan-upgrades-ibm-stock-150837182.html",
+    "timestamp": "2026-07-22T19:10:00Z"
+  },
+  {
+    "id": "n15",
+    "tickers": ["MA", "DASH"],
+    "line": "Mastercard helps DoorDash pay dashers faster.",
+    "details": "DoorDash is using Mastercard Send so eligible Crimson users can get instant deposits. That expands Mastercard's role in gig-worker payouts and makes DoorDash more useful for drivers who want cash quickly.",
+    "sentiment": "good",
+    "source": "Simply Wall St",
+    "sourceUrl": "https://simplywall.st/stocks/us/diversified-financials/nyse-ma/mastercard/news/mastercard-ma-helps-power-doordash-crimson-instant-deposits",
+    "timestamp": "2026-07-22T15:45:00Z"
+  },
+  {
+    "id": "n16",
+    "tickers": ["ROKU"],
+    "line": "Roku will report earnings next month amid the Fox buyout deal.",
+    "details": "Roku set an August 6 earnings date but will skip the usual call and outlook because Fox has agreed to buy the company. Pending takeovers often keep the stock close to the deal price until the sale closes.",
+    "sentiment": "good",
+    "source": "StockTitan",
+    "sourceUrl": "https://www.stocktitan.net/news/ROKU/",
+    "timestamp": "2026-07-23T21:05:00Z"
+  },
+  {
+    "id": "n17",
+    "tickers": ["JPM"],
+    "line": "JPMorgan posted a record quarterly profit on strong trading.",
+    "details": "JPMorgan made about $21 billion in second-quarter profit, helped by a surge in stock-trading revenue and stronger investment-banking fees. Record bank profits are usually good news for the share price.",
+    "sentiment": "good",
+    "source": "Pomegra News",
+    "sourceUrl": "https://pomegra.io/news/jpmorgan-q2-2026-earnings-profit-jumps-41-on-trading-and-banking-surge",
+    "timestamp": "2026-07-21T16:20:00Z"
+  },
+  {
+    "id": "n18",
+    "tickers": ["LULU"],
+    "line": "Lululemon was downgraded after growth looked slower.",
+    "details": "An analyst cut Lululemon toward a weaker view, saying growth is cooling and competition is rising. Downgrades and weaker growth outlooks usually push the stock lower in the short term.",
+    "sentiment": "bad",
+    "source": "TIKR",
+    "sourceUrl": "https://www.tikr.com/blog/lululemon-has-lost-45-in-2026-michael-burry-bought-the-dip-and-calls-it-a-no-brainer",
+    "timestamp": "2026-07-20T17:00:00Z"
+  },
+  {
+    "id": "n19",
+    "tickers": ["YUM"],
+    "line": "Yum Brands sets July 30 for its next earnings report.",
+    "details": "The owner of KFC, Taco Bell, and Pizza Hut will report second-quarter results on July 30. Earnings days matter because they show whether restaurant sales and profits are still growing.",
+    "sentiment": "good",
+    "source": "StockTitan",
+    "sourceUrl": "https://www.stocktitan.net/news/YUM/yum-brands-announces-q2-2026-earnings-and-conference-call-nf2w8q5tbt30.html",
+    "timestamp": "2026-07-20T11:00:00Z"
   }
 ]

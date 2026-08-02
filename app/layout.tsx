@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import ConsentGate from "@/components/ConsentGate";
 import { LanguageProvider } from "@/components/LanguageProvider";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "SNIPER",
@@ -14,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-terminal-bg text-terminal-text font-mono antialiased">
+    <html lang="en" className={`${inter.variable} scroll-smooth`}>
+      <body className="bg-black font-sans text-terminal-text antialiased">
         <LanguageProvider>
           {children}
           <ConsentGate />

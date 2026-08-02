@@ -1,7 +1,3 @@
-export type Lang = "en" | "he";
-
-export const LANGS: Lang[] = ["en", "he"];
-
 type Dict = Record<string, string>;
 
 const en: Dict = {
@@ -20,7 +16,11 @@ const en: Dict = {
 
   // common
   "common.loading": "Loading…",
-  "common.potential": "{v} potential",
+  "common.potential": "{v} R2R",
+  "common.r2r": "{v} R2R",
+  "common.r2rHint": "Tap R2R for hypothetical P/L",
+  "common.hypoProfit": "If target hit: {v} profit",
+  "common.hypoLoss": "If stop hit: {v} loss",
   "common.buy": "Buy",
   "common.sell": "Sell",
   "common.exit": "Exit",
@@ -32,7 +32,7 @@ const en: Dict = {
   "build.chosen": "{n} of {max} chosen",
   "build.title": "Pick a few famous companies you like",
   "build.subtitle":
-    "Choose 1–{max} well-known stocks with at least {minUpside}% growth potential. We'll complete a balanced portfolio of up to 12.",
+    "Choose 1–{max} well-known stocks. We'll complete a balanced portfolio of up to 12. Each card shows reward-to-risk (R2R) from buy → target vs buy → stop.",
   "build.buildingCta": "BUILDING…",
   "build.pickForMe": "PICK FOR ME",
   "build.buildMine": "BUILD MY PORTFOLIO",
@@ -52,12 +52,40 @@ const en: Dict = {
   "dash.tapHint": "Tap any stock to learn why it was picked",
   "dash.ourPick": "Our pick",
   "dash.yourPick": "Your pick",
-  "dash.latestNews": "LATEST NEWS ABOUT YOUR STOCKS",
+  "dash.latestNews": "RELATED NEWS FOR YOUR PORTFOLIO",
   "dash.noNews": "No news about your stocks right now.",
+  "dash.enter": "Enter",
+  "dash.entered": "Entered",
+  "dash.enterSet": "Set",
+  "dash.sinceEntry": "Since entry",
+  "dash.sinceEntryNeed": "Set entry",
+  "dash.live": "Live",
+  "dash.addMine": "+ My stock",
+  "dash.add": "Add",
+  "dash.addHint":
+    "Add up to 2 stocks. Each add replaces the closest book name by industry/sector and beta — fair value loads from FvIndustries.",
+  "dash.addSearch": "Search ticker, name, or industry…",
+  "dash.addNone": "No matches.",
+  "dash.addLeft": "{n} add left",
+  "dash.replaced": "Added {added} · dropped {dropped} (closest industry & beta)",
+  "dash.revert": "Revert",
+  "dash.revertSwitch": "Revert switch",
+  "dash.revertedAdd": "Reverted — {added} removed, {dropped} restored",
+  "dash.revertedSwitch": "Reverted {ticker} to original pick",
+  "dash.revertedPersonal": "Reverted — removed {ticker}",
+  "dash.addedOnly": "Added {added}",
+  "dash.portfolioPl": "PORTFOLIO P/L (IF ALL TARGETS / STOPS HIT)",
+  "dash.portfolioUpside": "Upside {v}",
+  "dash.portfolioDownside": "Downside {v}",
+  "dash.portfolioPlHint":
+    "Weight-compounded from each stock’s buy → sell target and buy → safety exit.",
+  "dash.company": "Company",
+  "dash.whyOwn": "Why own it",
 
   // news
   "news.title": "Breaking News",
-  "news.subtitle": "Each story in one plain sentence. Green is good, red is bad.",
+  "news.subtitle":
+    "Standout stock-market stories this week — and the stocks or industries they hit. Green is good, red is bad.",
   "filter.all": "All",
   "filter.good": "Good",
   "filter.bad": "Bad",
@@ -81,14 +109,28 @@ const en: Dict = {
   // performance chart
   "perf.default": "HOW YOU'RE DOING",
   "perf.since": "since you started",
+  "perf.sinceEntry": "average of each stock’s % since its entry",
+  "perf.sinceEntryEmpty": "set entry on each stock — then we average those %s",
+  "perf.houseLive": "average of each holding’s % since house entry",
+  "perf.fromEntry": "avg of per-stock since entry",
+  "perf.entryVsLive": "avg of (live price − your entry) ÷ entry",
+  "perf.rangeVsEntry":
+    "{range}: avg of (price now − price then) ÷ your entry",
+  "perf.all": "ALL",
+  "perf.allVsEntry": "all-time: avg of (live − entry) ÷ entry",
+  "perf.chartRangeHint": "chart: same formula each day over {range}",
+  "perf.sinceEntryLive": "since entry (all-time): {v}",
+  "perf.vsEntry": "vs entry",
   "perf.return": "Return",
+  "perf.tapRow": "Tap a symbol for thesis + numbers",
+  "reason.numbers": "Numbers",
 
   // reasoning popup
-  "reason.growth": "{v} growth potential",
+  "reason.growth": "{v} R2R from entry",
   "reason.riskLevel": "Risk level:",
   "reason.todayPrice": "Today's price:",
   "reason.help":
-    "Buy near the buy price, take profit at the target, and exit if it drops to the safety price.",
+    "R2R is (sell target − buy) ÷ (buy − safety exit) from the planned entry. Buy near the buy price, take profit at the target, and exit if it drops to the safety price.",
   "reason.notAdvice":
     "General information, not investment advice. Investing involves risk of loss.",
 
@@ -136,174 +178,6 @@ const en: Dict = {
   "time.m": "{n}m ago",
   "time.h": "{n}h ago",
   "time.d": "{n}d ago",
-
-  // language toggle
-  "lang.switchTo": "עברית",
-};
-
-const he: Dict = {
-  // landing
-  "brand.build": "בנה",
-  "landing.tagline": "בנה תיק מניות חכם בפחות מדקה. בלי שום ניסיון קודם.",
-  "landing.seePortfolio": "לתיק שלי →",
-
-  // nav
-  "nav.dashboard": "לוח בקרה",
-  "nav.news": "חדשות",
-  "nav.ideas": "רעיונות",
-  "nav.snipers": "סניפרס",
-  "nav.admin": "ניהול",
-
-  // common
-  "common.loading": "טוען…",
-  "common.potential": "{v} פוטנציאל",
-  "common.buy": "קנייה",
-  "common.sell": "מכירה",
-  "common.exit": "יציאה",
-  "common.riskSuffix": "סיכון {level}",
-  "common.close": "סגור",
-
-  // build
-  "build.back": "SNIPER →",
-  "build.chosen": "{n} מתוך {max} נבחרו",
-  "build.title": "בחר כמה חברות מוכרות שאתה אוהב",
-  "build.subtitle":
-    "בחר 1–{max} מניות מוכרות עם לפחות {minUpside}% פוטנציאל צמיחה. נשלים תיק מאוזן של עד 12.",
-  "build.buildingCta": "בונה…",
-  "build.pickForMe": "בחר בשבילי",
-  "build.buildMine": "בנה לי תיק",
-  "build.needPick": "בחר לפחות {min} מניה כדי להמשיך.",
-  "build.failed": "לא הצלחנו לבנות את התיק. נסה שוב.",
-  "build.noneEligible":
-    "אין כרגע מניות מוכרות שעומדות בסף. בדוק את נתוני השווי או נסה שוב מאוחר יותר.",
-  "build.notEligibleToday": "לא זמין היום",
-
-  // dashboard
-  "dash.empty": "עדיין לא בנית תיק.",
-  "dash.getStarted": "בואו נתחיל",
-  "dash.title": "התיק שלך",
-  "dash.meta": "{n} מניות · נוצר {date}",
-  "dash.startOver": "התחל מחדש",
-  "dash.yourStocks": "המניות שלך",
-  "dash.tapHint": "הקש על מניה כדי להבין למה היא נבחרה",
-  "dash.ourPick": "בחירה שלנו",
-  "dash.yourPick": "בחירה שלך",
-  "dash.latestNews": "חדשות אחרונות על המניות שלך",
-  "dash.noNews": "אין כרגע חדשות על המניות שלך.",
-
-  // news
-  "news.title": "חדשות",
-  "news.subtitle": "כל ידיעה במשפט אחד פשוט. ירוק זה טוב, אדום זה רע.",
-  "filter.all": "הכל",
-  "filter.good": "טובות",
-  "filter.bad": "רעות",
-  "newsline.good": "חדשות טובות",
-  "newsline.bad": "חדשות רעות",
-  "newsline.details": "פרטים →",
-  "popup.companies": "חברות:",
-  "popup.readFull": "לכתבה המלאה →",
-  "popup.notAdvice": "מידע כללי, לא ייעוץ השקעות.",
-
-  // ideas
-  "ideas.title": "רעיונות",
-  "ideas.subtitle": "רעיונות מניות נבחרים מהצוות שלנו, מוסברים בפשטות",
-
-  // snipers
-  "snipers.subtitle": "התיק המומלץ שלנו · עודכן {date}",
-  "snipers.noHouse": "לא פורסם תיק בית.",
-  "snipers.holdings": "אחזקות",
-  "perf.house": "ביצועי התיק",
-
-  // performance chart
-  "perf.default": "איך אתה מתקדם",
-  "perf.since": "מאז שהתחלת",
-  "perf.return": "תשואה",
-
-  // reasoning popup
-  "reason.growth": "{v} פוטנציאל צמיחה",
-  "reason.riskLevel": "רמת סיכון:",
-  "reason.todayPrice": "מחיר היום:",
-  "reason.help":
-    "קנה סמוך למחיר הקנייה, ממש רווח ביעד המכירה, וצא אם המחיר יורד למחיר הביטחון.",
-  "reason.notAdvice": "מידע כללי, לא ייעוץ השקעות. השקעה כרוכה בסיכון להפסד.",
-
-  // switch arrow
-  "switch.title": "החלף למניה בטוחה יותר או נועזת יותר באותו ענף",
-  "switch.saferTitle": "בחירה בטוחה יותר",
-  "switch.saferAria": "החלף למניה בטוחה יותר",
-  "switch.bolderTitle": "בחירה נועזת יותר",
-  "switch.bolderAria": "החלף למניה נועזת יותר",
-
-  // footer
-  "footer.disclaimer":
-    "SNIPER מספקת מידע כללי למטרות חינוכיות בלבד ואינה מהווה ייעוץ השקעות. איננו ברוקר או יועץ השקעות ואיננו מבצעים עסקאות או מחזיקים כספים. השקעה כרוכה בסיכון, כולל אובדן הקרן.",
-  "footer.disclaimerLink": "גילוי נאות",
-  "footer.terms": "תנאים",
-  "footer.privacy": "פרטיות",
-
-  // consent gate
-  "consent.title": "לפני שמתחילים",
-  "consent.body":
-    "SNIPER מספקת מידע כללי למטרות חינוכיות בלבד ואינה מהווה ייעוץ השקעות. איננו ברוקר או יועץ ואיננו מבצעים עסקאות או מחזיקים כספים. השקעה כרוכה בסיכון, כולל אובדן הקרן.",
-  "consent.adult": "אני בן 18 ומעלה.",
-  "consent.ackPre": "אני מבין שזה אינו ייעוץ השקעות, ומסכים ל",
-  "consent.terms": "תנאי השימוש",
-  "consent.privacy": "מדיניות הפרטיות",
-  "consent.disclaimer": "גילוי הנאות",
-  "consent.sep": ", ",
-  "consent.and": " ו",
-  "consent.ackPost": ".",
-  "consent.cta": "אני מסכים — המשך",
-
-  // risk levels
-  "risk.Low": "נמוך",
-  "risk.Medium": "בינוני",
-  "risk.High": "גבוה",
-
-  // trade levels
-  "level.ep": "קנייה סביב",
-  "level.tp": "יעד מכירה",
-  "level.sl": "יציאת ביטחון",
-
-  // time
-  "time.now": "עכשיו",
-  "time.m": "לפני {n} ד׳",
-  "time.h": "לפני {n} ש׳",
-  "time.d": "לפני {n} י׳",
-
-  // language toggle
-  "lang.switchTo": "EN",
-};
-
-const DICTS: Record<Lang, Dict> = { en, he };
-
-const SECTORS: Record<Lang, Record<string, string>> = {
-  en: {
-    Energy: "Energy",
-    Materials: "Materials",
-    Industrials: "Industrials",
-    "Consumer Discretionary": "Consumer Discretionary",
-    "Consumer Staples": "Consumer Staples",
-    "Health Care": "Health Care",
-    Financials: "Financials",
-    "Information Technology": "Information Technology",
-    "Communication Services": "Communication Services",
-    Utilities: "Utilities",
-    "Real Estate": "Real Estate",
-  },
-  he: {
-    Energy: "אנרגיה",
-    Materials: "חומרי גלם",
-    Industrials: "תעשייה",
-    "Consumer Discretionary": "מוצרי צריכה מובחרים",
-    "Consumer Staples": "מוצרי צריכה בסיסיים",
-    "Health Care": "בריאות",
-    Financials: "פיננסים",
-    "Information Technology": "טכנולוגיית מידע",
-    "Communication Services": "שירותי תקשורת",
-    Utilities: "תשתיות",
-    "Real Estate": 'נדל"ן',
-  },
 };
 
 function interpolate(str: string, vars?: Record<string, string | number>) {
@@ -314,17 +188,14 @@ function interpolate(str: string, vars?: Record<string, string | number>) {
 }
 
 export function tr(
-  lang: Lang,
   key: string,
   vars?: Record<string, string | number>
 ): string {
-  const dict = DICTS[lang] ?? DICTS.en;
-  const val = dict[key] ?? DICTS.en[key] ?? key;
-  return interpolate(val, vars);
+  return interpolate(en[key] ?? key, vars);
 }
 
-export function sectorLabel(lang: Lang, sector: string): string {
-  return SECTORS[lang]?.[sector] ?? sector;
+export function sectorLabel(sector: string): string {
+  return sector;
 }
 
 export function riskKey(beta: number): "Low" | "Medium" | "High" {
@@ -333,22 +204,18 @@ export function riskKey(beta: number): "Low" | "Medium" | "High" {
   return "High";
 }
 
-export function riskLabel(lang: Lang, beta: number): string {
-  return tr(lang, `risk.${riskKey(beta)}`);
+export function riskLabel(beta: number): string {
+  return tr(`risk.${riskKey(beta)}`);
 }
 
-export function timeAgo(lang: Lang, iso: string): string {
+export function timeAgo(iso: string): string {
   const then = new Date(iso).getTime();
   const diff = Date.now() - then;
   const mins = Math.round(diff / 60000);
-  if (mins < 1) return tr(lang, "time.now");
-  if (mins < 60) return tr(lang, "time.m", { n: mins });
+  if (mins < 1) return tr("time.now");
+  if (mins < 60) return tr("time.m", { n: mins });
   const hrs = Math.round(mins / 60);
-  if (hrs < 24) return tr(lang, "time.h", { n: hrs });
+  if (hrs < 24) return tr("time.h", { n: hrs });
   const days = Math.round(hrs / 24);
-  return tr(lang, "time.d", { n: days });
-}
-
-export function dirFor(lang: Lang): "rtl" | "ltr" {
-  return lang === "he" ? "rtl" : "ltr";
+  return tr("time.d", { n: days });
 }

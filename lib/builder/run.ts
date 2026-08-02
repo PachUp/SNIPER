@@ -11,6 +11,7 @@ import {
   type BuilderPortfolioResult,
   type FamousListResult,
 } from "@/lib/builder/map";
+import { provider } from "@/lib/data";
 
 export type {
   BuilderHolding,
@@ -95,6 +96,8 @@ async function runBuilder(extraArgs: string[]): Promise<unknown> {
 }
 
 export async function listFamousPicks(): Promise<FamousListResult> {
+  const { loadFamousSymbols } = await import("@/lib/builder/famousList");
+  await loadFamousSymbols(); // seed runtime famous_stocks.json for --famous-file
   const data = (await runBuilder(["--list-famous-json"])) as FamousListResult;
   if (!data || !Array.isArray(data.picks)) {
     throw new BuilderError("Unexpected famous-list response", 502);
@@ -106,6 +109,8 @@ export async function buildFromPicks(
   tickers: string[],
   size = 12
 ): Promise<BuiltPortfolio> {
+  const { loadFamousSymbols } = await import("@/lib/builder/famousList");
+  await loadFamousSymbols();
   const picks = tickers.map((t) => t.toUpperCase());
   const data = (await runBuilder([
     "--pick",
@@ -126,5 +131,8 @@ export async function buildFromPicks(
     );
   }
 
-  return mapBuilderResult(data);
+  const catalog = await provider.getStocks();
+  const { loadCompanyBlurbs } = await import("@/lib/builder/blurbs");
+  const blurbs = await loadCompanyBlurbs();
+  return mapBuilderResult(data, catalog, blurbs);
 }

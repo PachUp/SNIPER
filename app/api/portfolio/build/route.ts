@@ -8,6 +8,8 @@ import {
 } from "@/lib/portfolio";
 import { isMockBuilderEnabled } from "@/lib/builder/config";
 import { BuilderError, buildFromPicks } from "@/lib/builder/run";
+import { loadCompanyBlurbs } from "@/lib/builder/blurbs";
+import { enrichPortfolioWithBlurbs } from "@/lib/builder/map";
 
 export const dynamic = "force-dynamic";
 
@@ -29,13 +31,27 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    let portfolio;
     if (isMockBuilderEnabled()) {
-      const stocks = await provider.getStocks();
-      const portfolio = buildPortfolio(stocks, tickers, MAX_HOLDINGS);
-      return NextResponse.json(portfolio);
+      const [stocks, blurbs] = await Promise.all([
+        provider.getStocks(),
+        loadCompanyBlurbs(),
+      ]);
+      portfolio = enrichPortfolioWithBlurbs(
+        buildPortfolio(stocks, tickers, MAX_HOLDINGS),
+        stocks,
+        blurbs
+      );
+    } else {
+      portfolio = await buildFromPicks(tickers, MAX_HOLDINGS);
     }
-
-    const portfolio = await buildFromPicks(tickers, MAX_HOLDINGS);
+    // Seed AI-filled names into the catalog so desk can edit EP/TP/SL.
+    await provider.ensureHoldingsInCatalog(portfolio);
+    const { ensureLogosAsync } = await import("@/lib/logos/ensureLogo");
+    ensureLogosAsync([
+      ...tickers,
+      ...portfolio.holdings.map((h) => h.ticker),
+    ]);
     return NextResponse.json(portfolio);
   } catch (err) {
     if (err instanceof BuilderError) {

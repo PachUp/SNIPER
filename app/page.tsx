@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { loadPortfolio } from "@/lib/clientPortfolio";
 import { useI18n } from "@/components/LanguageProvider";
-import LangToggle from "@/components/LangToggle";
+import AdminLink from "@/components/AdminLink";
 
 export default function LandingPage() {
   const { t } = useI18n();
@@ -15,32 +15,40 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden">
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black">
       <div
-        className="pointer-events-none absolute inset-0 opacity-40"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
+      >
+        <span className="select-none text-[22vw] font-black leading-none tracking-[0.18em] text-terminal-accent/[0.07]">
+          SNIPER
+        </span>
+      </div>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-50"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 50% 40%, rgba(34,211,238,0.10), transparent 60%)",
+            "radial-gradient(circle at 50% 42%, rgba(249,115,22,0.16), transparent 58%)",
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "linear-gradient(#22d3ee 1px, transparent 1px), linear-gradient(90deg, #22d3ee 1px, transparent 1px)",
-          backgroundSize: "44px 44px",
+            "linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
         }}
       />
 
       <Link
         href="/build"
-        className="group relative select-none"
+        className="group relative select-none transition-transform duration-300 ease-smooth hover:-translate-y-0.5"
         aria-label="Build your portfolio"
       >
-        <span className="glow block text-6xl font-black tracking-[0.3em] text-terminal-text transition-transform duration-200 group-hover:scale-105 sm:text-8xl">
+        <span className="glow block text-6xl font-black tracking-[0.28em] transition-transform duration-300 ease-smooth group-hover:scale-[1.03] sm:text-8xl">
           {t("brand.build")}
         </span>
-        <span className="mt-5 block max-w-xs text-center text-sm text-terminal-muted">
+        <span className="mt-5 block max-w-xs text-center text-sm tracking-[0.08em] text-terminal-muted">
           {t("landing.tagline")}
         </span>
       </Link>
@@ -48,17 +56,17 @@ export default function LandingPage() {
       {hasPortfolio && (
         <Link
           href="/dashboard"
-          className="absolute bottom-10 text-xs tracking-[0.3em] text-terminal-muted underline-offset-4 hover:text-terminal-accent hover:underline"
+          className="absolute bottom-10 text-xs tracking-[0.28em] text-terminal-muted underline-offset-4 hover:text-terminal-accent hover:underline"
         >
           {t("landing.seePortfolio")}
         </Link>
       )}
 
-      <div className="absolute top-6 start-6 text-xs tracking-[0.35em] text-terminal-muted">
+      <div className="absolute top-6 start-6 text-xs font-semibold tracking-[0.35em] text-terminal-accent">
         SNIPER
       </div>
-      <div className="absolute top-6 end-6">
-        <LangToggle />
+      <div className="absolute top-6 end-6 z-50 flex items-center gap-4">
+        <AdminLink />
       </div>
 
       {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (

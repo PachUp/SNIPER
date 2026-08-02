@@ -4,44 +4,74 @@
     "ticker": "AVGO",
     "name": "Broadcom",
     "sector": "Information Technology",
-    "thesis": "Custom AI accelerator ramp plus VMware software attach create a durable growth-and-margin story underappreciated versus pure GPU names.",
-    "upsidePct": 21.2,
-    "levels": { "ep": 164.0, "tp": 200.0, "sl": 148.0 }
+    "thesis": "Cash flow jumped $13.3B \u2192 $26.9B \u2014 profits up about 101%; top-half growth (#9/29) in Semiconductors.",
+    "upsidePct": -28.5,
+    "levels": {
+      "ep": 381.92,
+      "tp": 465.76,
+      "sl": 344.66
+    },
+    "business": "Broadcom designs semiconductors and infrastructure software for networking, storage, and enterprise markets.",
+    "entry": "Cash flow jumped $13.3B \u2192 $26.9B \u2014 profits up about 101%; top-half growth (#9/29) in Semiconductors."
   },
   {
     "id": "i2",
     "ticker": "UNH",
     "name": "UnitedHealth",
     "sector": "Health Care",
-    "thesis": "Sentiment overhang on utilization is overdone; Optum and membership growth support a return to double-digit EPS growth.",
+    "thesis": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum.",
     "upsidePct": 22.4,
-    "levels": { "ep": 489.0, "tp": 600.0, "sl": 445.0 }
+    "levels": {
+      "ep": 489.0,
+      "tp": 600.0,
+      "sl": 445.0
+    },
+    "business": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum.",
+    "entry": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum."
   },
   {
     "id": "i3",
     "ticker": "DIS",
     "name": "Walt Disney",
     "sector": "Communication Services",
-    "thesis": "Streaming inflection to sustained profitability plus parks resilience sets up a multi-year re-rating from depressed multiples.",
+    "thesis": "Parks pricing stays firm and the Kraft Heinz themed-dining deal pushes per-guest spend higher while Disney+ losses keep narrowing \u2014 cheaper than peers at 15\u00d7 earnings vs 27\u00d7 median; cash flow jumped $2.0B \u2192 $10.1B; #2 growth rank of 10 in Entertainment.",
     "upsidePct": 27.6,
-    "levels": { "ep": 97.5, "tp": 125.0, "sl": 86.0 }
+    "levels": {
+      "ep": 97.5,
+      "tp": 125.0,
+      "sl": 86.0
+    },
+    "business": "The Walt Disney Company operates theme parks, film studios, ESPN, and the Disney+ streaming service worldwide.",
+    "entry": "Parks pricing stays firm and the Kraft Heinz themed-dining deal pushes per-guest spend higher while Disney+ losses keep narrowing \u2014 cheaper than peers at 15\u00d7 earnings vs 27\u00d7 median; cash flow jumped $2.0B \u2192 $10.1B; #2 growth rank of 10 in Entertainment."
   },
   {
     "id": "i4",
     "ticker": "FCX",
     "name": "Freeport-McMoRan",
     "sector": "Materials",
-    "thesis": "Structural copper deficit from electrification meets constrained supply; highest-quality pure-play leverage to the theme.",
-    "upsidePct": 29.5,
-    "levels": { "ep": 44.5, "tp": 58.0, "sl": 38.5 }
+    "thesis": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia.",
+    "upsidePct": 30.3,
+    "levels": {
+      "ep": 62.6,
+      "tp": 81.59,
+      "sl": 54.16
+    },
+    "business": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia.",
+    "entry": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia."
   },
   {
     "id": "i5",
     "ticker": "WMT",
     "name": "Walmart",
     "sector": "Consumer Staples",
-    "thesis": "High-margin advertising and membership are re-rating a defensive retailer into a profitable-growth compounder.",
-    "upsidePct": 19.4,
-    "levels": { "ep": 66.5, "tp": 80.0, "sl": 60.0 }
+    "thesis": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide.",
+    "upsidePct": 20.3,
+    "levels": {
+      "ep": 109.47,
+      "tp": 131.69,
+      "sl": 98.77
+    },
+    "business": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide.",
+    "entry": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide."
   }
 ]

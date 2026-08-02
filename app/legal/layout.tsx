@@ -16,7 +16,7 @@ export default function LegalLayout({
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/"
-          className="text-xs tracking-[0.35em] text-terminal-muted hover:text-terminal-accent"
+          className="text-xs font-semibold tracking-[0.35em] text-terminal-accent hover:text-terminal-orange"
         >
           ← SNIPER
         </Link>

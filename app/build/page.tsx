@@ -6,19 +6,24 @@ import Link from "next/link";
 import type { BuiltPortfolio } from "@/lib/types";
 import { MAX_USER_PICKS, MIN_USER_PICKS } from "@/lib/portfolio";
 import { savePortfolio } from "@/lib/clientPortfolio";
-import { pct, riskColorClass } from "@/lib/format";
+import { formatR2r, r2rFromLevels } from "@/lib/format";
 import { useI18n } from "@/components/LanguageProvider";
-import LangToggle from "@/components/LangToggle";
+import ReasoningPopup from "@/components/ReasoningPopup";
+import CompactStockRow from "@/components/CompactStockRow";
+import TickerLogo from "@/components/TickerLogo";
+import AdminLink from "@/components/AdminLink";
 import type { FamousListResult, FamousPick } from "@/lib/builder/map";
+import type { Stock } from "@/lib/types";
 
 export default function BuildPage() {
   const router = useRouter();
-  const { t, risk } = useI18n();
+  const { t } = useI18n();
   const [famous, setFamous] = useState<FamousListResult | null>(null);
   const [picked, setPicked] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [building, setBuilding] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [detail, setDetail] = useState<Stock | null>(null);
 
   useEffect(() => {
     fetch("/api/builder/famous")
@@ -27,7 +32,14 @@ export default function BuildPage() {
         if (!r.ok) throw new Error(data.error || "Failed to load famous picks");
         return data as FamousListResult;
       })
-      .then((data) => setFamous(data))
+      .then((data) => {
+        setFamous(data);
+        // Warm static logo assets for every famous name.
+        for (const p of data.picks ?? []) {
+          const img = new Image();
+          img.src = `/logos/${encodeURIComponent(p.symbol)}.png?v=native`;
+        }
+      })
       .catch((e: Error) => setError(e.message))
       .finally(() => setLoading(false));
   }, []);
@@ -41,6 +53,8 @@ export default function BuildPage() {
     () => (famous?.picks ?? []).filter((p) => !p.eligible),
     [famous]
   );
+
+  const allPicks = useMemo(() => famous?.picks ?? [], [famous]);
 
   function toggle(symbol: string) {
     setError(null);
@@ -77,24 +91,36 @@ export default function BuildPage() {
   }
 
   return (
-    <main className="mx-auto min-h-screen max-w-6xl px-4 py-8">
-      <header className="mb-6 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-xs tracking-[0.35em] text-terminal-muted hover:text-terminal-accent"
-        >
-          {t("build.back")}
-        </Link>
+    <main className="mx-auto min-h-screen max-w-6xl bg-black px-4 py-8">
+      <header className="mb-4 flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Link
+            href="/"
+            className="text-xs font-semibold tracking-[0.35em] text-terminal-accent"
+          >
+            SNIPER
+          </Link>
+          <button
+            type="button"
+            onClick={() => void build()}
+            disabled={building || picked.length < MIN_USER_PICKS}
+            className="rounded-md bg-terminal-accent px-2.5 py-1 text-[10px] font-bold tracking-[0.12em] text-black disabled:opacity-40"
+          >
+            {building ? t("build.buildingCta") : t("build.buildMine")}
+          </button>
+        </div>
         <div className="flex items-center gap-3">
-          <div className="text-xs tracking-[0.3em] text-terminal-muted">
+          <div className="rounded-full border border-terminal-accent/30 bg-terminal-accent/10 px-3 py-1 text-[11px] font-semibold tracking-[0.2em] text-terminal-accent">
             {t("build.chosen", { n: picked.length, max: MAX_USER_PICKS })}
           </div>
-          <LangToggle />
+          <AdminLink />
         </div>
       </header>
 
-      <h1 className="text-2xl font-bold tracking-wide">{t("build.title")}</h1>
-      <p className="mt-1 max-w-2xl text-sm text-terminal-muted">
+      <h1 className="text-2xl font-bold tracking-wide text-white sm:text-3xl">
+        {t("build.title")}
+      </h1>
+      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-terminal-muted">
         {t("build.subtitle", {
           max: MAX_USER_PICKS,
           minUpside: famous?.famous_min_upside_pct ?? 20,
@@ -111,47 +137,131 @@ export default function BuildPage() {
         <div className="mt-10 text-center text-terminal-muted">
           {t("common.loading")}
         </div>
-      ) : eligiblePicks.length === 0 ? (
-        <div className="mt-10 text-center text-sm text-terminal-muted">
-          {t("build.noneEligible")}
-        </div>
       ) : (
         <>
-          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {eligiblePicks.map((p) => (
-              <FamousCard
-                key={p.symbol}
-                pick={p}
-                isPicked={picked.includes(p.symbol)}
-                disabled={
-                  !picked.includes(p.symbol) && picked.length >= MAX_USER_PICKS
-                }
-                onToggle={() => toggle(p.symbol)}
-                potentialLabel={t("common.potential", {
-                  v: pct(p.upside_pct ?? 0),
+          {/* Brand wall — every famous logo, first impression */}
+          {allPicks.length > 0 ? (
+            <div className="mt-8 overflow-hidden rounded-2xl border border-terminal-border bg-gradient-to-b from-[#141414] to-black p-5 shadow-[0_0_60px_rgba(249,115,22,0.08)]">
+              <div className="mb-4 flex items-end justify-between gap-3">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-terminal-accent">
+                    Famous names
+                  </p>
+                  <p className="mt-1 text-sm text-terminal-muted">
+                    Tap a card below to shortlist — logos stay front and center.
+                  </p>
+                </div>
+                <span className="text-[11px] text-terminal-muted">
+                  {allPicks.length} brands
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                {allPicks.map((p) => {
+                  const on = picked.includes(p.symbol);
+                  return (
+                    <button
+                      key={`wall-${p.symbol}`}
+                      type="button"
+                      disabled={
+                        !p.eligible ||
+                        (!on && picked.length >= MAX_USER_PICKS)
+                      }
+                      onClick={() => p.eligible && toggle(p.symbol)}
+                      className={`group relative rounded-2xl p-1.5 transition-all duration-300 ease-smooth ${
+                        on
+                          ? "scale-105 bg-terminal-accent/15"
+                          : p.eligible
+                            ? "hover:scale-105 hover:bg-white/5"
+                            : "opacity-45 grayscale"
+                      }`}
+                      title={p.name || p.symbol}
+                    >
+                      <TickerLogo
+                        symbol={p.symbol}
+                        size={52}
+                        priority
+                        ring={on}
+                      />
+                      {on ? (
+                        <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-terminal-accent text-[10px] font-black text-black shadow-lg">
+                          ✓
+                        </span>
+                      ) : null}
+                    </button>
+                  );
                 })}
-                riskLabel={t("common.riskSuffix", {
-                  level: risk(p.beta ?? 1),
-                })}
-                riskClass={riskColorClass(p.beta ?? 1)}
-              />
-            ))}
-          </div>
+              </div>
+            </div>
+          ) : null}
+
+          {eligiblePicks.length === 0 ? (
+            <div className="mt-10 text-center text-sm text-terminal-muted">
+              {t("build.noneEligible")}
+            </div>
+          ) : (
+            <div className="mt-4 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3">
+              {eligiblePicks.map((p) => {
+                const on = picked.includes(p.symbol);
+                const blocked = !on && picked.length >= MAX_USER_PICKS;
+                return (
+                  <div
+                    key={p.symbol}
+                    className={`flex items-center gap-1 rounded-md ${
+                      on ? "ring-1 ring-terminal-accent/50" : ""
+                    } ${blocked ? "opacity-40" : ""}`}
+                  >
+                    <CompactStockRow
+                      ticker={p.symbol}
+                      name={p.name || p.sector || undefined}
+                      badge={
+                        on
+                          ? "ON"
+                          : typeof p.upside_pct === "number"
+                            ? `${p.upside_pct >= 0 ? "+" : ""}${p.upside_pct.toFixed(0)}%`
+                            : undefined
+                      }
+                      onClick={() => setDetail(famousPickToStock(p))}
+                      className="min-w-0 flex-1"
+                    />
+                    <button
+                      type="button"
+                      disabled={blocked}
+                      onClick={() => toggle(p.symbol)}
+                      className={`shrink-0 rounded-md px-2 py-1.5 text-[10px] font-bold tracking-wider ${
+                        on
+                          ? "bg-terminal-accent text-black"
+                          : "border border-terminal-border text-terminal-accent"
+                      }`}
+                    >
+                      {on ? "✓" : "+"}
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           {ineligiblePicks.length > 0 && (
-            <div className="mt-8">
-              <p className="text-xs tracking-[0.2em] text-terminal-muted">
+            <div className="mt-10">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-terminal-muted">
                 {t("build.notEligibleToday")}
               </p>
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-3">
                 {ineligiblePicks.map((p) => (
                   <span
                     key={p.symbol}
-                    className="rounded-full border border-terminal-border px-3 py-1 text-xs text-terminal-muted opacity-60"
+                    className="inline-flex items-center gap-2.5 rounded-2xl border border-terminal-border bg-[#0c0c0c] px-3 py-2 text-xs text-terminal-muted"
                     title={p.reason ?? undefined}
                   >
-                    {p.symbol}
-                    {p.upside_pct != null ? ` ${pct(p.upside_pct)}` : ""}
+                    <TickerLogo symbol={p.symbol} size={28} priority />
+                    <span>
+                      <span className="font-semibold text-white/80">
+                        {p.symbol}
+                      </span>
+                      {p.levels
+                        ? ` · ${formatR2r(r2rFromLevels(p.levels))}`
+                        : ""}
+                    </span>
                   </span>
                 ))}
               </div>
@@ -162,54 +272,57 @@ export default function BuildPage() {
 
       <div className="sticky bottom-4 mt-8 flex justify-center">
         <button
-          onClick={build}
+          onClick={() => void build()}
           disabled={building || picked.length < MIN_USER_PICKS}
-          className="rounded-full bg-terminal-accent px-10 py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg shadow-lg shadow-terminal-accent/20 transition-transform hover:scale-105 disabled:opacity-50"
+          className="rounded-full bg-terminal-accent px-12 py-3.5 text-sm font-bold tracking-[0.22em] text-black shadow-[0_0_40px_rgba(249,115,22,0.35)] transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-[0_0_56px_rgba(249,115,22,0.5)] disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none"
         >
           {building ? t("build.buildingCta") : t("build.buildMine")}
         </button>
       </div>
+
+      {detail ? (
+        <ReasoningPopup
+          stock={detail}
+          onClose={() => setDetail(null)}
+          extras={
+            <button
+              type="button"
+              disabled={
+                !picked.includes(detail.ticker) &&
+                picked.length >= MAX_USER_PICKS
+              }
+              onClick={() => {
+                toggle(detail.ticker);
+              }}
+              className="w-full rounded-md bg-terminal-accent py-2 text-xs font-bold tracking-[0.14em] text-black disabled:opacity-40"
+            >
+              {picked.includes(detail.ticker)
+                ? "REMOVE FROM PICKS"
+                : "ADD TO PICKS"}
+            </button>
+          }
+        />
+      ) : null}
     </main>
   );
 }
 
-function FamousCard({
-  pick,
-  isPicked,
-  disabled,
-  onToggle,
-  potentialLabel,
-  riskLabel,
-  riskClass,
-}: {
-  pick: FamousPick;
-  isPicked: boolean;
-  disabled: boolean;
-  onToggle: () => void;
-  potentialLabel: string;
-  riskLabel: string;
-  riskClass: string;
-}) {
-  return (
-    <button
-      onClick={onToggle}
-      disabled={disabled}
-      className={`rounded-lg border p-4 text-left transition-all ${
-        isPicked
-          ? "border-terminal-accent bg-terminal-accent/10"
-          : "border-terminal-border bg-terminal-panel hover:border-terminal-accent/40"
-      } ${disabled ? "cursor-not-allowed opacity-40" : ""}`}
-    >
-      <div className="flex items-center justify-between">
-        <span className="text-lg font-bold">{pick.symbol}</span>
-        <span className="text-xs text-terminal-good">{potentialLabel}</span>
-      </div>
-      <div className="mt-0.5 truncate text-sm text-terminal-muted">
-        {pick.sector || pick.industry || "—"}
-      </div>
-      <div className="mt-2 text-[11px]">
-        <span className={riskClass}>{riskLabel}</span>
-      </div>
-    </button>
-  );
+function famousPickToStock(p: FamousPick): Stock {
+  const levels = p.levels ?? { ep: 0, tp: 0, sl: 0 };
+  return {
+    ticker: p.symbol,
+    name: p.name || p.symbol,
+    sector: (p.sector as Stock["sector"]) || "Information Technology",
+    industry: p.industry,
+    price: levels.ep,
+    fairValue: levels.tp,
+    upsidePct: typeof p.upside_pct === "number" ? p.upside_pct : 0,
+    beta: p.beta ?? 1,
+    sharpe: 0,
+    business: p.business,
+    reasoning: p.reasoning || "",
+    numbers: p.numbers,
+    levels,
+    alternatives: [],
+  };
 }

@@ -20,8 +20,9 @@ export default function ConsentGate() {
     setReady(true);
   }, []);
 
-  // Don't gate the legal pages (users must be able to read them).
-  const excluded = pathname?.startsWith("/legal");
+  // Don't gate legal pages or the password-protected admin desk.
+  const excluded =
+    pathname?.startsWith("/legal") || pathname?.startsWith("/admin");
 
   if (!ready || accepted || excluded) return null;
 
@@ -47,7 +48,7 @@ export default function ConsentGate() {
             type="checkbox"
             checked={isAdult}
             onChange={(e) => setIsAdult(e.target.checked)}
-            className="mt-0.5 h-4 w-4 accent-[#22d3ee]"
+            className="mt-0.5 h-4 w-4 accent-[#f97316]"
           />
           <span>{t("consent.adult")}</span>
         </label>
@@ -57,7 +58,7 @@ export default function ConsentGate() {
             type="checkbox"
             checked={ackAdvice}
             onChange={(e) => setAckAdvice(e.target.checked)}
-            className="mt-0.5 h-4 w-4 accent-[#22d3ee]"
+            className="mt-0.5 h-4 w-4 accent-[#f97316]"
           />
           <span>
             {t("consent.ackPre")}

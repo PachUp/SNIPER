@@ -1,95 +1,198 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { HousePortfolio } from "@/lib/types";
-import { money } from "@/lib/format";
+import { useEffect, useMemo, useState } from "react";
+import type { HousePortfolio, Stock } from "@/lib/types";
 import PerformanceChart from "@/components/PerformanceChart";
+import ReasoningPopup from "@/components/ReasoningPopup";
+import CompactStockRow from "@/components/CompactStockRow";
 import { useI18n } from "@/components/LanguageProvider";
+import {
+  fetchLiveQuotesClient,
+  livePortfolioReturnPct,
+  returnSinceEntryPct,
+} from "@/lib/livePerformance";
+
+function holdingToStock(h: HousePortfolio["holdings"][number]): Stock {
+  return {
+    ticker: h.ticker,
+    name: h.name,
+    sector: h.sector,
+    industry: h.industry,
+    price: h.levels.ep,
+    fairValue: h.levels.tp,
+    upsidePct: 0,
+    beta: 1,
+    sharpe: 0,
+    business: h.business,
+    reasoning: h.reasoning,
+    numbers: h.numbers,
+    levels: h.levels,
+    alternatives: [],
+  };
+}
 
 export default function SnipersPage() {
   const { t } = useI18n();
   const [house, setHouse] = useState<HousePortfolio | null>(null);
   const [loading, setLoading] = useState(true);
+  const [popup, setPopup] = useState<Stock | null>(null);
+  const [liveQuotes, setLiveQuotes] = useState<Record<string, number>>({});
+  const [quotesLoading, setQuotesLoading] = useState(false);
 
   useEffect(() => {
     fetch("/api/snipers")
       .then((r) => r.json())
-      .then((d: HousePortfolio) => setHouse(d))
+      .then((d: HousePortfolio) => {
+        setHouse(d);
+        for (const h of d.holdings ?? []) {
+          const img = new Image();
+          img.src = `/logos/${encodeURIComponent(h.ticker)}.png?v=native`;
+        }
+      })
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    const symbols = (house?.holdings ?? []).map((h) => h.ticker);
+    if (symbols.length === 0) {
+      setLiveQuotes({});
+      return;
+    }
+    let cancelled = false;
+    setQuotesLoading(true);
+    fetchLiveQuotesClient(symbols)
+      .then((q) => {
+        if (!cancelled) setLiveQuotes(q);
+      })
+      .catch(() => {
+        if (!cancelled) setLiveQuotes({});
+      })
+      .finally(() => {
+        if (!cancelled) setQuotesLoading(false);
+      });
+    const id = window.setInterval(() => {
+      fetchLiveQuotesClient(symbols)
+        .then((q) => {
+          if (!cancelled) setLiveQuotes(q);
+        })
+        .catch(() => undefined);
+    }, 60_000);
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, [house]);
+
+  const liveReturnPct = useMemo(() => {
+    if (!house) return 0;
+    return livePortfolioReturnPct(
+      house.holdings.map((h) => ({
+        ticker: h.ticker,
+        entry: h.levels?.ep ?? 0,
+        weightPct: h.weightPct,
+        live: liveQuotes[h.ticker.toUpperCase()] ?? 0,
+      }))
+    );
+  }, [house, liveQuotes]);
+
+  const chartPositions = useMemo(
+    () =>
+      (house?.holdings ?? [])
+        .filter((h) => Number.isFinite(h.levels?.ep) && h.levels.ep > 0)
+        .map((h) => ({
+          ticker: h.ticker,
+          entry: h.levels.ep,
+          weightPct: h.weightPct,
+        })),
+    [house]
+  );
+
   if (loading) {
     return (
-      <div className="py-16 text-center text-terminal-muted">
+      <div className="flex flex-1 items-center justify-center text-terminal-muted">
         {t("common.loading")}
       </div>
     );
   }
   if (!house) {
     return (
-      <div className="py-16 text-center text-terminal-muted">
+      <div className="flex flex-1 items-center justify-center text-terminal-muted">
         {t("snipers.noHouse")}
       </div>
     );
   }
 
+  const popupLive = popup
+    ? liveQuotes[popup.ticker.toUpperCase()] ?? null
+    : null;
+  const popupSince =
+    popup && popup.levels.ep > 0 && popupLive != null
+      ? returnSinceEntryPct(popup.levels.ep, popupLive)
+      : null;
+
   return (
-    <div>
-      <div className="mb-4">
-        <h1 className="text-xl font-bold tracking-wide">{house.name}</h1>
-        <p className="text-xs text-terminal-muted">
+    <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
+      <div className="shrink-0">
+        <h1 className="truncate text-base font-bold tracking-wide sm:text-lg">
+          {house.name}
+        </h1>
+        <p className="truncate text-[10px] text-terminal-muted">
           {t("snipers.subtitle", {
             date: new Date(house.updated).toLocaleDateString(),
-          })}
+          })}{" "}
+          · {t("perf.tapRow")}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,38%)_minmax(0,62%)] gap-2 lg:grid-cols-2 lg:grid-rows-1">
         <PerformanceChart
-          series={house.performance}
+          compact
+          liveReturnPct={liveReturnPct}
+          positions={chartPositions}
+          loading={quotesLoading}
           title={t("perf.house")}
+          subtitle={t("perf.houseLive")}
         />
 
-        <div className="rounded-xl border border-terminal-border bg-terminal-panel p-4">
-          <div className="mb-3 text-xs tracking-[0.25em] text-terminal-muted">
+        <div className="flex min-h-0 flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2">
+          <div className="mb-1.5 shrink-0 text-[10px] tracking-[0.2em] text-terminal-muted">
             {t("snipers.holdings")}
           </div>
-          <div className="flex max-h-[420px] flex-col gap-2 overflow-y-auto pr-1">
-            {house.holdings.map((h) => (
-              <div
-                key={h.ticker}
-                className="rounded-lg border border-terminal-border bg-terminal-bg p-3"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold">{h.ticker}</span>
-                    <span className="text-[11px] text-terminal-muted">
-                      {h.name}
-                    </span>
-                  </div>
-                  <span className="rounded bg-terminal-accent/10 px-2 py-0.5 text-[11px] text-terminal-accent">
-                    {h.weightPct}%
-                  </span>
-                </div>
-                <p className="mt-1.5 text-[12px] text-terminal-muted">
-                  {h.reasoning}
-                </p>
-                <div className="mt-2 grid grid-cols-3 gap-1 text-center text-[10px]">
-                  <span className="rounded bg-terminal-bg py-1 text-terminal-accent">
-                    {t("common.buy")} {money(h.levels.ep)}
-                  </span>
-                  <span className="rounded bg-terminal-bg py-1 text-terminal-good">
-                    {t("common.sell")} {money(h.levels.tp)}
-                  </span>
-                  <span className="rounded bg-terminal-bg py-1 text-terminal-bad">
-                    {t("common.exit")} {money(h.levels.sl)}
-                  </span>
-                </div>
-              </div>
-            ))}
+          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto sm:grid-cols-2">
+            {house.holdings.map((h) => {
+              const livePx = liveQuotes[h.ticker.toUpperCase()];
+              const sinceEntry =
+                h.levels?.ep > 0 && livePx != null
+                  ? returnSinceEntryPct(h.levels.ep, livePx)
+                  : null;
+              return (
+                <CompactStockRow
+                  key={h.ticker}
+                  ticker={h.ticker}
+                  name={h.name}
+                  sinceEntry={sinceEntry}
+                  weightPct={h.weightPct}
+                  onClick={() =>
+                    setPopup({
+                      ...holdingToStock(h),
+                      price: livePx ?? h.levels.ep,
+                    })
+                  }
+                />
+              );
+            })}
           </div>
         </div>
       </div>
+
+      {popup ? (
+        <ReasoningPopup
+          stock={popup}
+          onClose={() => setPopup(null)}
+          livePrice={popupLive}
+          sinceEntry={popupSince}
+        />
+      ) : null}
     </div>
   );
 }

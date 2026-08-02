@@ -24,12 +24,19 @@ export type Stock = {
   ticker: string;
   name: string;
   sector: GicsSector;
+  /** Finer industry label (Finviz / FvIndustries), used for peer matching. */
+  industry?: string;
   price: number;
   fairValue: number;
   upsidePct: number;
   beta: number;
   sharpe: number;
+  /** Core business one-liner (StockAnalysis headline). */
+  business?: string;
+  /** Entry thesis / why own it — plain-language facts. */
   reasoning: string;
+  /** Fundamental numbers (click to reveal). */
+  numbers?: string;
   levels: Levels;
   alternatives: string[];
 };
@@ -52,7 +59,15 @@ export type Idea = {
   ticker: string;
   name: string;
   sector: GicsSector;
+  /** Finer industry label (Finviz / FvIndustries). */
+  industry?: string;
   thesis: string;
+  /** Core business one-liner (from company blurbs). */
+  business?: string;
+  /** Entry thesis overlay from company blurbs. */
+  entry?: string;
+  /** Fundamental numbers (click to reveal). */
+  numbers?: string;
   upsidePct: number;
   levels: Levels;
 };
@@ -61,7 +76,12 @@ export type SniperHolding = {
   ticker: string;
   name: string;
   sector: GicsSector;
+  /** Finer industry label (Finviz / FvIndustries). */
+  industry?: string;
+  business?: string;
   reasoning: string;
+  /** Fundamental numbers (click to reveal). */
+  numbers?: string;
   weightPct: number;
   levels: Levels;
 };
@@ -78,7 +98,8 @@ export type HousePortfolio = {
   performance: {
     "1W": PerfPoint[];
     "1M": PerfPoint[];
-    "1Y": PerfPoint[];
+    "1Y"?: PerfPoint[];
+    ALL?: PerfPoint[];
   };
 };
 
@@ -97,6 +118,12 @@ export type HoldingSnapshot = {
   upsidePct?: number;
   beta?: number;
   sharpe?: number;
+  /** Core business one-liner. */
+  business?: string;
+  /** Entry thesis shown on dashboard cards. */
+  reasoning?: string;
+  /** Fundamental numbers (click to reveal). */
+  numbers?: string;
 };
 
 export type PortfolioHolding = {

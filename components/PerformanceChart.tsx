@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -9,74 +9,152 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { PerfPoint, Stock } from "@/lib/types";
-import { buildPerformance } from "@/lib/clientPortfolio";
+import type { PerfPoint } from "@/lib/types";
+import {
+  fetchHistoryClient,
+  historicalRangeSeries,
+  type EntryPosition,
+  type PerfRange,
+} from "@/lib/livePerformance";
 import { pct } from "@/lib/format";
 import { useI18n } from "@/components/LanguageProvider";
 
-type Range = "1W" | "1M" | "1Y";
-const RANGES: Range[] = ["1W", "1M", "1Y"];
+const RANGES: PerfRange[] = ["1W", "1M", "ALL"];
 
+/**
+ * Headline: 1W/1M = window move ÷ entry; ALL = live all-time since entry.
+ */
 export default function PerformanceChart({
-  holdings,
-  series,
+  liveReturnPct = 0,
+  positions = [],
   title,
+  subtitle,
+  loading = false,
+  refreshKey = 0,
+  compact = false,
 }: {
-  holdings?: Stock[];
-  series?: Record<Range, PerfPoint[]>;
+  liveReturnPct?: number;
+  positions?: EntryPosition[];
   title?: string;
+  subtitle?: string;
+  loading?: boolean;
+  refreshKey?: number;
+  compact?: boolean;
 }) {
   const { t } = useI18n();
-  const [range, setRange] = useState<Range>("1M");
+  const [range, setRange] = useState<PerfRange>("ALL");
+  const [series, setSeries] = useState<PerfPoint[]>([{ t: "—", pct: 0 }]);
+  const [rangePct, setRangePct] = useState(0);
+  const [histLoading, setHistLoading] = useState(false);
+
   const heading = title ?? t("perf.default");
+  const hasEntries = positions.some((p) => p.entry > 0);
 
-  const data = useMemo<PerfPoint[]>(() => {
-    if (series) return series[range];
-    if (holdings) return buildPerformance(holdings, range);
-    return [];
-  }, [series, holdings, range]);
+  const posKey = useMemo(
+    () =>
+      positions
+        .map((p) => `${p.ticker.toUpperCase()}:${p.entry}:${p.since ?? ""}`)
+        .sort()
+        .join("|"),
+    [positions]
+  );
 
-  const endPct = data.length ? data[data.length - 1].pct : 0;
+  useEffect(() => {
+    const active = positions.filter(
+      (p) => Number.isFinite(p.entry) && p.entry > 0
+    );
+    if (active.length === 0) {
+      setSeries([{ t: "—", pct: 0 }]);
+      setRangePct(0);
+      return;
+    }
+    let cancelled = false;
+    setHistLoading(true);
+    fetchHistoryClient(
+      active.map((p) => p.ticker),
+      range
+    )
+      .then((history) => {
+        if (cancelled) return;
+        const { series: built, rangePct: rp } = historicalRangeSeries(
+          active,
+          history,
+          range
+        );
+        setSeries(built);
+        setRangePct(rp);
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setSeries([{ t: "—", pct: 0 }]);
+          setRangePct(0);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setHistLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [posKey, range, positions, refreshKey]);
+
+  const data = series;
+  const endPct =
+    range === "ALL" && Number.isFinite(liveReturnPct)
+      ? liveReturnPct
+      : rangePct;
   const positive = endPct >= 0;
   const color = positive ? "#22c55e" : "#ef4444";
+  const busy = loading || histLoading;
 
   return (
-    <div className="flex h-full flex-col rounded-xl border border-terminal-border bg-terminal-panel p-4">
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="text-xs tracking-[0.25em] text-terminal-muted">
+    <div
+      className={`flex h-full min-h-0 flex-col rounded-xl border border-terminal-border bg-terminal-panel ${
+        compact ? "p-2.5" : "p-4"
+      }`}
+    >
+      <div className="flex shrink-0 items-start justify-between gap-2">
+        <div className="min-w-0">
+          <div className="text-[10px] tracking-[0.22em] text-terminal-muted">
             {heading}
           </div>
           <div
-            className="mt-1 text-3xl font-bold"
+            className={`mt-0.5 font-bold tabular-nums ${compact ? "text-2xl" : "text-3xl"}`}
             style={{ color }}
           >
-            {pct(endPct)}
+            {busy ? "…" : pct(endPct)}
           </div>
-          <div className="text-[11px] text-terminal-muted">
-            {t("perf.since")}
+          <div className="truncate text-[10px] text-terminal-muted">
+            {hasEntries
+              ? range === "ALL"
+                ? t("perf.allVsEntry")
+                : t("perf.rangeVsEntry", { range })
+              : subtitle ?? t("perf.sinceEntryEmpty")}
           </div>
         </div>
-        <div className="flex gap-1">
+        <div className="flex shrink-0 gap-0.5">
           {RANGES.map((r) => (
             <button
               key={r}
               onClick={() => setRange(r)}
-              className={`rounded px-2 py-1 text-[11px] ${
+              className={`rounded px-1.5 py-1 text-[10px] font-medium ${
                 range === r
                   ? "bg-terminal-accent/15 text-terminal-accent"
                   : "text-terminal-muted hover:text-terminal-text"
               }`}
             >
-              {r}
+              {r === "ALL" ? t("perf.all") : r}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="mt-3 min-h-[180px] flex-1">
+      <div className={`min-h-0 flex-1 ${compact ? "mt-1.5" : "mt-3"}`}>
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 8, right: 4, left: -24, bottom: 0 }}>
+          <AreaChart
+            data={data}
+            margin={{ top: 4, right: 2, left: -28, bottom: 0 }}
+          >
             <defs>
               <linearGradient id="perfFill" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={color} stopOpacity={0.35} />
@@ -85,26 +163,28 @@ export default function PerformanceChart({
             </defs>
             <XAxis
               dataKey="t"
-              tick={{ fill: "#7d8799", fontSize: 11 }}
-              axisLine={{ stroke: "#1f2733" }}
+              tick={{ fill: "#8a8a8a", fontSize: 10 }}
+              axisLine={{ stroke: "#222222" }}
               tickLine={false}
+              interval="preserveStartEnd"
+              height={18}
             />
             <YAxis
-              tick={{ fill: "#7d8799", fontSize: 11 }}
+              tick={{ fill: "#8a8a8a", fontSize: 10 }}
               axisLine={false}
               tickLine={false}
               tickFormatter={(v) => `${v}%`}
-              width={48}
+              width={40}
             />
             <Tooltip
               contentStyle={{
-                background: "#11161f",
-                border: "1px solid #1f2733",
+                background: "#111111",
+                border: "1px solid #222222",
                 borderRadius: 8,
-                color: "#d6deeb",
+                color: "#f5f5f5",
                 fontSize: 12,
               }}
-              formatter={(v: number) => [`${v}%`, t("perf.return")]}
+              formatter={(v: number) => [`${v}%`, t("perf.vsEntry")]}
             />
             <Area
               type="monotone"

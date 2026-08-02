@@ -4,6 +4,16 @@
 
 :root {
   color-scheme: dark;
+  --bg: #000000;
+  --panel: #111111;
+  --border: #222222;
+  --text: #f5f5f5;
+  --muted: #8a8a8a;
+  --accent: #f97316;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -13,14 +23,30 @@ body {
 }
 
 body {
-  background-color: #0a0e14;
-  color: #d6deeb;
-  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  background-color: #000000;
+  color: #f5f5f5;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 * {
   box-sizing: border-box;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 ::-webkit-scrollbar {
@@ -28,28 +54,57 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0e14;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1f2733;
+  background: #2a2a2a;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2c3645;
+  background: #3a3a3a;
 }
 
-@keyframes pulseGlow {
+@keyframes softGlow {
   0%,
   100% {
-    text-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+    text-shadow: 0 0 20px rgba(249, 115, 22, 0.28);
   }
   50% {
-    text-shadow: 0 0 48px rgba(34, 211, 238, 0.75);
+    text-shadow: 0 0 40px rgba(249, 115, 22, 0.55);
   }
 }
 
 .glow {
-  animation: pulseGlow 2.6s ease-in-out infinite;
+  color: #f97316;
+  animation: softGlow 3.2s ease-in-out infinite;
+}
+
+/* Force orange/black theme (overrides any stale Tailwind cache). */
+.bg-terminal-bg,
+.bg-terminal-bg\/90 {
+  background-color: #000000 !important;
+}
+.bg-terminal-panel {
+  background-color: #111111 !important;
+}
+.border-terminal-border {
+  border-color: #222222 !important;
+}
+.text-terminal-text {
+  color: #f5f5f5 !important;
+}
+.text-terminal-muted {
+  color: #8a8a8a !important;
+}
+.text-terminal-accent,
+.hover\:text-terminal-accent:hover {
+  color: #f97316 !important;
+}
+.bg-terminal-accent {
+  background-color: #f97316 !important;
+}
+.text-terminal-bg {
+  color: #000000 !important;
 }
 
 @keyframes marquee {

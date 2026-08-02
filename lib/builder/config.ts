@@ -1,3 +1,4 @@
+import fs from "fs";
 import path from "path";
 
 const HOME_DOCS = path.join(
@@ -37,6 +38,14 @@ export function builderSharpeFile(): string {
   );
 }
 
+/** Headline + entry blurbs from StockAnalysis (`company_blurbs.json`). */
+export function builderBlurbsFile(): string {
+  return (
+    process.env.SNIPER_BLURBS_FILE?.trim() ||
+    path.join(HOME_DOCS, "NoamShit", "company_blurbs.json")
+  );
+}
+
 export function isMockBuilderEnabled(): boolean {
   // Explicit opt-in, or automatic on Vercel (no Python/Fv files there).
   return (
@@ -45,9 +54,29 @@ export function isMockBuilderEnabled(): boolean {
   );
 }
 
+/** Runtime famous list path (seeded from data/famous_stocks.json). */
+export function builderFamousFile(): string {
+  const fromEnv = process.env.SNIPER_FAMOUS_FILE?.trim();
+  if (fromEnv) return fromEnv;
+  const dataDir =
+    process.env.SNIPER_DATA_DIR?.trim() ||
+    path.join(process.cwd(), "data");
+  return path.join(path.resolve(dataDir), ".runtime", "famous_stocks.json");
+}
+
+/** Admin symbol disqualifications / replacements (AEG → BAH, etc.). */
+export function builderOverridesFile(): string {
+  const fromEnv = process.env.SNIPER_OVERRIDES_FILE?.trim();
+  if (fromEnv) return fromEnv;
+  const dataDir =
+    process.env.SNIPER_DATA_DIR?.trim() ||
+    path.join(process.cwd(), "data");
+  return path.join(path.resolve(dataDir), "symbol_overrides.json");
+}
+
 /** Shared CLI path args for every Builder invocation. */
 export function builderDataArgs(): string[] {
-  return [
+  const args = [
     "--fv-dir",
     builderFvDir(),
     "--universe",
@@ -55,4 +84,13 @@ export function builderDataArgs(): string[] {
     "--sharpe-file",
     builderSharpeFile(),
   ];
+  const famousPath = builderFamousFile();
+  if (fs.existsSync(famousPath)) {
+    args.push("--famous-file", famousPath);
+  }
+  const overridesPath = builderOverridesFile();
+  if (fs.existsSync(overridesPath)) {
+    args.push("--overrides-file", overridesPath);
+  }
+  return args;
 }

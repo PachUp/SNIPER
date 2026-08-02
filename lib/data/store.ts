@@ -8,9 +8,30 @@ import path from "path";
  * committed seeds, the first read of each collection copies the seed into
  * `data/.runtime/*.json`, and all subsequent reads/writes use the runtime copy.
  *
+ * On serverless deploys (Netlify / Vercel / Lambda) the filesystem is
+ * read-only, so we read seeds directly and no-op writes.
+ *
  * When wiring in the real valuation software, this whole module can be ignored
  * in favor of a provider that calls the software's API/DB (see lib/data/index.ts).
  */
+
+/** True when the deploy filesystem cannot persist `data/.runtime`. */
+export function isReadonlyDataStore(): boolean {
+  return (
+    process.env.SNIPER_READONLY_DATA === "1" ||
+    process.env.VERCEL === "1" ||
+    process.env.NETLIFY === "true" ||
+    Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME)
+  );
+}
+
+function isFsReadonlyError(err: unknown): boolean {
+  const code =
+    err && typeof err === "object" && "code" in err
+      ? String((err as { code?: unknown }).code)
+      : "";
+  return code === "ENOENT" || code === "EACCES" || code === "EROFS";
+}
 
 /** Shared with SNIPER-DESK via SNIPER_DATA_DIR (absolute path to the data folder). */
 function dataRoot(): string {
@@ -29,15 +50,31 @@ function runtimeDir(): string {
 }
 
 async function ensureSeeded(name: string): Promise<string> {
+  const seedPath = path.join(seedDir(), name);
+  if (isReadonlyDataStore()) {
+    return seedPath;
+  }
+
   const runtimePath = path.join(runtimeDir(), name);
   try {
     await fs.access(runtimePath);
+    return runtimePath;
   } catch {
-    await fs.mkdir(runtimeDir(), { recursive: true });
-    const seed = await fs.readFile(path.join(seedDir(), name), "utf-8");
-    await fs.writeFile(runtimePath, seed, "utf-8");
+    // fall through and try to seed
   }
-  return runtimePath;
+
+  try {
+    await fs.mkdir(runtimeDir(), { recursive: true });
+    const seed = await fs.readFile(seedPath, "utf-8");
+    await fs.writeFile(runtimePath, seed, "utf-8");
+    return runtimePath;
+  } catch (err) {
+    // Read-only serverless FS (Netlify/Lambda) — use committed seed.
+    if (isFsReadonlyError(err)) {
+      return seedPath;
+    }
+    throw err;
+  }
 }
 
 export async function readCollection<T>(name: string): Promise<T> {
@@ -47,9 +84,18 @@ export async function readCollection<T>(name: string): Promise<T> {
 }
 
 export async function writeCollection<T>(name: string, data: T): Promise<T> {
-  await ensureSeeded(name);
-  const p = path.join(runtimeDir(), name);
-  await fs.writeFile(p, JSON.stringify(data, null, 2), "utf-8");
+  if (isReadonlyDataStore()) {
+    // Soft-launch hosts cannot persist admin/catalog mutations.
+    return data;
+  }
+  try {
+    await ensureSeeded(name);
+    const p = path.join(runtimeDir(), name);
+    await fs.writeFile(p, JSON.stringify(data, null, 2), "utf-8");
+  } catch (err) {
+    if (isFsReadonlyError(err)) return data;
+    throw err;
+  }
   return data;
 }
 
@@ -58,6 +104,9 @@ const AUDIT_FILE = "audit.json";
 type AuditRecord = { time: string; action: string; details?: string };
 
 export async function readAudit(): Promise<AuditRecord[]> {
+  if (isReadonlyDataStore()) {
+    return [];
+  }
   const p = path.join(runtimeDir(), AUDIT_FILE);
   try {
     const raw = await fs.readFile(p, "utf-8");
@@ -71,15 +120,23 @@ export async function appendAudit(entry: {
   action: string;
   details?: string;
 }): Promise<void> {
-  await fs.mkdir(runtimeDir(), { recursive: true });
-  const existing = await readAudit();
-  const record: AuditRecord = {
-    time: new Date().toISOString(),
-    action: entry.action,
-    details: entry.details,
-  };
-  // Newest first; cap to a reasonable number of entries.
-  const next = [record, ...existing].slice(0, 500);
-  const p = path.join(runtimeDir(), AUDIT_FILE);
-  await fs.writeFile(p, JSON.stringify(next, null, 2), "utf-8");
+  if (isReadonlyDataStore()) {
+    return;
+  }
+  try {
+    await fs.mkdir(runtimeDir(), { recursive: true });
+    const existing = await readAudit();
+    const record: AuditRecord = {
+      time: new Date().toISOString(),
+      action: entry.action,
+      details: entry.details,
+    };
+    // Newest first; cap to a reasonable number of entries.
+    const next = [record, ...existing].slice(0, 500);
+    const p = path.join(runtimeDir(), AUDIT_FILE);
+    await fs.writeFile(p, JSON.stringify(next, null, 2), "utf-8");
+  } catch (err) {
+    if (isFsReadonlyError(err)) return;
+    throw err;
+  }
 }

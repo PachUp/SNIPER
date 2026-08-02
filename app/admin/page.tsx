@@ -1,10 +1,13 @@
-import { redirect } from "next/navigation";
+import { isAuthed } from "@/lib/auth";
+import AdminLogin from "@/components/admin/AdminLogin";
+import AdminPanel from "@/components/admin/AdminPanel";
 
 export const dynamic = "force-dynamic";
 
-/** Admin UI lives on the separate desk app (default http://localhost:3001). */
-export default function AdminRedirectPage() {
-  const desk =
-    process.env.NEXT_PUBLIC_DESK_URL?.trim() || "http://localhost:3001";
-  redirect(desk);
+/** Unified admin desk — same origin as SNIPER, behind ADMIN link. */
+export default function AdminPage() {
+  if (!isAuthed()) {
+    return <AdminLogin />;
+  }
+  return <AdminPanel />;
 }
