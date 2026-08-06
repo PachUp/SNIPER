@@ -11,7 +11,7 @@ const en: Dict = {
   "nav.dashboard": "DASHBOARD",
   "nav.news": "BREAKING NEWS",
   "nav.ideas": "IDEAS",
-  "nav.snipers": "SNIPERS",
+  "nav.snipers": "SNIPER",
   "nav.admin": "ADMIN",
 
   // common

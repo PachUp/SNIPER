@@ -1,192 +1,192 @@
 [
   {
     "id": "n1",
-    "tickers": ["MSFT", "META", "AAPL", "AMZN", "GOOGL", "NVDA"],
-    "line": "Wall Street fell again as investors sold big AI stocks.",
-    "details": "The S&P 500 dropped about 0.6% last week and the Nasdaq fell harder, even after some tech companies beat earnings. Investors worried that AI companies are spending too much on chips and data centers without enough profit to show for it yet. That pressure hits large tech names across the market.",
-    "sentiment": "bad",
-    "source": "Yahoo Finance",
-    "sourceUrl": "https://ts2.tech/en/wall-street-drops-for-second-week-as-investors-react-to-ai-earnings-beats-fed-decision-in-focus/",
-    "timestamp": "2026-07-26T18:00:00Z"
+    "tickers": ["MSFT", "AAPL", "AMZN", "GOOGL", "NVDA", "META"],
+    "line": "U.S. stocks hit fresh record highs as tech led a broad rally.",
+    "details": "The S&P 500 rose about 1.8% to a new all-time high near 7,737, the Dow gained about 1.7% to roughly 54,086, and the Nasdaq jumped about 2.6%. Strong earnings and cooler oil prices helped push risk appetite higher across Wall Street.",
+    "sentiment": "good",
+    "source": "Anadolu Agency",
+    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
+    "timestamp": "2026-08-05T20:30:00Z"
   },
   {
     "id": "n2",
-    "tickers": ["XOM", "CVX", "COP", "OXY", "MPC", "VLO"],
-    "line": "Oil jumped back above $100 a barrel.",
-    "details": "Brent crude climbed past $100 after fresh Middle East shipping risks. Higher oil can help energy companies earn more, but it can also raise inflation worries and make the Fed less friendly to stocks overall.",
+    "tickers": ["XOM", "CVX", "COP", "OXY", "DAL", "UAL"],
+    "line": "Oil plunged as markets bet on a Strait of Hormuz reopening.",
+    "details": "Brent crude fell about 6% toward the high-$70s after U.S. officials said a deal to restore shipping through the Strait of Hormuz could come soon. Lower oil eases inflation worries and can help airlines, while energy producers often face pressure.",
     "sentiment": "good",
-    "source": "Capital Street FX",
-    "sourceUrl": "https://www.capitalstreetfx.com/market-analysis/week-ahead-wall-street-faces-key-tests-as-fed-holds/",
-    "timestamp": "2026-07-25T16:30:00Z"
+    "source": "France 24",
+    "sourceUrl": "https://www.france24.com/en/middle-east/20260805-us-says-iran-hormuz-deal-could-come-today-or-tomorrow-as-oil-prices-plunge",
+    "timestamp": "2026-08-05T18:00:00Z"
   },
   {
     "id": "n3",
-    "tickers": ["JPM", "BAC", "WFC", "C", "GS", "MS"],
-    "line": "Markets await the Federal Reserve's next rate decision.",
-    "details": "The Fed meets this week, and investors expect rates to stay on hold for now. Banks and rate-sensitive stocks can move sharply on the statement and press conference, especially if officials sound more worried about inflation after the oil spike.",
-    "sentiment": "bad",
+    "tickers": ["NVDA", "AMD", "INTC", "AVGO", "ARM"],
+    "line": "Chip stocks surged, with semiconductors up more than 7% in a day.",
+    "details": "The Philadelphia Semiconductor Index jumped over 7% as AI optimism returned. ARM climbed roughly 17%, while Intel and other chip names gained more than 10% in the session as investors piled back into the group.",
+    "sentiment": "good",
     "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262054300-weekly-preview-fed-apple-microsoft-meta-amazon-earnings-reports-tradingkey",
-    "timestamp": "2026-07-26T12:00:00Z"
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-05T21:00:00Z"
   },
   {
     "id": "n4",
-    "tickers": ["MSFT", "META", "AAPL", "AMZN"],
-    "line": "Four of the biggest tech companies report earnings this week.",
-    "details": "Microsoft and Meta report Wednesday; Apple and Amazon follow Thursday. Together they are a huge slice of the S&P 500, so their results and AI spending plans can move the whole market.",
+    "tickers": ["PLTR"],
+    "line": "Palantir soared about 29% after a blowout earnings report.",
+    "details": "Palantir said revenue jumped about 93% and U.S. commercial growth ran even hotter. Traders rewarded the beat with a huge one-day jump, though the stock still trades at a very rich valuation after the move.",
     "sentiment": "good",
-    "source": "Fortune",
-    "sourceUrl": "https://fortune.com/2026/07/26/big-tech-earnings-meta-microsoft-apple-amazon-market-revolt-ai-spending/",
-    "timestamp": "2026-07-26T14:30:00Z"
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-05T22:00:00Z"
   },
   {
     "id": "n5",
-    "tickers": ["GOOGL", "TSLA", "INTC", "NVDA", "AMD"],
-    "line": "Big tech lost hundreds of billions in one rough session.",
-    "details": "Even after beating sales forecasts, Alphabet, Tesla, and Intel fell hard as traders punished heavy AI spending. Mega-cap tech can drag the whole market down when that group sells off together.",
+    "tickers": ["AMD"],
+    "line": "AMD beat earnings, then slipped after hours on guidance.",
+    "details": "AMD posted record quarterly revenue near $11.5 billion and strong data-center growth, but shares fell more than 8% after hours. Investors wanted an even hotter third-quarter outlook than the company guided.",
     "sentiment": "bad",
-    "source": "StockTi",
-    "sourceUrl": "https://stockti.com/wall-street-slips-again-as-ai-earnings-fail-to-impress-fed-decision-looms",
-    "timestamp": "2026-07-24T21:00:00Z"
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-05T23:30:00Z"
   },
   {
     "id": "n6",
-    "tickers": ["XOM", "CVX", "DAL", "UAL", "AAL", "LUV"],
-    "line": "Rising oil is good for energy, harder for airlines.",
-    "details": "When crude jumps, oil producers often gain while airlines face higher jet-fuel costs. That split is why energy and travel stocks can move in opposite directions on the same headline.",
-    "sentiment": "bad",
-    "source": "Pomegra News",
-    "sourceUrl": "https://pomegra.io/news/big-tech-fed-decision-100-oil-collide-this-week",
-    "timestamp": "2026-07-24T15:00:00Z"
+    "tickers": ["JPM", "BAC", "GS", "MS", "WFC"],
+    "line": "Treasury yields fell as cooler oil eased rate-hike fears.",
+    "details": "Lower crude prices helped pull bond yields down, with the 10-year yield dropping several basis points. Banks and other rate-sensitive stocks can move when traders change their Fed outlook.",
+    "sentiment": "good",
+    "source": "FXStreet",
+    "sourceUrl": "https://www.fxstreet.com/analysis/stocks-explode-to-record-highs-oil-plunges-on-hormuz-hopes-bessent-eyes-agreement-202608051241",
+    "timestamp": "2026-08-05T19:15:00Z"
   },
   {
     "id": "n7",
-    "tickers": ["V", "MA", "AXP", "PYPL"],
-    "line": "Payments stocks watch consumer spending into busy earnings week.",
-    "details": "Card networks and payment firms are sensitive to travel, shopping, and overall consumer strength. With Visa and other consumer names reporting soon, investors are watching whether spending stays resilient despite higher oil and rates.",
+    "tickers": ["NVDA", "MSFT", "GOOGL", "AMZN"],
+    "line": "Anthropic locked in a $10 billion AI computing deal.",
+    "details": "Claude maker Anthropic signed a multi-year computing-power agreement worth about $10 billion with a cloud infrastructure partner. Big AI compute contracts keep demand high for chips, cloud, and data-center suppliers.",
     "sentiment": "good",
-    "source": "Yahoo Finance",
-    "sourceUrl": "https://uk.finance.yahoo.com/news/4-big-tech-earnings-reports-a-fed-meeting-and-100-oil-its-the-busiest-week-of-the-quarter-100000261.html",
-    "timestamp": "2026-07-25T11:00:00Z"
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-05T17:45:00Z"
   },
   {
     "id": "n8",
-    "tickers": ["NFLX"],
-    "line": "Netflix beat earnings, but the stock still fell hard.",
-    "details": "Netflix made a little more profit than expected and bought back a record amount of its own shares. Investors still sold the stock because growth looked a bit slower and the company will share viewing data less often.",
+    "tickers": ["CMG"],
+    "line": "Chipotle beat sales, then got hit by a salmonella scare.",
+    "details": "Chipotle raised guidance after a solid quarter and the stock jumped, but headlines about a Minnesota salmonella outbreak later pulled shares back. Food-safety news can quickly outweigh an earnings beat.",
     "sentiment": "bad",
-    "source": "Motley Fool",
-    "sourceUrl": "https://www.fool.com/investing/2026/07/26/netflix-record-buybacks-rising-margins-and-a-slate/",
-    "timestamp": "2026-07-26T14:00:00Z"
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-05T16:20:00Z"
   },
   {
     "id": "n9",
-    "tickers": ["T"],
-    "line": "AT&T raised its buyback plan to about $10 billion.",
-    "details": "AT&T reported solid second-quarter results and said it will buy back more of its own stock this year — about $10 billion instead of $8 billion. Bigger buybacks return cash to shareholders and often support the share price.",
-    "sentiment": "good",
-    "source": "Motley Fool",
-    "sourceUrl": "https://www.fool.com/investing/2026/07/26/att-beat-on-earnings-announced-a-10-billion-buybac/",
-    "timestamp": "2026-07-26T12:30:00Z"
+    "tickers": ["XOM", "CVX", "SLB", "HAL"],
+    "line": "Energy stocks faced pressure as crude tumbled.",
+    "details": "With WTI settling around $75 and Brent near $79 after sharp drops, oil producers and oilfield-service names often lag when traders expect cheaper crude. The flip side is relief for consumers and many non-energy stocks.",
+    "sentiment": "bad",
+    "source": "Al Jazeera",
+    "sourceUrl": "https://www.aljazeera.com/economy/2026/8/5/us-stock-market-hits-record-high-amid-hopes-for-strait-of-hormuz-reopening",
+    "timestamp": "2026-08-05T20:00:00Z"
   },
   {
     "id": "n10",
-    "tickers": ["UBER", "DASH"],
-    "line": "Uber offered to buy Delivery Hero for about $15 billion.",
-    "details": "Uber wants to buy European food-delivery company Delivery Hero to grow Uber Eats outside the U.S. Big deals can boost long-term growth, but they also add cost and regulatory risk, so the stock has been mixed.",
+    "tickers": ["AAPL", "MSFT", "META", "AMZN", "GOOGL", "NVDA", "TSLA"],
+    "line": "Mega-cap tech helped lift markets after a rough July.",
+    "details": "Technology shares jumped around 4% in the record session as investors returned to AI leaders. Mega-cap names still drive a large share of S&P 500 moves when the group rallies or sells off together.",
     "sentiment": "good",
-    "source": "Uber IR",
-    "sourceUrl": "https://investor.uber.com/news-events/news/press-release-details/2026/Uber-Announces-Acquisition-Offer-for-Delivery-Hero/default.aspx",
-    "timestamp": "2026-07-23T12:00:00Z"
+    "source": "Anadolu Agency",
+    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
+    "timestamp": "2026-08-05T21:30:00Z"
   },
   {
     "id": "n11",
-    "tickers": ["DIS"],
-    "line": "Disney partnered with Kraft Heinz to sell more food in parks.",
-    "details": "Disney and Kraft Heinz agreed on a multiyear deal for themed dining across parks and cruises. The idea is to raise how much each guest spends — good for Disney's parks business if guests buy more.",
+    "tickers": ["CRM", "IBM", "ORCL", "MSFT"],
+    "line": "Software and cloud names rode the AI spending wave higher.",
+    "details": "Enterprise software and cloud platforms benefited as markets bought into continued AI investment. Strong backlog and compute demand remain key themes for the group even when individual names swing after earnings.",
     "sentiment": "good",
-    "source": "Invezz",
-    "sourceUrl": "https://invezz.com/uk/news/2026/07/24/disney-stock-gets-new-theme-park-sales-boost-from-kraft-heinz-deal/",
-    "timestamp": "2026-07-24T16:40:00Z"
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-05T15:40:00Z"
   },
   {
     "id": "n12",
-    "tickers": ["V"],
-    "line": "Visa said World Cup travel boosted card spending.",
-    "details": "Visa reported that cross-border payments near World Cup match cities jumped about 20%. More travel and event spending usually means more fees for card networks like Visa ahead of its next earnings report.",
+    "tickers": ["BA", "GE", "CAT", "UNP"],
+    "line": "Industrials gained nearly 2% with the risk-on move.",
+    "details": "Lower oil and stronger equity risk appetite helped industrials and materials advance. Broad market rallies often lift cyclical names that track growth and shipping demand.",
     "sentiment": "good",
-    "source": "American Banker",
-    "sourceUrl": "https://www.americanbanker.com/payments/news/visa-reports-world-cup-payment-spikes",
-    "timestamp": "2026-07-23T20:15:00Z"
+    "source": "Anadolu Agency",
+    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
+    "timestamp": "2026-08-05T20:45:00Z"
   },
   {
     "id": "n13",
-    "tickers": ["CMCSA"],
-    "line": "Comcast's Peacock streaming service turned a profit.",
-    "details": "In Comcast's latest quarter, Peacock made money for the first time. That is a big milestone for a streaming app that lost money for years, and it comes as Comcast prepares to split its media and cable businesses.",
+    "tickers": ["GS", "JPM", "MS"],
+    "line": "Financials advanced as Goldman Sachs jumped more than 3%.",
+    "details": "The financial sector rose about 1% in the record session, with Goldman Sachs among the stronger bank names. Trading desks and investment banks often benefit when markets are busy and volatility stays orderly.",
     "sentiment": "good",
-    "source": "CNBC",
-    "sourceUrl": "https://www.cnbc.com/2026/07/23/comcast-earnings-nbcuniversal-strength-split.html",
-    "timestamp": "2026-07-23T18:00:00Z"
+    "source": "Anadolu Agency",
+    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
+    "timestamp": "2026-08-05T19:50:00Z"
   },
   {
     "id": "n14",
-    "tickers": ["IBM", "JPM"],
-    "line": "JPMorgan upgraded IBM, pointing to stronger software profits.",
-    "details": "A JPMorgan analyst raised IBM to Overweight, saying software now drives most of the company's profit. An upgrade from a major bank can attract more buyers to the stock.",
-    "sentiment": "good",
-    "source": "Yahoo Finance",
-    "sourceUrl": "https://finance.yahoo.com/video/trending-jpmorgan-upgrades-ibm-stock-150837182.html",
-    "timestamp": "2026-07-22T19:10:00Z"
-  },
-  {
-    "id": "n15",
-    "tickers": ["MA", "DASH"],
-    "line": "Mastercard helps DoorDash pay dashers faster.",
-    "details": "DoorDash is using Mastercard Send so eligible Crimson users can get instant deposits. That expands Mastercard's role in gig-worker payouts and makes DoorDash more useful for drivers who want cash quickly.",
-    "sentiment": "good",
-    "source": "Simply Wall St",
-    "sourceUrl": "https://simplywall.st/stocks/us/diversified-financials/nyse-ma/mastercard/news/mastercard-ma-helps-power-doordash-crimson-instant-deposits",
-    "timestamp": "2026-07-22T15:45:00Z"
-  },
-  {
-    "id": "n16",
     "tickers": ["ROKU"],
-    "line": "Roku will report earnings next month amid the Fox buyout deal.",
-    "details": "Roku set an August 6 earnings date but will skip the usual call and outlook because Fox has agreed to buy the company. Pending takeovers often keep the stock close to the deal price until the sale closes.",
+    "line": "Roku earnings day approaches under the Fox buyout deal.",
+    "details": "Roku is set to report results around early August, but the pending Fox acquisition can keep the stock pinned near the deal price. Takeover situations often mute the usual earnings reaction until the sale closes.",
     "sentiment": "good",
     "source": "StockTitan",
     "sourceUrl": "https://www.stocktitan.net/news/ROKU/",
-    "timestamp": "2026-07-23T21:05:00Z"
+    "timestamp": "2026-08-04T16:00:00Z"
+  },
+  {
+    "id": "n15",
+    "tickers": ["TSLA", "F", "GM"],
+    "line": "Auto and EV names tracked the broader risk rally.",
+    "details": "With the Nasdaq leading the day, growth-sensitive consumer and auto stocks often move with tech. Lower fuel costs can also help the consumer backdrop if cheaper oil sticks.",
+    "sentiment": "good",
+    "source": "FXStreet",
+    "sourceUrl": "https://www.fxstreet.com/analysis/stocks-explode-to-record-highs-oil-plunges-on-hormuz-hopes-bessent-eyes-agreement-202608051241",
+    "timestamp": "2026-08-05T18:30:00Z"
+  },
+  {
+    "id": "n16",
+    "tickers": ["DIS", "NFLX", "CMCSA", "SPOT"],
+    "line": "Media and streaming stocks rode the market higher.",
+    "details": "Risk-on sessions usually lift consumer and media names along with the indexes. Investors still separate companies with improving profits from those facing slower subscriber growth.",
+    "sentiment": "good",
+    "source": "Al Jazeera",
+    "sourceUrl": "https://www.aljazeera.com/economy/2026/8/5/us-stock-market-hits-record-high-amid-hopes-for-strait-of-hormuz-reopening",
+    "timestamp": "2026-08-05T17:10:00Z"
   },
   {
     "id": "n17",
-    "tickers": ["JPM"],
-    "line": "JPMorgan posted a record quarterly profit on strong trading.",
-    "details": "JPMorgan made about $21 billion in second-quarter profit, helped by a surge in stock-trading revenue and stronger investment-banking fees. Record bank profits are usually good news for the share price.",
+    "tickers": ["UBER", "DASH", "LYFT"],
+    "line": "Gig and delivery platforms watched consumer spending strength.",
+    "details": "Cheaper oil and a stronger equity tape can support travel and dining activity that feeds delivery and ride volumes. These stocks still swing with growth expectations and deal headlines.",
     "sentiment": "good",
-    "source": "Pomegra News",
-    "sourceUrl": "https://pomegra.io/news/jpmorgan-q2-2026-earnings-profit-jumps-41-on-trading-and-banking-surge",
-    "timestamp": "2026-07-21T16:20:00Z"
+    "source": "FXStreet",
+    "sourceUrl": "https://www.fxstreet.com/analysis/stocks-explode-to-record-highs-oil-plunges-on-hormuz-hopes-bessent-eyes-agreement-202608051241",
+    "timestamp": "2026-08-05T16:55:00Z"
   },
   {
     "id": "n18",
-    "tickers": ["LULU"],
-    "line": "Lululemon was downgraded after growth looked slower.",
-    "details": "An analyst cut Lululemon toward a weaker view, saying growth is cooling and competition is rising. Downgrades and weaker growth outlooks usually push the stock lower in the short term.",
+    "tickers": ["LULU", "NKE", "HD"],
+    "line": "Retailers remain split between resilient spending and softer growth.",
+    "details": "A broad market rally helps sentiment, but names with slowing comps or tough competition can still lag. Investors keep watching whether consumers keep spending as energy prices ease.",
     "sentiment": "bad",
-    "source": "TIKR",
-    "sourceUrl": "https://www.tikr.com/blog/lululemon-has-lost-45-in-2026-michael-burry-bought-the-dip-and-calls-it-a-no-brainer",
-    "timestamp": "2026-07-20T17:00:00Z"
+    "source": "TradingKey",
+    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
+    "timestamp": "2026-08-04T14:00:00Z"
   },
   {
     "id": "n19",
-    "tickers": ["YUM"],
-    "line": "Yum Brands sets July 30 for its next earnings report.",
-    "details": "The owner of KFC, Taco Bell, and Pizza Hut will report second-quarter results on July 30. Earnings days matter because they show whether restaurant sales and profits are still growing.",
+    "tickers": ["V", "MA", "AXP"],
+    "line": "Payments stocks benefit when markets and travel activity improve.",
+    "details": "Card networks earn more when consumer and cross-border spending stay firm. A risk-on tape and lower oil can support that backdrop, though the group still depends on the next round of spending data.",
     "sentiment": "good",
-    "source": "StockTitan",
-    "sourceUrl": "https://www.stocktitan.net/news/YUM/yum-brands-announces-q2-2026-earnings-and-conference-call-nf2w8q5tbt30.html",
-    "timestamp": "2026-07-20T11:00:00Z"
+    "source": "Anadolu Agency",
+    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
+    "timestamp": "2026-08-05T15:20:00Z"
   }
 ]

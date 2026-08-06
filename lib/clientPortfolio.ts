@@ -20,20 +20,31 @@ export function loadPortfolio(): BuiltPortfolio | null {
   }
 }
 
-export function savePortfolio(p: BuiltPortfolio): void {
+/**
+ * Wipe per-user portfolio state (entries, swaps, adds).
+ * Called on every new build so auto-picked stocks start with no fill price.
+ */
+export function resetUserPortfolioState(): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(KEY, JSON.stringify(p));
-}
-
-export function clearPortfolio(): void {
-  if (typeof window === "undefined") return;
-  localStorage.removeItem(KEY);
   localStorage.removeItem(SWAPS_KEY);
   localStorage.removeItem(ENTRIES_KEY);
   localStorage.removeItem(ENTRY_DATES_KEY);
   localStorage.removeItem(REMOVED_KEY);
   localStorage.removeItem(ADDED_KEY);
   localStorage.removeItem(REPLACE_STACK_KEY);
+}
+
+/** Persist a freshly built portfolio — always starts with a clean slate. */
+export function savePortfolio(p: BuiltPortfolio): void {
+  if (typeof window === "undefined") return;
+  resetUserPortfolioState();
+  localStorage.setItem(KEY, JSON.stringify(p));
+}
+
+export function clearPortfolio(): void {
+  if (typeof window === "undefined") return;
+  localStorage.removeItem(KEY);
+  resetUserPortfolioState();
 }
 
 const ENTRIES_KEY = "sniper.entries.v1";

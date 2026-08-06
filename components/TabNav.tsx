@@ -9,7 +9,7 @@ const TABS = [
   { href: "/dashboard", key: "nav.dashboard", short: "DASH" },
   { href: "/breaking-news", key: "nav.news", short: "NEWS" },
   { href: "/ideas", key: "nav.ideas", short: "IDEAS" },
-  { href: "/snipers", key: "nav.snipers", short: "SNIP" },
+  { href: "/snipers", key: "nav.snipers", short: "SNIPER" },
 ];
 
 export default function TabNav() {
