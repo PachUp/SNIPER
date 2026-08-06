@@ -1,6 +1,20 @@
 # Soft-launch guide (friends / testers)
 
-## Deploy (you do this once)
+## Production
+
+**Live URL:** https://sniper-proj.netlify.app/
+
+Git push to `main` on PachUp/SNIPER redeploys Netlify. From this repo:
+
+```bash
+npm run deploy:live   # sync runtime→seeds, commit, push
+```
+
+Admin desk edits also mirror into `data/*.json` automatically when saving locally.
+
+---
+
+## Deploy (Vercel alternative)
 
 Vercel CLI needs a one-time login on this Mac:
 

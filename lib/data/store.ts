@@ -86,12 +86,18 @@ export async function readCollection<T>(name: string): Promise<T> {
 export async function writeCollection<T>(name: string, data: T): Promise<T> {
   if (isReadonlyDataStore()) {
     // Soft-launch hosts cannot persist admin/catalog mutations.
+    // Production truth is committed `data/*.json` (sync via deploy-live).
     return data;
   }
   try {
     await ensureSeeded(name);
-    const p = path.join(runtimeDir(), name);
-    await fs.writeFile(p, JSON.stringify(data, null, 2), "utf-8");
+    const payload = JSON.stringify(data, null, 2);
+    const runtimePath = path.join(runtimeDir(), name);
+    await fs.writeFile(runtimePath, payload, "utf-8");
+    // Mirror into the committed seed so Netlify deploys ship desk edits
+    // (SNIPER house book + stocks/ideas/news). Runtime alone is gitignored.
+    const seedPath = path.join(seedDir(), name);
+    await fs.writeFile(seedPath, payload, "utf-8");
   } catch (err) {
     if (isFsReadonlyError(err)) return data;
     throw err;

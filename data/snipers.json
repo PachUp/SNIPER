@@ -1,13 +1,41 @@
 {
   "name": "SNIPER House Portfolio",
-  "updated": "2026-07-27T03:23:25Z",
+  "updated": "2026-07-29T03:04:01.922Z",
   "holdings": [
+    {
+      "ticker": "CRM",
+      "name": "Salesforce",
+      "sector": "Information Technology",
+      "industry": "Software - Application",
+      "business": "Salesforce sells cloud CRM and enterprise software for sales, service, marketing, and analytics worldwide.",
+      "reasoning": "Enterprise CRM leader with sticky subscriptions — watch AI (Agentforce) attach rates and margin expansion versus cloud spend growth.",
+      "weightPct": 5,
+      "levels": {
+        "ep": 171.51,
+        "tp": 481.27,
+        "sl": 137.74
+      }
+    },
+    {
+      "ticker": "URBN",
+      "name": "Urban Outfitters Inc",
+      "sector": "Consumer Discretionary",
+      "industry": "Apparel Retail",
+      "business": "Urban Outfitters retails apparel and home goods through Urban Outfitters, Anthropologie, and Free People brands.",
+      "reasoning": "Cheaper than peers at 14× earnings vs 30× median — cash flow jumped $97M → $445M; ~61% below our fair value.",
+      "weightPct": 10,
+      "levels": {
+        "ep": 70.5,
+        "tp": 123.14,
+        "sl": 66.23
+      }
+    },
     {
       "ticker": "IBM",
       "name": "IBM",
       "sector": "Information Technology",
       "business": "IBM sells hybrid cloud, AI software, and IT consulting services to large enterprises worldwide.",
-      "reasoning": "Software mix and consulting tied to hybrid cloud are lifting margins \u2014 the upgrade story is recurring software, not old hardware \u2014 profits up about 546%; cash flow up $10.0B \u2192 $11.6B; top-half growth (#5/12) in Information Technology Services.",
+      "reasoning": "Software mix and consulting tied to hybrid cloud are lifting margins — the upgrade story is recurring software, not old hardware — profits up about 546%; cash flow up $10.0B → $11.6B; top-half growth (#5/12) in Information Technology Services.",
       "weightPct": 10,
       "levels": {
         "ep": 228,
@@ -20,25 +48,12 @@
       "name": "Chewy",
       "sector": "Consumer Discretionary",
       "business": "Chewy sells pet food, pharmacy, and supplies online to U.S. pet owners.",
-      "reasoning": "Repeat Autoship orders and higher-margin own brands are lifting earnings as pet spending stays resilient \u2014 cash flow jumped $9M \u2192 $562M; profits up about 347%; top-half growth (#5/12) in Specialty Retail.",
-      "weightPct": 10,
+      "reasoning": "Repeat Autoship orders and higher-margin own brands are lifting earnings as pet spending stays resilient — cash flow jumped $9M → $562M; profits up about 347%; top-half growth (#5/12) in Specialty Retail.",
+      "weightPct": 5,
       "levels": {
         "ep": 23.68,
-        "tp": 32.03,
+        "tp": 55.1,
         "sl": 18.77
-      }
-    },
-    {
-      "ticker": "RELY",
-      "name": "Remitly",
-      "sector": "Information Technology",
-      "business": "Remitly operates a digital remittance platform that lets immigrants send money abroad.",
-      "reasoning": "More cross-border money transfers and a slightly higher fee per transfer are compounding; the corridor network is the moat \u2014 cash flow jumped $-23M \u2192 $296M; ~78% below our fair value; profits up about 1291%.",
-      "weightPct": 10,
-      "levels": {
-        "ep": 23.86,
-        "tp": 42.37,
-        "sl": 21.47
       }
     },
     {
@@ -46,12 +61,12 @@
       "name": "Boeing",
       "sector": "Industrials",
       "business": "Boeing designs and builds commercial airplanes, defense systems, and space vehicles.",
-      "reasoning": "737 MAX deliveries and defense cash are the recovery spine \u2014 hitting production targets is what rebuilds trust in Boeing's earnings.",
+      "reasoning": "737 MAX deliveries and defense cash are the recovery spine — hitting production targets is what rebuilds trust in Boeing's earnings.",
       "weightPct": 10,
       "levels": {
-        "ep": 209.52,
-        "tp": 261.9,
-        "sl": 188.57
+        "ep": 140,
+        "tp": 346.87,
+        "sl": 146
       }
     },
     {
@@ -59,12 +74,12 @@
       "name": "Delta Air Lines",
       "sector": "Industrials",
       "business": "Delta Air Lines operates a U.S. network passenger airline with hubs in Atlanta, Detroit, Minneapolis, and New York.",
-      "reasoning": "Premium seats and strong ticket prices are carrying Delta even as jet fuel jumps with oil \u2014 the brand is the ballast \u2014 cash flow jumped $16M \u2192 $3.8B; #2 growth rank of 6 in Airlines; profits up about 280%.",
-      "weightPct": 10,
+      "reasoning": "Premium seats and strong ticket prices are carrying Delta even as jet fuel jumps with oil — the brand is the ballast — cash flow jumped $16M → $3.8B; #2 growth rank of 6 in Airlines; profits up about 280%.",
+      "weightPct": 5,
       "levels": {
-        "ep": 84.54,
-        "tp": 117.51,
-        "sl": 76.09
+        "ep": 50.64,
+        "tp": 107.24,
+        "sl": 47.64
       }
     },
     {
@@ -72,13 +87,14 @@
       "name": "Tesla",
       "sector": "Consumer Discretionary",
       "business": "Tesla designs and manufactures electric vehicles, energy storage, and solar products.",
-      "reasoning": "Car volume, energy storage, and self-driving optionality remain the stacked story; near-term trading is about deliveries and margins \u2014 cash flow jumped $3.5B \u2192 $6.2B; #2 growth rank of 6 in Auto Manufacturers; profits down about 70%.",
-      "weightPct": 10,
+      "reasoning": "Car volume, energy storage, and self-driving optionality remain the stacked story; near-term trading is about deliveries and margins — cash flow jumped $3.5B → $6.2B; #2 growth rank of 6 in Auto Manufacturers; profits down about 70%.",
+      "weightPct": 15,
       "levels": {
-        "ep": 369.57,
-        "tp": 425,
+        "ep": 240,
+        "tp": 0,
         "sl": 332.61
-      }
+      },
+      "numbers": "For me, this stock is impossible to hold short term - but I believe that it would be making history in the future world."
     },
     {
       "ticker": "FLR",
@@ -86,11 +102,11 @@
       "sector": "Industrials",
       "business": "Fluor provides engineering, procurement, and construction services for energy, infrastructure, and industrial projects worldwide.",
       "reasoning": "A big engineering backlog and energy-transition projects can support revenue for years if projects stay on track.",
-      "weightPct": 10,
+      "weightPct": 5,
       "levels": {
-        "ep": 52.19,
-        "tp": 124.06,
-        "sl": 46.97
+        "ep": 41.72,
+        "tp": 99.17,
+        "sl": 39.94
       }
     },
     {
@@ -101,9 +117,9 @@
       "reasoning": "When oil is high, oilfield work picks up; Halliburton's international mix helps if US fracking slows.",
       "weightPct": 10,
       "levels": {
-        "ep": 33.36,
-        "tp": 41.7,
-        "sl": 30.02
+        "ep": 32.5,
+        "tp": 80.87,
+        "sl": 30.32
       }
     },
     {
@@ -111,12 +127,12 @@
       "name": "Incyte",
       "sector": "Health Care",
       "business": "Incyte discovers and commercializes oncology and inflammation medicines.",
-      "reasoning": "Jakafi drug cash funds the pipeline while cancer-drug optionality keeps the biotech upside intact \u2014 cheaper than peers at 16\u00d7 earnings vs 37\u00d7 median; cash flow jumped $568M \u2192 $1.4B; ~73% below our fair value.",
-      "weightPct": 10,
+      "reasoning": "Jakafi drug cash funds the pipeline while cancer-drug optionality keeps the biotech upside intact — cheaper than peers at 16× earnings vs 37× median; cash flow jumped $568M → $1.4B; ~73% below our fair value.",
+      "weightPct": 12.5,
       "levels": {
-        "ep": 115.65,
-        "tp": 199.74,
-        "sl": 104.09
+        "ep": 100.5,
+        "tp": 184.02,
+        "sl": 89.44
       }
     },
     {
@@ -124,8 +140,8 @@
       "name": "Comcast",
       "sector": "Communication Services",
       "business": "Comcast provides cable broadband, wireless, and NBCUniversal media and streaming services.",
-      "reasoning": "Broadband and NBCU cash fund the dividend while streaming losses narrow \u2014 cable customer loss is the risk, not the media assets \u2014 cheaper than peers at 5\u00d7 earnings vs 10\u00d7 median; ~78% below our fair value; profits up about 269%.",
-      "weightPct": 10,
+      "reasoning": "Broadband and NBCU cash fund the dividend while streaming losses narrow — cable customer loss is the risk, not the media assets — cheaper than peers at 5× earnings vs 10× median; ~78% below our fair value; profits up about 269%.",
+      "weightPct": 7.5,
       "levels": {
         "ep": 23.78,
         "tp": 42.36,

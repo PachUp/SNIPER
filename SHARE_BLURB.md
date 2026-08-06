@@ -1,11 +1,11 @@
 # Share with friends
 
-**Production URL:** _(torn down — not deployed)_
+**Production URL:** https://sniper-proj.netlify.app/
 
 ```
 Hey — trying a draft of SNIPER (stock portfolio helper). Feedback welcome.
 
-URL: <PASTE_VERCEL_URL_HERE>
+URL: https://sniper-proj.netlify.app/
 
 Please:
 1) Accept the consent screen

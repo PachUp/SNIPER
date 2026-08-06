@@ -1,77 +1,34 @@
 [
   {
-    "id": "i1",
-    "ticker": "AVGO",
-    "name": "Broadcom",
-    "sector": "Information Technology",
-    "thesis": "Cash flow jumped $13.3B \u2192 $26.9B \u2014 profits up about 101%; top-half growth (#9/29) in Semiconductors.",
-    "upsidePct": -28.5,
+    "id": "i1785289239476",
+    "ticker": "URBN",
+    "name": "Urban Outfitters Inc",
+    "sector": "Consumer Discretionary",
+    "industry": "Apparel Retail",
+    "thesis": "Cheaper than peers at 14× earnings vs 30× median — cash flow jumped $97M → $445M; ~61% below our fair value.",
+    "business": "Urban Outfitters retails apparel and home goods through Urban Outfitters, Anthropologie, and Free People brands.",
+    "entry": "Cheaper than peers at 14× earnings vs 30× median — cash flow jumped $97M → $445M; ~61% below our fair value.",
+    "upsidePct": 60.6,
     "levels": {
-      "ep": 381.92,
-      "tp": 465.76,
-      "sl": 344.66
-    },
-    "business": "Broadcom designs semiconductors and infrastructure software for networking, storage, and enterprise markets.",
-    "entry": "Cash flow jumped $13.3B \u2192 $26.9B \u2014 profits up about 101%; top-half growth (#9/29) in Semiconductors."
+      "ep": 74.39,
+      "tp": 123.14,
+      "sl": 66.23
+    }
   },
   {
-    "id": "i2",
-    "ticker": "UNH",
-    "name": "UnitedHealth",
-    "sector": "Health Care",
-    "thesis": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum.",
-    "upsidePct": 22.4,
+    "id": "i1785289148186",
+    "ticker": "VICI",
+    "name": "VICI Properties Inc",
+    "sector": "Real Estate",
+    "industry": "REIT - Diversified",
+    "thesis": "Cheaper than peers at 9× earnings vs 18× median — cash flow jumped $894M → $2.5B; profits up about 148%.",
+    "business": "VICI Properties owns gaming, hospitality, and experiential real estate leased to casino and entertainment operators.",
+    "entry": "Cheaper than peers at 9× earnings vs 18× median — cash flow jumped $894M → $2.5B; profits up about 148%.",
+    "upsidePct": 55.9,
     "levels": {
-      "ep": 489.0,
-      "tp": 600.0,
-      "sl": 445.0
-    },
-    "business": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum.",
-    "entry": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum."
-  },
-  {
-    "id": "i3",
-    "ticker": "DIS",
-    "name": "Walt Disney",
-    "sector": "Communication Services",
-    "thesis": "Parks pricing stays firm and the Kraft Heinz themed-dining deal pushes per-guest spend higher while Disney+ losses keep narrowing \u2014 cheaper than peers at 15\u00d7 earnings vs 27\u00d7 median; cash flow jumped $2.0B \u2192 $10.1B; #2 growth rank of 10 in Entertainment.",
-    "upsidePct": 27.6,
-    "levels": {
-      "ep": 97.5,
-      "tp": 125.0,
-      "sl": 86.0
-    },
-    "business": "The Walt Disney Company operates theme parks, film studios, ESPN, and the Disney+ streaming service worldwide.",
-    "entry": "Parks pricing stays firm and the Kraft Heinz themed-dining deal pushes per-guest spend higher while Disney+ losses keep narrowing \u2014 cheaper than peers at 15\u00d7 earnings vs 27\u00d7 median; cash flow jumped $2.0B \u2192 $10.1B; #2 growth rank of 10 in Entertainment."
-  },
-  {
-    "id": "i4",
-    "ticker": "FCX",
-    "name": "Freeport-McMoRan",
-    "sector": "Materials",
-    "thesis": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia.",
-    "upsidePct": 30.3,
-    "levels": {
-      "ep": 62.6,
-      "tp": 81.59,
-      "sl": 54.16
-    },
-    "business": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia.",
-    "entry": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia."
-  },
-  {
-    "id": "i5",
-    "ticker": "WMT",
-    "name": "Walmart",
-    "sector": "Consumer Staples",
-    "thesis": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide.",
-    "upsidePct": 20.3,
-    "levels": {
-      "ep": 109.47,
-      "tp": 131.69,
-      "sl": 98.77
-    },
-    "business": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide.",
-    "entry": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide."
+      "ep": 27.28,
+      "tp": 40.51,
+      "sl": 25.44
+    }
   }
 ]

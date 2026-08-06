@@ -19,7 +19,8 @@
       "COP",
       "SLB"
     ],
-    "business": "Exxon Mobil explores for and produces oil and gas and operates refining and chemicals businesses worldwide."
+    "business": "Exxon Mobil explores for and produces oil and gas and operates refining and chemicals businesses worldwide.",
+    "industry": "Oil & Gas Integrated"
   },
   {
     "ticker": "CVX",
@@ -41,7 +42,8 @@
       "COP",
       "SLB"
     ],
-    "business": "Chevron explores for and produces oil and natural gas and runs refining and marketing operations globally."
+    "business": "Chevron explores for and produces oil and natural gas and runs refining and marketing operations globally.",
+    "industry": "Oil & Gas Integrated"
   },
   {
     "ticker": "COP",
@@ -63,14 +65,15 @@
       "CVX",
       "SLB"
     ],
-    "business": "ConocoPhillips explores for and produces crude oil and natural gas across major basins worldwide."
+    "business": "ConocoPhillips explores for and produces crude oil and natural gas across major basins worldwide.",
+    "industry": "Oil & Gas E&P"
   },
   {
     "ticker": "SLB",
     "name": "Schlumberger",
     "sector": "Energy",
     "price": 52.42,
-    "fairValue": 58.0,
+    "fairValue": 58,
     "upsidePct": 10.6,
     "beta": 1.42,
     "sharpe": 0.82,
@@ -85,7 +88,8 @@
       "CVX",
       "COP"
     ],
-    "business": "Schlumberger provides oilfield services, equipment, and digital solutions to energy companies globally."
+    "business": "Schlumberger provides oilfield services, equipment, and digital solutions to energy companies globally.",
+    "industry": "Oil & Gas Equipment & Services"
   },
   {
     "ticker": "LIN",
@@ -107,7 +111,8 @@
       "FCX",
       "NEM"
     ],
-    "business": "Linde produces industrial gases and related technologies for manufacturing, healthcare, and energy customers."
+    "business": "Linde produces industrial gases and related technologies for manufacturing, healthcare, and energy customers.",
+    "industry": "Specialty Chemicals"
   },
   {
     "ticker": "NUE",
@@ -129,7 +134,8 @@
       "FCX",
       "NEM"
     ],
-    "business": "Nucor produces steel and steel products using electric-arc furnaces across the United States."
+    "business": "Nucor produces steel and steel products using electric-arc furnaces across the United States.",
+    "industry": "Steel"
   },
   {
     "ticker": "FCX",
@@ -151,7 +157,8 @@
       "NUE",
       "NEM"
     ],
-    "business": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia."
+    "business": "Freeport-McMoRan mines copper, gold, and molybdenum from large-scale operations in the Americas and Indonesia.",
+    "industry": "Copper"
   },
   {
     "ticker": "NEM",
@@ -173,7 +180,8 @@
       "NUE",
       "FCX"
     ],
-    "business": "Newmont is one of the world's largest gold miners, operating mines across the Americas, Africa, and Australia."
+    "business": "Newmont is one of the world's largest gold miners, operating mines across the Americas, Africa, and Australia.",
+    "industry": "Gold"
   },
   {
     "ticker": "CAT",
@@ -195,7 +203,8 @@
       "GE",
       "UNP"
     ],
-    "business": "Caterpillar manufactures construction, mining, and energy equipment and provides related financing."
+    "business": "Caterpillar manufactures construction, mining, and energy equipment and provides related financing.",
+    "industry": "Farm & Heavy Construction Machinery"
   },
   {
     "ticker": "GE",
@@ -203,7 +212,7 @@
     "sector": "Industrials",
     "price": 353.73,
     "fairValue": 426.65,
-    "upsidePct": 25.0,
+    "upsidePct": 25,
     "beta": 1.2,
     "sharpe": 1.15,
     "reasoning": "Cash flow jumped $2.4B \u2192 $7.3B \u2014 profits up about 2490%; top-half growth (#8/19) in Aerospace & Defense.",
@@ -217,7 +226,8 @@
       "HON",
       "UNP"
     ],
-    "business": "GE Aerospace designs and services commercial and military aircraft engines and related systems."
+    "business": "GE Aerospace designs and services commercial and military aircraft engines and related systems.",
+    "industry": "Aerospace & Defense"
   },
   {
     "ticker": "UNP",
@@ -239,7 +249,8 @@
       "GE",
       "HON"
     ],
-    "business": "Union Pacific operates a major freight railroad network across the western United States."
+    "business": "Union Pacific operates a major freight railroad network across the western United States.",
+    "industry": "Railroads"
   },
   {
     "ticker": "HON",
@@ -261,7 +272,8 @@
       "GE",
       "UNP"
     ],
-    "business": "Honeywell makes aerospace components, building automation systems, and industrial software for factories and commercial buildings."
+    "business": "Honeywell makes aerospace components, building automation systems, and industrial software for factories and commercial buildings.",
+    "industry": "Conglomerates"
   },
   {
     "ticker": "AMZN",
@@ -284,7 +296,8 @@
       "NKE",
       "TSLA"
     ],
-    "business": "Amazon runs e-commerce, cloud computing (AWS), digital advertising, and logistics businesses worldwide."
+    "business": "Amazon runs e-commerce, cloud computing (AWS), digital advertising, and logistics businesses worldwide.",
+    "industry": "Specialty Retail"
   },
   {
     "ticker": "TSLA",
@@ -297,8 +310,8 @@
     "sharpe": 0.65,
     "reasoning": "Car volume, energy storage, and self-driving optionality remain the stacked story; near-term trading is about deliveries and margins \u2014 cash flow jumped $3.5B \u2192 $6.2B; #2 growth rank of 6 in Auto Manufacturers; profits down about 70%.",
     "levels": {
-      "ep": 369.57,
-      "tp": 425,
+      "ep": 240,
+      "tp": 0,
       "sl": 332.61
     },
     "alternatives": [
@@ -307,7 +320,9 @@
       "HD",
       "MCD"
     ],
-    "business": "Tesla designs and manufactures electric vehicles, energy storage, and solar products."
+    "business": "Tesla designs and manufactures electric vehicles, energy storage, and solar products.",
+    "numbers": "For me, this stock is impossible to hold short term - but I believe that it would be making history in the future world.",
+    "industry": "Auto Manufacturers"
   },
   {
     "ticker": "HD",
@@ -330,7 +345,8 @@
       "NKE",
       "TSLA"
     ],
-    "business": "Home Depot operates home-improvement retail stores and supplies professional contractors across North America."
+    "business": "Home Depot operates home-improvement retail stores and supplies professional contractors across North America.",
+    "industry": "Home Improvement Retail"
   },
   {
     "ticker": "NKE",
@@ -353,14 +369,15 @@
       "MCD",
       "TSLA"
     ],
-    "business": "Nike designs and markets athletic footwear, apparel, and equipment sold worldwide."
+    "business": "Nike designs and markets athletic footwear, apparel, and equipment sold worldwide.",
+    "industry": "Footwear & Accessories"
   },
   {
     "ticker": "MCD",
     "name": "McDonald's",
     "sector": "Consumer Discretionary",
     "price": 262,
-    "fairValue": 305.0,
+    "fairValue": 305,
     "upsidePct": 15.2,
     "beta": 0.7,
     "sharpe": 1.12,
@@ -376,14 +393,15 @@
       "NKE",
       "TSLA"
     ],
-    "business": "McDonald's franchises and operates quick-service restaurants under the McDonald's brand globally."
+    "business": "McDonald's franchises and operates quick-service restaurants under the McDonald's brand globally.",
+    "industry": "Restaurants"
   },
   {
     "ticker": "PG",
     "name": "Procter & Gamble",
     "sector": "Consumer Staples",
     "price": 147.41,
-    "fairValue": 190.0,
+    "fairValue": 190,
     "upsidePct": 28.9,
     "beta": 0.45,
     "sharpe": 1.1,
@@ -399,7 +417,8 @@
       "COST",
       "WMT"
     ],
-    "business": "Procter & Gamble manufactures consumer packaged goods including personal care, fabric care, and household brands."
+    "business": "Procter & Gamble manufactures consumer packaged goods including personal care, fabric care, and household brands.",
+    "industry": "Household & Personal Products"
   },
   {
     "ticker": "KO",
@@ -422,21 +441,22 @@
       "COST",
       "WMT"
     ],
-    "business": "Coca-Cola produces and markets soft drinks and other non-alcoholic beverages worldwide."
+    "business": "Coca-Cola produces and markets soft drinks and other non-alcoholic beverages worldwide.",
+    "industry": "Beverages - Non-Alcoholic"
   },
   {
     "ticker": "PEP",
     "name": "PepsiCo",
     "sector": "Consumer Staples",
     "price": 136.64,
-    "fairValue": 162.0,
+    "fairValue": 162,
     "upsidePct": 18.6,
     "beta": 0.58,
     "sharpe": 1.02,
     "reasoning": "PepsiCo produces snacks and beverages under brands such as Pepsi, Frito-Lay, and Gatorade.",
     "levels": {
       "ep": 136.64,
-      "tp": 162.0,
+      "tp": 162,
       "sl": 124.37
     },
     "alternatives": [
@@ -445,7 +465,8 @@
       "COST",
       "WMT"
     ],
-    "business": "PepsiCo produces snacks and beverages under brands such as Pepsi, Frito-Lay, and Gatorade."
+    "business": "PepsiCo produces snacks and beverages under brands such as Pepsi, Frito-Lay, and Gatorade.",
+    "industry": "Beverages - Non-Alcoholic"
   },
   {
     "ticker": "COST",
@@ -468,7 +489,8 @@
       "PEP",
       "WMT"
     ],
-    "business": "Costco operates membership warehouse clubs selling bulk goods to consumers and businesses."
+    "business": "Costco operates membership warehouse clubs selling bulk goods to consumers and businesses.",
+    "industry": "Discount Stores"
   },
   {
     "ticker": "WMT",
@@ -491,14 +513,15 @@
       "PEP",
       "COST"
     ],
-    "business": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide."
+    "business": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide.",
+    "industry": "Discount Stores"
   },
   {
     "ticker": "UNH",
     "name": "UnitedHealth",
     "sector": "Health Care",
     "price": 420.74,
-    "fairValue": 600.0,
+    "fairValue": 600,
     "upsidePct": 42.6,
     "beta": 0.75,
     "sharpe": 1.05,
@@ -514,7 +537,8 @@
       "LLY",
       "PFE"
     ],
-    "business": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum."
+    "business": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum.",
+    "industry": "Healthcare Plans"
   },
   {
     "ticker": "JNJ",
@@ -522,7 +546,7 @@
     "sector": "Health Care",
     "price": 263.4,
     "fairValue": 248.8,
-    "upsidePct": -0.0,
+    "upsidePct": 0,
     "beta": 0.6,
     "sharpe": 0.98,
     "reasoning": "Profits up about 49%.",
@@ -537,7 +561,8 @@
       "LLY",
       "PFE"
     ],
-    "business": "Johnson & Johnson develops pharmaceutical, medtech, and consumer health products worldwide."
+    "business": "Johnson & Johnson develops pharmaceutical, medtech, and consumer health products worldwide.",
+    "industry": "Drug Manufacturers - General"
   },
   {
     "ticker": "LLY",
@@ -560,14 +585,15 @@
       "ABBV",
       "PFE"
     ],
-    "business": "Eli Lilly discovers and sells medicines, including diabetes and obesity treatments, worldwide."
+    "business": "Eli Lilly discovers and sells medicines, including diabetes and obesity treatments, worldwide.",
+    "industry": "Drug Manufacturers - General"
   },
   {
     "ticker": "PFE",
     "name": "Pfizer",
     "sector": "Health Care",
     "price": 24.54,
-    "fairValue": 35.0,
+    "fairValue": 35,
     "upsidePct": 42.6,
     "beta": 0.65,
     "sharpe": 0.55,
@@ -583,7 +609,8 @@
       "ABBV",
       "LLY"
     ],
-    "business": "Pfizer develops and commercializes vaccines and prescription medicines globally."
+    "business": "Pfizer develops and commercializes vaccines and prescription medicines globally.",
+    "industry": "Drug Manufacturers - General"
   },
   {
     "ticker": "ABBV",
@@ -606,7 +633,8 @@
       "LLY",
       "PFE"
     ],
-    "business": "AbbVie develops and markets specialty pharmaceuticals including immunology and oncology therapies."
+    "business": "AbbVie develops and markets specialty pharmaceuticals including immunology and oncology therapies.",
+    "industry": "Drug Manufacturers - General"
   },
   {
     "ticker": "JPM",
@@ -629,7 +657,8 @@
       "V",
       "MA"
     ],
-    "business": "JPMorgan Chase is a global universal bank offering investment banking, consumer banking, and asset management."
+    "business": "JPMorgan Chase is a global universal bank offering investment banking, consumer banking, and asset management.",
+    "industry": "Banks - Diversified"
   },
   {
     "ticker": "BAC",
@@ -652,7 +681,8 @@
       "V",
       "MA"
     ],
-    "business": "Bank of America provides consumer banking, wealth management, and corporate and investment banking."
+    "business": "Bank of America provides consumer banking, wealth management, and corporate and investment banking.",
+    "industry": "Banks - Diversified"
   },
   {
     "ticker": "GS",
@@ -675,7 +705,8 @@
       "V",
       "MA"
     ],
-    "business": "Goldman Sachs provides investment banking, markets, and asset management services to institutions and individuals."
+    "business": "Goldman Sachs provides investment banking, markets, and asset management services to institutions and individuals.",
+    "industry": "Capital Markets"
   },
   {
     "ticker": "V",
@@ -683,7 +714,7 @@
     "sector": "Financials",
     "price": 355.74,
     "fairValue": 432.85,
-    "upsidePct": 20.0,
+    "upsidePct": 20,
     "beta": 0.95,
     "sharpe": 1.3,
     "reasoning": "Card spending near World Cup cities jumped about 20%, a clean reminder that travel and big events still feed Visa's fees \u2014 cash flow jumped $14.5B \u2192 $21.6B; top-half growth (#3/9) in Credit Services; ~20% below our fair value.",
@@ -698,7 +729,8 @@
       "GS",
       "MA"
     ],
-    "business": "Visa operates a global electronic payments network that enables consumer and commercial card transactions worldwide."
+    "business": "Visa operates a global electronic payments network that enables consumer and commercial card transactions worldwide.",
+    "industry": "Credit Services"
   },
   {
     "ticker": "MA",
@@ -721,7 +753,8 @@
       "GS",
       "V"
     ],
-    "business": "Mastercard operates a global card payment network that processes transactions between banks, merchants, and cardholders."
+    "business": "Mastercard operates a global card payment network that processes transactions between banks, merchants, and cardholders.",
+    "industry": "Credit Services"
   },
   {
     "ticker": "AAPL",
@@ -744,7 +777,8 @@
       "NVDA",
       "AMD"
     ],
-    "business": "Apple designs and sells iPhones, Macs, wearables, and digital services to consumers worldwide."
+    "business": "Apple designs and sells iPhones, Macs, wearables, and digital services to consumers worldwide.",
+    "industry": "Consumer Electronics"
   },
   {
     "ticker": "MSFT",
@@ -752,7 +786,7 @@
     "sector": "Information Technology",
     "price": 381.7,
     "fairValue": 269.34,
-    "upsidePct": -33.0,
+    "upsidePct": -33,
     "beta": 0.95,
     "sharpe": 1.45,
     "reasoning": "Cloud (Azure) and AI-linked demand remain the growth engine; the debate is how fast the huge spending pays back, not whether demand is real \u2014 cheaper than peers at 24\u00d7 earnings vs 47\u00d7 median; cash flow up $56.1B \u2192 $71.6B; already ~33% above our fair value.",
@@ -767,7 +801,8 @@
       "NVDA",
       "AMD"
     ],
-    "business": "Microsoft provides productivity software, cloud infrastructure (Azure), and enterprise platforms worldwide."
+    "business": "Microsoft provides productivity software, cloud infrastructure (Azure), and enterprise platforms worldwide.",
+    "industry": "Software - Infrastructure"
   },
   {
     "ticker": "CRM",
@@ -814,7 +849,8 @@
       "AVGO",
       "AMD"
     ],
-    "business": "NVIDIA designs GPUs and accelerated-computing platforms used in AI, gaming, and data centers."
+    "business": "NVIDIA designs GPUs and accelerated-computing platforms used in AI, gaming, and data centers.",
+    "industry": "Semiconductors"
   },
   {
     "ticker": "AVGO",
@@ -837,7 +873,8 @@
       "NVDA",
       "AMD"
     ],
-    "business": "Broadcom designs semiconductors and infrastructure software for networking, storage, and enterprise markets."
+    "business": "Broadcom designs semiconductors and infrastructure software for networking, storage, and enterprise markets.",
+    "industry": "Semiconductors"
   },
   {
     "ticker": "AMD",
@@ -860,7 +897,8 @@
       "NVDA",
       "AVGO"
     ],
-    "business": "AMD designs CPUs and GPUs for PCs, data centers, and gaming consoles."
+    "business": "AMD designs CPUs and GPUs for PCs, data centers, and gaming consoles.",
+    "industry": "Semiconductors"
   },
   {
     "ticker": "GOOGL",
@@ -883,7 +921,8 @@
       "DIS",
       "T"
     ],
-    "business": "Alphabet operates Google Search, YouTube, advertising, and cloud services worldwide."
+    "business": "Alphabet operates Google Search, YouTube, advertising, and cloud services worldwide.",
+    "industry": "Internet Content & Information"
   },
   {
     "ticker": "META",
@@ -906,7 +945,8 @@
       "DIS",
       "T"
     ],
-    "business": "Meta Platforms operates Facebook, Instagram, and WhatsApp and invests in virtual and augmented reality."
+    "business": "Meta Platforms operates Facebook, Instagram, and WhatsApp and invests in virtual and augmented reality.",
+    "industry": "Internet Content & Information"
   },
   {
     "ticker": "NFLX",
@@ -929,7 +969,8 @@
       "DIS",
       "T"
     ],
-    "business": "Netflix streams TV series and films to subscribers worldwide."
+    "business": "Netflix streams TV series and films to subscribers worldwide.",
+    "industry": "Entertainment"
   },
   {
     "ticker": "DIS",
@@ -952,7 +993,8 @@
       "NFLX",
       "T"
     ],
-    "business": "The Walt Disney Company operates theme parks, film studios, ESPN, and the Disney+ streaming service worldwide."
+    "business": "The Walt Disney Company operates theme parks, film studios, ESPN, and the Disney+ streaming service worldwide.",
+    "industry": "Entertainment"
   },
   {
     "ticker": "T",
@@ -975,7 +1017,8 @@
       "NFLX",
       "DIS"
     ],
-    "business": "AT&T provides wireless, broadband, and fiber communications services to consumers and businesses in the United States."
+    "business": "AT&T provides wireless, broadband, and fiber communications services to consumers and businesses in the United States.",
+    "industry": "Telecommunications Services"
   },
   {
     "ticker": "NEE",
@@ -997,7 +1040,8 @@
       "SO",
       "AEP"
     ],
-    "business": "NextEra Energy operates regulated utilities and is a major developer of renewable power generation."
+    "business": "NextEra Energy operates regulated utilities and is a major developer of renewable power generation.",
+    "industry": "Utilities - Regulated Electric"
   },
   {
     "ticker": "DUK",
@@ -1019,7 +1063,8 @@
       "SO",
       "AEP"
     ],
-    "business": "Duke Energy provides electric and gas utility services across the southeastern United States."
+    "business": "Duke Energy provides electric and gas utility services across the southeastern United States.",
+    "industry": "Utilities - Regulated Electric"
   },
   {
     "ticker": "SO",
@@ -1041,7 +1086,8 @@
       "DUK",
       "AEP"
     ],
-    "business": "Southern Company provides electric utility services in the southeastern United States."
+    "business": "Southern Company provides electric utility services in the southeastern United States.",
+    "industry": "Utilities - Regulated Electric"
   },
   {
     "ticker": "AEP",
@@ -1063,7 +1109,8 @@
       "DUK",
       "SO"
     ],
-    "business": "American Electric Power operates regulated utilities and transmission networks across multiple U.S. states."
+    "business": "American Electric Power operates regulated utilities and transmission networks across multiple U.S. states.",
+    "industry": "Utilities - Regulated Electric"
   },
   {
     "ticker": "PLD",
@@ -1085,7 +1132,8 @@
       "O",
       "SPG"
     ],
-    "business": "Prologis owns and operates logistics real estate used by e-commerce and supply-chain customers worldwide."
+    "business": "Prologis owns and operates logistics real estate used by e-commerce and supply-chain customers worldwide.",
+    "industry": "REIT - Industrial"
   },
   {
     "ticker": "AMT",
@@ -1107,7 +1155,8 @@
       "O",
       "SPG"
     ],
-    "business": "American Tower owns and leases communications towers and related infrastructure globally."
+    "business": "American Tower owns and leases communications towers and related infrastructure globally.",
+    "industry": "REIT - Specialty"
   },
   {
     "ticker": "O",
@@ -1129,7 +1178,8 @@
       "AMT",
       "SPG"
     ],
-    "business": "Realty Income owns net-lease commercial properties\u2014retail, industrial, and others\u2014and pays a monthly dividend."
+    "business": "Realty Income owns net-lease commercial properties\u2014retail, industrial, and others\u2014and pays a monthly dividend.",
+    "industry": "REIT - Retail"
   },
   {
     "ticker": "SPG",
@@ -1137,7 +1187,7 @@
     "sector": "Real Estate",
     "price": 229.78,
     "fairValue": 244.1,
-    "upsidePct": 7.0,
+    "upsidePct": 7,
     "beta": 1.4,
     "sharpe": 0.72,
     "reasoning": "Cheaper than peers at 16\u00d7 earnings vs 34\u00d7 median \u2014 profits up about 116%.",
@@ -1151,7 +1201,8 @@
       "AMT",
       "O"
     ],
-    "business": "Simon Property Group owns and operates premier shopping malls and outlets in the United States and abroad."
+    "business": "Simon Property Group owns and operates premier shopping malls and outlets in the United States and abroad.",
+    "industry": "REIT - Retail"
   },
   {
     "ticker": "IBM",
@@ -1173,7 +1224,8 @@
       "ORCL",
       "AAPL"
     ],
-    "business": "IBM sells hybrid cloud, AI software, and IT consulting services to large enterprises worldwide."
+    "business": "IBM sells hybrid cloud, AI software, and IT consulting services to large enterprises worldwide.",
+    "industry": "Information Technology Services"
   },
   {
     "ticker": "UBER",
@@ -1195,7 +1247,8 @@
       "DASH",
       "AMZN"
     ],
-    "business": "Uber operates a global platform for ride-hailing, food delivery, freight, and advertising."
+    "business": "Uber operates a global platform for ride-hailing, food delivery, freight, and advertising.",
+    "industry": "Software - Application"
   },
   {
     "ticker": "CMCSA",
@@ -1217,7 +1270,8 @@
       "DIS",
       "NFLX"
     ],
-    "business": "Comcast provides cable broadband, wireless, and NBCUniversal media and streaming services."
+    "business": "Comcast provides cable broadband, wireless, and NBCUniversal media and streaming services.",
+    "industry": "Telecommunications Services"
   },
   {
     "ticker": "SPOT",
@@ -1239,7 +1293,8 @@
       "DIS",
       "ROKU"
     ],
-    "business": "Spotify streams music, podcasts, and audiobooks through ad-supported and premium subscription tiers."
+    "business": "Spotify streams music, podcasts, and audiobooks through ad-supported and premium subscription tiers.",
+    "industry": "Internet Content & Information"
   },
   {
     "ticker": "DASH",
@@ -1261,7 +1316,8 @@
       "AMZN",
       "LYFT"
     ],
-    "business": "DoorDash operates a U.S. food delivery marketplace connecting restaurants, consumers, and dashers."
+    "business": "DoorDash operates a U.S. food delivery marketplace connecting restaurants, consumers, and dashers.",
+    "industry": "Internet Content & Information"
   },
   {
     "ticker": "DAL",
@@ -1269,7 +1325,7 @@
     "sector": "Industrials",
     "price": 84.54,
     "fairValue": 117.51,
-    "upsidePct": 39.0,
+    "upsidePct": 39,
     "beta": 1.252,
     "sharpe": 0.7,
     "reasoning": "Premium seats and strong ticket prices are carrying Delta even as jet fuel jumps with oil \u2014 the brand is the ballast \u2014 cash flow jumped $16M \u2192 $3.8B; #2 growth rank of 6 in Airlines; profits up about 280%.",
@@ -1283,7 +1339,8 @@
       "BA",
       "GE"
     ],
-    "business": "Delta Air Lines operates a U.S. network passenger airline with hubs in Atlanta, Detroit, Minneapolis, and New York."
+    "business": "Delta Air Lines operates a U.S. network passenger airline with hubs in Atlanta, Detroit, Minneapolis, and New York.",
+    "industry": "Airlines"
   },
   {
     "ticker": "LYFT",
@@ -1305,7 +1362,8 @@
       "DASH",
       "DAL"
     ],
-    "business": "Lyft operates a ride-sharing marketplace connecting passengers with drivers in North America."
+    "business": "Lyft operates a ride-sharing marketplace connecting passengers with drivers in North America.",
+    "industry": "Software - Application"
   },
   {
     "ticker": "YUM",
@@ -1327,7 +1385,8 @@
       "SBUX",
       "NKE"
     ],
-    "business": "Yum! Brands franchises KFC, Taco Bell, and Pizza Hut restaurants globally through an asset-light model."
+    "business": "Yum! Brands franchises KFC, Taco Bell, and Pizza Hut restaurants globally through an asset-light model.",
+    "industry": "Restaurants"
   },
   {
     "ticker": "ROKU",
@@ -1349,7 +1408,8 @@
       "DIS",
       "SPOT"
     ],
-    "business": "Roku operates a connected-TV streaming platform that aggregates channels and sells advertising on its operating system."
+    "business": "Roku operates a connected-TV streaming platform that aggregates channels and sells advertising on its operating system.",
+    "industry": "Entertainment"
   },
   {
     "ticker": "LULU",
@@ -1371,7 +1431,8 @@
       "SBUX",
       "AMZN"
     ],
-    "business": "Lululemon designs and sells premium athletic apparel and accessories through stores and e-commerce worldwide."
+    "business": "Lululemon designs and sells premium athletic apparel and accessories through stores and e-commerce worldwide.",
+    "industry": "Apparel Retail"
   },
   {
     "ticker": "AA",
@@ -1389,7 +1450,8 @@
       "sl": 39.13
     },
     "alternatives": [],
-    "business": "Alcoa produces primary aluminum, alumina, and recycles scrap metal for aerospace, automotive, and packaging markets."
+    "business": "Alcoa produces primary aluminum, alumina, and recycles scrap metal for aerospace, automotive, and packaging markets.",
+    "industry": "Aluminum"
   },
   {
     "ticker": "BAH",
@@ -1407,7 +1469,8 @@
       "tp": 112.33,
       "sl": 58.07
     },
-    "alternatives": []
+    "alternatives": [],
+    "industry": "Consulting Services"
   },
   {
     "ticker": "AMH",
@@ -1425,7 +1488,8 @@
       "sl": 30.33
     },
     "alternatives": [],
-    "business": "American Homes 4 Rent owns and leases single-family rental homes across the United States."
+    "business": "American Homes 4 Rent owns and leases single-family rental homes across the United States.",
+    "industry": "REIT - Residential"
   },
   {
     "ticker": "AXIA",
@@ -1443,7 +1507,8 @@
       "sl": 8.94
     },
     "alternatives": [],
-    "business": "Axia Energia generates and sells renewable electricity from wind and solar assets across Brazil."
+    "business": "Axia Energia generates and sells renewable electricity from wind and solar assets across Brazil.",
+    "industry": "Utilities - Renewable"
   },
   {
     "ticker": "BAP",
@@ -1461,7 +1526,8 @@
       "sl": 348.17
     },
     "alternatives": [],
-    "business": "Credicorp is Peru's largest financial holding company, operating universal banking, insurance, and microfinance businesses."
+    "business": "Credicorp is Peru's largest financial holding company, operating universal banking, insurance, and microfinance businesses.",
+    "industry": "Banks - Regional"
   },
   {
     "ticker": "CAE",
@@ -1479,7 +1545,8 @@
       "sl": 22.11
     },
     "alternatives": [],
-    "business": "CAE designs and manufactures flight simulators and provides pilot training for commercial and defense aviation customers."
+    "business": "CAE designs and manufactures flight simulators and provides pilot training for commercial and defense aviation customers.",
+    "industry": "Aerospace & Defense"
   },
   {
     "ticker": "DOO",
@@ -1497,7 +1564,8 @@
       "sl": 53.93
     },
     "alternatives": [],
-    "business": "BRP manufactures powersports vehicles including Ski-Doo snowmobiles, Can-Am ATVs, and Sea-Doo personal watercraft."
+    "business": "BRP manufactures powersports vehicles including Ski-Doo snowmobiles, Can-Am ATVs, and Sea-Doo personal watercraft.",
+    "industry": "Recreational Vehicles"
   },
   {
     "ticker": "FANG",
@@ -1515,7 +1583,8 @@
       "sl": 175.84
     },
     "alternatives": [],
-    "business": "Diamondback Energy explores for and produces oil and natural gas in the Permian Basin of West Texas and New Mexico."
+    "business": "Diamondback Energy explores for and produces oil and natural gas in the Permian Basin of West Texas and New Mexico.",
+    "industry": "Oil & Gas E&P"
   },
   {
     "ticker": "IDCC",
@@ -1533,7 +1602,8 @@
       "sl": 232.36
     },
     "alternatives": [],
-    "business": "InterDigital licenses wireless and video technology patents to smartphone, IoT, and consumer electronics manufacturers worldwide."
+    "business": "InterDigital licenses wireless and video technology patents to smartphone, IoT, and consumer electronics manufacturers worldwide.",
+    "industry": "Software - Application"
   },
   {
     "ticker": "INCY",
@@ -1546,12 +1616,13 @@
     "sharpe": 1.689,
     "reasoning": "Jakafi drug cash funds the pipeline while cancer-drug optionality keeps the biotech upside intact \u2014 cheaper than peers at 16\u00d7 earnings vs 37\u00d7 median; cash flow jumped $568M \u2192 $1.4B; ~73% below our fair value.",
     "levels": {
-      "ep": 115.65,
-      "tp": 199.74,
-      "sl": 104.09
+      "ep": 114.45,
+      "tp": 184.02,
+      "sl": 98.44
     },
     "alternatives": [],
-    "business": "Incyte discovers and commercializes oncology and inflammation medicines."
+    "business": "Incyte discovers and commercializes oncology and inflammation medicines.",
+    "industry": "Biotechnology"
   },
   {
     "ticker": "RELY",
@@ -1569,7 +1640,8 @@
       "sl": 21.47
     },
     "alternatives": [],
-    "business": "Remitly operates a digital remittance platform that lets immigrants send money abroad."
+    "business": "Remitly operates a digital remittance platform that lets immigrants send money abroad.",
+    "industry": "Software - Infrastructure"
   },
   {
     "ticker": "TIGO",
@@ -1587,7 +1659,8 @@
       "sl": 87.64
     },
     "alternatives": [],
-    "business": "Millicom (Tigo) provides mobile, broadband, and pay-TV services across Latin America."
+    "business": "Millicom (Tigo) provides mobile, broadband, and pay-TV services across Latin America.",
+    "industry": "Telecommunications Services"
   },
   {
     "ticker": "UGP",
@@ -1605,7 +1678,8 @@
       "sl": 5.61
     },
     "alternatives": [],
-    "business": "Ultrapar operates fuel distribution, petrochemicals, and retail gas stations across Brazil and Latin America."
+    "business": "Ultrapar operates fuel distribution, petrochemicals, and retail gas stations across Brazil and Latin America.",
+    "industry": "Oil & Gas Refining & Marketing"
   },
   {
     "ticker": "FLR",
@@ -1623,12 +1697,13 @@
       "sl": 46.97
     },
     "alternatives": [],
-    "business": "Fluor provides engineering, procurement, and construction services for energy, infrastructure, and industrial projects worldwide."
+    "business": "Fluor provides engineering, procurement, and construction services for energy, infrastructure, and industrial projects worldwide.",
+    "industry": "Engineering & Construction"
   },
   {
     "ticker": "URBN",
-    "name": "URBN",
-    "sector": "Information Technology",
+    "name": "Urban Outfitters Inc",
+    "sector": "Consumer Discretionary",
     "price": 69.97,
     "fairValue": 120.19,
     "upsidePct": 60.6,
@@ -1636,12 +1711,13 @@
     "sharpe": 0,
     "reasoning": "Cheaper than peers at 14\u00d7 earnings vs 30\u00d7 median \u2014 cash flow jumped $97M \u2192 $445M; ~61% below our fair value.",
     "levels": {
-      "ep": 0,
-      "tp": 0,
-      "sl": 0
+      "ep": 70.5,
+      "tp": 123.14,
+      "sl": 66.23
     },
     "alternatives": [],
-    "business": "Urban Outfitters retails apparel and home goods through Urban Outfitters, Anthropologie, and Free People brands."
+    "business": "Urban Outfitters retails apparel and home goods through Urban Outfitters, Anthropologie, and Free People brands.",
+    "industry": "Apparel Retail"
   },
   {
     "ticker": "CHWY",
@@ -1659,7 +1735,8 @@
       "tp": 32.03,
       "sl": 18.77
     },
-    "alternatives": []
+    "alternatives": [],
+    "industry": "Specialty Retail"
   },
   {
     "ticker": "BA",
@@ -1667,17 +1744,18 @@
     "sector": "Industrials",
     "price": 209.52,
     "fairValue": 261.9,
-    "upsidePct": 25.0,
+    "upsidePct": 25,
     "beta": 1.35,
     "sharpe": 0,
     "business": "Boeing designs and builds commercial airplanes, defense systems, and space vehicles.",
     "reasoning": "737 MAX deliveries and defense cash are the recovery spine \u2014 hitting production targets is what rebuilds trust in Boeing's earnings.",
     "levels": {
-      "ep": 209.52,
-      "tp": 261.9,
-      "sl": 188.57
+      "ep": 187.15,
+      "tp": 346.87,
+      "sl": 146
     },
-    "alternatives": []
+    "alternatives": [],
+    "industry": "Aerospace & Defense"
   },
   {
     "ticker": "HAL",
@@ -1685,15 +1763,54 @@
     "sector": "Energy",
     "price": 33.36,
     "fairValue": 41.7,
-    "upsidePct": 25.0,
+    "upsidePct": 25,
     "beta": 1.4,
     "sharpe": 0,
     "business": "Halliburton provides oilfield services and equipment for drilling, completions, and production worldwide.",
-    "reasoning": "When oil is high, oilfield work picks up; Halliburton's international mix helps if US fracking slows.",
+    "reasoning": "When oil is high, oilfield work picks up; Halliburton's international mix helps if US fracking slows. there's also a 750m Venezuelan debt to HAL which would be most likely collected and added to free cash flow when the US would make an entry and take some of the oilfields they abandoned in 2008 for peace which no longer exits under current regime.",
     "levels": {
       "ep": 33.36,
       "tp": 41.7,
       "sl": 30.02
+    },
+    "alternatives": [],
+    "industry": "Oil & Gas Equipment & Services"
+  },
+  {
+    "ticker": "LVS",
+    "name": "LVS",
+    "sector": "Information Technology",
+    "price": 45.81,
+    "fairValue": 71.241,
+    "upsidePct": 55.51,
+    "beta": 0.887,
+    "sharpe": 0,
+    "business": "Las Vegas Sands develops and operates integrated casino resorts in Macau and Singapore.",
+    "reasoning": "Cash flow jumped $-824M \u2192 $1.7B \u2014 cheaper than peers at 17\u00d7 earnings vs 22\u00d7 median; profits up about 271%.",
+    "levels": {
+      "ep": 45.81,
+      "tp": 71.24,
+      "sl": 41.23
+    },
+    "alternatives": [],
+    "industry": "Resorts & Casinos"
+  },
+  {
+    "ticker": "MRK",
+    "name": "Merck & Co Inc",
+    "sector": "Health Care",
+    "industry": "Drug Manufacturers - General",
+    "price": 124.41,
+    "fairValue": 156.173,
+    "upsidePct": 25.53,
+    "beta": 0.275,
+    "sharpe": 0,
+    "business": "MRK operates in Drug Manufacturers - General.",
+    "reasoning": "Cash flow up $9.7B \u2192 $12.4B \u2014 ~26% below our fair value; trades rich at 35\u00d7 earnings vs 25\u00d7 peers.",
+    "levels": {
+      "ep": 124.41,
+      "tp": 156.17,
+      "sl": 111.97
     },
     "alternatives": []
   }

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:seeds": "bash scripts/sync-runtime-to-seeds.sh",
+    "deploy:live": "bash scripts/deploy-live.sh"
   },
   "dependencies": {
     "next": "14.2.5",

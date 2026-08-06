@@ -21,8 +21,9 @@ export function loadPortfolio(): BuiltPortfolio | null {
 }
 
 /**
- * Wipe per-user portfolio state (entries, swaps, adds).
- * Called on every new build so auto-picked stocks start with no fill price.
+ * Wipe THIS browser’s user-built portfolio fills (entries, swaps, adds).
+ * Only for new users / rebuilds of their OWN book — never touches the
+ * SNIPER house portfolio (`data/snipers.json`), which only admin edits.
  */
 export function resetUserPortfolioState(): void {
   if (typeof window === "undefined") return;
@@ -34,7 +35,7 @@ export function resetUserPortfolioState(): void {
   localStorage.removeItem(REPLACE_STACK_KEY);
 }
 
-/** Persist a freshly built portfolio — always starts with a clean slate. */
+/** Persist a freshly built USER portfolio — clean slate for their fills only. */
 export function savePortfolio(p: BuiltPortfolio): void {
   if (typeof window === "undefined") return;
   resetUserPortfolioState();

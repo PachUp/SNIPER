@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copy desk runtime JSON back into committed seeds for Vercel redeploy.
+# Copy desk runtime JSON back into committed seeds for Netlify/Vercel redeploy.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 RUNTIME="$ROOT/data/.runtime"
@@ -17,4 +17,4 @@ for f in stocks.json news.json ideas.json snipers.json; do
   fi
 done
 
-echo "Done. Commit data/*.json and push to redeploy."
+echo "Done. Commit data/*.json and push (or run ./scripts/deploy-live.sh)."
