@@ -54,11 +54,16 @@ export default function NewsPopup({
           {item.line}
         </h2>
 
-        {item.details && (
-          <p className="mt-3 text-sm leading-relaxed text-terminal-muted">
-            {item.details}
-          </p>
-        )}
+        {item.details ? (
+          <div className="mt-3 rounded-md border border-terminal-border bg-black/40 px-3 py-2.5">
+            <div className="text-[9px] font-medium uppercase tracking-[0.18em] text-terminal-accent">
+              {t("popup.edge")}
+            </div>
+            <p className="mt-1.5 text-sm leading-relaxed text-terminal-muted">
+              {item.details}
+            </p>
+          </div>
+        ) : null}
 
         <div className="mt-4 flex flex-wrap items-center gap-1.5">
           <span className="text-[11px] text-terminal-muted">

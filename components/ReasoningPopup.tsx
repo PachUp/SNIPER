@@ -7,6 +7,7 @@ import { useI18n } from "@/components/LanguageProvider";
 import R2rPlDetails from "@/components/R2rPlDetails";
 import TickerLogo from "@/components/TickerLogo";
 import SinceEntryBadge from "@/components/SinceEntryBadge";
+import LevelInfo from "@/components/LevelInfo";
 
 export default function ReasoningPopup({
   stock,
@@ -37,11 +38,11 @@ export default function ReasoningPopup({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-3"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 sm:items-center safe-pb"
       onClick={onClose}
     >
       <div
-        className="max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl"
+        className="max-h-[88dvh] w-full max-w-md overflow-y-auto rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-2">
@@ -122,9 +123,24 @@ export default function ReasoningPopup({
         </div>
 
         <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-          <Level label={t("level.ep")} value={money(stock.levels.ep)} tone="accent" />
-          <Level label={t("level.tp")} value={money(stock.levels.tp)} tone="good" />
-          <Level label={t("level.sl")} value={money(stock.levels.sl)} tone="bad" />
+          <Level
+            tip={t("level.epTip")}
+            label={t("level.ep")}
+            value={money(stock.levels.ep)}
+            tone="accent"
+          />
+          <Level
+            tip={t("level.tpTip")}
+            label={t("level.tp")}
+            value={money(stock.levels.tp)}
+            tone="good"
+          />
+          <Level
+            tip={t("level.slTip")}
+            label={t("level.sl")}
+            value={money(stock.levels.sl)}
+            tone="bad"
+          />
         </div>
 
         {extras ? <div className="mt-3">{extras}</div> : null}
@@ -141,10 +157,12 @@ export default function ReasoningPopup({
 }
 
 function Level({
+  tip,
   label,
   value,
   tone,
 }: {
+  tip: string;
   label: string;
   value: string;
   tone: "accent" | "good" | "bad";
@@ -157,8 +175,11 @@ function Level({
         : "text-terminal-accent";
   return (
     <div className="rounded-lg border border-terminal-border bg-terminal-bg p-2">
-      <div className="text-[10px] tracking-wider text-terminal-muted">
-        {label}
+      <div className="flex items-center justify-center gap-1">
+        <LevelInfo tip={tip} />
+        <div className="text-[10px] tracking-wider text-terminal-muted">
+          {label}
+        </div>
       </div>
       <div className={`mt-1 text-sm font-bold ${color}`}>{value}</div>
     </div>

@@ -33,6 +33,7 @@ import { stockFromHolding } from "@/lib/builder/map";
 import PerformanceChart from "@/components/PerformanceChart";
 import ReasoningPopup from "@/components/ReasoningPopup";
 import CompactStockRow from "@/components/CompactStockRow";
+import StockTradePanel from "@/components/StockTradePanel";
 import EditableEp from "@/components/EntryPriceControl";
 import SwitchArrow from "@/components/SwitchArrow";
 import { useI18n } from "@/components/LanguageProvider";
@@ -561,8 +562,8 @@ export default function DashboardPage() {
   const canAdd = added.length < MAX_PERSONAL_ADDS;
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
-      <div className="flex shrink-0 items-center justify-between gap-2">
+    <div className="flex flex-col gap-3 pb-4">
+      <div className="flex items-center justify-between gap-2">
         <div className="min-w-0">
           <h1 className="truncate text-base font-bold tracking-wide sm:text-lg">
             {t("dash.title")}
@@ -586,19 +587,22 @@ export default function DashboardPage() {
         </button>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,38%)_minmax(0,62%)] gap-2 lg:grid-cols-2 lg:grid-rows-1">
-        <PerformanceChart
-          compact
-          liveReturnPct={liveReturnPct}
-          positions={chartPositions}
-          loading={quotesLoading}
-          refreshKey={quoteNonce}
-          subtitle={
-            hasAnyEntry ? t("perf.sinceEntry") : t("perf.sinceEntryEmpty")
-          }
-        />
+      {/* Top: performance (left) + stock list (right) */}
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="min-h-[200px] sm:min-h-[240px]">
+          <PerformanceChart
+            compact
+            liveReturnPct={liveReturnPct}
+            positions={chartPositions}
+            loading={quotesLoading}
+            refreshKey={quoteNonce}
+            subtitle={
+              hasAnyEntry ? t("perf.sinceEntry") : t("perf.sinceEntryEmpty")
+            }
+          />
+        </div>
 
-        <div className="flex min-h-0 flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2">
+        <div className="flex max-h-[280px] min-h-[200px] flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2 sm:max-h-none sm:min-h-[240px]">
           <div className="mb-1.5 flex shrink-0 flex-wrap items-center justify-between gap-1">
             <span className="text-[10px] tracking-[0.2em] text-terminal-muted">
               {t("dash.yourStocks")}
@@ -689,7 +693,7 @@ export default function DashboardPage() {
             </div>
           ) : null}
 
-          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto sm:grid-cols-2">
+          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto">
             {holdings.map((h) => {
               const s =
                 stockMap.get(h.current) ??
@@ -730,7 +734,10 @@ export default function DashboardPage() {
                     className="min-w-0 flex-1"
                   />
                   {h.source === "ai" && switchPool.length > 1 ? (
-                    <div className="shrink-0" onClick={(e) => e.stopPropagation()}>
+                    <div
+                      className="shrink-0"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <SwitchArrow
                         pool={switchPool}
                         currentTicker={h.current}
@@ -752,6 +759,81 @@ export default function DashboardPage() {
               );
             })}
           </div>
+        </div>
+      </div>
+
+      {/* Below: trade panels with EP / TP / SL + short thesis */}
+      <div>
+        <div className="mb-1.5 text-[10px] tracking-[0.2em] text-terminal-muted">
+          {t("dash.tradePanels")}
+        </div>
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+          {holdings.map((h) => {
+            const s =
+              stockMap.get(h.current) ?? stockFromHolding(h.holding, stockMap);
+            if (!s) return null;
+            const switchPool = poolFor(h.original);
+            const userEp = entries[s.ticker] ?? null;
+            const livePx = liveQuotes[s.ticker.toUpperCase()];
+            const sinceEntry =
+              userEp != null && livePx != null
+                ? returnSinceEntryPct(userEp, livePx)
+                : null;
+            const levels =
+              levelsWithUserEntry(s.levels, userEp) ?? s.levels;
+            const isSwitched =
+              h.source === "ai" &&
+              h.current.toUpperCase() !== h.original.toUpperCase();
+
+            return (
+              <StockTradePanel
+                key={`panel-${h.original}-${h.current}`}
+                stock={{ ...s, levels, price: livePx ?? s.price }}
+                sinceEntry={sinceEntry}
+                weightPct={h.weightPct}
+                badge={
+                  h.source === "ai" ? t("dash.ourPick") : t("dash.yourPick")
+                }
+                livePrice={livePx}
+                onClick={() =>
+                  setPopup({
+                    ...s,
+                    levels,
+                    price: livePx ?? s.price,
+                  })
+                }
+                buyControl={
+                  <EditableEp
+                    plannedEp={s.levels.ep}
+                    value={userEp}
+                    priceOnly
+                    onSave={(price) => handleSaveEntry(s.ticker, price)}
+                  />
+                }
+                trailing={
+                  <>
+                    {h.source === "ai" && switchPool.length > 1 ? (
+                      <SwitchArrow
+                        pool={switchPool}
+                        currentTicker={h.current}
+                        onSwitch={(next) => handleSwitch(h.original, next)}
+                      />
+                    ) : null}
+                    {isSwitched ? (
+                      <button
+                        type="button"
+                        onClick={() => handleRevertSwitch(h.original)}
+                        className="px-0.5 text-[8px] uppercase text-white/50"
+                        title={t("dash.revertSwitch")}
+                      >
+                        ↺
+                      </button>
+                    ) : null}
+                  </>
+                }
+              />
+            );
+          })}
         </div>
       </div>
 

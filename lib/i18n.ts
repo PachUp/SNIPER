@@ -57,9 +57,13 @@ const en: Dict = {
   "dash.enter": "Enter",
   "dash.entered": "Entered",
   "dash.enterSet": "Set",
+  "dash.enterPrice": "Your buy / entry price",
+  "dash.enterEdit": "Tap Buy to set the price you paid",
   "dash.sinceEntry": "Since entry",
   "dash.sinceEntryNeed": "Set entry",
   "dash.live": "Live",
+  "dash.tradePanels": "STOCK PANELS",
+  "panel.tapMore": "Tap for thesis + numbers →",
   "dash.addMine": "+ My stock",
   "dash.add": "Add",
   "dash.addHint":
@@ -85,14 +89,15 @@ const en: Dict = {
   // news
   "news.title": "Breaking News",
   "news.subtitle":
-    "Standout stock-market stories this week — and the stocks or industries they hit. Green is good, red is bad.",
+    "One-line market gists — green good, red bad. Tap any line for the edge and numbers.",
   "filter.all": "All",
   "filter.good": "Good",
   "filter.bad": "Bad",
-  "newsline.good": "GOOD NEWS",
-  "newsline.bad": "BAD NEWS",
-  "newsline.details": "Details →",
+  "newsline.good": "GOOD",
+  "newsline.bad": "BAD",
+  "newsline.details": "More →",
   "popup.companies": "Companies:",
+  "popup.edge": "Why it matters",
   "popup.readFull": "Read full story →",
   "popup.notAdvice": "General information, not investment advice.",
 
@@ -104,6 +109,7 @@ const en: Dict = {
   "snipers.subtitle": "Our own recommended portfolio · updated {date}",
   "snipers.noHouse": "No house portfolio published.",
   "snipers.holdings": "HOLDINGS",
+  "snipers.tradePanels": "HOUSE STOCK PANELS",
   "perf.house": "HOUSE PERFORMANCE",
 
   // performance chart
@@ -163,6 +169,21 @@ const en: Dict = {
   "consent.ackPost": ".",
   "consent.cta": "I AGREE — CONTINUE",
 
+  // how-to prelude
+  "prelude.eyebrow": "How to use SNIPER",
+  "prelude.title": "Five quick moves",
+  "prelude.body": "Learn the desk in under a minute — then build.",
+  "prelude.s1":
+    "Pick up to 4 stocks of your choosing (BUILD), then we fill a balanced book around them.",
+  "prelude.s2":
+    "Press Buy on a stock to edit the entry price you paid so you can track performance.",
+  "prelude.s3":
+    "Learn from Breaking News on market developments — overall, sector, industry, or single stocks.",
+  "prelude.s4":
+    "Learn from Ideas about the admin’s new entry preparations.",
+  "prelude.s5": "Click a stock to learn it in about 10 seconds.",
+  "prelude.cta": "GOT IT — LET’S GO",
+
   // risk levels
   "risk.Low": "Low",
   "risk.Medium": "Medium",
@@ -172,6 +193,12 @@ const en: Dict = {
   "level.ep": "Buy around",
   "level.tp": "Sell target",
   "level.sl": "Safety exit",
+  "level.epTip":
+    "Buy around — the planned entry price. On your book, tap Buy to set what you actually paid.",
+  "level.tpTip":
+    "Sell target — where the thesis would take profit if the move plays out.",
+  "level.slTip":
+    "Safety exit — the level where the idea is wrong and you cut the loss.",
 
   // time
   "time.now": "just now",

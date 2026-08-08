@@ -6,9 +6,9 @@ export default function TabsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-[100dvh] max-h-[100dvh] flex-col overflow-hidden bg-black">
+    <div className="flex min-h-[100dvh] flex-col bg-black safe-pt safe-pb">
       <TabNav />
-      <div className="mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col overflow-hidden px-3 py-2 sm:px-4">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col overflow-x-hidden overflow-y-auto px-3 py-2 sm:px-4">
         {children}
       </div>
     </div>

@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ConsentGate from "@/components/ConsentGate";
+import HowToPrelude from "@/components/HowToPrelude";
 import { LanguageProvider } from "@/components/LanguageProvider";
 
 const inter = Inter({
@@ -15,6 +16,13 @@ export const metadata: Metadata = {
   description: "Precision stock portfolio builder",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#000000",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,6 +34,7 @@ export default function RootLayout({
         <LanguageProvider>
           {children}
           <ConsentGate />
+          <HowToPrelude />
         </LanguageProvider>
       </body>
     </html>

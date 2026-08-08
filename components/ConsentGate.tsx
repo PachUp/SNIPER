@@ -29,6 +29,7 @@ export default function ConsentGate() {
   function accept() {
     localStorage.setItem(CONSENT_KEY, "true");
     setAccepted(true);
+    window.dispatchEvent(new Event("sniper:consent"));
   }
 
   const canAccept = isAdult && ackAdvice;

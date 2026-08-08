@@ -149,11 +149,13 @@ export default function PerformanceChart({
         </div>
       </div>
 
-      <div className={`min-h-0 flex-1 ${compact ? "mt-1.5" : "mt-3"}`}>
+      <div
+        className={`w-full ${compact ? "mt-1.5 h-[140px]" : "mt-3 h-[220px]"}`}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={data}
-            margin={{ top: 4, right: 2, left: -28, bottom: 0 }}
+            margin={{ top: 4, right: 4, left: 0, bottom: 0 }}
           >
             <defs>
               <linearGradient id="perfFill" x1="0" y1="0" x2="0" y2="1">

@@ -17,7 +17,7 @@ export default function TabNav() {
   const { t } = useI18n();
 
   return (
-    <header className="z-40 shrink-0 border-b border-terminal-border bg-black/90 backdrop-blur-md">
+    <header className="z-40 shrink-0 border-b border-terminal-border bg-black/90 backdrop-blur-md safe-px">
       <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-3 py-2">
         <div className="flex items-center justify-between gap-2">
           <div className="flex min-w-0 items-center gap-2">

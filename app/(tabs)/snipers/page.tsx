@@ -5,6 +5,7 @@ import type { HousePortfolio, Stock } from "@/lib/types";
 import PerformanceChart from "@/components/PerformanceChart";
 import ReasoningPopup from "@/components/ReasoningPopup";
 import CompactStockRow from "@/components/CompactStockRow";
+import StockTradePanel from "@/components/StockTradePanel";
 import { useI18n } from "@/components/LanguageProvider";
 import {
   fetchLiveQuotesClient,
@@ -109,14 +110,14 @@ export default function SnipersPage() {
 
   if (loading) {
     return (
-      <div className="flex flex-1 items-center justify-center text-terminal-muted">
+      <div className="flex flex-1 items-center justify-center py-16 text-terminal-muted">
         {t("common.loading")}
       </div>
     );
   }
   if (!house) {
     return (
-      <div className="flex flex-1 items-center justify-center text-terminal-muted">
+      <div className="flex flex-1 items-center justify-center py-16 text-terminal-muted">
         {t("snipers.noHouse")}
       </div>
     );
@@ -131,8 +132,8 @@ export default function SnipersPage() {
       : null;
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
-      <div className="shrink-0">
+    <div className="flex flex-col gap-3 pb-4">
+      <div>
         <h1 className="truncate text-base font-bold tracking-wide sm:text-lg">
           {house.name}
         </h1>
@@ -144,21 +145,23 @@ export default function SnipersPage() {
         </p>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,38%)_minmax(0,62%)] gap-2 lg:grid-cols-2 lg:grid-rows-1">
-        <PerformanceChart
-          compact
-          liveReturnPct={liveReturnPct}
-          positions={chartPositions}
-          loading={quotesLoading}
-          title={t("perf.house")}
-          subtitle={t("perf.houseLive")}
-        />
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="min-h-[200px] sm:min-h-[240px]">
+          <PerformanceChart
+            compact
+            liveReturnPct={liveReturnPct}
+            positions={chartPositions}
+            loading={quotesLoading}
+            title={t("perf.house")}
+            subtitle={t("perf.houseLive")}
+          />
+        </div>
 
-        <div className="flex min-h-0 flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2">
+        <div className="flex max-h-[280px] min-h-[200px] flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2 sm:max-h-none sm:min-h-[240px]">
           <div className="mb-1.5 shrink-0 text-[10px] tracking-[0.2em] text-terminal-muted">
             {t("snipers.holdings")}
           </div>
-          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto sm:grid-cols-2">
+          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto">
             {house.holdings.map((h) => {
               const livePx = liveQuotes[h.ticker.toUpperCase()];
               const sinceEntry =
@@ -182,6 +185,35 @@ export default function SnipersPage() {
               );
             })}
           </div>
+        </div>
+      </div>
+
+      <div>
+        <div className="mb-1.5 text-[10px] tracking-[0.2em] text-terminal-muted">
+          {t("snipers.tradePanels")}
+        </div>
+        <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+          {house.holdings.map((h) => {
+            const livePx = liveQuotes[h.ticker.toUpperCase()];
+            const sinceEntry =
+              h.levels?.ep > 0 && livePx != null
+                ? returnSinceEntryPct(h.levels.ep, livePx)
+                : null;
+            const stock = {
+              ...holdingToStock(h),
+              price: livePx ?? h.levels.ep,
+            };
+            return (
+              <StockTradePanel
+                key={`panel-${h.ticker}`}
+                stock={stock}
+                sinceEntry={sinceEntry}
+                weightPct={h.weightPct}
+                livePrice={livePx}
+                onClick={() => setPopup(stock)}
+              />
+            );
+          })}
         </div>
       </div>
 

@@ -24,8 +24,8 @@ export default function BreakingNewsPage() {
   );
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
-      <div className="flex shrink-0 items-center justify-between gap-2">
+    <div className="flex flex-col gap-2 pb-4">
+      <div className="flex items-center justify-between gap-2">
         <div className="min-w-0">
           <h1 className="text-base font-bold tracking-wide sm:text-lg">
             {t("news.title")}
@@ -58,11 +58,11 @@ export default function BreakingNewsPage() {
       </div>
 
       {loading ? (
-        <div className="flex flex-1 items-center justify-center text-terminal-muted">
+        <div className="py-16 text-center text-terminal-muted">
           {t("common.loading")}
         </div>
       ) : (
-        <div className="flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto">
+        <div className="flex flex-col gap-1">
           {filtered.map((item) => {
             const good = item.sentiment === "good";
             return (
@@ -70,21 +70,24 @@ export default function BreakingNewsPage() {
                 key={item.id}
                 type="button"
                 onClick={() => setOpen(item)}
-                className={`flex w-full items-center gap-2 rounded-md border-l-2 px-2.5 py-1.5 text-left ${
+                className={`flex w-full min-w-0 items-center gap-2 rounded-md border-l-2 px-2.5 py-2 text-left ${
                   good
                     ? "border-l-terminal-good border border-terminal-good/15 bg-terminal-good/[0.06]"
                     : "border-l-terminal-bad border border-terminal-bad/15 bg-terminal-bad/[0.06]"
                 }`}
               >
                 <span
-                  className={`shrink-0 text-[9px] font-bold uppercase tracking-wider ${
+                  className={`w-9 shrink-0 text-[9px] font-bold uppercase tracking-wider ${
                     good ? "text-terminal-good" : "text-terminal-bad"
                   }`}
                 >
                   {good ? t("newsline.good") : t("newsline.bad")}
                 </span>
-                <span className="min-w-0 flex-1 truncate text-[12px] text-terminal-text">
+                <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[13px] leading-none text-terminal-text">
                   {item.line}
+                </span>
+                <span className="hidden shrink-0 text-[9px] text-terminal-muted sm:inline">
+                  {t("newsline.details")}
                 </span>
               </button>
             );

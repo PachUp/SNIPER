@@ -3,16 +3,20 @@
 import { useState } from "react";
 import { money } from "@/lib/format";
 import { useI18n } from "@/components/LanguageProvider";
+import LevelInfo from "@/components/LevelInfo";
 
 /** Clickable EP: orange until set, then shining green. Saves to local storage via parent. */
 export default function EditableEp({
   plannedEp,
   value,
   onSave,
+  /** Panel cell already shows Buy around + (i) — only show the price. */
+  priceOnly = false,
 }: {
   plannedEp: number;
   value: number | null;
   onSave: (price: number) => void;
+  priceOnly?: boolean;
 }) {
   const { t } = useI18n();
   const locked = value != null && Number.isFinite(value) && value > 0;
@@ -33,13 +37,19 @@ export default function EditableEp({
         className="flex flex-col items-center gap-0.5 rounded bg-terminal-panel py-1"
         onClick={(e) => e.stopPropagation()}
       >
-        <span className="text-[9px] tracking-wider text-terminal-muted">
-          {t("common.buy")}
-        </span>
-        <div className="flex items-center gap-0.5 px-1">
+        {!priceOnly ? (
+          <div className="flex items-center gap-1">
+            <LevelInfo tip={t("level.epTip")} />
+            <span className="text-[9px] tracking-wider text-terminal-muted">
+              {t("common.buy")}
+            </span>
+          </div>
+        ) : null}
+        <div className="flex items-center gap-0.5 px-0.5">
           <input
             autoFocus
             type="number"
+            inputMode="decimal"
             step="0.01"
             min="0"
             value={draft}
@@ -48,7 +58,7 @@ export default function EditableEp({
               if (e.key === "Enter") commit();
               if (e.key === "Escape") setEditing(false);
             }}
-            className="w-[4.5rem] rounded border border-terminal-orange/60 bg-terminal-bg px-1 py-0.5 text-center text-[10px] text-terminal-text outline-none"
+            className="w-full min-w-0 rounded border border-terminal-orange/60 bg-terminal-bg px-1 py-0.5 text-center text-[10px] text-terminal-text outline-none"
             aria-label={t("dash.enterPrice")}
           />
           <button
@@ -57,7 +67,7 @@ export default function EditableEp({
               e.stopPropagation();
               commit();
             }}
-            className="rounded bg-terminal-orange px-1.5 py-0.5 text-[9px] font-bold text-black"
+            className="shrink-0 rounded bg-terminal-orange px-1.5 py-0.5 text-[9px] font-bold text-black"
           >
             {t("dash.enterSet")}
           </button>
@@ -76,13 +86,16 @@ export default function EditableEp({
         setEditing(true);
       }}
       title={t("dash.enterEdit")}
-      className={`w-full rounded py-1 text-[10px] transition ${
+      className={`flex w-full items-center justify-center gap-1 rounded py-1 text-[10px] transition ${
         locked
           ? "animate-shine bg-terminal-good/20 font-bold text-terminal-good ring-1 ring-terminal-good/50"
           : "bg-terminal-panel text-terminal-orange ring-1 ring-terminal-orange/40 hover:bg-terminal-orange/10"
       }`}
     >
-      {t("common.buy")} {money(display)}
+      {!priceOnly ? <LevelInfo tip={t("level.epTip")} /> : null}
+      <span>
+        {priceOnly ? money(display) : `${t("common.buy")} ${money(display)}`}
+      </span>
     </button>
   );
 }
