@@ -47,10 +47,13 @@ export function builderBlurbsFile(): string {
 }
 
 export function isMockBuilderEnabled(): boolean {
-  // Explicit opt-in, or automatic on Vercel (no Python/Fv files there).
+  // Explicit opt-in, or automatic on serverless hosts (no local Python/Fv files).
+  if (process.env.SNIPER_USE_MOCK_BUILDER === "1") return true;
+  if (process.env.SNIPER_USE_MOCK_BUILDER === "0") return false;
   return (
-    process.env.SNIPER_USE_MOCK_BUILDER === "1" ||
-    process.env.VERCEL === "1"
+    process.env.VERCEL === "1" ||
+    process.env.NETLIFY === "true" ||
+    Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME)
   );
 }
 

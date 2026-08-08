@@ -6,6 +6,12 @@ import type {
   PortfolioHolding,
   Stock,
 } from "@/lib/types";
+import {
+  storageGet,
+  storageRemove,
+  storageSet,
+  type StorageWriteResult,
+} from "@/lib/safeStorage";
 
 const KEY = "sniper.portfolio.v1";
 const SWAPS_KEY = "sniper.swaps.v1";
@@ -13,7 +19,7 @@ const SWAPS_KEY = "sniper.swaps.v1";
 export function loadPortfolio(): BuiltPortfolio | null {
   if (typeof window === "undefined") return null;
   try {
-    const raw = localStorage.getItem(KEY);
+    const raw = storageGet(KEY);
     return raw ? (JSON.parse(raw) as BuiltPortfolio) : null;
   } catch {
     return null;
@@ -27,24 +33,30 @@ export function loadPortfolio(): BuiltPortfolio | null {
  */
 export function resetUserPortfolioState(): void {
   if (typeof window === "undefined") return;
-  localStorage.removeItem(SWAPS_KEY);
-  localStorage.removeItem(ENTRIES_KEY);
-  localStorage.removeItem(ENTRY_DATES_KEY);
-  localStorage.removeItem(REMOVED_KEY);
-  localStorage.removeItem(ADDED_KEY);
-  localStorage.removeItem(REPLACE_STACK_KEY);
+  storageRemove(SWAPS_KEY);
+  storageRemove(ENTRIES_KEY);
+  storageRemove(ENTRY_DATES_KEY);
+  storageRemove(REMOVED_KEY);
+  storageRemove(ADDED_KEY);
+  storageRemove(REPLACE_STACK_KEY);
 }
 
-/** Persist a freshly built USER portfolio — clean slate for their fills only. */
-export function savePortfolio(p: BuiltPortfolio): void {
-  if (typeof window === "undefined") return;
+/**
+ * Persist a freshly built USER portfolio.
+ * Clears prior fills/swaps so a new build starts clean — returns write status
+ * so the UI can warn when the browser blocks storage (private / in-app).
+ */
+export function savePortfolio(p: BuiltPortfolio): StorageWriteResult {
+  if (typeof window === "undefined") {
+    return { ok: false, reason: "unavailable" };
+  }
   resetUserPortfolioState();
-  localStorage.setItem(KEY, JSON.stringify(p));
+  return storageSet(KEY, JSON.stringify(p));
 }
 
 export function clearPortfolio(): void {
   if (typeof window === "undefined") return;
-  localStorage.removeItem(KEY);
+  storageRemove(KEY);
   resetUserPortfolioState();
 }
 
@@ -66,7 +78,7 @@ export type ReplaceRecord = {
 export function loadEntries(): Record<string, number> {
   if (typeof window === "undefined") return {};
   try {
-    const raw = localStorage.getItem(ENTRIES_KEY);
+    const raw = storageGet(ENTRIES_KEY);
     return raw ? (JSON.parse(raw) as Record<string, number>) : {};
   } catch {
     return {};
@@ -77,7 +89,7 @@ export function loadEntries(): Record<string, number> {
 export function loadEntryDates(): Record<string, string> {
   if (typeof window === "undefined") return {};
   try {
-    const raw = localStorage.getItem(ENTRY_DATES_KEY);
+    const raw = storageGet(ENTRY_DATES_KEY);
     const dates = raw ? (JSON.parse(raw) as Record<string, string>) : {};
     // Backfill: legacy fills without a date start “since entry” from today.
     const prices = loadEntries();
@@ -90,7 +102,7 @@ export function loadEntryDates(): Record<string, string> {
       }
     }
     if (dirty) {
-      localStorage.setItem(ENTRY_DATES_KEY, JSON.stringify(dates));
+      storageSet(ENTRY_DATES_KEY, JSON.stringify(dates));
     }
     return dates;
   } catch {
@@ -98,8 +110,10 @@ export function loadEntryDates(): Record<string, string> {
   }
 }
 
-export function saveEntry(ticker: string, price: number): void {
-  if (typeof window === "undefined") return;
+export function saveEntry(ticker: string, price: number): StorageWriteResult {
+  if (typeof window === "undefined") {
+    return { ok: false, reason: "unavailable" };
+  }
   const sym = ticker.toUpperCase();
   const all = loadEntries();
   const dates = loadEntryDates();
@@ -109,15 +123,16 @@ export function saveEntry(ticker: string, price: number): void {
   if (prev == null || prev !== price || !dates[sym]) {
     dates[sym] = new Date().toISOString().slice(0, 10);
   }
-  localStorage.setItem(ENTRIES_KEY, JSON.stringify(all));
-  localStorage.setItem(ENTRY_DATES_KEY, JSON.stringify(dates));
+  const a = storageSet(ENTRIES_KEY, JSON.stringify(all));
+  const b = storageSet(ENTRY_DATES_KEY, JSON.stringify(dates));
+  return a.ok && b.ok ? { ok: true } : a.ok ? b : a;
 }
 
 /** Built holdings auto-dropped when the user adds a personal stock. */
 export function loadRemoved(): string[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = localStorage.getItem(REMOVED_KEY);
+    const raw = storageGet(REMOVED_KEY);
     return raw ? (JSON.parse(raw) as string[]) : [];
   } catch {
     return [];
@@ -126,7 +141,7 @@ export function loadRemoved(): string[] {
 
 export function saveRemoved(tickers: string[]): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(REMOVED_KEY, JSON.stringify(tickers));
+  storageSet(REMOVED_KEY, JSON.stringify(tickers));
 }
 
 export type EliminateCandidate = {
@@ -181,7 +196,7 @@ export function pickStockToEliminate(
 export function loadAdded(): PortfolioHolding[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = localStorage.getItem(ADDED_KEY);
+    const raw = storageGet(ADDED_KEY);
     return raw ? (JSON.parse(raw) as PortfolioHolding[]) : [];
   } catch {
     return [];
@@ -190,14 +205,14 @@ export function loadAdded(): PortfolioHolding[] {
 
 export function saveAdded(holdings: PortfolioHolding[]): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(ADDED_KEY, JSON.stringify(holdings));
+  storageSet(ADDED_KEY, JSON.stringify(holdings));
 }
 
 /** Records a user's switch from an AI-picked stock to an approved alternative. */
 export function loadSwaps(): Record<string, string> {
   if (typeof window === "undefined") return {};
   try {
-    const raw = localStorage.getItem(SWAPS_KEY);
+    const raw = storageGet(SWAPS_KEY);
     return raw ? (JSON.parse(raw) as Record<string, string>) : {};
   } catch {
     return {};
@@ -212,20 +227,20 @@ export function saveSwap(original: string, current: string): void {
   } else {
     swaps[original] = current;
   }
-  localStorage.setItem(SWAPS_KEY, JSON.stringify(swaps));
+  storageSet(SWAPS_KEY, JSON.stringify(swaps));
 }
 
 export function clearSwap(original: string): void {
   if (typeof window === "undefined") return;
   const swaps = loadSwaps();
   delete swaps[original];
-  localStorage.setItem(SWAPS_KEY, JSON.stringify(swaps));
+  storageSet(SWAPS_KEY, JSON.stringify(swaps));
 }
 
 export function loadReplaceStack(): ReplaceRecord[] {
   if (typeof window === "undefined") return [];
   try {
-    const raw = localStorage.getItem(REPLACE_STACK_KEY);
+    const raw = storageGet(REPLACE_STACK_KEY);
     return raw ? (JSON.parse(raw) as ReplaceRecord[]) : [];
   } catch {
     return [];
@@ -234,7 +249,7 @@ export function loadReplaceStack(): ReplaceRecord[] {
 
 export function saveReplaceStack(stack: ReplaceRecord[]): void {
   if (typeof window === "undefined") return;
-  localStorage.setItem(REPLACE_STACK_KEY, JSON.stringify(stack));
+  storageSet(REPLACE_STACK_KEY, JSON.stringify(stack));
 }
 
 export function pushReplace(record: ReplaceRecord): ReplaceRecord[] {

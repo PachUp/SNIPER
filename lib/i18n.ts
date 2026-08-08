@@ -36,11 +36,19 @@ const en: Dict = {
   "build.buildingCta": "BUILDING…",
   "build.pickForMe": "PICK FOR ME",
   "build.buildMine": "BUILD MY PORTFOLIO",
-  "build.needPick": "Pick at least {min} stock to continue.",
+  "build.needPick": "Pick at least {min} stock first (tap + on a card), then press BUILD.",
   "build.failed": "Could not build your portfolio. Try again.",
+  "build.timeout":
+    "Build timed out — check your connection and try again.",
+  "build.badResponse": "Build returned an empty portfolio. Try again.",
+  "build.storageBlocked":
+    "Your browser blocked saving (Private mode or in-app browser). Open this link in Safari or Chrome, then build again.",
+  "build.hintPick": "Select 1–4 stocks below, then press BUILD MY PORTFOLIO.",
   "build.noneEligible":
     "No famous stocks meet the upside bar today. Check your valuation data or try again later.",
   "build.notEligibleToday": "NOT ELIGIBLE TODAY",
+  "dash.storageBlocked":
+    "Saving is blocked in this browser. Open SNIPER in Safari or Chrome (not Instagram/Messages preview) so your entries stick.",
 
   // dashboard
   "dash.empty": "You haven't made a portfolio yet.",

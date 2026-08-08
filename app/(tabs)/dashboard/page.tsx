@@ -86,7 +86,9 @@ export default function DashboardPage() {
   const [quotesLoading, setQuotesLoading] = useState(false);
   const [quoteNonce, setQuoteNonce] = useState(0);
 
-  useEffect(() => {
+  const [storageWarn, setStorageWarn] = useState(false);
+
+  function hydrateFromStorage() {
     setPortfolio(loadPortfolio());
     setSwaps(loadSwaps());
     setEntries(loadEntries());
@@ -94,20 +96,38 @@ export default function DashboardPage() {
     setRemoved(loadRemoved());
     setAdded(loadAdded());
     setReplaceStack(loadReplaceStack());
+  }
+
+  useEffect(() => {
+    hydrateFromStorage();
     Promise.all([
       fetch("/api/stocks").then((r) => r.json()),
       fetch("/api/blurbs").then((r) => r.json()),
     ])
       .then(([s, b]) => {
-        setStocks(s);
-        setBlurbs(b && typeof b === "object" ? b : {});
-        // Warm logos for every catalog name so dashboard tiles never blank.
-        for (const row of s) {
+        const list = Array.isArray(s) ? s : [];
+        setStocks(list);
+        setBlurbs(b && typeof b === "object" && !Array.isArray(b) ? b : {});
+        for (const row of list) {
           const img = new Image();
           img.src = `/logos/${encodeURIComponent(row.ticker)}.png?v=native`;
         }
       })
+      .catch(() => {
+        setStocks([]);
+      })
       .finally(() => setLoading(false));
+
+    // Re-read after backgrounding (iOS Safari / in-app browsers).
+    const onVis = () => {
+      if (document.visibilityState === "visible") hydrateFromStorage();
+    };
+    window.addEventListener("focus", hydrateFromStorage);
+    document.addEventListener("visibilitychange", onVis);
+    return () => {
+      window.removeEventListener("focus", hydrateFromStorage);
+      document.removeEventListener("visibilitychange", onVis);
+    };
   }, []);
 
   const stockMap = useMemo(() => {
@@ -352,10 +372,14 @@ export default function DashboardPage() {
   }
 
   function handleSaveEntry(ticker: string, price: number) {
-    saveEntry(ticker, price);
+    const wrote = saveEntry(ticker, price);
+    if (!wrote.ok) {
+      setStorageWarn(true);
+      return;
+    }
+    setStorageWarn(false);
     setEntries((prev) => ({ ...prev, [ticker.toUpperCase()]: price }));
     setEntryDates(loadEntryDates());
-    // Recalc portfolio % immediately with a fresh live quote for this name.
     void refreshQuotesNow([ticker]);
   }
 
@@ -586,6 +610,12 @@ export default function DashboardPage() {
           {t("dash.startOver")}
         </button>
       </div>
+
+      {storageWarn ? (
+        <div className="rounded-lg border border-terminal-bad/40 bg-terminal-bad/10 px-3 py-2 text-[11px] leading-snug text-terminal-bad">
+          {t("dash.storageBlocked")}
+        </div>
+      ) : null}
 
       {/* Top: performance (left) + stock list (right) */}
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">

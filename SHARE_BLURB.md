@@ -7,6 +7,8 @@ Hey — trying a draft of SNIPER (stock portfolio helper). Feedback welcome.
 
 URL: https://sniper-proj.netlify.app/
 
+Tip: open in Safari or Chrome (not the in-app browser inside Messages/Instagram) so your portfolio and buy prices save on the device.
+
 Please:
 1) Accept the consent screen
 2) BUILD → pick 1–4 famous stocks → build portfolio

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useI18n } from "@/components/LanguageProvider";
+import { storageGet, storageSet } from "@/lib/safeStorage";
 
 const CONSENT_KEY = "sniper.consent.v1";
 
@@ -16,7 +17,7 @@ export default function ConsentGate() {
   const [ackAdvice, setAckAdvice] = useState(false);
 
   useEffect(() => {
-    setAccepted(localStorage.getItem(CONSENT_KEY) === "true");
+    setAccepted(storageGet(CONSENT_KEY) === "true");
     setReady(true);
   }, []);
 
@@ -27,7 +28,7 @@ export default function ConsentGate() {
   if (!ready || accepted || excluded) return null;
 
   function accept() {
-    localStorage.setItem(CONSENT_KEY, "true");
+    storageSet(CONSENT_KEY, "true");
     setAccepted(true);
     window.dispatchEvent(new Event("sniper:consent"));
   }

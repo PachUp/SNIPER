@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useI18n } from "@/components/LanguageProvider";
+import { storageGet, storageSet } from "@/lib/safeStorage";
 
 const CONSENT_KEY = "sniper.consent.v1";
 const PRELUDE_KEY = "sniper.prelude.v1";
@@ -24,8 +25,8 @@ export default function HowToPrelude() {
 
   useEffect(() => {
     function refresh() {
-      const consented = localStorage.getItem(CONSENT_KEY) === "true";
-      const seen = localStorage.getItem(PRELUDE_KEY) === "true";
+      const consented = storageGet(CONSENT_KEY) === "true";
+      const seen = storageGet(PRELUDE_KEY) === "true";
       setShow(consented && !seen);
       setReady(true);
     }
@@ -40,7 +41,7 @@ export default function HowToPrelude() {
   if (!ready || !show || excluded) return null;
 
   function dismiss() {
-    localStorage.setItem(PRELUDE_KEY, "true");
+    storageSet(PRELUDE_KEY, "true");
     setShow(false);
   }
 

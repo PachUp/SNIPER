@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { BuiltPortfolio } from "@/lib/types";
 import { MAX_USER_PICKS, MIN_USER_PICKS } from "@/lib/portfolio";
@@ -14,9 +13,12 @@ import TickerLogo from "@/components/TickerLogo";
 import AdminLink from "@/components/AdminLink";
 import type { FamousListResult, FamousPick } from "@/lib/builder/map";
 import type { Stock } from "@/lib/types";
+import { storageGet, storageSet } from "@/lib/safeStorage";
+
+const PICKS_DRAFT_KEY = "sniper.buildPicks.v1";
+const BUILD_TIMEOUT_MS = 28_000;
 
 export default function BuildPage() {
-  const router = useRouter();
   const { t } = useI18n();
   const [famous, setFamous] = useState<FamousListResult | null>(null);
   const [picked, setPicked] = useState<string[]>([]);
@@ -26,23 +28,58 @@ export default function BuildPage() {
   const [detail, setDetail] = useState<Stock | null>(null);
 
   useEffect(() => {
-    fetch("/api/builder/famous")
+    try {
+      const draft = storageGet(PICKS_DRAFT_KEY);
+      if (draft) {
+        const parsed = JSON.parse(draft) as string[];
+        if (Array.isArray(parsed)) {
+          setPicked(
+            parsed
+              .map((s) => String(s).toUpperCase())
+              .filter(Boolean)
+              .slice(0, MAX_USER_PICKS)
+          );
+        }
+      }
+    } catch {
+      /* ignore */
+    }
+
+    const ac = new AbortController();
+    const timer = window.setTimeout(() => ac.abort(), 20_000);
+    fetch("/api/builder/famous", { signal: ac.signal })
       .then(async (r) => {
-        const data = await r.json();
+        const data = await r.json().catch(() => ({}));
         if (!r.ok) throw new Error(data.error || "Failed to load famous picks");
         return data as FamousListResult;
       })
       .then((data) => {
         setFamous(data);
-        // Warm static logo assets for every famous name.
         for (const p of data.picks ?? []) {
           const img = new Image();
           img.src = `/logos/${encodeURIComponent(p.symbol)}.png?v=native`;
         }
       })
-      .catch((e: Error) => setError(e.message))
-      .finally(() => setLoading(false));
-  }, []);
+      .catch((e: Error) => {
+        if (e.name === "AbortError") {
+          setError(t("build.timeout"));
+        } else {
+          setError(e.message);
+        }
+      })
+      .finally(() => {
+        window.clearTimeout(timer);
+        setLoading(false);
+      });
+    return () => {
+      ac.abort();
+      window.clearTimeout(timer);
+    };
+  }, [t]);
+
+  useEffect(() => {
+    storageSet(PICKS_DRAFT_KEY, JSON.stringify(picked));
+  }, [picked]);
 
   const eligiblePicks = useMemo(
     () => (famous?.picks ?? []).filter((p) => p.eligible),
@@ -66,32 +103,53 @@ export default function BuildPage() {
   }
 
   async function build() {
+    if (building) return;
     if (picked.length < MIN_USER_PICKS) {
       setError(t("build.needPick", { min: MIN_USER_PICKS }));
       return;
     }
     setBuilding(true);
     setError(null);
+    const ac = new AbortController();
+    const timer = window.setTimeout(() => ac.abort(), BUILD_TIMEOUT_MS);
     try {
       const res = await fetch("/api/portfolio/build", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ tickers: picked }),
+        signal: ac.signal,
       });
-      const data = await res.json();
+      const data = (await res.json().catch(() => ({}))) as BuiltPortfolio & {
+        error?: string;
+      };
       if (!res.ok) {
         throw new Error(data.error || t("build.failed"));
       }
-      savePortfolio(data as BuiltPortfolio);
-      router.push("/dashboard");
+      if (!Array.isArray(data.holdings) || data.holdings.length === 0) {
+        throw new Error(t("build.badResponse"));
+      }
+      const saved = savePortfolio(data);
+      if (!saved.ok) {
+        throw new Error(t("build.storageBlocked"));
+      }
+      // Hard navigate — more reliable than client router on flaky mobile/WebViews.
+      window.location.assign("/dashboard");
     } catch (e) {
-      setError(e instanceof Error ? e.message : t("build.failed"));
+      if (e instanceof Error && e.name === "AbortError") {
+        setError(t("build.timeout"));
+      } else {
+        setError(e instanceof Error ? e.message : t("build.failed"));
+      }
       setBuilding(false);
+    } finally {
+      window.clearTimeout(timer);
     }
   }
 
+  const canBuild = !building && picked.length >= MIN_USER_PICKS;
+
   return (
-    <main className="mx-auto min-h-screen max-w-6xl bg-black px-4 py-8">
+    <main className="mx-auto min-h-[100dvh] max-w-6xl bg-black px-4 py-8 safe-pt safe-pb">
       <header className="mb-4 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <Link
@@ -103,7 +161,7 @@ export default function BuildPage() {
           <button
             type="button"
             onClick={() => void build()}
-            disabled={building || picked.length < MIN_USER_PICKS}
+            disabled={!canBuild}
             className="rounded-md bg-terminal-accent px-2.5 py-1 text-[10px] font-bold tracking-[0.12em] text-black disabled:opacity-40"
           >
             {building ? t("build.buildingCta") : t("build.buildMine")}
@@ -126,6 +184,11 @@ export default function BuildPage() {
           minUpside: famous?.famous_min_upside_pct ?? 20,
         })}
       </p>
+      {picked.length < MIN_USER_PICKS ? (
+        <p className="mt-2 text-xs font-medium text-terminal-accent">
+          {t("build.hintPick")}
+        </p>
+      ) : null}
 
       {error && (
         <div className="mt-4 rounded-lg border border-terminal-bad/40 bg-terminal-bad/10 px-4 py-3 text-sm text-terminal-bad">
@@ -139,7 +202,6 @@ export default function BuildPage() {
         </div>
       ) : (
         <>
-          {/* Brand wall — every famous logo, first impression */}
           {allPicks.length > 0 ? (
             <div className="mt-8 overflow-hidden rounded-2xl border border-terminal-border bg-gradient-to-b from-[#141414] to-black p-5 shadow-[0_0_60px_rgba(249,115,22,0.08)]">
               <div className="mb-4 flex items-end justify-between gap-3">
@@ -148,7 +210,7 @@ export default function BuildPage() {
                     Famous names
                   </p>
                   <p className="mt-1 text-sm text-terminal-muted">
-                    Tap a card below to shortlist — logos stay front and center.
+                    Tap a logo or press + on a row to shortlist, then BUILD.
                   </p>
                 </div>
                 <span className="text-[11px] text-terminal-muted">
@@ -270,10 +332,16 @@ export default function BuildPage() {
         </>
       )}
 
-      <div className="sticky bottom-4 mt-8 flex justify-center">
+      <div className="sticky bottom-4 z-20 mt-8 flex flex-col items-center gap-2 safe-pb">
+        {!canBuild && !building ? (
+          <p className="text-center text-[11px] text-terminal-muted">
+            {t("build.hintPick")}
+          </p>
+        ) : null}
         <button
+          type="button"
           onClick={() => void build()}
-          disabled={building || picked.length < MIN_USER_PICKS}
+          disabled={!canBuild}
           className="rounded-full bg-terminal-accent px-12 py-3.5 text-sm font-bold tracking-[0.22em] text-black shadow-[0_0_40px_rgba(249,115,22,0.35)] transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-[0_0_56px_rgba(249,115,22,0.5)] disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none"
         >
           {building ? t("build.buildingCta") : t("build.buildMine")}
