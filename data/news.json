@@ -1,192 +1,242 @@
 [
   {
-    "id": "n1",
-    "tickers": ["MSFT", "AAPL", "AMZN", "GOOGL", "NVDA", "META"],
-    "line": "U.S. stocks hit fresh record highs as tech led a broad rally.",
-    "details": "The S&P 500 rose about 1.8% to a new all-time high near 7,737, the Dow gained about 1.7% to roughly 54,086, and the Nasdaq jumped about 2.6%. Strong earnings and cooler oil prices helped push risk appetite higher across Wall Street.",
+    "id": "auto-Y2hpcG90bGUgbWV4",
+    "tickers": [
+      "DIS"
+    ],
+    "line": "Chipotle Mexican Grill vs. Walt Disney: Comparing Revenue Trends Between These Consumer Companies",
+    "details": "Walt Disney generates a larger baseline of total revenue in absolute terms, but Chipotle Mexican Grill demonstrates a more consistent upward trajectory in recent sales performance across the observed time frame. Chipotle has delivered continuous quarter-over-quarter revenue growth over recent reporting periods, while…",
     "sentiment": "good",
-    "source": "Anadolu Agency",
-    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
-    "timestamp": "2026-08-05T20:30:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/charts/2026/08/08/chipotle-mexican-grill-vs-walt-disney-comparing-revenue-trends-between-these-consumer-companies/",
+    "timestamp": "2026-08-09T02:03:01.000Z"
   },
   {
-    "id": "n2",
-    "tickers": ["XOM", "CVX", "COP", "OXY", "DAL", "UAL"],
-    "line": "Oil plunged as markets bet on a Strait of Hormuz reopening.",
-    "details": "Brent crude fell about 6% toward the high-$70s after U.S. officials said a deal to restore shipping through the Strait of Hormuz could come soon. Lower oil eases inflation worries and can help airlines, while energy producers often face pressure.",
+    "id": "auto-aW9ucSB2cy4gbWV0",
+    "tickers": [
+      "META"
+    ],
+    "line": "IonQ vs. Meta Platforms: Comparing Revenue Trends Between a Cutting-Edge Quantum Computing Company and an Artificial In…",
+    "details": "IonQ (IONQ +11.86%) earns the vast majority of its revenue by granting various enterprise clients access to its specialized quantum computing hardware, distributing these capabilities directly through its own proprietary channels and indirectly via integrations with leading third-party cloud service providers.",
     "sentiment": "good",
-    "source": "France 24",
-    "sourceUrl": "https://www.france24.com/en/middle-east/20260805-us-says-iran-hormuz-deal-could-come-today-or-tomorrow-as-oil-prices-plunge",
-    "timestamp": "2026-08-05T18:00:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/charts/2026/08/08/ionq-vs-meta-platforms-comparing-revenue-trends-between-a-cutting-edge-quantum-computing-company-and-an-artificial-intelligence-giant/",
+    "timestamp": "2026-08-09T01:45:01.000Z"
   },
   {
-    "id": "n3",
-    "tickers": ["NVDA", "AMD", "INTC", "AVGO", "ARM"],
-    "line": "Chip stocks surged, with semiconductors up more than 7% in a day.",
-    "details": "The Philadelphia Semiconductor Index jumped over 7% as AI optimism returned. ARM climbed roughly 17%, while Intel and other chip names gained more than 10% in the session as investors piled back into the group.",
+    "id": "auto-bnZpZGlhIHZzLiBu",
+    "tickers": [
+      "NVDA"
+    ],
+    "line": "Nvidia vs. Navitas Semiconductor: Here's What Their Revenue Trends Tell Investors About These Artificial Intelligence C…",
+    "details": "Nvidia (NVDA +2.27%) primarily generates its revenue by designing advanced graphics processing units alongside comprehensive accelerated computing hardware systems for major enterprise clients operating across diverse global markets.",
     "sentiment": "good",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-05T21:00:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/charts/2026/08/08/nvidia-vs-navitas-semiconductor-here-s-what-their-revenue-trends-tell-investors-about-these-artificial-intelligence-companies/",
+    "timestamp": "2026-08-09T01:41:01.000Z"
   },
   {
-    "id": "n4",
-    "tickers": ["PLTR"],
-    "line": "Palantir soared about 29% after a blowout earnings report.",
-    "details": "Palantir said revenue jumped about 93% and U.S. commercial growth ran even hotter. Traders rewarded the beat with a huge one-day jump, though the stock still trades at a very rich valuation after the move.",
+    "id": "auto-aG93IG11Y2ggZG8g",
+    "tickers": [
+      "PG"
+    ],
+    "line": "How Much Do You Need Invested to Out-Earn the Average Social Security Check With Dividends?",
+    "details": "Replicating a Social Security check with dividends sounds straightforward until you realize the yield you chase determines whether your income grows, stalls, or quietly disappears over the next two decades.",
     "sentiment": "good",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-05T22:00:00Z"
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/personal-finance/2026/08/08/how-much-do-you-need-invested-to-out-earn-the-average-social-security-check-with-dividends/",
+    "timestamp": "2026-08-09T00:37:08.000Z"
   },
   {
-    "id": "n5",
-    "tickers": ["AMD"],
-    "line": "AMD beat earnings, then slipped after hours on guidance.",
-    "details": "AMD posted record quarterly revenue near $11.5 billion and strong data-center growth, but shares fell more than 8% after hours. Investors wanted an even hotter third-quarter outlook than the company guided.",
+    "id": "auto-cGxhbm5lZCBhbWF6",
+    "tickers": [
+      "AMZN"
+    ],
+    "line": "Planned Amazon data center could become the biggest climate polluter in the U.S.",
+    "details": "As part of a planned data center in Pecos County, Texas, Amazon is investing in an on-site power plant that could become the largest source of climate pollution in the United States, according to The New York Times.",
+    "sentiment": "good",
+    "source": "techcrunch.com",
+    "sourceUrl": "https://techcrunch.com/2026/08/08/planned-amazon-data-center-could-become-the-biggest-climate-polluter-in-the-u-s/",
+    "timestamp": "2026-08-09T00:24:02.000Z"
+  },
+  {
+    "id": "auto-aG9tZSBkZXBvdCBo",
+    "tickers": [
+      "WMT"
+    ],
+    "line": "Home Depot Has Raised Its Dividend for 17 Consecutive Years and Reports Earnings Aug. 18. Is It the Smarter Dow Stock t…",
+    "details": "Despite dealing with cyclical pressures, Home Depot has paid a dividend in 157 straight quarters. Walmart's success in online shopping and advertising demonstrates how its business has evolved.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/home-depot-dividend-17-years-walmart/",
+    "timestamp": "2026-08-09T00:20:00.000Z"
+  },
+  {
+    "id": "auto-bXNmdCBkZWFkbGlu",
+    "tickers": [
+      "MSFT"
+    ],
+    "line": "MSFT Deadline: Rosen Law Firm Urges Microsoft Corporation (NASDAQ: MSFT) Stockholders with Losses in Excess of $100K to…",
+    "details": "NEW YORK--(BUSINESS WIRE)--Rosen Law Firm, a global investor rights law firm, reminds investors about a class action lawsuit on behalf of purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026. Microsoft describes itself as a “multinational technology conglomerate.”…",
     "sentiment": "bad",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-05T23:30:00Z"
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260808027933/en/MSFT-Deadline-Rosen-Law-Firm-Urges-Microsoft-Corporation-NASDAQ-MSFT-Stockholders-with-Losses-in-Excess-of-100K-to-Contact-the-Firm-for-Information-About-Their-Rights/",
+    "timestamp": "2026-08-09T00:05:00.000Z"
   },
   {
-    "id": "n6",
-    "tickers": ["JPM", "BAC", "GS", "MS", "WFC"],
-    "line": "Treasury yields fell as cooler oil eased rate-hike fears.",
-    "details": "Lower crude prices helped pull bond yields down, with the 10-year yield dropping several basis points. Banks and other rate-sensitive stocks can move when traders change their Fed outlook.",
+    "id": "auto-Z29vZyBpbnZlc3Rv",
+    "tickers": [
+      "GOOGL"
+    ],
+    "line": "GOOG Investors Have Opportunity to Join Alphabet Inc. Fraud Investigation with SBS Law",
+    "details": "LOS ANGELES--(BUSINESS WIRE)---- $GOOG--GOOG Investors Have Opportunity to Join Alphabet Inc. Fraud Investigation with SBS Law.",
     "sentiment": "good",
-    "source": "FXStreet",
-    "sourceUrl": "https://www.fxstreet.com/analysis/stocks-explode-to-record-highs-oil-plunges-on-hormuz-hopes-bessent-eyes-agreement-202608051241",
-    "timestamp": "2026-08-05T19:15:00Z"
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260808302457/en/GOOG-Investors-Have-Opportunity-to-Join-Alphabet-Inc.-Fraud-Investigation-with-SBS-Law/",
+    "timestamp": "2026-08-08T22:50:00.000Z"
   },
   {
-    "id": "n7",
-    "tickers": ["NVDA", "MSFT", "GOOGL", "AMZN"],
-    "line": "Anthropic locked in a $10 billion AI computing deal.",
-    "details": "Claude maker Anthropic signed a multi-year computing-power agreement worth about $10 billion with a cloud infrastructure partner. Big AI compute contracts keep demand high for chips, cloud, and data-center suppliers.",
-    "sentiment": "good",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-05T17:45:00Z"
-  },
-  {
-    "id": "n8",
-    "tickers": ["CMG"],
-    "line": "Chipotle beat sales, then got hit by a salmonella scare.",
-    "details": "Chipotle raised guidance after a solid quarter and the stock jumped, but headlines about a Minnesota salmonella outbreak later pulled shares back. Food-safety news can quickly outweigh an earnings beat.",
+    "id": "auto-bXNmdCBkZWFkbGlu",
+    "tickers": [
+      "MSFT"
+    ],
+    "line": "MSFT DEADLINE TUESDAY: ROSEN, A HIGHLY RECOGNIZED LAW FIRM, Encourages Microsoft Corporation Investors with Losses in E…",
+    "details": "New York, New York--(Newsfile Corp. - August 8, 2026) - WHY: Rosen Law Firm, a global investor rights law firm, reminds purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026, inclusive (the \"Class Period\"), of the important August 11, 2026 lead plaintiff deadline.…",
     "sentiment": "bad",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-05T16:20:00Z"
+    "source": "newsfilecorp.com",
+    "sourceUrl": "https://www.newsfilecorp.com/release/308662/MSFT-DEADLINE-TUESDAY-ROSEN-A-HIGHLY-RECOGNIZED-LAW-FIRM-Encourages-Microsoft-Corporation-Investors-with-Losses-in-Excess-of-100K-to-Secure-Counsel-Before-Important-August-11-Deadline-in-Securities-Class-Action-MSFT",
+    "timestamp": "2026-08-08T20:33:00.000Z"
   },
   {
-    "id": "n9",
-    "tickers": ["XOM", "CVX", "SLB", "HAL"],
-    "line": "Energy stocks faced pressure as crude tumbled.",
-    "details": "With WTI settling around $75 and Brent near $79 after sharp drops, oil producers and oilfield-service names often lag when traders expect cheaper crude. The flip side is relief for consumers and many non-energy stocks.",
+    "id": "auto-bnZpZGlhLCBtaWNy",
+    "tickers": [
+      "AVGO"
+    ],
+    "line": "Nvidia, Micron or Broadcom: What Would Raymond Dalio Do?",
+    "details": "Through Ray Dalio's risk-adjusted lens, NVIDIA (NASDAQ:NVDA | NVDA Price Prediction) at $218.99 is a buy over its two closest AI-cycle rivals.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/08/nvidia-micron-or-broadcom-what-would-raymond-dalio-do/",
+    "timestamp": "2026-08-08T20:30:39.000Z"
+  },
+  {
+    "id": "auto-NCByYXJlIGRpc2Nv",
+    "tickers": [
+      "T"
+    ],
+    "line": "4 Rare Discount Dividends Paying Up To 12.6%",
+    "details": "We need to talk about four of the cheapest dividend payers on the planet. I'm talking about blue-light bargain valuations and, our favorite, serious high yields!",
+    "sentiment": "good",
+    "source": "forbes.com",
+    "sourceUrl": "https://www.forbes.com/sites/brettowens/2026/08/08/4-rare-discount-dividends-paying-up-to-126/",
+    "timestamp": "2026-08-08T20:05:06.000Z"
+  },
+  {
+    "id": "auto-YXVndXN0IGJ1eXM6",
+    "tickers": [
+      "T"
+    ],
+    "line": "August Buys: 4 IDEAL S&P 500 'Safer' Dividend Dogs",
+    "details": "Four S&P 500 'safer' dividend dogs - VICI, VZ, T, F - offer dividends from $1K invested exceeding share prices, supported by positive free cash flow. Analyst projections suggest top ten S&P 500 dividend dogs could deliver average net gains of 22% by August 2027, with volatility 38% below the market. Dividend dog strat…",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933775-august-buys-4-ideal-sp500-safer-dividend-dogs",
+    "timestamp": "2026-08-08T19:30:25.000Z"
+  },
+  {
+    "id": "auto-ZWxpIGxpbGx5IGFu",
+    "tickers": [
+      "LLY"
+    ],
+    "line": "Eli Lilly and Company Q2 Earnings Call Highlights",
+    "details": "Eli Lilly and Company NYSE: LLY reported 48% revenue growth in the second quarter of 2026, driven primarily by continued demand for its cardiometabolic medicines MOUNJARO and ZEPBOUND, while raising its full-year revenue and earnings guidance.",
+    "sentiment": "good",
+    "source": "marketbeat.com",
+    "sourceUrl": "https://www.marketbeat.com/instant-alerts/eli-lilly-and-company-q2-earnings-call-highlights-2026-08-08/",
+    "timestamp": "2026-08-08T19:05:21.000Z"
+  },
+  {
+    "id": "auto-YWkgaXMgaG9sbG93",
+    "tickers": [
+      "MSFT"
+    ],
+    "line": "AI is Hollowing Out Tech Sector Jobs: Oracle and Microsoft Help Push Layoff Rate to 20-Year High",
+    "details": "The AI boom has created a strange split-screen economy.",
     "sentiment": "bad",
-    "source": "Al Jazeera",
-    "sourceUrl": "https://www.aljazeera.com/economy/2026/8/5/us-stock-market-hits-record-high-amid-hopes-for-strait-of-hormuz-reopening",
-    "timestamp": "2026-08-05T20:00:00Z"
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/08/ai-is-hollowing-out-tech-sector-jobs-oracle-and-microsoft-help-push-layoff-rate-to-20-year-high/",
+    "timestamp": "2026-08-08T18:38:36.000Z"
   },
   {
-    "id": "n10",
-    "tickers": ["AAPL", "MSFT", "META", "AMZN", "GOOGL", "NVDA", "TSLA"],
-    "line": "Mega-cap tech helped lift markets after a rough July.",
-    "details": "Technology shares jumped around 4% in the record session as investors returned to AI leaders. Mega-cap names still drive a large share of S&P 500 moves when the group rallies or sells off together.",
+    "id": "auto-YWxwaGFiZXQgY2Vv",
+    "tickers": [
+      "GOOGL"
+    ],
+    "line": "Alphabet CEO Sundar Pichai Just Made a Decision That Could Move Nvidia and Broadcom Stock",
+    "details": "Alphabet started recording TPU sales in the second quarter. This business may eventually contribute to top-line growth.",
     "sentiment": "good",
-    "source": "Anadolu Agency",
-    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
-    "timestamp": "2026-08-05T21:30:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/alphabet-ceo-sundar-pichai-just-made-a-decision-th/",
+    "timestamp": "2026-08-08T18:30:00.000Z"
   },
   {
-    "id": "n11",
-    "tickers": ["CRM", "IBM", "ORCL", "MSFT"],
-    "line": "Software and cloud names rode the AI spending wave higher.",
-    "details": "Enterprise software and cloud platforms benefited as markets bought into continued AI investment. Strong backlog and compute demand remain key themes for the group even when individual names swing after earnings.",
+    "id": "auto-amFtaWUgZGltb24n",
+    "tickers": [
+      "JPM"
+    ],
+    "line": "Jamie Dimon's JPMorgan Sees Gold Reaching $5,000 an Ounce by Q4, a Bullish Case for Investors Seeking a Hedge",
+    "details": "JPMorgan Chase believes gold will reach $5,000 an ounce by the fourth quarter of the year, before pushing even higher. Gold is often viewed as a hedge and diversification tool, and there are several ways to invest in it.",
     "sentiment": "good",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-05T15:40:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/jamie-dimons-jpmorgan-sees-gold-reaching-5000-an-o/",
+    "timestamp": "2026-08-08T18:15:00.000Z"
   },
   {
-    "id": "n12",
-    "tickers": ["BA", "GE", "CAT", "UNP"],
-    "line": "Industrials gained nearly 2% with the risk-on move.",
-    "details": "Lower oil and stronger equity risk appetite helped industrials and materials advance. Broad market rallies often lift cyclical names that track growth and shipping demand.",
+    "id": "auto-Z29vZ2xlJ3MgdG9w",
+    "tickers": [
+      "GOOGL"
+    ],
+    "line": "Google's top hacker hunter explains why hacking groups get codenames",
+    "details": "For more than a decade, the cybersecurity industry has been assigning names to different hacking groups. Some of them, like Fancy Bear, have crossed over into the mainstream because of their prominent hacks and memorable names.",
     "sentiment": "good",
-    "source": "Anadolu Agency",
-    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
-    "timestamp": "2026-08-05T20:45:00Z"
+    "source": "techcrunch.com",
+    "sourceUrl": "https://techcrunch.com/2026/08/08/googles-top-hacker-hunter-explains-why-hacking-groups-get-codenames/",
+    "timestamp": "2026-08-08T18:00:00.000Z"
   },
   {
-    "id": "n13",
-    "tickers": ["GS", "JPM", "MS"],
-    "line": "Financials advanced as Goldman Sachs jumped more than 3%.",
-    "details": "The financial sector rose about 1% in the record session, with Goldman Sachs among the stronger bank names. Trading desks and investment banks often benefit when markets are busy and volatility stays orderly.",
+    "id": "auto-ZWxvbiBtdXNrJ3Mg",
+    "tickers": [
+      "TSLA"
+    ],
+    "line": "Elon Musk's Starlink swagger, SpaceX vs. the cloud giants, and Seattle's tech universe revisited",
+    "details": "SpaceX reports its first quarter as a public company, and Elon Musk says Starlink could deliver a majority of the world's internet within a decade.",
     "sentiment": "good",
-    "source": "Anadolu Agency",
-    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
-    "timestamp": "2026-08-05T19:50:00Z"
+    "source": "geekwire.com",
+    "sourceUrl": "https://www.geekwire.com/2026/elon-musks-starlink-swagger-spacex-vs-the-cloud-giants-and-seattles-tech-universe-revisited/",
+    "timestamp": "2026-08-08T17:57:45.000Z"
   },
   {
-    "id": "n14",
-    "tickers": ["ROKU"],
-    "line": "Roku earnings day approaches under the Fox buyout deal.",
-    "details": "Roku is set to report results around early August, but the pending Fox acquisition can keep the stock pinned near the deal price. Takeover situations often mute the usual earnings reaction until the sale closes.",
+    "id": "auto-aXMgYW1kIHN0b2Nr",
+    "tickers": [
+      "AMD"
+    ],
+    "line": "Is AMD Stock a Buy on the Dip as AI Revenue Surges?",
+    "details": "AMD is seeing strong growth, but its larger growth opportunities are still in front of it. Its new Helios AI server racks should be a strong growth driver in the year ahead.",
     "sentiment": "good",
-    "source": "StockTitan",
-    "sourceUrl": "https://www.stocktitan.net/news/ROKU/",
-    "timestamp": "2026-08-04T16:00:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/is-amd-stock-a-buy-on-the-dip-as-ai-revenue-surges/",
+    "timestamp": "2026-08-08T17:30:00.000Z"
   },
   {
-    "id": "n15",
-    "tickers": ["TSLA", "F", "GM"],
-    "line": "Auto and EV names tracked the broader risk rally.",
-    "details": "With the Nasdaq leading the day, growth-sensitive consumer and auto stocks often move with tech. Lower fuel costs can also help the consumer backdrop if cheaper oil sticks.",
+    "id": "auto-amVmZiBiZXpvcycg",
+    "tickers": [
+      "AMZN"
+    ],
+    "line": "Jeff Bezos' Amazon Just Raised Its AI Spending to $220 Billion for 2026. Here's What That Capex Hike Means for Investor…",
+    "details": "Amazon increased its AI spending to $220 billion for 2026, up from $200 billion, largely due to rising memory costs. AI spending overall is rising at a shocking clip, by some estimates up 500% since 2022.",
     "sentiment": "good",
-    "source": "FXStreet",
-    "sourceUrl": "https://www.fxstreet.com/analysis/stocks-explode-to-record-highs-oil-plunges-on-hormuz-hopes-bessent-eyes-agreement-202608051241",
-    "timestamp": "2026-08-05T18:30:00Z"
-  },
-  {
-    "id": "n16",
-    "tickers": ["DIS", "NFLX", "CMCSA", "SPOT"],
-    "line": "Media and streaming stocks rode the market higher.",
-    "details": "Risk-on sessions usually lift consumer and media names along with the indexes. Investors still separate companies with improving profits from those facing slower subscriber growth.",
-    "sentiment": "good",
-    "source": "Al Jazeera",
-    "sourceUrl": "https://www.aljazeera.com/economy/2026/8/5/us-stock-market-hits-record-high-amid-hopes-for-strait-of-hormuz-reopening",
-    "timestamp": "2026-08-05T17:10:00Z"
-  },
-  {
-    "id": "n17",
-    "tickers": ["UBER", "DASH", "LYFT"],
-    "line": "Gig and delivery platforms watched consumer spending strength.",
-    "details": "Cheaper oil and a stronger equity tape can support travel and dining activity that feeds delivery and ride volumes. These stocks still swing with growth expectations and deal headlines.",
-    "sentiment": "good",
-    "source": "FXStreet",
-    "sourceUrl": "https://www.fxstreet.com/analysis/stocks-explode-to-record-highs-oil-plunges-on-hormuz-hopes-bessent-eyes-agreement-202608051241",
-    "timestamp": "2026-08-05T16:55:00Z"
-  },
-  {
-    "id": "n18",
-    "tickers": ["LULU", "NKE", "HD"],
-    "line": "Retailers remain split between resilient spending and softer growth.",
-    "details": "A broad market rally helps sentiment, but names with slowing comps or tough competition can still lag. Investors keep watching whether consumers keep spending as energy prices ease.",
-    "sentiment": "bad",
-    "source": "TradingKey",
-    "sourceUrl": "https://www.tradingkey.com/analysis/stocks/us-stocks/262074674-sndk-spacex-spcx-pltr-palantir-arm-tradingkey",
-    "timestamp": "2026-08-04T14:00:00Z"
-  },
-  {
-    "id": "n19",
-    "tickers": ["V", "MA", "AXP"],
-    "line": "Payments stocks benefit when markets and travel activity improve.",
-    "details": "Card networks earn more when consumer and cross-border spending stay firm. A risk-on tape and lower oil can support that backdrop, though the group still depends on the next round of spending data.",
-    "sentiment": "good",
-    "source": "Anadolu Agency",
-    "sourceUrl": "https://www.aa.com.tr/en/americas/us-stocks-close-at-record-highs-as-oil-tumbles-earnings-fuel-tech-rally/4018566",
-    "timestamp": "2026-08-05T15:20:00Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/jeff-bezos-amazon-just-raised-its-ai-spending-to-2/",
+    "timestamp": "2026-08-08T17:15:00.000Z"
   }
 ]

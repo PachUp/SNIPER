@@ -4,6 +4,15 @@
 
 **Live URL:** https://sniper-proj.netlify.app/
 
+### Auto news (every 3 days)
+GitHub Action [`.github/workflows/refresh-news.yml`](.github/workflows/refresh-news.yml) pulls FMP stock news into `data/news.json` and pushes — Netlify rebuilds.
+
+1. Repo **Settings → Secrets → Actions** → add `FMP_API_KEY` (same key as local `.env.local`)
+2. Optional: **Actions → Refresh news → Run workflow** to test once
+3. Cron: `0 15 */3 * *` (UTC)
+
+Local: `npm run refresh:news` then `npm run deploy:live`
+
 Git push to `main` on PachUp/SNIPER redeploys Netlify. From this repo:
 
 ```bash
