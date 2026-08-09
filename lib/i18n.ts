@@ -71,7 +71,7 @@ const en: Dict = {
   "dash.sinceEntryNeed": "Set entry",
   "dash.live": "Live",
   "dash.tradePanels": "STOCK PANELS",
-  "panel.tapMore": "Tap for thesis + numbers →",
+  "panel.tapMore": "More info →",
   "dash.addMine": "+ My stock",
   "dash.add": "Add",
   "dash.addHint":

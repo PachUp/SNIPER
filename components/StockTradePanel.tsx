@@ -8,12 +8,7 @@ import TickerLogo from "@/components/TickerLogo";
 import SinceEntryBadge from "@/components/SinceEntryBadge";
 import LevelInfo from "@/components/LevelInfo";
 
-function shortThesis(text: string, max = 110): string {
-  const t = text.replace(/\s+/g, " ").trim();
-  if (t.length <= max) return t;
-  return `${t.slice(0, max - 1).trimEnd()}…`;
-}
-
+/** Company + EP/TP/SL at a glance. Only “More” opens thesis / numbers. */
 export default function StockTradePanel({
   stock,
   sinceEntry,
@@ -34,16 +29,11 @@ export default function StockTradePanel({
   trailing?: ReactNode;
 }) {
   const { t } = useI18n();
-  const thesis = shortThesis(stock.reasoning || stock.business || "");
   const px =
     livePrice != null && Number.isFinite(livePrice) ? livePrice : stock.price;
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="flex w-full flex-col gap-2 rounded-xl border border-terminal-border bg-terminal-panel p-2.5 text-left transition hover:border-terminal-accent/40"
-    >
+    <div className="flex w-full flex-col gap-2 rounded-xl border border-terminal-border bg-terminal-panel p-2.5">
       <div className="flex items-start gap-2">
         <TickerLogo symbol={stock.ticker} size={28} />
         <div className="min-w-0 flex-1">
@@ -63,10 +53,7 @@ export default function StockTradePanel({
               <span className="text-[10px] text-terminal-muted">{weightPct}%</span>
             ) : null}
             {trailing ? (
-              <span
-                className="ms-auto flex shrink-0 items-center gap-0.5"
-                onClick={(e) => e.stopPropagation()}
-              >
+              <span className="ms-auto flex shrink-0 items-center gap-0.5">
                 {trailing}
               </span>
             ) : null}
@@ -84,7 +71,7 @@ export default function StockTradePanel({
           label={t("level.ep")}
           value={money(stock.levels.ep)}
           tone="accent"
-          control={buyControl}
+          under={buyControl}
         />
         <LevelCell
           tip={t("level.tpTip")}
@@ -100,15 +87,14 @@ export default function StockTradePanel({
         />
       </div>
 
-      {thesis ? (
-        <p className="line-clamp-2 text-[11px] leading-snug text-white/75">
-          {thesis}{" "}
-          <span className="text-terminal-accent/80">{t("panel.tapMore")}</span>
-        </p>
-      ) : (
-        <p className="text-[11px] text-terminal-muted">{t("panel.tapMore")}</p>
-      )}
-    </button>
+      <button
+        type="button"
+        onClick={onClick}
+        className="self-start text-[11px] font-medium text-terminal-accent hover:underline"
+      >
+        {t("panel.tapMore")}
+      </button>
+    </div>
   );
 }
 
@@ -117,13 +103,13 @@ function LevelCell({
   label,
   value,
   tone,
-  control,
+  under,
 }: {
   tip: string;
   label: string;
   value: string;
   tone: "accent" | "good" | "bad";
-  control?: ReactNode;
+  under?: ReactNode;
 }) {
   const color =
     tone === "good"
@@ -133,23 +119,15 @@ function LevelCell({
         : "text-terminal-accent";
 
   return (
-    <div
-      className="rounded-lg border border-terminal-border bg-black/40 px-1.5 py-1.5 text-center"
-      onClick={(e) => {
-        if (control) e.stopPropagation();
-      }}
-    >
+    <div className="rounded-lg border border-terminal-border bg-black/40 px-1.5 py-1.5 text-center">
       <div className="flex items-center justify-center gap-1">
         <LevelInfo tip={tip} />
         <span className="text-[9px] tracking-wider text-terminal-muted">
           {label}
         </span>
       </div>
-      {control ? (
-        <div className="mt-1">{control}</div>
-      ) : (
-        <div className={`mt-1 text-xs font-bold ${color}`}>{value}</div>
-      )}
+      <div className={`mt-1 text-sm font-bold tabular-nums ${color}`}>{value}</div>
+      {under ? <div className="mt-1">{under}</div> : null}
     </div>
   );
 }
