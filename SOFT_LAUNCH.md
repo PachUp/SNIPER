@@ -7,11 +7,20 @@
 ### Auto news (every 3 days)
 GitHub Action [`.github/workflows/refresh-news.yml`](.github/workflows/refresh-news.yml) pulls FMP stock news into `data/news.json` and pushes — Netlify rebuilds.
 
-1. Repo **Settings → Secrets → Actions** → add `FMP_API_KEY` (same key as local `.env.local`)
-2. Optional: **Actions → Refresh news → Run workflow** to test once
-3. Cron: `0 15 */3 * *` (UTC)
+1. Repo **Settings → Secrets → Actions** → add `FMP_API_KEY` (same key as local `.env.local`) — already set if you used the agent setup
+2. **One-time:** push the workflow file with `workflow` scope (normal `deploy:live` skips it on purpose):
 
-Local: `npm run refresh:news` then `npm run deploy:live`
+```bash
+gh auth login -h github.com -s workflow,repo,gist,read:org
+git add .github/workflows/refresh-news.yml
+git commit -m "Add scheduled news refresh Action."
+git push origin main && git push fork main
+```
+
+3. Optional: **Actions → Refresh news → Run workflow** to test once
+4. Cron: `0 15 */3 * *` (UTC)
+
+Local anytime: `npm run refresh:news` then `npm run deploy:live`
 
 Git push to `main` on PachUp/SNIPER redeploys Netlify. From this repo:
 

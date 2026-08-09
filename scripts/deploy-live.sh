@@ -7,9 +7,11 @@ cd "$ROOT"
 bash "$ROOT/scripts/sync-runtime-to-seeds.sh"
 
 if [[ -n "$(git status --porcelain)" ]]; then
-  # Never stage secrets or local-only paths.
+  # Never stage secrets, local runtime, or workflow files.
+  # Workflow pushes need a GitHub token with `workflow` scope; OAuth apps
+  # used by gh/git often lack it and reject the whole push.
   git add -A
-  git reset -- .env .env.local .env.*.local data/.runtime 2>/dev/null || true
+  git reset -- .env .env.local .env.*.local data/.runtime .github/workflows 2>/dev/null || true
   if [[ -z "$(git diff --cached --name-only)" ]]; then
     echo "Nothing safe to commit."
     exit 0
