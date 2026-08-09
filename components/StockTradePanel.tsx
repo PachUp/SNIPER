@@ -8,7 +8,10 @@ import TickerLogo from "@/components/TickerLogo";
 import SinceEntryBadge from "@/components/SinceEntryBadge";
 import LevelInfo from "@/components/LevelInfo";
 
-/** Company + EP/TP/SL at a glance. Only “More” opens thesis / numbers. */
+/**
+ * Company + core business + EP/TP/SL — full text, no ellipsis.
+ * Only “More” opens thesis / numbers.
+ */
 export default function StockTradePanel({
   stock,
   sinceEntry,
@@ -31,26 +34,31 @@ export default function StockTradePanel({
   const { t } = useI18n();
   const px =
     livePrice != null && Number.isFinite(livePrice) ? livePrice : stock.price;
+  const business = (stock.business || "").replace(/\s+/g, " ").trim();
 
   return (
-    <div className="flex w-full flex-col gap-2 rounded-xl border border-terminal-border bg-terminal-panel p-2.5">
-      <div className="flex items-start gap-2">
-        <TickerLogo symbol={stock.ticker} size={28} />
+    <div className="flex w-full flex-col gap-3 rounded-xl border border-terminal-border bg-terminal-panel p-3.5 sm:p-4">
+      <div className="flex items-start gap-3">
+        <TickerLogo symbol={stock.ticker} size={36} />
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-sm font-bold tracking-wide">{stock.ticker}</span>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-base font-bold tracking-wide text-white">
+              {stock.ticker}
+            </span>
             <SinceEntryBadge
               value={sinceEntry ?? null}
               variant="compact"
               showEmpty={false}
             />
             {badge ? (
-              <span className="rounded bg-white/5 px-1 py-0.5 text-[8px] uppercase tracking-wider text-terminal-muted">
+              <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-terminal-muted">
                 {badge}
               </span>
             ) : null}
             {typeof weightPct === "number" ? (
-              <span className="text-[10px] text-terminal-muted">{weightPct}%</span>
+              <span className="text-xs font-medium text-terminal-accent">
+                {weightPct}%
+              </span>
             ) : null}
             {trailing ? (
               <span className="ms-auto flex shrink-0 items-center gap-0.5">
@@ -58,14 +66,20 @@ export default function StockTradePanel({
               </span>
             ) : null}
           </div>
-          <div className="truncate text-[11px] text-terminal-muted">
+          <div className="mt-0.5 text-sm leading-snug text-white/70">
             {stock.name}
-            {px > 0 ? ` · ${money(px)}` : ""}
+            {px > 0 ? (
+              <span className="text-white/45"> · {money(px)}</span>
+            ) : null}
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-1.5">
+      {business ? (
+        <p className="text-sm leading-relaxed text-white/90">{business}</p>
+      ) : null}
+
+      <div className="grid grid-cols-3 gap-2">
         <LevelCell
           tip={t("level.epTip")}
           label={t("level.ep")}
@@ -90,7 +104,7 @@ export default function StockTradePanel({
       <button
         type="button"
         onClick={onClick}
-        className="self-start text-[11px] font-medium text-terminal-accent hover:underline"
+        className="self-start text-sm font-medium text-terminal-accent hover:underline"
       >
         {t("panel.tapMore")}
       </button>
@@ -119,15 +133,17 @@ function LevelCell({
         : "text-terminal-accent";
 
   return (
-    <div className="rounded-lg border border-terminal-border bg-black/40 px-1.5 py-1.5 text-center">
+    <div className="rounded-lg border border-terminal-border bg-black/40 px-2 py-2.5 text-center">
       <div className="flex items-center justify-center gap-1">
         <LevelInfo tip={tip} />
-        <span className="text-[9px] tracking-wider text-terminal-muted">
+        <span className="text-[10px] tracking-wider text-terminal-muted">
           {label}
         </span>
       </div>
-      <div className={`mt-1 text-sm font-bold tabular-nums ${color}`}>{value}</div>
-      {under ? <div className="mt-1">{under}</div> : null}
+      <div className={`mt-1.5 text-base font-bold tabular-nums ${color}`}>
+        {value}
+      </div>
+      {under ? <div className="mt-1.5">{under}</div> : null}
     </div>
   );
 }
