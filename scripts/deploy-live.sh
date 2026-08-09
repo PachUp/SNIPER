@@ -24,4 +24,8 @@ fi
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
 git push -u origin "$branch"
+# Netlify may be linked to the collaborator fork — keep it in sync.
+if git remote get-url fork >/dev/null 2>&1; then
+  git push fork "$branch:$branch" || true
+fi
 echo "Pushed $branch → Netlify will rebuild https://sniper-proj.netlify.app/"
