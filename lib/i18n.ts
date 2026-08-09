@@ -71,7 +71,7 @@ const en: Dict = {
   "dash.sinceEntryNeed": "Set entry",
   "dash.live": "Live",
   "dash.tradePanels": "STOCK PANELS",
-  "panel.tapMore": "More info →",
+  "panel.tapMore": "Fundamentals →",
   "dash.addMine": "+ My stock",
   "dash.add": "Add",
   "dash.addHint":
@@ -137,7 +137,7 @@ const en: Dict = {
   "perf.vsEntry": "vs entry",
   "perf.return": "Return",
   "perf.tapRow": "Tap a symbol for thesis + numbers",
-  "reason.numbers": "Numbers",
+  "reason.numbers": "Fundamentals",
 
   // reasoning popup
   "reason.growth": "{v} R2R from entry",

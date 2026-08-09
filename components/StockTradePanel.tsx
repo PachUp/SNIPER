@@ -9,8 +9,8 @@ import SinceEntryBadge from "@/components/SinceEntryBadge";
 import LevelInfo from "@/components/LevelInfo";
 
 /**
- * Company + core business + EP/TP/SL — full text, no ellipsis.
- * Only “More” opens thesis / numbers.
+ * 5-second read: who it is + why own it.
+ * EP/TP/SL stay compact. “More” opens fundamentals.
  */
 export default function StockTradePanel({
   stock,
@@ -34,15 +34,17 @@ export default function StockTradePanel({
   const { t } = useI18n();
   const px =
     livePrice != null && Number.isFinite(livePrice) ? livePrice : stock.price;
-  const business = (stock.business || "").replace(/\s+/g, " ").trim();
+  const what = (stock.business || "").replace(/\s+/g, " ").trim();
+  const why = (stock.reasoning || "").replace(/\s+/g, " ").trim();
+  const numbers = (stock.numbers || "").replace(/\s+/g, " ").trim();
 
   return (
-    <div className="flex w-full flex-col gap-3 rounded-xl border border-terminal-border bg-terminal-panel p-3.5 sm:p-4">
-      <div className="flex items-start gap-3">
-        <TickerLogo symbol={stock.ticker} size={36} />
+    <div className="flex w-full flex-col gap-2.5 rounded-xl border border-terminal-border bg-terminal-panel p-3">
+      <div className="flex items-start gap-2.5">
+        <TickerLogo symbol={stock.ticker} size={32} />
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-base font-bold tracking-wide text-white">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="text-sm font-bold tracking-wide text-white">
               {stock.ticker}
             </span>
             <SinceEntryBadge
@@ -51,14 +53,12 @@ export default function StockTradePanel({
               showEmpty={false}
             />
             {badge ? (
-              <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-terminal-muted">
+              <span className="rounded bg-white/5 px-1 py-0.5 text-[9px] uppercase tracking-wider text-terminal-muted">
                 {badge}
               </span>
             ) : null}
             {typeof weightPct === "number" ? (
-              <span className="text-xs font-medium text-terminal-accent">
-                {weightPct}%
-              </span>
+              <span className="text-[11px] text-terminal-accent">{weightPct}%</span>
             ) : null}
             {trailing ? (
               <span className="ms-auto flex shrink-0 items-center gap-0.5">
@@ -66,20 +66,33 @@ export default function StockTradePanel({
               </span>
             ) : null}
           </div>
-          <div className="mt-0.5 text-sm leading-snug text-white/70">
+          <div className="mt-0.5 text-[13px] leading-snug text-white/65">
             {stock.name}
             {px > 0 ? (
-              <span className="text-white/45"> · {money(px)}</span>
+              <span className="text-white/40"> · {money(px)}</span>
             ) : null}
           </div>
         </div>
       </div>
 
-      {business ? (
-        <p className="text-sm leading-relaxed text-white/90">{business}</p>
-      ) : null}
+      {/* Stands out: what + why — full wrap, no ellipsis */}
+      <div className="space-y-1.5 rounded-lg border border-terminal-accent/20 bg-terminal-accent/[0.06] px-3 py-2.5">
+        {what ? (
+          <p className="text-[13px] leading-relaxed text-white/85">{what}</p>
+        ) : null}
+        {why ? (
+          <p className="text-[13px] font-medium leading-relaxed text-white">
+            {why}
+          </p>
+        ) : null}
+        {numbers ? (
+          <p className="text-[12px] leading-relaxed text-terminal-accent/90">
+            {numbers}
+          </p>
+        ) : null}
+      </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-1.5">
         <LevelCell
           tip={t("level.epTip")}
           label={t("level.ep")}
@@ -104,7 +117,7 @@ export default function StockTradePanel({
       <button
         type="button"
         onClick={onClick}
-        className="self-start text-sm font-medium text-terminal-accent hover:underline"
+        className="self-start text-[12px] font-medium text-terminal-accent hover:underline"
       >
         {t("panel.tapMore")}
       </button>
@@ -133,17 +146,15 @@ function LevelCell({
         : "text-terminal-accent";
 
   return (
-    <div className="rounded-lg border border-terminal-border bg-black/40 px-2 py-2.5 text-center">
+    <div className="rounded-lg border border-terminal-border bg-black/40 px-1.5 py-1.5 text-center">
       <div className="flex items-center justify-center gap-1">
         <LevelInfo tip={tip} />
-        <span className="text-[10px] tracking-wider text-terminal-muted">
+        <span className="text-[9px] tracking-wider text-terminal-muted">
           {label}
         </span>
       </div>
-      <div className={`mt-1.5 text-base font-bold tabular-nums ${color}`}>
-        {value}
-      </div>
-      {under ? <div className="mt-1.5">{under}</div> : null}
+      <div className={`mt-1 text-xs font-bold tabular-nums ${color}`}>{value}</div>
+      {under ? <div className="mt-1">{under}</div> : null}
     </div>
   );
 }
