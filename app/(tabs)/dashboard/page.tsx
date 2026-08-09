@@ -732,11 +732,8 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* Stock panels */}
+      {/* Stock panels — no compact symbol list */}
       <div>
-        <div className="mb-1.5 text-[10px] tracking-[0.2em] text-terminal-muted">
-          {t("dash.tradePanels")}
-        </div>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {holdings.map((h) => {
             const s =
