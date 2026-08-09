@@ -64,7 +64,7 @@ const en: Dict = {
   "dash.tapHint": "Tap any stock to learn why it was picked",
   "dash.ourPick": "Our pick",
   "dash.yourPick": "Your pick",
-  "dash.tradePanels": "YOUR STOCKS",
+  "dash.tradePanels": "HOLDINGS",
   "dash.latestNews": "RELATED NEWS FOR YOUR PORTFOLIO",
   "dash.noNews": "No news about your stocks right now.",
   "dash.enter": "Enter",
