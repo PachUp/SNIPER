@@ -1,11 +1,23 @@
 [
   {
+    "id": "auto-YSByb2t1IGluc2lk",
+    "tickers": [
+      "ROKU"
+    ],
+    "line": "A Roku Insider Sells Nearly 11,000 Shares for $1.6 Million as the Company Prepares to Be Acquired. Here's a Closer Look at the Transaction.",
+    "details": "The transaction involved 10,719 shares for ~$1.6 million on August 6, 2026. The sale reduced the insider's direct equity holdings in the company by 21%.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/08/a-roku-insider-sells-nearly-11-000-shares-for-usd1-6-million-as-the-company-prepares-to-be-acquired-here-s-a-closer-look-at-the-transaction/",
+    "timestamp": "2026-08-09T03:11:01.000Z"
+  },
+  {
     "id": "auto-Y2hpcG90bGUgbWV4",
     "tickers": [
       "DIS"
     ],
     "line": "Chipotle Mexican Grill vs. Walt Disney: Comparing Revenue Trends Between These Consumer Companies",
-    "details": "Walt Disney generates a larger baseline of total revenue in absolute terms, but Chipotle Mexican Grill demonstrates a more consistent upward trajectory in recent sales performance across the observed time frame. Chipotle has delivered continuous quarter-over-quarter revenue growth over recent reporting periods, while…",
+    "details": "Walt Disney generates a larger baseline of total revenue in absolute terms, but Chipotle Mexican Grill demonstrates a more consistent upward trajectory in recent sales performance across the observed time frame. Chipotle has delivered continuous quarter-over-quarter revenue growth over recent reporting periods, while Disney displays a more variable quarter-over-quarter pattern characterized by recurring periodic seasonal fluctuations.",
     "sentiment": "good",
     "source": "fool.com",
     "sourceUrl": "https://www.fool.com/coverage/charts/2026/08/08/chipotle-mexican-grill-vs-walt-disney-comparing-revenue-trends-between-these-consumer-companies/",
@@ -16,7 +28,7 @@
     "tickers": [
       "META"
     ],
-    "line": "IonQ vs. Meta Platforms: Comparing Revenue Trends Between a Cutting-Edge Quantum Computing Company and an Artificial In…",
+    "line": "IonQ vs. Meta Platforms: Comparing Revenue Trends Between a Cutting-Edge Quantum Computing Company and an Artificial Intelligence Giant",
     "details": "IonQ (IONQ +11.86%) earns the vast majority of its revenue by granting various enterprise clients access to its specialized quantum computing hardware, distributing these capabilities directly through its own proprietary channels and indirectly via integrations with leading third-party cloud service providers.",
     "sentiment": "good",
     "source": "fool.com",
@@ -28,7 +40,7 @@
     "tickers": [
       "NVDA"
     ],
-    "line": "Nvidia vs. Navitas Semiconductor: Here's What Their Revenue Trends Tell Investors About These Artificial Intelligence C…",
+    "line": "Nvidia vs. Navitas Semiconductor: Here's What Their Revenue Trends Tell Investors About These Artificial Intelligence Companies",
     "details": "Nvidia (NVDA +2.27%) primarily generates its revenue by designing advanced graphics processing units alongside comprehensive accelerated computing hardware systems for major enterprise clients operating across diverse global markets.",
     "sentiment": "good",
     "source": "fool.com",
@@ -64,7 +76,7 @@
     "tickers": [
       "WMT"
     ],
-    "line": "Home Depot Has Raised Its Dividend for 17 Consecutive Years and Reports Earnings Aug. 18. Is It the Smarter Dow Stock t…",
+    "line": "Home Depot Has Raised Its Dividend for 17 Consecutive Years and Reports Earnings Aug. 18. Is It the Smarter Dow Stock to Buy Over Walmart?",
     "details": "Despite dealing with cyclical pressures, Home Depot has paid a dividend in 157 straight quarters. Walmart's success in online shopping and advertising demonstrates how its business has evolved.",
     "sentiment": "good",
     "source": "fool.com",
@@ -76,8 +88,8 @@
     "tickers": [
       "MSFT"
     ],
-    "line": "MSFT Deadline: Rosen Law Firm Urges Microsoft Corporation (NASDAQ: MSFT) Stockholders with Losses in Excess of $100K to…",
-    "details": "NEW YORK--(BUSINESS WIRE)--Rosen Law Firm, a global investor rights law firm, reminds investors about a class action lawsuit on behalf of purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026. Microsoft describes itself as a “multinational technology conglomerate.”…",
+    "line": "MSFT Deadline: Rosen Law Firm Urges Microsoft Corporation (NASDAQ: MSFT) Stockholders with Losses in Excess of $100K to Contact the Firm for Information About Their Rights",
+    "details": "NEW YORK--(BUSINESS WIRE)--Rosen Law Firm, a global investor rights law firm, reminds investors about a class action lawsuit on behalf of purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026. Microsoft describes itself as a “multinational technology conglomerate.” For more information, submit a form, email attorney Phillip Kim, or give us a call at 866-767-3653.",
     "sentiment": "bad",
     "source": "businesswire.com",
     "sourceUrl": "https://www.businesswire.com/news/home/20260808027933/en/MSFT-Deadline-Rosen-Law-Firm-Urges-Microsoft-Corporation-NASDAQ-MSFT-Stockholders-with-Losses-in-Excess-of-100K-to-Contact-the-Firm-for-Information-About-Their-Rights/",
@@ -100,8 +112,8 @@
     "tickers": [
       "MSFT"
     ],
-    "line": "MSFT DEADLINE TUESDAY: ROSEN, A HIGHLY RECOGNIZED LAW FIRM, Encourages Microsoft Corporation Investors with Losses in E…",
-    "details": "New York, New York--(Newsfile Corp. - August 8, 2026) - WHY: Rosen Law Firm, a global investor rights law firm, reminds purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026, inclusive (the \"Class Period\"), of the important August 11, 2026 lead plaintiff deadline.…",
+    "line": "MSFT DEADLINE TUESDAY: ROSEN, A HIGHLY RECOGNIZED LAW FIRM, Encourages Microsoft Corporation Investors with Losses in Excess of $100K to Secure Counsel Before Important August 11 Deadline in Securities Class Action - MSFT",
+    "details": "New York, New York--(Newsfile Corp. - August 8, 2026) - WHY: Rosen Law Firm, a global investor rights law firm, reminds purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026, inclusive (the \"Class Period\"), of the important August 11, 2026 lead plaintiff deadline.",
     "sentiment": "bad",
     "source": "newsfilecorp.com",
     "sourceUrl": "https://www.newsfilecorp.com/release/308662/MSFT-DEADLINE-TUESDAY-ROSEN-A-HIGHLY-RECOGNIZED-LAW-FIRM-Encourages-Microsoft-Corporation-Investors-with-Losses-in-Excess-of-100K-to-Secure-Counsel-Before-Important-August-11-Deadline-in-Securities-Class-Action-MSFT",
@@ -137,7 +149,7 @@
       "T"
     ],
     "line": "August Buys: 4 IDEAL S&P 500 'Safer' Dividend Dogs",
-    "details": "Four S&P 500 'safer' dividend dogs - VICI, VZ, T, F - offer dividends from $1K invested exceeding share prices, supported by positive free cash flow. Analyst projections suggest top ten S&P 500 dividend dogs could deliver average net gains of 22% by August 2027, with volatility 38% below the market. Dividend dog strat…",
+    "details": "Four S&P 500 'safer' dividend dogs - VICI, VZ, T, F - offer dividends from $1K invested exceeding share prices, supported by positive free cash flow. Analyst projections suggest top ten S&P 500 dividend dogs could deliver average net gains of 22% by August 2027, with volatility 38% below the market. Dividend dog strategy favors contrarian buys on pullbacks; seven of the top ten are already at 'fair price' levels, with further downside offering opportunities.",
     "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4933775-august-buys-4-ideal-sp500-safer-dividend-dogs",
@@ -226,17 +238,5 @@
     "source": "fool.com",
     "sourceUrl": "https://www.fool.com/investing/2026/08/08/is-amd-stock-a-buy-on-the-dip-as-ai-revenue-surges/",
     "timestamp": "2026-08-08T17:30:00.000Z"
-  },
-  {
-    "id": "auto-amVmZiBiZXpvcycg",
-    "tickers": [
-      "AMZN"
-    ],
-    "line": "Jeff Bezos' Amazon Just Raised Its AI Spending to $220 Billion for 2026. Here's What That Capex Hike Means for Investor…",
-    "details": "Amazon increased its AI spending to $220 billion for 2026, up from $200 billion, largely due to rising memory costs. AI spending overall is rising at a shocking clip, by some estimates up 500% since 2022.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/08/jeff-bezos-amazon-just-raised-its-ai-spending-to-2/",
-    "timestamp": "2026-08-08T17:15:00.000Z"
   }
 ]

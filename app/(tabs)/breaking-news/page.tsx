@@ -167,37 +167,35 @@ export default function BreakingNewsPage() {
                     : "border-l-terminal-bad border border-terminal-bad/15 bg-terminal-bad/[0.06]"
                 }`}
               >
-                <div className="flex w-full min-w-0 items-center gap-2">
+                <div className="flex w-full min-w-0 items-start gap-2">
                   <span
-                    className={`w-9 shrink-0 text-[9px] font-bold uppercase tracking-wider ${
+                    className={`w-9 shrink-0 pt-0.5 text-[9px] font-bold uppercase tracking-wider ${
                       good ? "text-terminal-good" : "text-terminal-bad"
                     }`}
                   >
                     {good ? t("newsline.good") : t("newsline.bad")}
                   </span>
-                  <span className="min-w-0 flex-1 truncate whitespace-nowrap text-[13px] leading-none text-terminal-text">
+                  {/* Full sentence — wrap on phone, never ellipsis/truncate */}
+                  <span className="min-w-0 flex-1 whitespace-normal break-words text-[13px] leading-snug text-terminal-text">
                     {item.line}
                   </span>
                 </div>
                 <div className="flex flex-wrap items-center gap-1 ps-11">
                   <span className="text-[9px] uppercase tracking-wider text-terminal-muted">
-                    {t("news.mayAffect")}
+                    {t("news.yourHolding")}
                   </span>
                   {item.affects.map((sym) => (
                     <span
                       key={sym}
                       className="rounded bg-terminal-accent/15 px-1.5 py-0.5 text-[10px] font-bold text-terminal-accent"
-                      title={
-                        item.affectWhy[sym] === "holding"
-                          ? t("news.whyHolding")
-                          : item.affectWhy[sym] === "industry"
-                            ? t("news.whyIndustry")
-                            : t("news.whySector")
-                      }
+                      title={t("news.whyHolding")}
                     >
                       {sym}
                     </span>
                   ))}
+                  <span className="ms-auto text-[10px] text-terminal-muted">
+                    {t("newsline.details")}
+                  </span>
                 </div>
               </button>
             );

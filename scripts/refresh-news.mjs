@@ -62,12 +62,25 @@ function catalogTickers() {
   return [...set];
 }
 
-function oneLine(text, max = 110) {
-  const t = String(text || "")
+/** Collapse whitespace; never mid-cut with … — list shows the full sentence. */
+function oneLine(text) {
+  return String(text || "")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/** Details for the tap popup — keep readable length, prefer sentence end. */
+function detailLine(text, max = 480) {
+  const t = oneLine(text);
   if (t.length <= max) return t;
-  return `${t.slice(0, max - 1).trimEnd()}…`;
+  const slice = t.slice(0, max);
+  const lastStop = Math.max(
+    slice.lastIndexOf(". "),
+    slice.lastIndexOf("! "),
+    slice.lastIndexOf("? ")
+  );
+  if (lastStop > 120) return slice.slice(0, lastStop + 1).trim();
+  return `${slice.trimEnd()}…`;
 }
 
 function sentimentFrom(title, text) {
@@ -147,8 +160,8 @@ function mapRows(rows, catalog) {
     items.push({
       id: `auto-${Buffer.from(key).toString("base64url").slice(0, 16)}`,
       tickers,
-      line: oneLine(title, 120),
-      details: oneLine(text, 320),
+      line: oneLine(title),
+      details: detailLine(text || title),
       sentiment: sentimentFrom(title, text),
       source: sourceName(url, row.site),
       sourceUrl: url,

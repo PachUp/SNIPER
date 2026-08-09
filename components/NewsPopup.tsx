@@ -13,7 +13,7 @@ export default function NewsPopup({
   item: NewsItem;
   onClose: () => void;
   affects?: string[];
-  affectWhy?: Record<string, "holding" | "industry" | "sector">;
+  affectWhy?: Record<string, "holding" | "industry" | "sector" | string>;
 }) {
   const { t, ago } = useI18n();
   const good = item.sentiment === "good";
@@ -76,15 +76,10 @@ export default function NewsPopup({
             </div>
             <div className="mt-1.5 flex flex-wrap gap-1.5">
               {affects.map((ticker) => {
-                const why = affectWhy?.[ticker];
                 const whyLabel =
-                  why === "holding"
+                  affectWhy?.[ticker] === "holding" || !affectWhy?.[ticker]
                     ? t("news.whyHolding")
-                    : why === "industry"
-                      ? t("news.whyIndustry")
-                      : why === "sector"
-                        ? t("news.whySector")
-                        : "";
+                    : "";
                 return (
                   <span
                     key={ticker}
