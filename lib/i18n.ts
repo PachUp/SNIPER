@@ -102,7 +102,7 @@ const en: Dict = {
   "news.title": "Breaking News",
   "news.holdingTitle": "News for your holdings",
   "news.holdingSubtitle":
-    "Newest stories for your {n} stocks (up to 2 each). Dense SEC filings get a plain-English rewrite.",
+    "Newest gists for your {n} stocks (up to 2 each) — what happened, not clickbait.",
   "news.holdingEmptyHint": "Build a portfolio to see news that matters to you.",
   "news.holdingNeedBook":
     "No portfolio yet. Build one first — then we’ll explain news about your stocks in plain English.",

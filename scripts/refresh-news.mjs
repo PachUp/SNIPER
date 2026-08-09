@@ -2,7 +2,7 @@
 /**
  * Refresh data/news.json from Financial Modeling Prep stock news.
  * Picks the newest useful stories per ticker (max 2).
- * Rewrites only EDGAR/SEC filings or truly advanced jargon.
+ * List title = factual gist (never clickbait). EDGAR / heavy jargon simplified.
  *
  * Env:
  *   FMP_API_KEY  (required)
@@ -186,16 +186,13 @@ function mapTickerRows(ticker, rows, seen, names) {
     return new Date(b.published) - new Date(a.published);
   });
 
-  // Prefer non-clickbait; if we don't have enough, allow clickbait rewritten.
+  // Prefer non-clickbait sources; still allow them if we can pull a real gist.
   const preferred = scored.filter((r) => !isClickbait(r.title));
-  const pool = (preferred.length >= PER_TICKER ? preferred : scored).slice(
-    0,
-    PER_TICKER
-  );
+  const ordered = preferred.length >= PER_TICKER ? preferred : scored;
 
   const items = [];
-  for (const row of pool) {
-    seen.add(row.dedupe);
+  for (const row of ordered) {
+    if (items.length >= PER_TICKER) break;
     const sentiment = sentimentFrom(row.title, row.text);
     const presented = presentStory({
       ticker,
@@ -204,7 +201,11 @@ function mapTickerRows(ticker, rows, seen, names) {
       text: row.text,
       sentiment,
     });
-
+    // Skip if the gist still looks like a tease
+    if (isClickbait(presented.line) || /\?$/.test(presented.line.trim())) {
+      continue;
+    }
+    seen.add(row.dedupe);
     items.push({
       id: `auto-${Buffer.from(row.dedupe).toString("base64url").slice(0, 16)}`,
       tickers: [ticker],
