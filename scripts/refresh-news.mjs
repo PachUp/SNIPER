@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Refresh data/news.json from Financial Modeling Prep stock news.
- * Pulls the newest stories per catalog ticker (max 2 each) so every
- * holding can show recent, directly linked headlines.
+ * Picks the newest useful stories per ticker (max 2), then rewrites
+ * them into plain English for beginners.
  *
  * Env:
  *   FMP_API_KEY  (required)
@@ -10,6 +10,11 @@
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import {
+  rewriteForBeginners,
+  storyQuality,
+  isClickbait,
+} from "./plainNews.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, "..");
@@ -20,10 +25,10 @@ const FAMOUS = path.join(ROOT, "data", "famous_stocks.json");
 const SNIPERS = path.join(ROOT, "data", "snipers.json");
 
 const FMP_BASE = "https://financialmodelingprep.com/api/v3";
-/** Newest stories kept per ticker in the seed file. */
+/** Newest / best stories kept per ticker in the seed file. */
 const PER_TICKER = 2;
-/** Fetch a few extras per ticker in case of dups / thin text. */
-const FETCH_LIMIT = 6;
+/** Pull extras so we can skip clickbait and still fill 2 slots. */
+const FETCH_LIMIT = 12;
 const CONCURRENCY = 6;
 
 const BAD =
@@ -67,25 +72,28 @@ function catalogTickers() {
   return [...set];
 }
 
-/** Collapse whitespace; never mid-cut with … — list shows the full sentence. */
-function oneLine(text) {
-  return String(text || "")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-/** Details for the tap popup — keep readable length, prefer sentence end. */
-function detailLine(text, max = 480) {
-  const t = oneLine(text);
-  if (t.length <= max) return t;
-  const slice = t.slice(0, max);
-  const lastStop = Math.max(
-    slice.lastIndexOf(". "),
-    slice.lastIndexOf("! "),
-    slice.lastIndexOf("? ")
-  );
-  if (lastStop > 120) return slice.slice(0, lastStop + 1).trim();
-  return `${slice.trimEnd()}…`;
+function companyNames() {
+  const map = new Map();
+  try {
+    const stocks = JSON.parse(readFileSync(STOCKS, "utf8"));
+    for (const s of stocks) {
+      if (s.ticker && s.name) map.set(String(s.ticker).toUpperCase(), s.name);
+    }
+  } catch {
+    /* optional */
+  }
+  try {
+    const house = JSON.parse(readFileSync(SNIPERS, "utf8"));
+    for (const h of house.holdings || []) {
+      if (h.ticker && h.name) {
+        const t = String(h.ticker).toUpperCase();
+        if (!map.has(t)) map.set(t, h.name);
+      }
+    }
+  } catch {
+    /* optional */
+  }
+  return map;
 }
 
 function sentimentFrom(title, text) {
@@ -141,7 +149,7 @@ async function mapPool(items, limit, fn) {
 }
 
 async function fetchFmpNews(key, tickers) {
-  const batches = await mapPool(tickers, CONCURRENCY, async (ticker) => {
+  return mapPool(tickers, CONCURRENCY, async (ticker) => {
     try {
       const rows = await fetchTickerNews(key, ticker);
       return { ticker, rows };
@@ -150,60 +158,75 @@ async function fetchFmpNews(key, tickers) {
       return { ticker, rows: [] };
     }
   });
-  return batches;
 }
 
-function mapTickerRows(ticker, rows, seen) {
-  const items = [];
+function mapTickerRows(ticker, rows, seen, names) {
+  const name = names.get(ticker) || ticker;
+  const scored = [];
+
   for (const row of rows) {
     const title = String(row.title || "").trim();
     const url = String(row.url || "").trim();
     if (!title || !url) continue;
     const dedupe = `${title.toLowerCase()}|${url}`;
     if (seen.has(dedupe)) continue;
-    seen.add(dedupe);
-
-    // Prefer FMP symbol; fall back to the requested ticker so attribution sticks.
-    const sym = String(row.symbol || ticker)
-      .toUpperCase()
-      .trim();
-    const tickers = sym ? [sym] : [ticker];
 
     const text = String(row.text || row.title || "").trim();
     const published = row.publishedDate
       ? new Date(row.publishedDate).toISOString()
       : new Date().toISOString();
 
+    const quality = storyQuality(title, text, published);
+    scored.push({ title, url, text, published, dedupe, quality });
+  }
+
+  // Newest useful first: quality already folds recency; break ties by time.
+  scored.sort((a, b) => {
+    if (b.quality !== a.quality) return b.quality - a.quality;
+    return new Date(b.published) - new Date(a.published);
+  });
+
+  // Prefer non-clickbait; if we don't have enough, allow clickbait rewritten.
+  const preferred = scored.filter((r) => !isClickbait(r.title));
+  const pool = (preferred.length >= PER_TICKER ? preferred : scored).slice(
+    0,
+    PER_TICKER
+  );
+
+  const items = [];
+  for (const row of pool) {
+    seen.add(row.dedupe);
+    const sentiment = sentimentFrom(row.title, row.text);
+    const plain = rewriteForBeginners({
+      ticker,
+      name,
+      title: row.title,
+      text: row.text,
+      sentiment,
+    });
+
     items.push({
-      id: `auto-${Buffer.from(dedupe).toString("base64url").slice(0, 16)}`,
-      tickers,
-      line: oneLine(title),
-      details: detailLine(text || title),
-      sentiment: sentimentFrom(title, text),
-      source: sourceName(url, row.site),
-      sourceUrl: url,
-      timestamp: published,
+      id: `auto-${Buffer.from(row.dedupe).toString("base64url").slice(0, 16)}`,
+      tickers: [ticker],
+      line: plain.line,
+      details: plain.details,
+      sentiment,
+      source: sourceName(row.url, null),
+      sourceUrl: row.url,
+      timestamp: row.published,
     });
   }
 
-  items.sort(
-    (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
-  );
-  return items.slice(0, PER_TICKER);
+  return items;
 }
 
-function buildFeed(tickerBatches) {
+function buildFeed(tickerBatches, names) {
   const seen = new Set();
   const byId = new Map();
 
   for (const { ticker, rows } of tickerBatches) {
-    const picked = mapTickerRows(ticker, rows, seen);
+    const picked = mapTickerRows(ticker.toUpperCase(), rows, seen, names);
     for (const item of picked) {
-      // Ensure this holding ticker is on the story even if FMP tagged a peer.
-      const t = ticker.toUpperCase();
-      if (!item.tickers.map((x) => x.toUpperCase()).includes(t)) {
-        item.tickers = [...item.tickers, t];
-      }
       const existing = byId.get(item.id);
       if (existing) {
         for (const sym of item.tickers) {
@@ -231,11 +254,14 @@ async function main() {
   }
 
   const catalog = catalogTickers();
-  console.log(`Catalog tickers: ${catalog.length} (max ${PER_TICKER} stories each)`);
+  const names = companyNames();
+  console.log(
+    `Catalog tickers: ${catalog.length} (max ${PER_TICKER} plain-English stories each)`
+  );
   const batches = await fetchFmpNews(key, catalog);
   const fetched = batches.reduce((n, b) => n + b.rows.length, 0);
   console.log(`FMP rows fetched: ${fetched}`);
-  const news = buildFeed(batches);
+  const news = buildFeed(batches, names);
   if (news.length < 3) {
     console.error("Too few news items mapped — aborting to avoid wiping feed");
     process.exit(1);
@@ -251,8 +277,9 @@ async function main() {
     for (const t of item.tickers) covered.add(t.toUpperCase());
   }
   console.log(
-    `Wrote ${news.length} headlines covering ${covered.size} tickers → data/news.json`
+    `Wrote ${news.length} beginner headlines covering ${covered.size} tickers → data/news.json`
   );
+  console.log("Sample:", news[0]?.line);
 }
 
 main().catch((err) => {
