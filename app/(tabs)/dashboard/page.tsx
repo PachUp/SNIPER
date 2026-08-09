@@ -28,12 +28,12 @@ import {
   MAX_PERSONAL_ADDS,
   type ReplaceRecord,
 } from "@/lib/clientPortfolio";
-import { money, levelsWithUserEntry } from "@/lib/format";
+import { levelsWithUserEntry } from "@/lib/format";
 import { stockFromHolding } from "@/lib/builder/map";
 import PerformanceChart from "@/components/PerformanceChart";
 import ReasoningPopup from "@/components/ReasoningPopup";
-import CompactStockRow from "@/components/CompactStockRow";
 import StockTradePanel from "@/components/StockTradePanel";
+import PortfolioWeightPie from "@/components/PortfolioWeightPie";
 import EditableEp from "@/components/EntryPriceControl";
 import SwitchArrow from "@/components/SwitchArrow";
 import { useI18n } from "@/components/LanguageProvider";
@@ -585,6 +585,27 @@ export default function DashboardPage() {
 
   const canAdd = added.length < MAX_PERSONAL_ADDS;
 
+  const weightSlices = useMemo(
+    () =>
+      holdings
+        .map((h) => {
+          const s =
+            stockMap.get(h.current) ?? stockFromHolding(h.holding, stockMap);
+          if (!s) return null;
+          return {
+            ticker: s.ticker,
+            sector: s.sector || "Other",
+            industry: s.industry,
+            weightPct:
+              typeof h.weightPct === "number" && h.weightPct > 0
+                ? h.weightPct
+                : 0,
+          };
+        })
+        .filter((x): x is NonNullable<typeof x> => x != null),
+    [holdings, stockMap]
+  );
+
   return (
     <div className="flex flex-col gap-3 pb-4">
       <div className="flex items-center justify-between gap-2">
@@ -600,15 +621,28 @@ export default function DashboardPage() {
             · {t("perf.tapRow")}
           </p>
         </div>
-        <button
-          onClick={() => {
-            clearPortfolio();
-            window.location.href = "/build";
-          }}
-          className="shrink-0 rounded-md border border-terminal-border px-2 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
-        >
-          {t("dash.startOver")}
-        </button>
+        <div className="flex shrink-0 items-center gap-1.5">
+          <span className="hidden text-[10px] text-terminal-muted sm:inline">
+            {t("dash.addLeft", { n: MAX_PERSONAL_ADDS - added.length })}
+          </span>
+          <button
+            type="button"
+            disabled={!canAdd}
+            onClick={() => setAddOpen((v) => !v)}
+            className="rounded-md border border-terminal-orange/40 bg-terminal-orange/10 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-terminal-orange disabled:opacity-40"
+          >
+            {t("dash.addMine")}
+          </button>
+          <button
+            onClick={() => {
+              clearPortfolio();
+              window.location.href = "/build";
+            }}
+            className="rounded-md border border-terminal-border px-2 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
+          >
+            {t("dash.startOver")}
+          </button>
+        </div>
       </div>
 
       {storageWarn ? (
@@ -617,182 +651,88 @@ export default function DashboardPage() {
         </div>
       ) : null}
 
-      {/* Top: performance (left) + stock list (right) */}
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        <div className="min-h-[200px] sm:min-h-[240px]">
-          <PerformanceChart
-            compact
-            liveReturnPct={liveReturnPct}
-            positions={chartPositions}
-            loading={quotesLoading}
-            refreshKey={quoteNonce}
-            subtitle={
-              hasAnyEntry ? t("perf.sinceEntry") : t("perf.sinceEntryEmpty")
-            }
+      {replaceNote || canRevertAdd ? (
+        <div className="flex flex-wrap items-center justify-between gap-1 rounded border border-terminal-border bg-terminal-panel px-2 py-1.5">
+          <p className="line-clamp-2 text-[10px] text-white/80">
+            {replaceNote
+              ? replaceNote
+              : replaceStack[replaceStack.length - 1]?.droppedCurrent
+                ? t("dash.replaced", {
+                    added:
+                      replaceStack[replaceStack.length - 1]?.addedTicker ?? "",
+                    dropped:
+                      replaceStack[replaceStack.length - 1]?.droppedCurrent ??
+                      "",
+                  })
+                : t("dash.addedOnly", {
+                    added:
+                      replaceStack[replaceStack.length - 1]?.addedTicker ?? "",
+                  })}
+          </p>
+          {canRevertAdd ? (
+            <button
+              type="button"
+              onClick={handleRevertLastAdd}
+              className="text-[9px] font-bold uppercase tracking-wider text-white/70"
+            >
+              {t("dash.revert")}
+            </button>
+          ) : null}
+        </div>
+      ) : null}
+
+      {addOpen && canAdd ? (
+        <div className="rounded-lg border border-terminal-border bg-terminal-panel p-2">
+          <input
+            value={addQuery}
+            onChange={(e) => setAddQuery(e.target.value)}
+            placeholder={t("dash.addSearch")}
+            className="mb-1 w-full rounded border border-terminal-border bg-terminal-bg px-2 py-1 text-xs outline-none focus:border-terminal-orange"
           />
-        </div>
-
-        <div className="flex max-h-[280px] min-h-[200px] flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2 sm:max-h-none sm:min-h-[240px]">
-          <div className="mb-1.5 flex shrink-0 flex-wrap items-center justify-between gap-1">
-            <span className="text-[10px] tracking-[0.2em] text-terminal-muted">
-              {t("dash.yourStocks")}
-            </span>
-            <div className="flex items-center gap-1.5">
-              <span className="text-[10px] text-terminal-muted">
-                {t("dash.addLeft", {
-                  n: MAX_PERSONAL_ADDS - added.length,
-                })}
-              </span>
+          <div className="flex max-h-28 flex-col gap-0.5 overflow-y-auto">
+            {fvHits.map((hit) => (
               <button
+                key={hit.ticker}
                 type="button"
-                disabled={!canAdd}
-                onClick={() => setAddOpen((v) => !v)}
-                className="rounded-md border border-terminal-orange/40 bg-terminal-orange/10 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-terminal-orange disabled:opacity-40"
+                disabled={addingTicker === hit.ticker}
+                onClick={() => handleAddHit(hit)}
+                className="flex items-center justify-between rounded px-1.5 py-1 text-left text-xs hover:bg-black/50 disabled:opacity-50"
               >
-                {t("dash.addMine")}
+                <span className="truncate">
+                  <span className="font-bold">{hit.ticker}</span>
+                  <span className="ms-1 text-terminal-muted">
+                    {hit.name !== hit.ticker ? hit.name : hit.industry}
+                  </span>
+                </span>
+                <span className="shrink-0 text-[9px] text-terminal-orange">
+                  {t("dash.add")}
+                </span>
               </button>
-            </div>
-          </div>
-
-          {replaceNote || canRevertAdd ? (
-            <div className="mb-1.5 flex shrink-0 flex-wrap items-center justify-between gap-1 rounded border border-terminal-border bg-terminal-bg px-2 py-1">
-              <p className="line-clamp-1 text-[10px] text-white/80">
-                {replaceNote
-                  ? replaceNote
-                  : replaceStack[replaceStack.length - 1]?.droppedCurrent
-                    ? t("dash.replaced", {
-                        added:
-                          replaceStack[replaceStack.length - 1]?.addedTicker ??
-                          "",
-                        dropped:
-                          replaceStack[replaceStack.length - 1]
-                            ?.droppedCurrent ?? "",
-                      })
-                    : t("dash.addedOnly", {
-                        added:
-                          replaceStack[replaceStack.length - 1]?.addedTicker ??
-                          "",
-                      })}
+            ))}
+            {!fvSearching && fvHits.length === 0 ? (
+              <p className="text-[10px] text-terminal-muted">
+                {addError || t("dash.addNone")}
               </p>
-              {canRevertAdd ? (
-                <button
-                  type="button"
-                  onClick={handleRevertLastAdd}
-                  className="text-[9px] font-bold uppercase tracking-wider text-white/70"
-                >
-                  {t("dash.revert")}
-                </button>
-              ) : null}
-            </div>
-          ) : null}
-
-          {addOpen && canAdd ? (
-            <div className="mb-1.5 shrink-0 rounded-lg border border-terminal-border bg-terminal-bg p-2">
-              <input
-                value={addQuery}
-                onChange={(e) => setAddQuery(e.target.value)}
-                placeholder={t("dash.addSearch")}
-                className="mb-1 w-full rounded border border-terminal-border bg-terminal-panel px-2 py-1 text-xs outline-none focus:border-terminal-orange"
-              />
-              <div className="flex max-h-24 flex-col gap-0.5 overflow-y-auto">
-                {fvHits.map((hit) => (
-                  <button
-                    key={hit.ticker}
-                    type="button"
-                    disabled={addingTicker === hit.ticker}
-                    onClick={() => handleAddHit(hit)}
-                    className="flex items-center justify-between rounded px-1.5 py-1 text-left text-xs hover:bg-terminal-panel disabled:opacity-50"
-                  >
-                    <span className="truncate">
-                      <span className="font-bold">{hit.ticker}</span>
-                      <span className="ms-1 text-terminal-muted">
-                        {hit.name !== hit.ticker ? hit.name : hit.industry}
-                      </span>
-                    </span>
-                    <span className="shrink-0 text-[9px] text-terminal-orange">
-                      {t("dash.add")}
-                    </span>
-                  </button>
-                ))}
-                {!fvSearching && fvHits.length === 0 ? (
-                  <p className="text-[10px] text-terminal-muted">
-                    {addError || t("dash.addNone")}
-                  </p>
-                ) : null}
-              </div>
-            </div>
-          ) : null}
-
-          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto">
-            {holdings.map((h) => {
-              const s =
-                stockMap.get(h.current) ??
-                stockFromHolding(h.holding, stockMap);
-              if (!s) return null;
-              const switchPool = poolFor(h.original);
-              const userEp = entries[s.ticker] ?? null;
-              const livePx = liveQuotes[s.ticker.toUpperCase()];
-              const sinceEntry =
-                userEp != null && livePx != null
-                  ? returnSinceEntryPct(userEp, livePx)
-                  : null;
-              const isSwitched =
-                h.source === "ai" &&
-                h.current.toUpperCase() !== h.original.toUpperCase();
-
-              return (
-                <div
-                  key={`${h.original}-${h.current}`}
-                  className="flex items-center gap-0.5"
-                >
-                  <CompactStockRow
-                    ticker={s.ticker}
-                    name={s.name}
-                    sinceEntry={sinceEntry}
-                    weightPct={h.weightPct}
-                    badge={
-                      h.source === "ai" ? t("dash.ourPick") : t("dash.yourPick")
-                    }
-                    onClick={() =>
-                      setPopup({
-                        ...s,
-                        levels:
-                          levelsWithUserEntry(s.levels, userEp) ?? s.levels,
-                        price: livePx ?? s.price,
-                      })
-                    }
-                    className="min-w-0 flex-1"
-                  />
-                  {h.source === "ai" && switchPool.length > 1 ? (
-                    <div
-                      className="shrink-0"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <SwitchArrow
-                        pool={switchPool}
-                        currentTicker={h.current}
-                        onSwitch={(next) => handleSwitch(h.original, next)}
-                      />
-                    </div>
-                  ) : null}
-                  {isSwitched ? (
-                    <button
-                      type="button"
-                      onClick={() => handleRevertSwitch(h.original)}
-                      className="shrink-0 px-0.5 text-[8px] uppercase text-white/50"
-                      title={t("dash.revertSwitch")}
-                    >
-                      ↺
-                    </button>
-                  ) : null}
-                </div>
-              );
-            })}
+            ) : null}
           </div>
         </div>
+      ) : null}
+
+      {/* Top: performance */}
+      <div className="min-h-[220px] sm:min-h-[260px]">
+        <PerformanceChart
+          compact
+          liveReturnPct={liveReturnPct}
+          positions={chartPositions}
+          loading={quotesLoading}
+          refreshKey={quoteNonce}
+          subtitle={
+            hasAnyEntry ? t("perf.sinceEntry") : t("perf.sinceEntryEmpty")
+          }
+        />
       </div>
 
-      {/* Below: trade panels with EP / TP / SL + short thesis */}
+      {/* Stock panels */}
       <div>
         <div className="mb-1.5 text-[10px] tracking-[0.2em] text-terminal-muted">
           {t("dash.tradePanels")}
@@ -866,6 +806,9 @@ export default function DashboardPage() {
           })}
         </div>
       </div>
+
+      {/* Under panels: weight pie by sector → industries */}
+      <PortfolioWeightPie holdings={weightSlices} />
 
       {popup && (
         <ReasoningPopup
