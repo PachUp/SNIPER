@@ -13,13 +13,24 @@ fi
 
 bash scripts/sync-runtime-to-seeds.sh >/dev/null 2>&1 || true
 
-if [[ -z "$(git status --porcelain)" ]]; then
+# Untracked workflow files alone are not a deploy (need workflow OAuth scope).
+dirty="$(
+  git status --porcelain \
+    | grep -Ev '^\?\? \.github(/workflows(/.*)?)?$' \
+    | grep -Ev '^\?\? \.github/workflows/' \
+    || true
+)"
+if [[ -z "$dirty" ]]; then
   echo '{}'
   exit 0
 fi
 
 if bash scripts/deploy-live.sh >/tmp/sniper-deploy-live.log 2>&1; then
-  printf '%s\n' '{"followup_message":"Deployed to https://sniper-proj.netlify.app/ — Netlify is rebuilding."}'
+  if grep -q 'DEPLOY_PUSHED' /tmp/sniper-deploy-live.log 2>/dev/null; then
+    printf '%s\n' '{"followup_message":"Deployed to https://sniper-proj.netlify.app/ — Netlify is rebuilding."}'
+  else
+    echo '{}'
+  fi
 else
   err="$(tail -n 3 /tmp/sniper-deploy-live.log 2>/dev/null | tr '\n' ' ' | sed 's/"/\\"/g')"
   printf '%s\n' "{\"followup_message\":\"Live deploy failed: ${err}\"}"
