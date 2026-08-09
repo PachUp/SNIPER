@@ -9,7 +9,7 @@ const en: Dict = {
 
   // nav
   "nav.dashboard": "DASHBOARD",
-  "nav.news": "BREAKING NEWS",
+  "nav.news": "YOUR NEWS",
   "nav.ideas": "IDEAS",
   "nav.snipers": "SNIPER",
   "nav.admin": "ADMIN",
@@ -98,8 +98,20 @@ const en: Dict = {
   "dash.company": "Company",
   "dash.whyOwn": "Why own it",
 
-  // news
+  // news (holding-related)
   "news.title": "Breaking News",
+  "news.holdingTitle": "News for your holdings",
+  "news.holdingSubtitle":
+    "Only stories that may hit your {n} names — by ticker, industry, or sector.",
+  "news.holdingEmptyHint": "Build a portfolio to see news that matters to you.",
+  "news.holdingNeedBook":
+    "No portfolio yet. Build one first — then we’ll show news that may affect your stocks.",
+  "news.holdingNone":
+    "No holding-related headlines right now. Check back after the next market move.",
+  "news.mayAffect": "May affect",
+  "news.whyHolding": "in your book",
+  "news.whyIndustry": "same industry",
+  "news.whySector": "same sector",
   "news.subtitle":
     "One-line market gists — green good, red bad. Tap any line for the edge and numbers.",
   "filter.all": "All",
@@ -108,7 +120,7 @@ const en: Dict = {
   "newsline.good": "GOOD",
   "newsline.bad": "BAD",
   "newsline.details": "More →",
-  "popup.companies": "Companies:",
+  "popup.companies": "Story names:",
   "popup.edge": "Why it matters",
   "popup.readFull": "Read full story →",
   "popup.notAdvice": "General information, not investment advice.",

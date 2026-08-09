@@ -7,9 +7,13 @@ import { useI18n } from "@/components/LanguageProvider";
 export default function NewsPopup({
   item,
   onClose,
+  affects,
+  affectWhy,
 }: {
   item: NewsItem;
   onClose: () => void;
+  affects?: string[];
+  affectWhy?: Record<string, "holding" | "industry" | "sector">;
 }) {
   const { t, ago } = useI18n();
   const good = item.sentiment === "good";
@@ -24,11 +28,11 @@ export default function NewsPopup({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 sm:items-center sm:p-4 safe-pb"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-md rounded-xl border border-terminal-border bg-terminal-panel p-6 shadow-2xl"
+        className="max-h-[88dvh] w-full max-w-md overflow-y-auto rounded-xl border border-terminal-border bg-terminal-panel p-6 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
@@ -62,6 +66,41 @@ export default function NewsPopup({
             <p className="mt-1.5 text-sm leading-relaxed text-terminal-muted">
               {item.details}
             </p>
+          </div>
+        ) : null}
+
+        {affects && affects.length > 0 ? (
+          <div className="mt-4 rounded-md border border-terminal-accent/30 bg-terminal-accent/10 px-3 py-2.5">
+            <div className="text-[9px] font-medium uppercase tracking-[0.18em] text-terminal-accent">
+              {t("news.mayAffect")}
+            </div>
+            <div className="mt-1.5 flex flex-wrap gap-1.5">
+              {affects.map((ticker) => {
+                const why = affectWhy?.[ticker];
+                const whyLabel =
+                  why === "holding"
+                    ? t("news.whyHolding")
+                    : why === "industry"
+                      ? t("news.whyIndustry")
+                      : why === "sector"
+                        ? t("news.whySector")
+                        : "";
+                return (
+                  <span
+                    key={ticker}
+                    className="rounded bg-black/40 px-2 py-1 text-[11px] font-bold text-terminal-accent"
+                    title={whyLabel}
+                  >
+                    {ticker}
+                    {whyLabel ? (
+                      <span className="ms-1 font-normal text-white/50">
+                        · {whyLabel}
+                      </span>
+                    ) : null}
+                  </span>
+                );
+              })}
+            </div>
           </div>
         ) : null}
 
