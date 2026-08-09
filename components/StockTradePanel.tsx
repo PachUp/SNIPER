@@ -21,6 +21,8 @@ export default function StockTradePanel({
   onClick,
   buyControl,
   trailing,
+  epLabel,
+  epTip,
 }: {
   stock: Stock;
   sinceEntry?: number | null;
@@ -30,6 +32,9 @@ export default function StockTradePanel({
   onClick: () => void;
   buyControl?: ReactNode;
   trailing?: ReactNode;
+  /** Override EP label/tip (e.g. house book: already bought). */
+  epLabel?: string;
+  epTip?: string;
 }) {
   const { t } = useI18n();
   const px =
@@ -94,8 +99,8 @@ export default function StockTradePanel({
 
       <div className="grid grid-cols-3 gap-1.5">
         <LevelCell
-          tip={t("level.epTip")}
-          label={t("level.ep")}
+          tip={epTip ?? t("level.epTip")}
+          label={epLabel ?? t("level.ep")}
           value={money(stock.levels.ep)}
           tone="accent"
           under={buyControl}

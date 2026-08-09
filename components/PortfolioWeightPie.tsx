@@ -64,11 +64,20 @@ function normalizeWeights(rows: WeightSlice[]): WeightSlice[] {
 
 export default function PortfolioWeightPie({
   holdings,
+  title,
+  hint,
+  empty,
 }: {
   holdings: WeightSlice[];
+  title?: string;
+  hint?: string;
+  empty?: string;
 }) {
   const { t } = useI18n();
   const [activeSector, setActiveSector] = useState<string | null>(null);
+  const heading = title ?? t("dash.allocTitle");
+  const sub = hint ?? t("dash.allocHint");
+  const emptyMsg = empty ?? t("dash.allocEmpty");
 
   const sectors = useMemo<SectorRow[]>(() => {
     const norm = normalizeWeights(holdings);
@@ -126,7 +135,7 @@ export default function PortfolioWeightPie({
   if (!sectors.length) {
     return (
       <div className="rounded-xl border border-terminal-border bg-terminal-panel p-4 text-sm text-terminal-muted">
-        {t("dash.allocEmpty")}
+        {emptyMsg}
       </div>
     );
   }
@@ -134,9 +143,9 @@ export default function PortfolioWeightPie({
   return (
     <div className="rounded-xl border border-terminal-border bg-terminal-panel p-3 sm:p-4">
       <div className="mb-2 text-[10px] tracking-[0.2em] text-terminal-muted">
-        {t("dash.allocTitle")}
+        {heading}
       </div>
-      <p className="mb-3 text-[11px] text-terminal-muted">{t("dash.allocHint")}</p>
+      <p className="mb-3 text-[11px] text-terminal-muted">{sub}</p>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="h-[220px] w-full">

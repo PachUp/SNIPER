@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { HousePortfolio, Stock } from "@/lib/types";
 import PerformanceChart from "@/components/PerformanceChart";
 import ReasoningPopup from "@/components/ReasoningPopup";
-import CompactStockRow from "@/components/CompactStockRow";
 import StockTradePanel from "@/components/StockTradePanel";
+import PortfolioWeightPie from "@/components/PortfolioWeightPie";
 import { useI18n } from "@/components/LanguageProvider";
 import {
   fetchLiveQuotesClient,
@@ -108,6 +108,18 @@ export default function SnipersPage() {
     [house]
   );
 
+  const weightSlices = useMemo(
+    () =>
+      (house?.holdings ?? []).map((h) => ({
+        ticker: h.ticker,
+        sector: h.sector || "Other",
+        industry: h.industry,
+        weightPct:
+          typeof h.weightPct === "number" && h.weightPct > 0 ? h.weightPct : 0,
+      })),
+    [house]
+  );
+
   if (loading) {
     return (
       <div className="flex flex-1 items-center justify-center py-16 text-terminal-muted">
@@ -137,55 +149,22 @@ export default function SnipersPage() {
         <h1 className="truncate text-base font-bold tracking-wide sm:text-lg">
           {house.name}
         </h1>
-        <p className="truncate text-[10px] text-terminal-muted">
+        <p className="text-[10px] text-terminal-muted">
           {t("snipers.subtitle", {
             date: new Date(house.updated).toLocaleDateString(),
-          })}{" "}
-          · {t("perf.tapRow")}
+          })}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        <div className="min-h-[200px] sm:min-h-[240px]">
-          <PerformanceChart
-            compact
-            liveReturnPct={liveReturnPct}
-            positions={chartPositions}
-            loading={quotesLoading}
-            title={t("perf.house")}
-            subtitle={t("perf.houseLive")}
-          />
-        </div>
-
-        <div className="flex max-h-[280px] min-h-[200px] flex-col rounded-xl border border-terminal-border bg-terminal-panel p-2 sm:max-h-none sm:min-h-[240px]">
-          <div className="mb-1.5 shrink-0 text-[10px] tracking-[0.2em] text-terminal-muted">
-            {t("snipers.holdings")}
-          </div>
-          <div className="grid min-h-0 flex-1 auto-rows-min grid-cols-1 content-start gap-1 overflow-y-auto">
-            {house.holdings.map((h) => {
-              const livePx = liveQuotes[h.ticker.toUpperCase()];
-              const sinceEntry =
-                h.levels?.ep > 0 && livePx != null
-                  ? returnSinceEntryPct(h.levels.ep, livePx)
-                  : null;
-              return (
-                <CompactStockRow
-                  key={h.ticker}
-                  ticker={h.ticker}
-                  name={h.name}
-                  sinceEntry={sinceEntry}
-                  weightPct={h.weightPct}
-                  onClick={() =>
-                    setPopup({
-                      ...holdingToStock(h),
-                      price: livePx ?? h.levels.ep,
-                    })
-                  }
-                />
-              );
-            })}
-          </div>
-        </div>
+      <div className="min-h-[220px] sm:min-h-[260px]">
+        <PerformanceChart
+          compact
+          liveReturnPct={liveReturnPct}
+          positions={chartPositions}
+          loading={quotesLoading}
+          title={t("perf.house")}
+          subtitle={t("perf.houseLive")}
+        />
       </div>
 
       <div>
@@ -210,6 +189,8 @@ export default function SnipersPage() {
                 sinceEntry={sinceEntry}
                 weightPct={h.weightPct}
                 livePrice={livePx}
+                epLabel={t("level.houseEp")}
+                epTip={t("level.houseEpTip")}
                 onClick={() => setPopup(stock)}
               />
             );
@@ -217,12 +198,21 @@ export default function SnipersPage() {
         </div>
       </div>
 
+      <PortfolioWeightPie
+        holdings={weightSlices}
+        title={t("snipers.allocTitle")}
+        hint={t("snipers.allocHint")}
+        empty={t("snipers.allocEmpty")}
+      />
+
       {popup ? (
         <ReasoningPopup
           stock={popup}
           onClose={() => setPopup(null)}
           livePrice={popupLive}
           sinceEntry={popupSince}
+          epLabel={t("level.houseEp")}
+          epTip={t("level.houseEpTip")}
         />
       ) : null}
     </div>

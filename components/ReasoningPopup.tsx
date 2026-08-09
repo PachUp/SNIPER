@@ -15,12 +15,16 @@ export default function ReasoningPopup({
   livePrice,
   sinceEntry,
   extras,
+  epLabel,
+  epTip,
 }: {
   stock: Stock;
   onClose: () => void;
   livePrice?: number | null;
   sinceEntry?: number | null;
   extras?: ReactNode;
+  epLabel?: string;
+  epTip?: string;
 }) {
   const { t, sector, risk } = useI18n();
   const [showPl, setShowPl] = useState(false);
@@ -124,8 +128,8 @@ export default function ReasoningPopup({
 
         <div className="mt-4 grid grid-cols-3 gap-2 text-center">
           <Level
-            tip={t("level.epTip")}
-            label={t("level.ep")}
+            tip={epTip ?? t("level.epTip")}
+            label={epLabel ?? t("level.ep")}
             value={money(stock.levels.ep)}
             tone="accent"
           />

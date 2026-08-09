@@ -129,11 +129,16 @@ const en: Dict = {
   "ideas.title": "Ideas",
   "ideas.subtitle": "Handpicked stock ideas from our team, explained simply",
 
-  // snipers
-  "snipers.subtitle": "Our own recommended portfolio · updated {date}",
+  // snipers (house book — not the user's dashboard)
+  "snipers.subtitle":
+    "SNIPER house book — buys already filled · updated {date}",
   "snipers.noHouse": "No house portfolio published.",
   "snipers.holdings": "HOLDINGS",
-  "snipers.tradePanels": "HOUSE STOCK PANELS",
+  "snipers.tradePanels": "HOUSE POSITIONS",
+  "snipers.allocTitle": "HOUSE WEIGHT BY SECTOR",
+  "snipers.allocHint":
+    "Pie = sector weight in the house book. Tap a sector to see industries inside it.",
+  "snipers.allocEmpty": "No house holdings to chart yet.",
   "perf.house": "HOUSE PERFORMANCE",
 
   // performance chart
@@ -219,6 +224,9 @@ const en: Dict = {
   "level.sl": "Safety exit",
   "level.epTip":
     "Buy around — the planned entry price. On your book, tap Buy to set what you actually paid.",
+  "level.houseEp": "Bought at",
+  "level.houseEpTip":
+    "House entry — the price SNIPER already bought this position at. This is not your personal book.",
   "level.tpTip":
     "Sell target — where the thesis would take profit if the move plays out.",
   "level.slTip":
