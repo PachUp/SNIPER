@@ -48,6 +48,18 @@
     "timestamp": "2026-08-09T01:41:01.000Z"
   },
   {
+    "id": "auto-cmVhbHR5IGluY29t",
+    "tickers": [
+      "O"
+    ],
+    "line": "Realty Income Q2 Earnings Call Highlights",
+    "details": "Realty Income NYSE: O raised its full-year 2026 outlook after reporting second-quarter adjusted funds from operations, or AFFO, per share growth of 3.8% to $1.09, supported by investment activity across industrial properties, Europe, private-capital vehicles and data centers.",
+    "sentiment": "good",
+    "source": "marketbeat.com",
+    "sourceUrl": "https://www.marketbeat.com/instant-alerts/realty-income-q2-earnings-call-highlights-2026-08-08/",
+    "timestamp": "2026-08-09T01:04:48.000Z"
+  },
+  {
     "id": "auto-aG93IG11Y2ggZG8g",
     "tickers": [
       "PG"
@@ -74,7 +86,7 @@
   {
     "id": "auto-aG9tZSBkZXBvdCBo",
     "tickers": [
-      "WMT"
+      "HD"
     ],
     "line": "Home Depot Has Raised Its Dividend for 17 Consecutive Years and Reports Earnings Aug. 18. Is It the Smarter Dow Stock to Buy Over Walmart?",
     "details": "Despite dealing with cyclical pressures, Home Depot has paid a dividend in 157 straight quarters. Walmart's success in online shopping and advertising demonstrates how its business has evolved.",
@@ -96,6 +108,30 @@
     "timestamp": "2026-08-09T00:05:00.000Z"
   },
   {
+    "id": "auto-c2FsZXNmb3JjZSB2",
+    "tickers": [
+      "CRM"
+    ],
+    "line": "Salesforce vs. ServiceNow: Which Is the Better Long-Term Investment?",
+    "details": "Salesforce (CRM +3.20%) offers the stronger valuation, but ServiceNow (NOW +6.42%) has delivered more convincing evidence that enterprises will pay for AI workflow software. The question is whether billings reaccelerate in the fall, which would make the reports a decisive test of growth, monetization, and investor confidence.",
+    "sentiment": "bad",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/salesforce-vs-servicenow-which-is-the-better-long/",
+    "timestamp": "2026-08-08T23:30:00.000Z"
+  },
+  {
+    "id": "auto-eXVtIGludmVzdG9y",
+    "tickers": [
+      "YUM"
+    ],
+    "line": "YUM Investors Have Opportunity to Join Yum! Brands, Inc. Fraud Investigation with SBS Law",
+    "details": "LOS ANGELES--(BUSINESS WIRE)---- $YUM--YUM Investors Have Opportunity to Join Yum! Brands, Inc. Fraud Investigation with SBS Law.",
+    "sentiment": "good",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260808171698/en/YUM-Investors-Have-Opportunity-to-Join-Yum%21-Brands-Inc.-Fraud-Investigation-with-SBS-Law/",
+    "timestamp": "2026-08-08T23:14:00.000Z"
+  },
+  {
     "id": "auto-Z29vZyBpbnZlc3Rv",
     "tickers": [
       "GOOGL"
@@ -108,21 +144,21 @@
     "timestamp": "2026-08-08T22:50:00.000Z"
   },
   {
-    "id": "auto-bXNmdCBkZWFkbGlu",
+    "id": "auto-YWlybGluZSBpbnNp",
     "tickers": [
-      "MSFT"
+      "DAL"
     ],
-    "line": "MSFT DEADLINE TUESDAY: ROSEN, A HIGHLY RECOGNIZED LAW FIRM, Encourages Microsoft Corporation Investors with Losses in Excess of $100K to Secure Counsel Before Important August 11 Deadline in Securities Class Action - MSFT",
-    "details": "New York, New York--(Newsfile Corp. - August 8, 2026) - WHY: Rosen Law Firm, a global investor rights law firm, reminds purchasers of common stock of Microsoft Corporation (NASDAQ: MSFT) between May 1, 2025 and January 28, 2026, inclusive (the \"Class Period\"), of the important August 11, 2026 lead plaintiff deadline.",
-    "sentiment": "bad",
-    "source": "newsfilecorp.com",
-    "sourceUrl": "https://www.newsfilecorp.com/release/308662/MSFT-DEADLINE-TUESDAY-ROSEN-A-HIGHLY-RECOGNIZED-LAW-FIRM-Encourages-Microsoft-Corporation-Investors-with-Losses-in-Excess-of-100K-to-Secure-Counsel-Before-Important-August-11-Deadline-in-Securities-Class-Action-MSFT",
-    "timestamp": "2026-08-08T20:33:00.000Z"
+    "line": "Airline Insider Hits Eject, Sells 40,460 Shares Valued at $3.8 Million",
+    "details": "Insider liquidated 28% of equity holdings following option exercise at $51.23 strike, capturing gains as stock surged 76% over one year.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/08/airline-insider-hits-eject-sells-40-460-shares-valued-at-usd3-8-million/",
+    "timestamp": "2026-08-08T21:05:01.000Z"
   },
   {
     "id": "auto-bnZpZGlhLCBtaWNy",
     "tickers": [
-      "AVGO"
+      "NVDA"
     ],
     "line": "Nvidia, Micron or Broadcom: What Would Raymond Dalio Do?",
     "details": "Through Ray Dalio's risk-adjusted lens, NVIDIA (NASDAQ:NVDA | NVDA Price Prediction) at $218.99 is a buy over its two closest AI-cycle rivals.",
@@ -142,6 +178,18 @@
     "source": "forbes.com",
     "sourceUrl": "https://www.forbes.com/sites/brettowens/2026/08/08/4-rare-discount-dividends-paying-up-to-126/",
     "timestamp": "2026-08-08T20:05:06.000Z"
+  },
+  {
+    "id": "auto-bXkgdG9wIGRpdmlk",
+    "tickers": [
+      "O"
+    ],
+    "line": "My Top Dividend Stock to Buy in August (and It's Not Even Close)",
+    "details": "The company has a long track record of quarterly dividend increases.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/my-top-dividend-stock-to-buy-in-august-and-its-not/",
+    "timestamp": "2026-08-08T20:05:00.000Z"
   },
   {
     "id": "auto-YXVndXN0IGJ1eXM6",
@@ -168,28 +216,28 @@
     "timestamp": "2026-08-08T19:05:21.000Z"
   },
   {
-    "id": "auto-YWkgaXMgaG9sbG93",
+    "id": "auto-d2h5IHBnLCBqbmos",
     "tickers": [
-      "MSFT"
+      "JNJ"
     ],
-    "line": "AI is Hollowing Out Tech Sector Jobs: Oracle and Microsoft Help Push Layoff Rate to 20-Year High",
-    "details": "The AI boom has created a strange split-screen economy.",
-    "sentiment": "bad",
+    "line": "Why PG, JNJ, and KO Could Surprise Investors Next Year",
+    "details": "Defensive blue chips rarely dominate headlines, but heading into 2027, three of the market's most reliable dividend payers stand out as durable compounders.",
+    "sentiment": "good",
     "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/2026/08/08/ai-is-hollowing-out-tech-sector-jobs-oracle-and-microsoft-help-push-layoff-rate-to-20-year-high/",
-    "timestamp": "2026-08-08T18:38:36.000Z"
+    "sourceUrl": "https://247wallst.com/investing/2026/08/08/why-pg-jnj-and-ko-could-surprise-investors-next-year/",
+    "timestamp": "2026-08-08T19:00:53.000Z"
   },
   {
-    "id": "auto-YWxwaGFiZXQgY2Vv",
+    "id": "auto-Y2hld3kgY2hpZWYg",
     "tickers": [
-      "GOOGL"
+      "CHWY"
     ],
-    "line": "Alphabet CEO Sundar Pichai Just Made a Decision That Could Move Nvidia and Broadcom Stock",
-    "details": "Alphabet started recording TPU sales in the second quarter. This business may eventually contribute to top-line growth.",
+    "line": "Chewy Chief Accounting Officer Disposes 11,134 Shares for $254,000 in Tax-Related Transaction",
+    "details": "William G. Billings disposed of 11,134 shares with a transaction value of ~$254,078 based on the weighted average price on July 31, 2026. The transaction reduced the insider's direct equity holdings by 17%.",
     "sentiment": "good",
     "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/08/alphabet-ceo-sundar-pichai-just-made-a-decision-th/",
-    "timestamp": "2026-08-08T18:30:00.000Z"
+    "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/08/chewy-chief-accounting-officer-disposes-11-134-shares-for-usd254-000-in-tax-related-transaction/",
+    "timestamp": "2026-08-08T18:39:04.000Z"
   },
   {
     "id": "auto-amFtaWUgZGltb24n",
@@ -238,5 +286,1581 @@
     "source": "fool.com",
     "sourceUrl": "https://www.fool.com/investing/2026/08/08/is-amd-stock-a-buy-on-the-dip-as-ai-revenue-surges/",
     "timestamp": "2026-08-08T17:30:00.000Z"
+  },
+  {
+    "id": "auto-amVmZiBiZXpvcycg",
+    "tickers": [
+      "AMZN"
+    ],
+    "line": "Jeff Bezos' Amazon Just Raised Its AI Spending to $220 Billion for 2026. Here's What That Capex Hike Means for Investors.",
+    "details": "Amazon increased its AI spending to $220 billion for 2026, up from $200 billion, largely due to rising memory costs. AI spending overall is rising at a shocking clip, by some estimates up 500% since 2022.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/jeff-bezos-amazon-just-raised-its-ai-spending-to-2/",
+    "timestamp": "2026-08-08T17:15:00.000Z"
+  },
+  {
+    "id": "auto-c291dGhlcm4gY29t",
+    "tickers": [
+      "DUK"
+    ],
+    "line": "Southern Company And Duke Energy: Utilities With Long-Term Potential",
+    "details": "2026 hasn't been a year for utilities so far, but stocks like The Southern Company and Duke Energy have seen better-than-average price movements. Both released their earnings recently, which were healthy, with double-digit percent increases in adjusted earnings. The outlook for 2026 was also reaffirmed, as were the good long-term prospects. However, both stocks are fairly valued in the short term.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933752-southern-company-and-duke-energy-utilities-with-long-term-potential",
+    "timestamp": "2026-08-08T17:03:40.000Z"
+  },
+  {
+    "id": "auto-Ym9laW5nOiBidXkg",
+    "tickers": [
+      "BA"
+    ],
+    "line": "Boeing: Buy Before The Cash Flow Surge",
+    "details": "Boeing is making tangible progress on sustainable production growth, with Q2 revenue up 8% and free cash flow turning positive. I maintain a Buy rating and a $321.75 price target, citing improving cash flow, disciplined balance sheet repair, and clearer recovery milestones. Execution risks persist in Commercial Airplanes and Defense, but production, certification, and cash flow trends increasingly support the 2028 recovery case.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933743-boeing-buy-before-cash-flow-surge",
+    "timestamp": "2026-08-08T16:14:29.000Z"
+  },
+  {
+    "id": "auto-aSd2ZSBnb3Qgcm95",
+    "tickers": [
+      "MCD"
+    ],
+    "line": "I've Got Royalty on the Brain",
+    "details": "And how could I not? After exploring Brighton Beach and Bristol, and then Cornwall all the way to St. Ives and Penzance, I wrapped up my Great Britain trip with a couple days in London.",
+    "sentiment": "good",
+    "source": "etftrends.com",
+    "sourceUrl": "https://www.etftrends.com/royalty-brain/",
+    "timestamp": "2026-08-08T16:06:45.000Z"
+  },
+  {
+    "id": "auto-YWR2YW5jZWQgbWlj",
+    "tickers": [
+      "AMD"
+    ],
+    "line": "Advanced Micro Devices (AMD) Price Prediction: How Much a $5,000 Investment Could Be Worth by 2031",
+    "details": "Advanced Micro Devices has become the second most talked-about name in AI silicon, and after a run that has redrawn expectations, investors want to know what comes next.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/08/advanced-micro-devices-amd-price-prediction-how-much-a-5000-investment-could-be-worth-by-2031/",
+    "timestamp": "2026-08-08T16:00:11.000Z"
+  },
+  {
+    "id": "auto-YXBwbGUgc2F5cyBt",
+    "tickers": [
+      "AAPL"
+    ],
+    "line": "Apple says Mac users in China can connect to Alibaba's Qwen AI service",
+    "details": "Apple has published a guide explaining how eligible Mac users in mainland China ‌can connect Alibaba's Qwen artificial-intelligence service to the U.S. tech giant's Siri digital assistant and Writing Tools feature.",
+    "sentiment": "good",
+    "source": "reuters.com",
+    "sourceUrl": "https://www.reuters.com/business/retail-consumer/apple-says-mac-users-china-can-connect-alibabas-qwen-ai-service-2026-08-08/",
+    "timestamp": "2026-08-08T15:35:17.000Z"
+  },
+  {
+    "id": "auto-ZGlzbmV5IHdvcmxk",
+    "tickers": [
+      "DIS"
+    ],
+    "line": "Disney World Has More Treats Than Tricks This Season",
+    "details": "Mickey's Not-So-Scary Halloween Party returns on Friday night, earlier than the premium event has started in previous years. Specially ticketed Halloween events allow national theme parks and regional amusement parks to leverage their operations during seasonally slow times.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/disney-has-more-treats-than-tricks-this-season/",
+    "timestamp": "2026-08-08T15:13:00.000Z"
+  },
+  {
+    "id": "auto-Y29ub2NvcGhpbGxp",
+    "tickers": [
+      "COP"
+    ],
+    "line": "ConocoPhillips: Prepare For Phase II Of The Biggest Oil Bull Market Of Your Life (Rating Upgrade)",
+    "details": "ConocoPhillips is upgraded from Hold to Buy, driven by robust Q2 results and a constructive oil price outlook. COP's tier-1 Lower-48 shale assets are supported by strong operational and financial performance. The CEO transition to Andrew O'Brien signals strategic continuity, with no major shifts expected before Willow comes online in 2029.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933729-conocophillips-prepare-for-phase-ii-of-the-biggest-oil-bull-market-rating-upgrade",
+    "timestamp": "2026-08-08T15:05:33.000Z"
+  },
+  {
+    "id": "auto-bnVjb3IsIGFzbWwg",
+    "tickers": [
+      "NUE"
+    ],
+    "line": "Nucor, ASML Lead Five Stocks Near Buy Points Without This Big Risk",
+    "details": "Steelmaker Nucor and chip-gear giant ASML are among five stocks near buy points with earnings in the rearview mirror.",
+    "sentiment": "good",
+    "source": "investors.com",
+    "sourceUrl": "https://www.investors.com/news/nucor-asml-stocks-near-buy-points/",
+    "timestamp": "2026-08-08T15:00:21.000Z"
+  },
+  {
+    "id": "auto-Y3ljbG9zcG9yYSBm",
+    "tickers": [
+      "YUM"
+    ],
+    "line": "Cyclospora fears lead consumers to lose their appetite for salads",
+    "details": "Traffic to salad chains has fallen as consumers avoid greens due to the ongoing cyclospora outbreaks across the U.S. Dollars sales of prepackaged salads has also plummeted, according to data from NielsenIQ.",
+    "sentiment": "good",
+    "source": "cnbc.com",
+    "sourceUrl": "https://www.cnbc.com/2026/08/08/cyclospora-salads-lettuce-restaurants.html",
+    "timestamp": "2026-08-08T15:00:01.000Z"
+  },
+  {
+    "id": "auto-ZnJvbSBtZXRhIHRv",
+    "tickers": [
+      "META"
+    ],
+    "line": "From Meta to OpenAI: AI security enters a new era as autonomous cyberattacks emerge",
+    "details": "Artificial intelligence companies are facing growing scrutiny after Meta became the latest developer to reveal that one of its AI models carried out a cyberattack during a controlled security evaluation, adding to a series of recent incidents that have intensified concerns over the cybersecurity risks posed by increasingly capable AI systems.",
+    "sentiment": "good",
+    "source": "invezz.com",
+    "sourceUrl": "https://invezz.com/news/2026/08/08/from-meta-to-openai-ai-security-enters-a-new-era-as-autonomous-cyberattacks-emerge/",
+    "timestamp": "2026-08-08T15:00:00.000Z"
+  },
+  {
+    "id": "auto-aXMgc2FsZXNmb3Jj",
+    "tickers": [
+      "CRM"
+    ],
+    "line": "Is Salesforce The Most Undervalued AI Stock Right Now?",
+    "details": "Salesforce (CRM +3.20%) is using Agentforce, Data Cloud, and Slack to pursue an ambitious enterprise AI opportunity. Its recurring revenue, customer relationships, and cash generation provide a strong foundation, but the investment hinges on whether AI agents become a meaningful new spending category.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/is-salesforce-the-most-undervalued-ai-stock-right/",
+    "timestamp": "2026-08-08T14:50:41.000Z"
+  },
+  {
+    "id": "auto-d2Vla2VuZCBtb3Ju",
+    "tickers": [
+      "PG"
+    ],
+    "line": "Weekend Morning Brew: Earnings Surge Cements Tech Stocks' Growth",
+    "details": "Weekly Market HighlightsMarket breadth was skewed towards advancers, with 6,437 stocks rising compared to 2,959 declining, reflecting a positive trend in overa",
+    "sentiment": "good",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/9020037/weekend-morning-brew-earnings-surge-cements-tech-stocks-growth",
+    "timestamp": "2026-08-08T14:35:00.000Z"
+  },
+  {
+    "id": "auto-Y29zdGNvIHdob2xl",
+    "tickers": [
+      "COST"
+    ],
+    "line": "Costco Wholesale Corporation (COST) Period Ending/ Trading Statement Call Prepared Remarks Transcript",
+    "details": "Costco Wholesale Corporation (COST) Period Ending/ Trading Statement Call Prepared Remarks Transcript",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933732-costco-wholesale-corporation-cost-period-ending-trading-statement-call-prepared-remarks",
+    "timestamp": "2026-08-08T14:34:06.000Z"
+  },
+  {
+    "id": "auto-YXBwbGUgYW5kIG9w",
+    "tickers": [
+      "AAPL"
+    ],
+    "line": "Apple and OpenAI escalate legal battle over devices",
+    "details": "A legal battle between Apple and OpenAI over the ChatGPT maker's secretive device project escalated this week when the artificial intelligence (AI) developer called the iPhone maker's allegations \"baseless\" and asked for the lawsuit to be dismissed.",
+    "sentiment": "bad",
+    "source": "techxplore.com",
+    "sourceUrl": "https://techxplore.com/news/2026-08-apple-openai-escalate-legal-devices.html",
+    "timestamp": "2026-08-08T14:20:01.000Z"
+  },
+  {
+    "id": "auto-anBtb3JnYW4gaGFz",
+    "tickers": [
+      "JPM"
+    ],
+    "line": "JPMorgan Has Consistently Beaten Its Own 17% Return Target Under Jamie Dimon. Is the Stock Still a Buy?",
+    "details": "The nationʻs largest bank had a return on tangible common equity (ROTCE) of 23% in Q2. All of its business units generated record revenue in Q2.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/jpmorgan-has-consistently-beaten-its-own-17-return/",
+    "timestamp": "2026-08-08T14:05:00.000Z"
+  },
+  {
+    "id": "auto-cHJlZGljdGlvbiBm",
+    "tickers": [
+      "TSLA"
+    ],
+    "line": "Prediction for Tesla Stock in 3 Years: The Bear Case",
+    "details": "Tesla's biggest bear case isn't technological failure. Building breakthrough technology is only the first step.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/08/prediction-for-tesla-stock-in-3-years-the-bear-cas/",
+    "timestamp": "2026-08-08T12:15:00.000Z"
+  },
+  {
+    "id": "auto-YXNzZW5hZ29uIGFz",
+    "tickers": [
+      "SPOT"
+    ],
+    "line": "Assenagon Asset Management S.A. Sells 31,581 Shares of Spotify Technology $SPOT",
+    "details": "Assenagon Asset Management S.A. lessened its holdings in Spotify Technology (NYSE: SPOT) by 18.3% during the second quarter, according to its most recent disclosure with the SEC. The institutional investor owned 140,828 shares of the company's stock after selling 31,581 shares during the period. Assenagon Asset Management S.A. owned 0.07% of Spotify Technology",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/08/assenagon-asset-management-s-a-sells-31581-shares-of-spotify-technology-spot.html",
+    "timestamp": "2026-08-08T11:23:07.000Z"
+  },
+  {
+    "id": "auto-Zmx1b3IgcTIgZWFy",
+    "tickers": [
+      "FLR"
+    ],
+    "line": "Fluor Q2 Earnings Call Highlights",
+    "details": "Fluor NYSE: FLR reported second-quarter revenue of $4.3 billion, up 9% from a year earlier, as strong project execution helped lift adjusted EBITDA to $149 million from $96 million in the prior-year period. Adjusted earnings per share rose to $0.91 from $0.43.",
+    "sentiment": "good",
+    "source": "marketbeat.com",
+    "sourceUrl": "https://www.marketbeat.com/instant-alerts/fluor-q2-earnings-call-highlights-2026-08-08/",
+    "timestamp": "2026-08-08T11:04:40.000Z"
+  },
+  {
+    "id": "auto-YXVyb3JhIGludmVz",
+    "tickers": [
+      "JNJ"
+    ],
+    "line": "Aurora Investment Managers LLC. Takes Position in Johnson & Johnson $JNJ",
+    "details": "Aurora Investment Managers LLC. bought a new position in shares of Johnson and Johnson (NYSE: JNJ) in the second quarter, according to the company in its most recent filing with the SEC. The firm bought 1,969 shares of the company's stock, valued at approximately $500,000. Several other institutional investors have also recently added",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/08/aurora-investment-managers-llc-takes-position-in-johnson-johnson-jnj.html",
+    "timestamp": "2026-08-08T10:54:55.000Z"
+  },
+  {
+    "id": "auto-bmlrZSwgaW5jLiAk",
+    "tickers": [
+      "NKE"
+    ],
+    "line": "NIKE, Inc. $NKE Shares Purchased by Assenagon Asset Management S.A.",
+    "details": "Assenagon Asset Management S.A. increased its holdings in shares of NIKE, Inc. (NYSE: NKE) by 140.5% during the second quarter, according to its most recent disclosure with the Securities and Exchange Commission (SEC). The firm owned 2,490,874 shares of the footwear maker's stock after acquiring an additional 1,455,045 shares during the period. Assenagon",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/08/nike-inc-nke-shares-purchased-by-assenagon-asset-management-s-a.html",
+    "timestamp": "2026-08-08T10:51:47.000Z"
+  },
+  {
+    "id": "auto-dGhlIHBvcnRmb2xp",
+    "tickers": [
+      "CVX"
+    ],
+    "line": "The Portfolio Blueprint for Building $50,000 a Month in Dividend Income",
+    "details": "Chasing a $50,000 monthly dividend stream sounds like a math problem, but the yield you pick determines whether your portfolio funds four decades of freedom or quietly cannibalizes itself while the checks keep arriving.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/personal-finance/2026/08/07/the-portfolio-blueprint-for-building-50000-a-month-in-dividend-income/",
+    "timestamp": "2026-08-08T04:35:26.000Z"
+  },
+  {
+    "id": "auto-dWJlciBzdG9jazog",
+    "tickers": [
+      "UBER"
+    ],
+    "line": "Uber Stock: Buy the Dip?",
+    "details": "Uber's (UBER +6.46%) forecast for the upcoming quarter disappointed investors.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/uber-stock-buy-the-dip/",
+    "timestamp": "2026-08-08T04:15:01.000Z"
+  },
+  {
+    "id": "auto-aW5zaWRlIG91dDog",
+    "tickers": [
+      "COST"
+    ],
+    "line": "Inside Out: Consumer Staples Midyear Outlook, COST & WMT Bullishness",
+    "details": "CFRA's Arun Sundaram joins Morning Trade Live to look at the outlook for consumer staples companies as the sector faces a challenging operating environment. He continues to like Costco (COST) and Walmart (WMT) despite elevated valuations, pointing to margin expansion and the potential for double-digit earnings growth in the coming years.",
+    "sentiment": "good",
+    "source": "youtube.com",
+    "sourceUrl": "https://www.youtube.com/watch?v=dTcZeOjEDtU",
+    "timestamp": "2026-08-08T03:00:03.000Z"
+  },
+  {
+    "id": "auto-ZGlhbW9uZGJhY2sg",
+    "tickers": [
+      "FANG"
+    ],
+    "line": "Diamondback (FANG) Q2 Earnings: How Key Metrics Compare to Wall Street Estimates",
+    "details": "The headline numbers for Diamondback (FANG) give insight into how the company performed in the quarter ended June 2026, but it may be worthwhile to compare some of its key metrics to Wall Street estimates and the year-ago actuals.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971469/diamondback-fang-q2-earnings-how-key-metrics-compare-to-wall-street-estimates?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm-2971469",
+    "timestamp": "2026-08-08T02:01:09.000Z"
+  },
+  {
+    "id": "auto-d2h5IGJyb2FkY29t",
+    "tickers": [
+      "AVGO"
+    ],
+    "line": "Why Broadcom Inc. (AVGO) Outpaced the Stock Market Today",
+    "details": "In the most recent trading session, Broadcom Inc. (AVGO) closed at $427.49, indicating a +1.65% shift from the previous trading day.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971461/why-broadcom-inc-avgo-outpaced-the-stock-market-today?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_6-2971461",
+    "timestamp": "2026-08-08T01:46:08.000Z"
+  },
+  {
+    "id": "auto-d2h5IGZsdW9yIHN0",
+    "tickers": [
+      "FLR"
+    ],
+    "line": "Why Fluor Stock Rocked the Market Today",
+    "details": "This was bolstered considerably by a jump in the level of new awards. They more than tripled year over year.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/why-fluor-stock-rocked-the-market-today/",
+    "timestamp": "2026-08-08T01:35:05.000Z"
+  },
+  {
+    "id": "auto-ZWxpIGxpbGx5J3Mg",
+    "tickers": [
+      "LLY"
+    ],
+    "line": "Eli Lilly's Timing of the FDA Filing of Its Next Weight-Loss Drug Is Now Official -- and Novo Nordisk Has a Problem",
+    "details": "Eli Lilly should request approval for retatrutide early next year. This medicine could help the company expand the weight loss market.",
+    "sentiment": "bad",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/eli-lillys-timing-of-the-fda-filing-of-its-next-we/",
+    "timestamp": "2026-08-08T01:30:00.000Z"
+  },
+  {
+    "id": "auto-d2UganVzdCBoYWQg",
+    "tickers": [
+      "DAL"
+    ],
+    "line": "We Just Had the Busiest Day for Commercial Air Travel Ever. Here's What It Means for Airline Stocks.",
+    "details": "Three major air carriers all posted strong second-quarter results. Yet a surge in fuel costs remains a risk factor.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/we-just-had-the-busiest-day-for-commercial-air-tra/",
+    "timestamp": "2026-08-08T00:05:00.000Z"
+  },
+  {
+    "id": "auto-aW5jeXRlIHJlcG9y",
+    "tickers": [
+      "INCY"
+    ],
+    "line": "Incyte Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4)",
+    "details": "WILMINGTON, Del.--(BUSINESS WIRE)---- $INCY--Incyte Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4).",
+    "sentiment": "good",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260807493662/en/Incyte-Reports-Inducement-Grants-Under-Nasdaq-Listing-Rule-5635-c-4/",
+    "timestamp": "2026-08-07T23:30:00.000Z"
+  },
+  {
+    "id": "auto-YXhvbiBlbnRlcnBy",
+    "tickers": [
+      "CHWY"
+    ],
+    "line": "Axon Enterprise vs. Chewy: Do Customers of Police or Pets Make One Stock a Better Buy in 2026?",
+    "details": "Axon Enterprise maintains a dominant position in the public safety technology market through its hardware and cloud software ecosystem. Chewy leverages a high percentage of recurring revenue through its Autoship subscription model to maintain pet-owner loyalty.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/better-buy/2026/08/07/axon-enterprise-vs-chewy-do-customers-of-police-or-pets-make-one-stock-a-better-buy-in-2026/",
+    "timestamp": "2026-08-07T23:25:01.000Z"
+  },
+  {
+    "id": "auto-YWJidmllIHZzLiBh",
+    "tickers": [
+      "ABBV"
+    ],
+    "line": "AbbVie vs. Abbott Laboratories: Which Healthcare Stock Is a Better Buy in 2026?",
+    "details": "AbbVie relies on a high-margin biopharmaceutical portfolio and significant free cash flow to drive shareholder value. Abbott Laboratories leverages a highly diversified business model spanning medical devices, diagnostics, and nutritional products.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/better-buy/2026/08/07/abbvie-vs-abbott-laboratories-which-healthcare-stock-is-a-better-buy-in-2026/",
+    "timestamp": "2026-08-07T23:24:57.000Z"
+  },
+  {
+    "id": "auto-YmV5b25kIG52aWRp",
+    "tickers": [
+      "AVGO"
+    ],
+    "line": "Beyond NVIDIA and GPUs: The Next AI & Quantum Winners Leading 2026",
+    "details": "Beyond GPUs, AI's next winners may emerge across networking, software and quantum as investment broadens and governments boost next-gen computing.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971432/beyond-nvidia-and-gpus-the-next-ai-quantum-winners-leading-2026?cid=CS-STOCKNEWSAPI-FT-analyst_blog|industry_focus-2971432",
+    "timestamp": "2026-08-07T23:01:05.000Z"
+  },
+  {
+    "id": "auto-YWlyYm5iIHZzLiBj",
+    "tickers": [
+      "KO"
+    ],
+    "line": "Airbnb vs. Coca-Cola: Which Consumer Stock Is a Better Buy in 2026?",
+    "details": "Airbnb leverages a global community of over 5 million hosts to offer a flexible alternative to traditional hotels. Coca-Cola maintains a massive global distribution network, delivering over 2 billion beverage servings to consumers every day.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/better-buy/2026/08/07/airbnb-vs-coca-cola-which-consumer-stock-is-a-better-buy-in-2026/",
+    "timestamp": "2026-08-07T22:55:38.000Z"
+  },
+  {
+    "id": "auto-cGZpemVyJ3MgbmV4",
+    "tickers": [
+      "PFE"
+    ],
+    "line": "Pfizer's Next Weight-Loss Weapon: How Berobenatide Stacks Up Against Novo Nordisk's Wegovy and Eli Lilly's Zepbound",
+    "details": "Pfizer's berobenatide appears to be a promising candidate that could challenge Wegovy and Zepbound. There are several other reasons to consider the stock, despite the potential headwinds ahead.",
+    "sentiment": "bad",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/pfizers-next-weight-loss-weapon-how-berobenatide-s/",
+    "timestamp": "2026-08-07T22:28:00.000Z"
+  },
+  {
+    "id": "auto-bHlmdCBxMiBlYXJu",
+    "tickers": [
+      "LYFT"
+    ],
+    "line": "LYFT Q2 Earnings Miss, Revenues Top Estimates on Record Rides",
+    "details": "Lyft's Q2 revenues increase 16.1% as record rides and bookings fuel growth, while earnings miss estimates amid higher marketing and administrative costs.",
+    "sentiment": "bad",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971399/lyft-q2-earnings-miss-revenues-top-estimates-on-record-rides?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2971399",
+    "timestamp": "2026-08-07T22:11:16.000Z"
+  },
+  {
+    "id": "auto-Z2UgYWVyb3NwYWNl",
+    "tickers": [
+      "GE"
+    ],
+    "line": "GE Aerospace Is At Risk Of Overheating",
+    "details": "GE Aerospace continues to deliver robust revenue, profit, and cash flow growth, driven by strong aviation demand and expanding backlogs. Despite operational excellence and industry leadership, GE's current valuation appears stretched, with adjusted EPS guidance of $7.65–$7.85 for the year. Commercial Engines & Services segment led growth, with LEAP engine sales and services revenue surging, supported by a $210.79 billion backlog.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933302-ge-aerospace-is-at-risk-of-overheating",
+    "timestamp": "2026-08-07T21:25:34.000Z"
+  },
+  {
+    "id": "auto-dGhpcyBvdXRwZXJm",
+    "tickers": [
+      "BAC"
+    ],
+    "line": "This Outperforming Bank Stock Has More Room to Run",
+    "details": "Subscribers to Schaeffer's Weekend Trader options recommendation service received this BAC commentary on Sunday night, along with a detailed options trade recommendation -- including complete entry and exit parameters.",
+    "sentiment": "good",
+    "source": "schaeffersresearch.com",
+    "sourceUrl": "https://www.schaeffersresearch.com/content/options/2026/08/07/this-outperforming-bank-stock-has-more-room-to-run",
+    "timestamp": "2026-08-07T20:42:53.000Z"
+  },
+  {
+    "id": "auto-Z29sZCdzIHdpbm5p",
+    "tickers": [
+      "NEM"
+    ],
+    "line": "Gold's Winning Streak: Navigating Your ETF Options",
+    "details": "Gold is extending its winning streak to a seven-week high near $4,300 per ounce, driven by geopolitical developments, a sliding dollar, and shifting Federal Reserve rate expectations. Despite recent gains, gold still trades over 20% below its record high of $5,589 per ounce in late January, according to CNBC analysis.",
+    "sentiment": "good",
+    "source": "etftrends.com",
+    "sourceUrl": "https://www.etftrends.com/commodities-content-hub/golds-winning-streak-navigating-your-etf-options/",
+    "timestamp": "2026-08-07T20:41:54.000Z"
+  },
+  {
+    "id": "auto-c3BvdGlmeSBhbmQg",
+    "tickers": [
+      "SPOT"
+    ],
+    "line": "Spotify and Pinterest Delivered the Growth. Investors Wanted More",
+    "details": "Spotify (NYSE:SPOT | SPOT Price Prediction) and Pinterest (NYSE:PINS) both reported Q2 2026 results on August 4, 2026, and both cleared estimates on the top and bottom line.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/07/spotify-and-pinterest-delivered-the-growth-investors-wanted-more/",
+    "timestamp": "2026-08-07T20:30:58.000Z"
+  },
+  {
+    "id": "auto-bWlsbGljb20gaW50",
+    "tickers": [
+      "TIGO"
+    ],
+    "line": "Millicom International Cellular Q2 Earnings Call Highlights",
+    "details": "Millicom International Cellular NASDAQ: TIGO reported second-quarter 2026 service revenue of $2 billion, up 5.4% organically year over year and 60.1% on a reported basis, as its prepaid-to-postpaid migration strategy, pricing actions and recent acquisitions supported growth. Adjusted EBITDA reached a company record of $1 billion, while equity free cash flow rose more than 50% from a year earlier to a record $327 million.",
+    "sentiment": "good",
+    "source": "marketbeat.com",
+    "sourceUrl": "https://www.marketbeat.com/instant-alerts/millicom-international-cellular-q2-earnings-call-highlights-2026-08-07/",
+    "timestamp": "2026-08-07T20:05:43.000Z"
+  },
+  {
+    "id": "auto-ZHVzdCBkcm9wcyAx",
+    "tickers": [
+      "NEM"
+    ],
+    "line": "DUST Drops 13% as Gold Miners Rally Hard",
+    "details": "Gold miners are tearing higher on blowout earnings and record-near gold prices, leaving one popular inverse fund in freefall and raising serious questions about what compounding decay does to traders caught on the wrong side of a trend.",
+    "sentiment": "bad",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/etf/2026/08/07/dust-drops-13-as-gold-miners-rally-hard/",
+    "timestamp": "2026-08-07T19:50:22.000Z"
+  },
+  {
+    "id": "auto-dGhpcyByZWFsIGVz",
+    "tickers": [
+      "SPG"
+    ],
+    "line": "This Real Estate ETF Has the Foundation for More Upside",
+    "details": "After a lengthy run of disappointment, real estate investment trusts (REITs) and the related ETFs are notching some impressive performances this year, with the largest ETF in the category higher by 11%. Proving active management brings benefits to the real estate sector, the ALPS Active REIT ETF (REIT) is higher by more than 17% year-to-date.",
+    "sentiment": "good",
+    "source": "etftrends.com",
+    "sourceUrl": "https://www.etftrends.com/etf-building-blocks-content-hub/real-estate-etf-foundation-upside/",
+    "timestamp": "2026-08-07T19:38:41.000Z"
+  },
+  {
+    "id": "auto-Z3VsZiB1bmNlcnRh",
+    "tickers": [
+      "CVX"
+    ],
+    "line": "Gulf uncertainty is creating ‘win, win' strategy with Chevron and other oil majors",
+    "details": "With options premiums still elevated due to the military conflict in the Gulf, selling puts on an energy major posting record free cash flow offers a rare opportunity.",
+    "sentiment": "good",
+    "source": "cnbc.com",
+    "sourceUrl": "https://www.cnbc.com/2026/08/07/gulf-uncertainty-is-creating-win-win-strategy-with-chevron-and-other-oil-majors.html",
+    "timestamp": "2026-08-07T19:26:24.000Z"
+  },
+  {
+    "id": "auto-Y29uc3RlbGxhdGlv",
+    "tickers": [
+      "WMT"
+    ],
+    "line": "Constellation Signed 920 Megawatts of New Power Deals, Including a Walmart PPA. Here's What It Means for CEG Stock.",
+    "details": "Constellation Energy just raised its guidance for fiscal year 2026. The power and nuclear energy giant has made crucial progress on a major contract.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/constellation-signed-920-megawatts-of-new-power-deals-including-a-walmart-ppa-heres-what-it-means-for-ceg-stock/",
+    "timestamp": "2026-08-07T19:25:58.000Z"
+  },
+  {
+    "id": "auto-ZWxvbiBtdXNrIHNh",
+    "tickers": [
+      "CAT"
+    ],
+    "line": "Elon Musk Says AI Needs More Power Than the Grid Can Handle. Is He Right?",
+    "details": "Elon Musk is turning to off-grid power to power his AI ambitions; he's not alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/elon-musk-says-ai-needs-more-power-than-the-grid-c/",
+    "timestamp": "2026-08-07T19:15:00.000Z"
+  },
+  {
+    "id": "auto-eG9tIHEyIGVhcm5p",
+    "tickers": [
+      "XOM"
+    ],
+    "line": "XOM Q2 Earnings Call Highlights Refining Strength and Guyana Cash Flow",
+    "details": "ExxonMobil highlights resilient Q2 cash flow, a Guyana free-cash-flow inflection, record Permian output and refining strength amid disruption.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971125/xom-q2-earnings-call-highlights-refining-strength-and-guyana-cash-flow?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2971125",
+    "timestamp": "2026-08-07T19:11:03.000Z"
+  },
+  {
+    "id": "auto-bHlmdCBpcyB0cmFu",
+    "tickers": [
+      "LYFT"
+    ],
+    "line": "Lyft Is Transforming Into a Global Brand, CEO Says",
+    "details": "Lyft CEO David Risher discusses the company's growth compared to Waymo, its plans to expand internationally and where Lyft is focused internally. He speaks with Ed Ludlow on \"Bloomberg Tech.",
+    "sentiment": "good",
+    "source": "youtube.com",
+    "sourceUrl": "https://www.youtube.com/watch?v=OkzVkFGKv08",
+    "timestamp": "2026-08-07T19:05:50.000Z"
+  },
+  {
+    "id": "auto-d2FsbCBzdHJlZXQg",
+    "tickers": [
+      "V",
+      "AMT"
+    ],
+    "line": "Wall Street Raises Visa Outlook After Strong Q3: Buy, Hold or Sell?",
+    "details": "V posts another earnings beat while analysts lift 2026-2027 forecasts, but premium valuation and rising regulatory risks keep the outlook balanced.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971107/wall-street-raises-visa-outlook-after-strong-q3-buy-hold-or-sell?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2971107",
+    "timestamp": "2026-08-07T19:01:19.000Z"
+  },
+  {
+    "id": "auto-bW9yZ2FuIHN0YW5s",
+    "tickers": [
+      "BAC"
+    ],
+    "line": "Morgan Stanley hires BofA's Kweskin to cover diversified industries",
+    "details": "Morgan Stanley has hired diversified industries banker Adam Kweskin to join its ​Global Industrials Investment Banking Group, according to a ‌person familiar with the matter.",
+    "sentiment": "good",
+    "source": "reuters.com",
+    "sourceUrl": "https://www.reuters.com/legal/transactional/morgan-stanley-hires-bofas-kweskin-cover-diversified-industries-2026-08-07/",
+    "timestamp": "2026-08-07T18:28:14.000Z"
+  },
+  {
+    "id": "auto-cm9rdSBxMiBlYXJu",
+    "tickers": [
+      "ROKU"
+    ],
+    "line": "ROKU Q2 Earnings and Revenues Beat Estimates, Both Increase Y/Y",
+    "details": "Roku beat Q2 earnings and revenue estimates as Platform growth in Advertising and Subscriptions fuels record profitability and free cash flow.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971066/roku-q2-earnings-and-revenues-beat-estimates-both-increase-y-y?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2971066",
+    "timestamp": "2026-08-07T18:25:43.000Z"
+  },
+  {
+    "id": "auto-bWNkIHN0b2NrIGZv",
+    "tickers": [
+      "MCD"
+    ],
+    "line": "MCD Stock Forecast: Here's Where It'll End The Year",
+    "details": "McDonald's (NYSE:MCD | MCD Price Prediction) has slid through 2026, and investors question whether the golden arches still bend upward.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/07/mcd-stock-forecast-heres-where-itll-end-the-year/",
+    "timestamp": "2026-08-07T18:00:27.000Z"
+  },
+  {
+    "id": "auto-aXMgY2F0ZXJwaWxs",
+    "tickers": [
+      "CAT"
+    ],
+    "line": "Is Caterpillar (CAT) Stock Outpacing Its Industrial Products Peers This Year?",
+    "details": "Here is how Caterpillar (CAT) and Gorman-Rupp (GRC) have performed compared to their sector so far this year.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970943/is-caterpillar-cat-stock-outpacing-its-industrial-products-peers-this-year?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_1-2970943",
+    "timestamp": "2026-08-07T17:41:21.000Z"
+  },
+  {
+    "id": "auto-d2h5IHVuaXRlZGhl",
+    "tickers": [
+      "UNH"
+    ],
+    "line": "Why UnitedHealth Group (UNH) is a Top Value Stock for the Long-Term",
+    "details": "The Zacks Style Scores offers investors a way to easily find top-rated stocks based on their investing style. Here's why you should take advantage.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970938/why-unitedhealth-group-unh-is-a-top-value-stock-for-the-long-term?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|zacks_education_value_score-2970938",
+    "timestamp": "2026-08-07T17:41:14.000Z"
+  },
+  {
+    "id": "auto-aXMgdGhlIGdvbGRt",
+    "tickers": [
+      "GS"
+    ],
+    "line": "Is The Goldman Sachs Group (GS) Outperforming Other Finance Stocks This Year?",
+    "details": "Here is how Goldman Sachs (GS) and Ategrity Specialty Insurance Company Holdings (ASIC) have performed compared to their sector so far this year.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970920/is-the-goldman-sachs-group-gs-outperforming-other-finance-stocks-this-year?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_1-2970920",
+    "timestamp": "2026-08-07T17:41:08.000Z"
+  },
+  {
+    "id": "auto-bW9uc3RlciBpbnNp",
+    "tickers": [
+      "PFE"
+    ],
+    "line": "Monster insider trading alert for Pfizer stock",
+    "details": "As Pfizer Inc. (NYSE: PFE) stock gained over 5% this week fueled by its strong second quarter 2026 earnings report, Finbold has observed its increased insider trading.",
+    "sentiment": "good",
+    "source": "finbold.com",
+    "sourceUrl": "https://finbold.com/monster-insider-trading-alert-for-pfizer-stock/",
+    "timestamp": "2026-08-07T17:40:21.000Z"
+  },
+  {
+    "id": "auto-dWx0cmFwYXIgcGFy",
+    "tickers": [
+      "UGP"
+    ],
+    "line": "Ultrapar Participacoes S.A. (UGP) Recently Broke Out Above the 20-Day Moving Average",
+    "details": "Ultrapar Participacoes S.A. (UGP) is looking like an interesting pick from a technical perspective, as the company reached a key level of support.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970891/ultrapar-participacoes-s-a-ugp-recently-broke-out-above-the-20-day-moving-average?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|20_day_moving_average_(yseop)-2970891",
+    "timestamp": "2026-08-07T17:36:05.000Z"
+  },
+  {
+    "id": "auto-aXMgd2FsbWFydCAo",
+    "tickers": [
+      "WMT"
+    ],
+    "line": "Is Walmart (WMT) a Buy as Wall Street Analysts Look Optimistic?",
+    "details": "The recommendations of Wall Street analysts are often relied on by investors when deciding whether to buy, sell, or hold a stock. Media reports about these brokerage-firm-employed (or sell-side) analysts changing their ratings often affect a stock's price.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970896/is-walmart-wmt-a-buy-as-wall-street-analysts-look-optimistic?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|average_broker_rating-2970896",
+    "timestamp": "2026-08-07T17:31:12.000Z"
+  },
+  {
+    "id": "auto-bmV0ZmxpeCBmaW5h",
+    "tickers": [
+      "NFLX"
+    ],
+    "line": "Netflix Finally Cancels A Show That Actually Deserves It",
+    "details": "Netflix is well-known for often cancelling shows that it shouldn't, but on rare occasions, it is justified in doing so. This time?",
+    "sentiment": "good",
+    "source": "forbes.com",
+    "sourceUrl": "https://www.forbes.com/sites/paultassi/2026/08/07/netflix-finally-cancels-a-show-that-actually-deserves-it/",
+    "timestamp": "2026-08-07T17:30:09.000Z"
+  },
+  {
+    "id": "auto-Y2FlIChjYWUpIHEx",
+    "tickers": [
+      "CAE"
+    ],
+    "line": "CAE (CAE) Q1 Earnings on the Horizon: Analysts' Insights on Key Performance Measures",
+    "details": "Get a deeper insight into the potential performance of CAE (CAE) for the quarter ended June 2026 by going beyond Wall Street's top-and-bottom-line estimates and examining the estimates for some of its key metrics.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970841/cae-cae-q1-earnings-on-the-horizon-analysts-insights-on-key-performance-measures?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm_preview-2970841",
+    "timestamp": "2026-08-07T17:16:04.000Z"
+  },
+  {
+    "id": "auto-NCBoZWFsdGhjYXJl",
+    "tickers": [
+      "UNH"
+    ],
+    "line": "4 Healthcare Stocks to Watch as Defensive Demand Strengthens",
+    "details": "Healthcare's defensive demand is strengthening in 2026. BTSG, HRMY, UNH and NVCR stand out on improving earnings outlooks and steady sector momentum.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970827/4-healthcare-stocks-to-watch-as-defensive-demand-strengthens?cid=CS-STOCKNEWSAPI-FT-analyst_blog|investment_ideas-2970827",
+    "timestamp": "2026-08-07T17:01:08.000Z"
+  },
+  {
+    "id": "auto-d2h5IGFtYXpvbiwg",
+    "tickers": [
+      "UBER"
+    ],
+    "line": "Why Amazon, Alphabet and Uber Keep Showing Up in the Same Billionaire Portfolios",
+    "details": "When the Q1 2026 13F filings were released in mid-May (Q2 filing are released later in August), three names kept surfacing across the sharpest institutional portfolios: Amazon (NASDAQ:AMZN | AMZN Price Prediction), Alphabet (NASDAQ:GOOGL) and Uber (NYSE:UBER).",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/07/why-amazon-alphabet-and-uber-keep-showing-up-in-the-same-billionaire-portfolios/",
+    "timestamp": "2026-08-07T17:00:01.000Z"
+  },
+  {
+    "id": "auto-ZHVrZSBlbmVyZ3kg",
+    "tickers": [
+      "DUK"
+    ],
+    "line": "Duke Energy is helping North Carolina customers manage energy costs during extreme summer heat",
+    "details": "Duke Energy is helping North Carolina customers manage energy costs during extreme summer heat PR Newswire CHARLOT",
+    "sentiment": "good",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/9017347/duke-energy-is-helping-north-carolina-customers-manage-energy-costs-during-extreme-summer-heat",
+    "timestamp": "2026-08-07T17:00:00.000Z"
+  },
+  {
+    "id": "auto-cmVtaXRseSBhbm5v",
+    "tickers": [
+      "RELY"
+    ],
+    "line": "Remitly Announces Upcoming Webinar and Investor Conference Participation",
+    "details": "SEATTLE, Aug. 07, 2026 (GLOBE NEWSWIRE) -- Remitly Global, Inc. (NASDAQ: RELY) (“Remitly”), a trusted provider of financial services that transcend borders, today announced that its management team will present at the following investor conferences:",
+    "sentiment": "good",
+    "source": "globenewswire.com",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/07/3341110/0/en/remitly-announces-upcoming-webinar-and-investor-conference-participation.html",
+    "timestamp": "2026-08-07T16:00:00.000Z"
+  },
+  {
+    "id": "auto-MjAgeWVhcnMgb24g",
+    "tickers": [
+      "XOM"
+    ],
+    "line": "20 Years on Wall Street Taught Me to Buy and Hold 5 High-Yield Energy Giants",
+    "details": "After a career spanning two decades at Bear Stearns, Lehman Brothers, and Morgan Stanley, I gained an institutional perspective on dividend stock investing.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/07/20-years-on-wall-street-taught-me-to-buy-and-hold-5-high-yield-energy-giants/",
+    "timestamp": "2026-08-07T15:42:16.000Z"
+  },
+  {
+    "id": "auto-aG9uZXl3ZWxsIGFl",
+    "tickers": [
+      "HON"
+    ],
+    "line": "Honeywell Aerospace Q2: The Spinoff Spinout",
+    "details": "Shares in Honeywell Aerospace Inc. cratered over 20% following the release of a weak Q2 print which included a cut to the forward outlook. The losses follow HONA's recently completed spinoff from Honeywell International. The underperformance somewhat validates the strategy of Honeywell International to focus on stronger units of growth in its home base.",
+    "sentiment": "bad",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4932996-honeywell-aerospace-q2-the-spinoff-spinout",
+    "timestamp": "2026-08-07T15:35:17.000Z"
+  },
+  {
+    "id": "auto-dmlzYTogcmVjZW50",
+    "tickers": [
+      "V"
+    ],
+    "line": "Visa: Recent Performance Shows Stablecoin Threat Was Overstated",
+    "details": "Visa delivered another robust quarter, with double-digit growth in revenue and EPS, driven by resilient consumer spending and strong cross-border activity. V's integration of stablecoin and AI technologies, including partnerships with OpenAI and Meta, positions the company to benefit from digital payment trends rather than being disrupted.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4930685-visa-recent-performance-shows-stablecoin-threat-was-overstated",
+    "timestamp": "2026-08-07T14:15:00.000Z"
+  },
+  {
+    "id": "auto-JGlibSBpbnZlc3Rp",
+    "tickers": [
+      "IBM"
+    ],
+    "line": "$IBM Investigation News: IBM Securities Fraud Investigation is Ongoing – Contact BFA Law if You Suffered Losses",
+    "details": "NEW YORK, Aug. 07, 2026 (GLOBE NEWSWIRE) -- Leading securities law firm Bleichmar Fonti & Auld LLP announces an investigation into International Business Machines Corporation (NYSE:IBM) for potential securities fraud after its significant stock drop. If you invested in IBM, you are encouraged to obtain additional information by visiting: https://www.bfalaw.com/cases/ibm-class-action-lawsuit.",
+    "sentiment": "bad",
+    "source": "globenewswire.com",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/07/3341005/0/en/ibm-investigation-news-ibm-securities-fraud-investigation-is-ongoing-contact-bfa-law-if-you-suffered-losses.html",
+    "timestamp": "2026-08-07T13:18:00.000Z"
+  },
+  {
+    "id": "auto-dGhlIGhpZGRlbiB3",
+    "tickers": [
+      "NEE"
+    ],
+    "line": "The Hidden Winners of the AI Power Crunch: 3 Utilities to Watch",
+    "details": "As data centers strain the grid and hyperscalers race to secure reliable electricity, utilities with nuclear and renewable assets are moving from sleepy dividend plays to essential AI infrastructure stocks.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/07/the-hidden-winners-of-the-ai-power-crunch-3-utilit/",
+    "timestamp": "2026-08-07T13:05:00.000Z"
+  },
+  {
+    "id": "auto-YmFsZWZpcmUgbGxj",
+    "tickers": [
+      "FANG"
+    ],
+    "line": "Balefire LLC Takes Position in Diamondback Energy, Inc. $FANG",
+    "details": "Balefire LLC purchased a new position in shares of Diamondback Energy, Inc. (NASDAQ: FANG) during the second quarter, according to its most recent disclosure with the SEC. The institutional investor purchased 5,400 shares of the oil and natural gas company's stock, valued at approximately $949,000. A number of other large investors have also",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/07/balefire-llc-takes-position-in-diamondback-energy-inc-fang.html",
+    "timestamp": "2026-08-07T10:53:52.000Z"
+  },
+  {
+    "id": "auto-dW5pb24gcGFjaWZp",
+    "tickers": [
+      "UNP"
+    ],
+    "line": "Union Pacific Corporation $UNP is Armstrong Henry H Associates Inc.’s 7th Largest Position",
+    "details": "Armstrong Henry H Associates Inc. increased its stake in shares of Union Pacific Corporation (NYSE: UNP) by 2.9% in the undefined quarter, according to the company in its most recent filing with the Securities and Exchange Commission. The fund owned 68,701 shares of the railroad operator's stock after purchasing an additional 1,909 shares",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/07/union-pacific-corporation-unp-is-armstrong-henry-h-associates-inc-s-7th-largest-position.html",
+    "timestamp": "2026-08-07T10:53:41.000Z"
+  },
+  {
+    "id": "auto-dGhlc2UgbmV3IGRy",
+    "tickers": [
+      "MRK"
+    ],
+    "line": "These New Drugs Could Fuel Fresh Highs for Biotech and Pharma Stocks",
+    "details": "Positive readouts in cancer and cardiac drug trials could keep the rally going. Sizing up the stakes for Merck, Moderna, Summit Therapeutics, and more.",
+    "sentiment": "good",
+    "source": "barrons.com",
+    "sourceUrl": "https://www.barrons.com/articles/biotech-pharma-merck-novartis-bristol-myers-stocks-1b626dfc",
+    "timestamp": "2026-08-07T08:15:00.000Z"
+  },
+  {
+    "id": "auto-aWJtJ3MgcG9zdC1j",
+    "tickers": [
+      "IBM"
+    ],
+    "line": "IBM's Post-Collapse Rebound: A Complex Risk Reward Profile Today at $233",
+    "details": "At $233.43, IBM (NYSE:IBM | IBM Price Prediction) sits in an unresolved setup.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/07/ibms-post-collapse-rebound-a-complex-risk-reward-profile-today-at-233/",
+    "timestamp": "2026-08-07T07:42:49.000Z"
+  },
+  {
+    "id": "auto-ZmFhIG9yZGVycyBp",
+    "tickers": [
+      "BA"
+    ],
+    "line": "FAA Orders Inspections of Over 400 Boeing 737 Max Jets for Possible Cracks",
+    "details": "The Federal Aviation Administration has ordered the inspections of Boeing 737 Max jets for cracks of a component that could affect the structural integrity of the planes.",
+    "sentiment": "good",
+    "source": "wsj.com",
+    "sourceUrl": "https://www.wsj.com/business/airlines/faa-orders-inspections-of-over-400-boeing-737-max-jets-for-possible-cracks-c41ec557",
+    "timestamp": "2026-08-07T07:13:00.000Z"
+  },
+  {
+    "id": "auto-d2h5IHJlbWl0bHkg",
+    "tickers": [
+      "RELY"
+    ],
+    "line": "Why Remitly Global Stock Popped 8% Today",
+    "details": "Remitly easily beat top-line estimates and posted strong EBITDA growth. The business is starting to gain operating leverage, driving margins higher.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/06/why-remitly-global-stock-popped-8-today/",
+    "timestamp": "2026-08-07T04:18:25.000Z"
+  },
+  {
+    "id": "auto-YXhpYSBlbmVyZ2lh",
+    "tickers": [
+      "AXIA"
+    ],
+    "line": "AXIA Energia SA (AXIA) Q2 2026 Earnings Call Transcript",
+    "details": "AXIA Energia SA (AXIA) Q2 2026 Earnings Call Transcript",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4932577-axia-energia-sa-axia-q2-2026-earnings-call-transcript",
+    "timestamp": "2026-08-07T03:54:20.000Z"
+  },
+  {
+    "id": "auto-c3RvY2sgbWFya2V0",
+    "tickers": [
+      "PEP"
+    ],
+    "line": "Stock Market Today, Aug. 6: Celsius Whiffs on Q2 Earnings, Shares Tumble 18%",
+    "details": "On Aug. 6, 2026, the energy drink maker reported $817.9M in quarterly revenue below expectations, prompting investor scrutiny of margin recovery.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/stock-market-today/2026/08/06/stock-market-today-aug-6-celsius-whiffs-on-q2-earnings-shares-tumble-18/",
+    "timestamp": "2026-08-07T00:55:13.000Z"
+  },
+  {
+    "id": "auto-YSBsb29rIGF0IG1p",
+    "tickers": [
+      "TIGO"
+    ],
+    "line": "A Look at Millicom International Cellular SA (TIGO) After 13.7% Gain -- GF Value $34.58 vs Price $104.31",
+    "details": "On August 06, 2026, Millicom International Cellular SA (TIGO) shares rose 13.7% to a current price of $104.31, reflecting strong performance in the stock market",
+    "sentiment": "good",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/9013986/a-look-at-millicom-international-cellular-sa-tigo-after-137-gain-gf-value-3458-vs-price-10431",
+    "timestamp": "2026-08-07T00:44:00.000Z"
+  },
+  {
+    "id": "auto-bmlrZSwgaW5jLiBk",
+    "tickers": [
+      "NKE"
+    ],
+    "line": "NIKE, Inc. Declares $0.41 Quarterly Dividend",
+    "details": "BEAVERTON, Ore.--(BUSINESS WIRE)--NIKE, Inc. (NYSE: NKE) announced today that its Board of Directors has declared a quarterly cash dividend of $0.41 per share on the Company's outstanding Class A and Class B Common Stock payable on October 1, 2026, to shareholders of record at the close of business on September 1, 2026. About NIKE, Inc.",
+    "sentiment": "good",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260806136347/en/NIKE-Inc.-Declares-0.41-Quarterly-Dividend/",
+    "timestamp": "2026-08-07T00:00:00.000Z"
+  },
+  {
+    "id": "auto-aXMgYSBiZWF0IGlu",
+    "tickers": [
+      "SPG"
+    ],
+    "line": "Is a Beat in Store for Simon Property Stock in Q2 Earnings?",
+    "details": "SPG's Q2 results are likely to show revenue and FFO growth, with strong leasing and occupancy offsetting higher interest and tariff pressures.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970363/is-a-beat-in-store-for-simon-property-stock-in-q2-earnings?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_preview-2970363",
+    "timestamp": "2026-08-06T22:56:17.000Z"
+  },
+  {
+    "id": "auto-bmV0ZmxpeCdzIGxh",
+    "tickers": [
+      "NFLX"
+    ],
+    "line": "Netflix's Latest Insider Sale Looks Bigger Than It Is",
+    "details": "Netflix Inc. (NFLX, Financials), the streaming entertainment company, disclosed a planned insider stock sale as its shares continued to struggle this year.Direc",
+    "sentiment": "good",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/9012542/netflixs-latest-insider-sale-looks-bigger-than-it-is",
+    "timestamp": "2026-08-06T21:55:00.000Z"
+  },
+  {
+    "id": "auto-ZG9vcmRhc2ggcTIg",
+    "tickers": [
+      "DASH"
+    ],
+    "line": "DoorDash Q2 Earnings Miss on Higher R&D Costs, Revenue Beat",
+    "details": "DASH's Q2 revenues beat estimates as order growth and Deliveroo lift sales, but surging R&D costs weigh on earnings.",
+    "sentiment": "bad",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970325/doordash-q2-earnings-miss-on-higher-r-d-costs-revenue-beat?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2970325",
+    "timestamp": "2026-08-06T21:51:07.000Z"
+  },
+  {
+    "id": "auto-ZG9vcmRhc2g6IGFu",
+    "tickers": [
+      "DASH"
+    ],
+    "line": "DoorDash: An AI Story Backed By Real GAAP Profits",
+    "details": "DoorDash, Inc. is building an AI-driven future, investing in autonomous delivery and expanding into broader retail and payments ecosystems. DASH delivered 36% YoY revenue growth, sustained GAAP profitability for eight consecutive quarters, and maintains a robust net cash balance sheet. I expect margin expansion from AI efficiencies, autonomous deliveries, and deeper integration with local businesses, supporting premium valuations.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4932099-doordash-an-ai-story-backed-by-real-gaap-profits",
+    "timestamp": "2026-08-06T20:52:15.000Z"
+  },
+  {
+    "id": "auto-ZWNvbm9taWMgbW9h",
+    "tickers": [
+      "PEP"
+    ],
+    "line": "Economic Moats: The 7 Types And 4 Stocks I Own",
+    "details": "Alphabet, Costco, Visa, and Microsoft all sit inside my top 10 holdings. None of them earned that spot with a hot quarter. Each one earned it because something protects its profits from the rest of the world. An economic moat is a durable competitive advantage that protects a company's profits from competitors.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4932097-economic-moats-7-types-4-stocks-i-own",
+    "timestamp": "2026-08-06T20:49:00.000Z"
+  },
+  {
+    "id": "auto-aHlwZXJzb25pYyB0",
+    "tickers": [
+      "GE"
+    ],
+    "line": "Hypersonic Testing Is Moving From Wind Tunnels to the Sky",
+    "details": "CAPE CANAVERAL, Fla. , Aug. 06, 2026 (GLOBE NEWSWIRE) -- Equity Insider News Commentary - In a recent conversation on the Fighter Pilot Podcast, Tim Franta, chief executive of Starfighters Space, Inc. (NYSE American: FJET), laid out an unusually clear picture of what his company actually does and where he intends to take it.",
+    "sentiment": "good",
+    "source": "globenewswire.com",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/06/3340621/0/en/hypersonic-testing-is-moving-from-wind-tunnels-to-the-sky.html",
+    "timestamp": "2026-08-06T20:43:26.000Z"
+  },
+  {
+    "id": "auto-dGhlIGJpZyAzOiBo",
+    "tickers": [
+      "HON"
+    ],
+    "line": "The Big 3: HON, BAC, RTX",
+    "details": "Dan Deming has his eyes on major players in the industrial, financial and defense sectors for today's Big 3 trades. First on his list, Honeywell (HON) where he maps out a call butterfly strategy looking to capture a breakout above $250.",
+    "sentiment": "good",
+    "source": "youtube.com",
+    "sourceUrl": "https://www.youtube.com/watch?v=-o3x0_u6rro",
+    "timestamp": "2026-08-06T20:00:20.000Z"
+  },
+  {
+    "id": "auto-YWJidiBzdG9jayBk",
+    "tickers": [
+      "ABBV"
+    ],
+    "line": "ABBV Stock Dips 4% Despite Robust Q2: Buy the Dip or Stay Cautious?",
+    "details": "ABBV falls after cutting its 2026 EPS outlook to reflect the Apogee deal, despite strong Q2 results, higher revenue guidance and growth from key medicines.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970197/abbv-stock-dips-4-despite-robust-q2-buy-the-dip-or-stay-cautious?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2970197",
+    "timestamp": "2026-08-06T19:51:11.000Z"
+  },
+  {
+    "id": "auto-Z2VvcmdpYSBwb3dl",
+    "tickers": [
+      "SO"
+    ],
+    "line": "Georgia Power Generation employees keep reliable energy flowing throughout the hottest days of summer",
+    "details": "Company recognizing importance of power plant workers in August during Generation Appreciation Month ATLANTA, Aug. 6, 2026 /PRNewswire/ -- August often includes some of the hottest days of summer, when energy demand is at its highest, and Georgia Power is committed to keeping power flowing when it matters most.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/georgia-power-generation-employees-keep-reliable-energy-flowing-throughout-the-hottest-days-of-summer-302845173.html",
+    "timestamp": "2026-08-06T19:00:00.000Z"
+  },
+  {
+    "id": "auto-MyBzdG9ja3MgdG8g",
+    "tickers": [
+      "CMCSA"
+    ],
+    "line": "3 Stocks to Watch From a Prospering Cable Television Industry",
+    "details": "Zacks Cable Television industry participants like CMCSA, CHTR and CABO are benefiting from growing demand for high-speed Internet and increased media consumption amid cord-cutting.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/commentary/2970043/3-stocks-to-watch-from-a-prospering-cable-television-industry?cid=CS-STOCKNEWSAPI-FT-industry_outlook-2970043",
+    "timestamp": "2026-08-06T18:56:09.000Z"
+  },
+  {
+    "id": "auto-aXMgdXJiYW4gb3V0",
+    "tickers": [
+      "URBN"
+    ],
+    "line": "Is Urban Outfitters (URBN) a Great Value Stock Right Now?",
+    "details": "Here at Zacks, our focus is on the proven Zacks Rank system, which emphasizes earnings estimates and estimate revisions to find great stocks. Nevertheless, we are always paying attention to the latest value, growth, and momentum trends to underscore strong picks.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2969804/is-urban-outfitters-urbn-a-great-value-stock-right-now?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_2-2969804",
+    "timestamp": "2026-08-06T17:41:11.000Z"
+  },
+  {
+    "id": "auto-bWVyY2sgKG1yaykg",
+    "tickers": [
+      "MRK"
+    ],
+    "line": "Merck (MRK) Is Considered a Good Investment by Brokers: Is That True?",
+    "details": "The recommendations of Wall Street analysts are often relied on by investors when deciding whether to buy, sell, or hold a stock. Media reports about these brokerage-firm-employed (or sell-side) analysts changing their ratings often affect a stock's price.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2969776/merck-mrk-is-considered-a-good-investment-by-brokers-is-that-true?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|average_broker_rating-2969776",
+    "timestamp": "2026-08-06T17:31:26.000Z"
+  },
+  {
+    "id": "auto-c2hvdWxkIHlvdSBp",
+    "tickers": [
+      "NEE"
+    ],
+    "line": "Should You Ignore the Nuclear Hype and Buy This Instead?",
+    "details": "Electricity demand matters more than the power source.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/06/should-you-ignore-the-nuclear-hype-and-buy-this/",
+    "timestamp": "2026-08-06T17:30:00.000Z"
+  },
+  {
+    "id": "auto-c291dGhlcm4gbWlz",
+    "tickers": [
+      "SO"
+    ],
+    "line": "Southern Missouri Bancorp: Still Attractive Despite Premium To Tangible Book Value",
+    "details": "Southern Missouri Bancorp has grown tangible book value per share by more than $16 in four years, with shares up ~60% since 2022. Q2 results highlight strong net interest income growth, a low payout ratio (",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4931213-southern-missouri-bancorp-still-attractive-despite-premium-to-tangible-book-value",
+    "timestamp": "2026-08-06T17:30:00.000Z"
+  },
+  {
+    "id": "auto-Z3JlZyBhYmVsIHNv",
+    "tickers": [
+      "MA"
+    ],
+    "line": "Greg Abel Sold 15 Buffett Stock Positions in His First Quarter as Berkshire CEO. What His Early Portfolio Moves Signal for Shareholders.",
+    "details": "Is this a one-time flex or a long-term strategy?",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/06/abel-sold-15-buffett-positions-in-first-quarter/",
+    "timestamp": "2026-08-06T17:00:00.000Z"
+  },
+  {
+    "id": "auto-Y29tY2FzdCBidXNp",
+    "tickers": [
+      "CMCSA"
+    ],
+    "line": "Comcast Business Brings Enhanced Private Wireless Networking to the Corporate Office",
+    "details": "PHILADELPHIA--(BUSINESS WIRE)--Comcast Business today announced the deployment of a private wireless network at the headquarters of Smartlink, a national leader in digital infrastructure services, in downtown Annapolis, MD. Smartlink designs, builds, and sustains wireless infrastructure for carriers and tower companies across the country, making its choice of Comcast Business to solve its own in-building connectivity challenges a strong endorsement of the solution.",
+    "sentiment": "good",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260806261800/en/Comcast-Business-Brings-Enhanced-Private-Wireless-Networking-to-the-Corporate-Office/",
+    "timestamp": "2026-08-06T17:00:00.000Z"
+  },
+  {
+    "id": "auto-amltIGNyYW1lciBs",
+    "tickers": [
+      "AA"
+    ],
+    "line": "Jim Cramer Looked At This 'Not Great' Uranium Stock 'For Years'",
+    "details": "On CNBC's “Mad Money Lightning Round,” Jim Cramer said Fortinet, Inc. (NASDAQ:FTNT) is good and he likes it. “They're doing a good job,” he added.",
+    "sentiment": "good",
+    "source": "benzinga.com",
+    "sourceUrl": "https://www.benzinga.com/trading-ideas/long-ideas/26/08/60991018/jim-cramer-looked-at-this-not-great-uranium-stock-for-years",
+    "timestamp": "2026-08-06T15:00:16.000Z"
+  },
+  {
+    "id": "auto-emFja3MgaW5kdXN0",
+    "tickers": [
+      "FCX",
+      "KO",
+      "MA"
+    ],
+    "line": "Zacks Industry Outlook Southern Copper, Freeport, Lundin, Energy and Ero",
+    "details": "Southern Copper, Freeport, Lundin, Energy and Ero have been highlighted in this Industry Outlook article.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2969493/zacks-industry-outlook-southern-copper-freeport-lundin-energy-and-ero?cid=CS-STOCKNEWSAPI-FT-press_releases-2969493",
+    "timestamp": "2026-08-06T13:01:07.000Z"
+  },
+  {
+    "id": "auto-ZG9uYWxkIHRydW1w",
+    "tickers": [
+      "NUE"
+    ],
+    "line": "Donald Trump's 10% Global Tariff Expired on July 24. Its Section 301 Replacement Covers 60 Countries at Rates of 10% to 12.5%.",
+    "details": "The latest tariff move wasn't about raising rates; it was about making them stick, and that could reshape which stocks win for years to come.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/06/donald-trump-global-tariff-expire-july-section-301/",
+    "timestamp": "2026-08-06T11:15:00.000Z"
+  },
+  {
+    "id": "auto-YXZpb3Igd2VhbHRo",
+    "tickers": [
+      "HD"
+    ],
+    "line": "Avior Wealth Management LLC Has $4.62 Million Stock Holdings in The Home Depot, Inc. $HD",
+    "details": "Avior Wealth Management LLC trimmed its holdings in The Home Depot, Inc. (NYSE: HD) by 18.4% in the undefined quarter, according to its most recent disclosure with the Securities and Exchange Commission. The institutional investor owned 13,112 shares of the home improvement retailer's stock after selling 2,955 shares during the period. Avior Wealth",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/06/avior-wealth-management-llc-has-4-62-million-stock-holdings-in-the-home-depot-inc-hd.html",
+    "timestamp": "2026-08-06T10:13:27.000Z"
+  },
+  {
+    "id": "auto-MTgwIHdlYWx0aCBh",
+    "tickers": [
+      "GS"
+    ],
+    "line": "180 Wealth Advisors LLC Decreases Stake in The Goldman Sachs Group, Inc. $GS",
+    "details": "180 Wealth Advisors LLC cut its stake in shares of The Goldman Sachs Group, Inc. (NYSE: GS) by 30.6% during the second quarter, according to the company in its most recent filing with the Securities and Exchange Commission. The firm owned 2,511 shares of the investment management company's stock after selling 1,105 shares",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/06/180-wealth-advisors-llc-decreases-stake-in-the-goldman-sachs-group-inc-gs.html",
+    "timestamp": "2026-08-06T10:09:56.000Z"
+  },
+  {
+    "id": "auto-MyBkaXZpZGVuZCBz",
+    "tickers": [
+      "AEP",
+      "PLD"
+    ],
+    "line": "3 Dividend Stocks Ready to Pay You – If You Buy Them This Week",
+    "details": "Three well-known dividend payers share a single deadline this week. SiriusXM (NASDAQ:SIRI | SIRI Price Prediction), American Electric Power (NASDAQ:AEP), and Timberland Bancorp (NASDAQ:TSBK) all go ex-dividend on Monday, August 10.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/05/3-dividend-stocks-ready-to-pay-you-if-you-buy-them-this-week/",
+    "timestamp": "2026-08-05T20:35:15.000Z"
+  },
+  {
+    "id": "auto-d2h5IGNyZWRpY29y",
+    "tickers": [
+      "BAP"
+    ],
+    "line": "Why Credicorp (BAP) is a Top Dividend Stock for Your Portfolio",
+    "details": "Dividends are one of the best benefits to being a shareholder, but finding a great dividend stock is no easy task. Does Credicorp (BAP) have what it takes?",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2968895/why-credicorp-bap-is-a-top-dividend-stock-for-your-portfolio?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_5-2968895",
+    "timestamp": "2026-08-05T19:46:10.000Z"
+  },
+  {
+    "id": "auto-cmVnbiBvciBpbmN5",
+    "tickers": [
+      "INCY"
+    ],
+    "line": "REGN or INCY: Which Is the Better Value Stock Right Now?",
+    "details": "Investors looking for stocks in the Medical - Biomedical and Genetics sector might want to consider either Regeneron (REGN) or Incyte (INCY). But which of these two stocks is more attractive to value investors?",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2968885/regn-or-incy-which-is-the-better-value-stock-right-now?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_3-2968885",
+    "timestamp": "2026-08-05T19:41:10.000Z"
+  },
+  {
+    "id": "auto-NSBub24tZmVycm91",
+    "tickers": [
+      "FCX"
+    ],
+    "line": "5 Non-Ferrous Metal Mining Stocks to Watch in a Challenging Industry",
+    "details": "Despite the Zacks Mining - Non Ferrous industry's weak near-term outlook, stocks like SCCO, FCX, LUNMF, UUUU and ERO are worth keeping an eye on given their growth potential.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/commentary/2968189/5-non-ferrous-metal-mining-stocks-to-watch-in-a-challenging-industry?cid=CS-STOCKNEWSAPI-FT-industry_outlook-2968189",
+    "timestamp": "2026-08-05T19:01:07.000Z"
+  },
+  {
+    "id": "auto-Y2FlIChjYWUpIHJl",
+    "tickers": [
+      "CAE"
+    ],
+    "line": "CAE (CAE) Reports Next Week: Wall Street Expects Earnings Growth",
+    "details": "CAE (CAE) doesn't possess the right combination of the two key ingredients for a likely earnings beat in its upcoming report. Get prepared with the key expectations.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2968694/cae-cae-reports-next-week-wall-street-expects-earnings-growth?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_9-2968694",
+    "timestamp": "2026-08-05T18:01:07.000Z"
+  },
+  {
+    "id": "auto-Zmlyc3QgdHJ1c3Qg",
+    "tickers": [
+      "LULU"
+    ],
+    "line": "First Trust Advisors LP Has $4.22 Million Stock Holdings in lululemon athletica inc. $LULU",
+    "details": "First Trust Advisors LP decreased its holdings in shares of lululemon athletica inc. (NASDAQ: LULU) by 81.1% in the undefined quarter, according to its most recent 13F filing with the SEC. The fund owned 27,566 shares of the apparel retailer's stock after selling 118,469 shares during the period. First Trust Advisors LP's holdings",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/05/first-trust-advisors-lp-has-4-22-million-stock-holdings-in-lululemon-athletica-inc-lulu.html",
+    "timestamp": "2026-08-05T10:43:24.000Z"
+  },
+  {
+    "id": "auto-c2FuZHMgY2hpbmEg",
+    "tickers": [
+      "LVS"
+    ],
+    "line": "Sands China Earns Great Place To Work Certification™",
+    "details": "First integrated tourism and leisure enterprise in Greater China to receive this recognition MACAO, Aug. 5, 2026 /PRNewswire/ -- In recognition of its people-centric corporate culture and outstanding workplace environment, Sands China Ltd. has been awarded the Great Place To Work Certification™ upon its first participation in the assessment conducted by Great Place To Work™, a global authority on workplace culture.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/sands-china-earns-great-place-to-work-certification-302843461.html",
+    "timestamp": "2026-08-05T10:02:00.000Z"
+  },
+  {
+    "id": "auto-YW1lcmljYW4gZWxl",
+    "tickers": [
+      "AEP"
+    ],
+    "line": "American Electric Power: Contracted Load And Rate Base Growth",
+    "details": "American Electric Power remains a buy, driven by 69 GW of contracted load and a $78B capital plan supporting robust rate-base growth. Management raised FY2026 operating EPS guidance to $6.25–$6.55, reaffirming 7%-9% annual growth and targeting >9% CAGR through 2030. Contracted demand, especially from data centers, is increasingly formalized with strong regulatory and collateral protections, minimizing counterparty risk.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4930498-american-electric-power-contracted-load-and-rate-base-growth",
+    "timestamp": "2026-08-05T09:31:15.000Z"
+  },
+  {
+    "id": "auto-YW1lcmljYW4gdG93",
+    "tickers": [
+      "AMT"
+    ],
+    "line": "American Tower to Present at the TD Cowen 12th Annual Communications Infrastructure Summit",
+    "details": "BOSTON--(BUSINESS WIRE)--American Tower Corporation (NYSE: AMT) today announced that it is scheduled to present at the TD Cowen 12th Annual Communications Infrastructure Summit on Tuesday, August 11, 2026, at 12:25 p.m. MT in Boulder, Colorado. A live webcast and replay of the presentation will be accessible from the Investor Relations section of American Tower's website at www.americantower.com/investor-relations.",
+    "sentiment": "good",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260804041402/en/American-Tower-to-Present-at-the-TD-Cowen-12th-Annual-Communications-Infrastructure-Summit/",
+    "timestamp": "2026-08-04T23:15:00.000Z"
+  },
+  {
+    "id": "auto-d2lsbCB1cmJhbiBv",
+    "tickers": [
+      "URBN"
+    ],
+    "line": "Will Urban Outfitters (URBN) Beat Estimates Again in Its Next Earnings Report?",
+    "details": "Urban Outfitters (URBN) has an impressive earnings surprise history and currently possesses the right combination of the two key ingredients for a likely beat in its next quarterly report.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2967806/will-urban-outfitters-urbn-beat-estimates-again-in-its-next-earnings-report?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_7-2967806",
+    "timestamp": "2026-08-04T20:10:36.000Z"
+  },
+  {
+    "id": "auto-bGFzIHZlZ2FzIHNh",
+    "tickers": [
+      "LVS"
+    ],
+    "line": "Las Vegas Sands Donates $450,000 to The WASH Foundation",
+    "details": "Funding supports the company's 13 th hygiene kit build to benefit people facing hardships, grants to water champions in Sands' regions and the foundation's WASH programs. LAS VEGAS, Aug.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/las-vegas-sands-donates-450-000-to-the-wash-foundation-302842581.html",
+    "timestamp": "2026-08-04T20:00:00.000Z"
+  },
+  {
+    "id": "auto-aXMgY3JlZGljb3Jw",
+    "tickers": [
+      "BAP"
+    ],
+    "line": "Is Credicorp (BAP) Stock Outpacing Its Finance Peers This Year?",
+    "details": "Here is how Credicorp (BAP) and Bank First Corporation (BFC) have performed compared to their sector so far this year.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2967478/is-credicorp-bap-stock-outpacing-its-finance-peers-this-year?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_1-2967478",
+    "timestamp": "2026-08-04T17:41:12.000Z"
+  },
+  {
+    "id": "auto-cHJvbG9naXMgYW5u",
+    "tickers": [
+      "PLD"
+    ],
+    "line": "PROLOGIS ANNOUNCES PRICING OF COMMON STOCK OFFERING",
+    "details": "SAN FRANCISCO, August 4, 2026 /PRNewswire/ -- Prologis, Inc. (NYSE: PLD) (the \"Company\" or \"Prologis\") announced today the pricing of an underwritten public offering of 15,000,000 shares of its common stock. The aggregate gross proceeds to the Company from the offering, before deducting estimated transaction expenses, are expected to be approximately $2.1 billion.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/prologis-announces-pricing-of-common-stock-offering-302842518.html",
+    "timestamp": "2026-08-04T16:21:00.000Z"
+  },
+  {
+    "id": "auto-Ym9veiBhbGxlbiBo",
+    "tickers": [
+      "BAH"
+    ],
+    "line": "Booz Allen Hamilton Holding Corporation $BAH Shares Sold by California State Teachers Retirement System",
+    "details": "California State Teachers Retirement System trimmed its position in Booz Allen Hamilton Holding Corporation (NYSE: BAH) by 27.7% during the undefined quarter, according to the company in its most recent filing with the Securities and Exchange Commission (SEC). The firm owned 144,921 shares of the business services provider's stock after selling 55,432 shares",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/04/booz-allen-hamilton-holding-corporation-bah-shares-sold-by-california-state-teachers-retirement-system.html",
+    "timestamp": "2026-08-04T10:44:14.000Z"
+  },
+  {
+    "id": "auto-Y2FsaWZvcm5pYSBz",
+    "tickers": [
+      "AMH"
+    ],
+    "line": "California State Teachers Retirement System Has $10.92 Million Stock Position in American Homes 4 Rent $AMH",
+    "details": "California State Teachers Retirement System lowered its stake in shares of American Homes 4 Rent (NYSE: AMH) by 44.5% during the first quarter, according to its most recent disclosure with the Securities and Exchange Commission. The firm owned 391,104 shares of the real estate investment trust's stock after selling 313,245 shares during the",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/04/california-state-teachers-retirement-system-has-10-92-million-stock-position-in-american-homes-4-rent-amh.html",
+    "timestamp": "2026-08-04T10:43:40.000Z"
+  },
+  {
+    "id": "auto-bHVsdWxlbW9uIGF0",
+    "tickers": [
+      "LULU"
+    ],
+    "line": "Lululemon Athletica Inc (LULU) Stock Up 4.0% and Still Undervalued -- GF Score: 77/100",
+    "details": "On August 03, 2026, Lululemon Athletica Inc (LULU) shares rose 4.0% today to a current price of $123.67. The stock has seen a 52-week range between $104.44 and",
+    "sentiment": "good",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/8999930/lululemon-athletica-inc-lulu-stock-up-40-and-still-undervalued-gf-score-77100",
+    "timestamp": "2026-08-04T02:14:00.000Z"
+  },
+  {
+    "id": "auto-bGluZGU6IG15ICdu",
+    "tickers": [
+      "LIN"
+    ],
+    "line": "Linde: My 'Not Cheap' Thesis Has Been True Since 2023",
+    "details": "Linde plc remains a 'Hold' due to excessive valuation, despite its world-class fundamentals and robust profitability. LIN trades at a 27x-30x P/E, requiring unrealistic growth or sector re-rating to justify current levels and deliver meaningful upside. Recent results show strong margins, cash generation, and backlog, but capital allocation—especially buybacks at high multiples—raises concerns.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4929598-linde-my-not-cheap-thesis-has-been-true-since-2023",
+    "timestamp": "2026-08-03T21:45:42.000Z"
+  },
+  {
+    "id": "auto-aXMgYmFoIHN0b2Nr",
+    "tickers": [
+      "BAH"
+    ],
+    "line": "Is BAH Stock a Buy Now as Low Valuation Meets Uneven Revenue Growth?",
+    "details": "Booz Allen's discounted valuation, strong backlog and rising cash flow support the value case, but weak Civil revenues and leverage favor patience.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2966906/is-bah-stock-a-buy-now-as-low-valuation-meets-uneven-revenue-growth?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2966906",
+    "timestamp": "2026-08-03T20:56:04.000Z"
+  },
+  {
+    "id": "auto-c2xiLCB0YXJnZXQs",
+    "tickers": [
+      "SLB"
+    ],
+    "line": "SLB, Target, Transocean And A Tech Stock Stock On CNBC's ‘Final Trades'",
+    "details": "On CNBC's “Halftime Report Final Trades,” Stephanie Link, chief investment strategist, head of investment solutions and equity portfolio manager at Hightower Advisors, named Target Corporation (NYSE:TGT) as her final trade.",
+    "sentiment": "good",
+    "source": "benzinga.com",
+    "sourceUrl": "https://www.benzinga.com/trading-ideas/long-ideas/26/08/60869437/slb-target-transocean-tech-stock-stock-on-cnbcs-final-trades",
+    "timestamp": "2026-08-03T15:05:16.000Z"
+  },
+  {
+    "id": "auto-Zmlyc3QgbmF0aW9u",
+    "tickers": [
+      "LIN"
+    ],
+    "line": "First National Bank of Mount Dora Trust Investment Services Has $8.49 Million Stock Holdings in Linde PLC $LIN",
+    "details": "First National Bank of Mount Dora Trust Investment Services boosted its position in shares of Linde PLC (NASDAQ: LIN) by 8.5% during the undefined quarter, according to its most recent Form 13F filing with the Securities and Exchange Commission. The firm owned 17,136 shares of the basic materials company's stock after acquiring an",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/03/first-national-bank-of-mount-dora-trust-investment-services-has-8-49-million-stock-holdings-in-linde-plc-lin.html",
+    "timestamp": "2026-08-03T11:17:48.000Z"
+  },
+  {
+    "id": "auto-dG9wIHdhbGwgc3Ry",
+    "tickers": [
+      "SLB"
+    ],
+    "line": "Top Wall Street analysts are bullish on these 3 dividend stocks for passive income",
+    "details": "Tracking top analysts can help investors shortlist attractive dividend stocks, as these experts provide useful insights.",
+    "sentiment": "good",
+    "source": "cnbc.com",
+    "sourceUrl": "https://www.cnbc.com/2026/08/02/top-analysts-are-bullish-on-these-dividend-stocks-for-passive-income-.html",
+    "timestamp": "2026-08-02T15:01:00.000Z"
+  },
+  {
+    "id": "auto-YXhpb20gaW52ZXN0",
+    "tickers": [
+      "UNP"
+    ],
+    "line": "Axiom Investment Management LLC Takes $9.15 Million Position in Union Pacific Corporation $UNP",
+    "details": "Axiom Investment Management LLC acquired a new stake in Union Pacific Corporation (NYSE: UNP) in the first quarter, according to the company in its most recent filing with the Securities and Exchange Commission (SEC). The fund acquired 37,719 shares of the railroad operator's stock, valued at approximately $9,151,000. Union Pacific comprises 7.0% of",
+    "sentiment": "good",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/01/axiom-investment-management-llc-takes-9-15-million-position-in-union-pacific-corporation-unp.html",
+    "timestamp": "2026-08-01T11:21:33.000Z"
+  },
+  {
+    "id": "auto-YW1lcmljYW4gaG9t",
+    "tickers": [
+      "AMH"
+    ],
+    "line": "American Homes 4 Rent (AMH) Q2 2026 Earnings Call Transcript",
+    "details": "American Homes 4 Rent (AMH) Q2 2026 Earnings Call Transcript",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4928904-american-homes-4-rent-amh-q2-2026-earnings-call-transcript",
+    "timestamp": "2026-07-31T22:13:25.000Z"
+  },
+  {
+    "id": "auto-aW50ZXJkaWdpdGFs",
+    "tickers": [
+      "IDCC"
+    ],
+    "line": "InterDigital Is Riding AI Streaming and IoT Licensing Growth Trends",
+    "details": "IDCC is expanding beyond smartphones with AI, streaming and IoT licensing, opening new royalty opportunities across fast-growing technology markets.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2966026/interdigital-is-riding-ai-streaming-and-iot-licensing-growth-trends?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2966026",
+    "timestamp": "2026-07-31T20:30:24.000Z"
+  },
+  {
+    "id": "auto-aXMgaWRjYyBzdG9j",
+    "tickers": [
+      "IDCC"
+    ],
+    "line": "Is IDCC Stock a Buy After Strong Earnings and Higher Revenue Guidance?",
+    "details": "IDCC beat Q2 estimates, raised 2026 revenue guidance and posted record recurring revenue, but investors still face valuation and licensing-related risks.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2966018/is-idcc-stock-a-buy-after-strong-earnings-and-higher-revenue-guidance?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2966018",
+    "timestamp": "2026-07-31T20:25:14.000Z"
+  },
+  {
+    "id": "auto-YWxjb2EgY29ycG9y",
+    "tickers": [
+      "AA"
+    ],
+    "line": "Alcoa Corporation Declares Quarterly Cash Dividend",
+    "details": "PITTSBURGH--(BUSINESS WIRE)--Alcoa Corporation (NYSE: AA; ASX: AAI) (“Alcoa” or the “Company”) today announced that its Board of Directors has declared a quarterly cash dividend of $0.10 per share of the Company's common stock, to be paid on August 27, 2026 to stockholders of record as of the close of business on August 11, 2026.About Alcoa CorporationAlcoa is a global industry leader in alumina and aluminum products with a Vision to Build a Legacy of Excellence for Future Ge…",
+    "sentiment": "good",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260730495573/en/Alcoa-Corporation-Declares-Quarterly-Cash-Dividend/",
+    "timestamp": "2026-07-31T02:10:00.000Z"
+  },
+  {
+    "id": "auto-YXVzdHJhbGlhJ3Mg",
+    "tickers": [
+      "HAL"
+    ],
+    "line": "Australia's Beetaloo Energy partners with Halliburton for AI data centre-linked gas project",
+    "details": "Beetaloo Energy Australia said on Thursday it had signed a ​non-binding agreement with oilfield services ‌firm Halliburton to help advance a proposed gas-to-power and data centre development in ​Australia's Northern Territory.",
+    "sentiment": "good",
+    "source": "reuters.com",
+    "sourceUrl": "https://www.reuters.com/business/energy/australias-beetaloo-energy-partners-with-halliburton-ai-data-centre-linked-gas-2026-07-30/",
+    "timestamp": "2026-07-30T03:54:18.000Z"
+  },
+  {
+    "id": "auto-bmV3IHN0cm9uZyBi",
+    "tickers": [
+      "DOO"
+    ],
+    "line": "New Strong Buy Stocks for July 28th",
+    "details": "DOO, NXRT, ARW, NTNX and CCS have been added to the Zacks Rank #1 (Strong Buy) List on July 28, 2026.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/commentary/2960091/new-strong-buy-stocks-for-july-28th?cid=CS-STOCKNEWSAPI-FT-zacks_1_rank_additions-2960091",
+    "timestamp": "2026-07-28T13:25:40.000Z"
+  },
+  {
+    "id": "auto-aGFsbGlidXJ0b24g",
+    "tickers": [
+      "HAL"
+    ],
+    "line": "Halliburton (HAL) Q2 Earnings: Taking a Look at Key Metrics Versus Estimates",
+    "details": "Although the revenue and EPS for Halliburton (HAL) give a sense of how its business performed in the quarter ended June 2026, it might be worth considering how some key metrics compare with Wall Street estimates and the year-ago numbers.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2960583/halliburton-hal-q2-earnings-taking-a-look-at-key-metrics-versus-estimates?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm-2960583",
+    "timestamp": "2026-07-24T21:31:04.000Z"
+  },
+  {
+    "id": "auto-Y2FuLWFtIGVuY291",
+    "tickers": [
+      "DOO"
+    ],
+    "line": "Can-Am encourages all riders to prioritize Safety and Responsible Riding to start National OHV Safety Week",
+    "details": "Complete free Responsible Rider Masterclass 101 Off-Road course and $35 will be donated to Tread Lightly! Stewardship projects VALCOURT, QC, June 16, 2026 /PRNewswire/ - With summer and National OHV safety week about to start, Can-Am, an iconic brand of BRP Inc. (TSX: DOO) (NASDAQ: DOO), is inviting all off-roaders to prioritize safety on the trails all season long.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/can-am-encourages-all-riders-to-prioritize-safety-and-responsible-riding-to-start-national-ohv-safety-week-302801775.html",
+    "timestamp": "2026-06-16T16:27:00.000Z"
+  },
+  {
+    "id": "auto-dWdwIG9yIHdtYjog",
+    "tickers": [
+      "UGP"
+    ],
+    "line": "UGP or WMB: Which Is the Better Value Stock Right Now?",
+    "details": "Investors looking for stocks in the Oil and Gas - Production and Pipelines sector might want to consider either Ultrapar Participacoes S.A. (UGP) or Williams Companies, Inc. (The) (WMB).",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2930912/ugp-or-wmb-which-is-the-better-value-stock-right-now?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_3-2930912",
+    "timestamp": "2026-06-02T19:40:30.000Z"
   }
 ]

@@ -13,9 +13,11 @@ export type HoldingNewsItem = NewsItem & {
   affectWhy: Record<string, "holding">;
 };
 
+const MAX_PER_HOLDING = 2;
+
 /**
- * Keep only news that names a ticker the user actually holds.
- * Industry / sector peers are excluded — peers are not the same company.
+ * For each held ticker: keep up to 2 newest stories that name that ticker.
+ * No industry/sector peer stretch — only direct ticker links.
  */
 export function filterNewsForHoldings(
   news: NewsItem[],
@@ -24,28 +26,41 @@ export function filterNewsForHoldings(
 ): HoldingNewsItem[] {
   if (!holdings.length) return [];
 
-  const holdTickers = new Set(holdings.map((h) => h.ticker.toUpperCase()));
-  const out: HoldingNewsItem[] = [];
+  const holdTickers = holdings.map((h) => h.ticker.toUpperCase());
+  const byId = new Map<string, HoldingNewsItem>();
 
-  for (const item of news) {
-    const newsTickers = (item.tickers || []).map((t) => t.toUpperCase());
-    const affects: string[] = [];
-    const affectWhy: Record<string, "holding"> = {};
+  for (const ticker of holdTickers) {
+    const matches = news
+      .filter((item) =>
+        (item.tickers || []).some((t) => t.toUpperCase() === ticker)
+      )
+      .slice()
+      .sort(
+        (a, b) =>
+          new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+      )
+      .slice(0, MAX_PER_HOLDING);
 
-    for (const t of newsTickers) {
-      if (!holdTickers.has(t) || affectWhy[t]) continue;
-      affects.push(t);
-      affectWhy[t] = "holding";
+    for (const item of matches) {
+      const existing = byId.get(item.id);
+      if (existing) {
+        if (!existing.affectWhy[ticker]) {
+          existing.affects.push(ticker);
+          existing.affects.sort();
+          existing.affectWhy[ticker] = "holding";
+        }
+        continue;
+      }
+      byId.set(item.id, {
+        ...item,
+        affects: [ticker],
+        affectWhy: { [ticker]: "holding" },
+      });
     }
-
-    if (affects.length === 0) continue;
-
-    out.push({
-      ...item,
-      affects: affects.sort(),
-      affectWhy,
-    });
   }
 
-  return out;
+  return [...byId.values()].sort(
+    (a, b) =>
+      new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  );
 }

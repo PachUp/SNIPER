@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Refresh data/news.json from Financial Modeling Prep stock news.
- * Used by GitHub Actions every 3 days (and runnable locally).
+ * Pulls the newest stories per catalog ticker (max 2 each) so every
+ * holding can show recent, directly linked headlines.
  *
  * Env:
  *   FMP_API_KEY  (required)
@@ -19,7 +20,11 @@ const FAMOUS = path.join(ROOT, "data", "famous_stocks.json");
 const SNIPERS = path.join(ROOT, "data", "snipers.json");
 
 const FMP_BASE = "https://financialmodelingprep.com/api/v3";
-const MAX_ITEMS = 20;
+/** Newest stories kept per ticker in the seed file. */
+const PER_TICKER = 2;
+/** Fetch a few extras per ticker in case of dups / thin text. */
+const FETCH_LIMIT = 6;
+const CONCURRENCY = 6;
 
 const BAD =
   /\b(fall|fell|drop|drops|plung|slump|miss|cuts?|loss|losses|fear|warn|lawsuit|probe|recall|lay.?off|bankrupt|crash|sell.?off|downgrade)\b/i;
@@ -102,55 +107,67 @@ function sourceName(url, site) {
   }
 }
 
-async function fetchFmpNews(key, tickers) {
-  // Pull a few ticker-scoped batches + a broad feed so we get sector coverage.
-  const batches = [];
-  const chunkSize = 12;
-  for (let i = 0; i < Math.min(tickers.length, 48); i += chunkSize) {
-    batches.push(tickers.slice(i, i + chunkSize));
+async function fetchTickerNews(key, ticker) {
+  const params = new URLSearchParams({
+    tickers: ticker,
+    limit: String(FETCH_LIMIT),
+    apikey: key,
+  });
+  const url = `${FMP_BASE}/stock_news?${params}`;
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(
+      `FMP news ${ticker} failed (${res.status})${body ? `: ${body.slice(0, 120)}` : ""}`
+    );
   }
-  batches.push([]); // general stock news
-
-  const rows = [];
-  for (const chunk of batches) {
-    const params = new URLSearchParams({
-      limit: "40",
-      apikey: key,
-    });
-    if (chunk.length) params.set("tickers", chunk.join(","));
-    const url = `${FMP_BASE}/stock_news?${params}`;
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) {
-      const body = await res.text().catch(() => "");
-      throw new Error(
-        `FMP news failed (${res.status})${body ? `: ${body.slice(0, 180)}` : ""}`
-      );
-    }
-    const data = await res.json();
-    if (Array.isArray(data)) rows.push(...data);
-  }
-  return rows;
+  const data = await res.json();
+  return Array.isArray(data) ? data : [];
 }
 
-function mapRows(rows, catalog) {
-  const catalogSet = new Set(catalog);
-  const seen = new Set();
-  const items = [];
+async function mapPool(items, limit, fn) {
+  const out = [];
+  let i = 0;
+  async function worker() {
+    while (i < items.length) {
+      const idx = i++;
+      out[idx] = await fn(items[idx], idx);
+    }
+  }
+  await Promise.all(
+    Array.from({ length: Math.min(limit, items.length) }, () => worker())
+  );
+  return out;
+}
 
+async function fetchFmpNews(key, tickers) {
+  const batches = await mapPool(tickers, CONCURRENCY, async (ticker) => {
+    try {
+      const rows = await fetchTickerNews(key, ticker);
+      return { ticker, rows };
+    } catch (err) {
+      console.warn(`Skip ${ticker}: ${err.message || err}`);
+      return { ticker, rows: [] };
+    }
+  });
+  return batches;
+}
+
+function mapTickerRows(ticker, rows, seen) {
+  const items = [];
   for (const row of rows) {
     const title = String(row.title || "").trim();
     const url = String(row.url || "").trim();
     if (!title || !url) continue;
-    const key = `${title.toLowerCase()}|${url}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
+    const dedupe = `${title.toLowerCase()}|${url}`;
+    if (seen.has(dedupe)) continue;
+    seen.add(dedupe);
 
-    const sym = String(row.symbol || "")
+    // Prefer FMP symbol; fall back to the requested ticker so attribution sticks.
+    const sym = String(row.symbol || ticker)
       .toUpperCase()
       .trim();
-    const tickers = sym ? [sym] : [];
-    // Prefer stories tied to our universe; keep a few broad ones.
-    const inUniverse = tickers.some((t) => catalogSet.has(t));
+    const tickers = sym ? [sym] : [ticker];
 
     const text = String(row.text || row.title || "").trim();
     const published = row.publishedDate
@@ -158,7 +175,7 @@ function mapRows(rows, catalog) {
       : new Date().toISOString();
 
     items.push({
-      id: `auto-${Buffer.from(key).toString("base64url").slice(0, 16)}`,
+      id: `auto-${Buffer.from(dedupe).toString("base64url").slice(0, 16)}`,
       tickers,
       line: oneLine(title),
       details: detailLine(text || title),
@@ -166,17 +183,44 @@ function mapRows(rows, catalog) {
       source: sourceName(url, row.site),
       sourceUrl: url,
       timestamp: published,
-      _inUniverse: inUniverse,
     });
   }
 
-  // Rank: universe first, then newest
-  items.sort((a, b) => {
-    if (a._inUniverse !== b._inUniverse) return a._inUniverse ? -1 : 1;
-    return new Date(b.timestamp) - new Date(a.timestamp);
-  });
+  items.sort(
+    (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+  );
+  return items.slice(0, PER_TICKER);
+}
 
-  return items.slice(0, MAX_ITEMS).map(({ _inUniverse, ...rest }) => rest);
+function buildFeed(tickerBatches) {
+  const seen = new Set();
+  const byId = new Map();
+
+  for (const { ticker, rows } of tickerBatches) {
+    const picked = mapTickerRows(ticker, rows, seen);
+    for (const item of picked) {
+      // Ensure this holding ticker is on the story even if FMP tagged a peer.
+      const t = ticker.toUpperCase();
+      if (!item.tickers.map((x) => x.toUpperCase()).includes(t)) {
+        item.tickers = [...item.tickers, t];
+      }
+      const existing = byId.get(item.id);
+      if (existing) {
+        for (const sym of item.tickers) {
+          const u = sym.toUpperCase();
+          if (!existing.tickers.map((x) => x.toUpperCase()).includes(u)) {
+            existing.tickers.push(u);
+          }
+        }
+        continue;
+      }
+      byId.set(item.id, item);
+    }
+  }
+
+  return [...byId.values()].sort(
+    (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+  );
 }
 
 async function main() {
@@ -187,10 +231,11 @@ async function main() {
   }
 
   const catalog = catalogTickers();
-  console.log(`Catalog tickers: ${catalog.length}`);
-  const rows = await fetchFmpNews(key, catalog);
-  console.log(`FMP rows fetched: ${rows.length}`);
-  const news = mapRows(rows, catalog);
+  console.log(`Catalog tickers: ${catalog.length} (max ${PER_TICKER} stories each)`);
+  const batches = await fetchFmpNews(key, catalog);
+  const fetched = batches.reduce((n, b) => n + b.rows.length, 0);
+  console.log(`FMP rows fetched: ${fetched}`);
+  const news = buildFeed(batches);
   if (news.length < 3) {
     console.error("Too few news items mapped — aborting to avoid wiping feed");
     process.exit(1);
@@ -200,7 +245,14 @@ async function main() {
   writeFileSync(SEED, payload, "utf8");
   mkdirSync(path.dirname(RUNTIME), { recursive: true });
   writeFileSync(RUNTIME, payload, "utf8");
-  console.log(`Wrote ${news.length} headlines → data/news.json`);
+
+  const covered = new Set();
+  for (const item of news) {
+    for (const t of item.tickers) covered.add(t.toUpperCase());
+  }
+  console.log(
+    `Wrote ${news.length} headlines covering ${covered.size} tickers → data/news.json`
+  );
 }
 
 main().catch((err) => {
