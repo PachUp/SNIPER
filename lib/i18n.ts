@@ -102,7 +102,7 @@ const en: Dict = {
   "news.title": "Breaking News",
   "news.holdingTitle": "News for your holdings",
   "news.holdingSubtitle":
-    "Newest plain-English lessons for your {n} stocks (up to 2 each) — written for beginners.",
+    "Newest stories for your {n} stocks (up to 2 each). Dense SEC filings get a plain-English rewrite.",
   "news.holdingEmptyHint": "Build a portfolio to see news that matters to you.",
   "news.holdingNeedBook":
     "No portfolio yet. Build one first — then we’ll explain news about your stocks in plain English.",
@@ -114,16 +114,16 @@ const en: Dict = {
   "news.whyIndustry": "same industry",
   "news.whySector": "same sector",
   "news.subtitle":
-    "Plain-English market lessons — green helpful, red caution. Tap to learn more.",
+    "Recent holding news — green helpful, red caution. Tap for details.",
   "filter.all": "All",
   "filter.good": "Good",
   "filter.bad": "Bad",
   "newsline.good": "GOOD",
   "newsline.bad": "BAD",
-  "newsline.details": "Learn more →",
-  "popup.companies": "Tickers in the original story:",
-  "popup.edge": "Plain English — what it means if you own this stock",
-  "popup.readFull": "Read original story →",
+  "newsline.details": "More →",
+  "popup.companies": "Tickers in the story:",
+  "popup.edge": "Details",
+  "popup.readFull": "Read full story →",
   "popup.notAdvice": "General education, not personal investment advice.",
 
   // ideas

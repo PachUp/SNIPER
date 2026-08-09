@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * Refresh data/news.json from Financial Modeling Prep stock news.
- * Picks the newest useful stories per ticker (max 2), then rewrites
- * them into plain English for beginners.
+ * Picks the newest useful stories per ticker (max 2).
+ * Rewrites only EDGAR/SEC filings or truly advanced jargon.
  *
  * Env:
  *   FMP_API_KEY  (required)
@@ -11,7 +11,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import {
-  rewriteForBeginners,
+  presentStory,
   storyQuality,
   isClickbait,
 } from "./plainNews.mjs";
@@ -197,7 +197,7 @@ function mapTickerRows(ticker, rows, seen, names) {
   for (const row of pool) {
     seen.add(row.dedupe);
     const sentiment = sentimentFrom(row.title, row.text);
-    const plain = rewriteForBeginners({
+    const presented = presentStory({
       ticker,
       name,
       title: row.title,
@@ -208,8 +208,8 @@ function mapTickerRows(ticker, rows, seen, names) {
     items.push({
       id: `auto-${Buffer.from(row.dedupe).toString("base64url").slice(0, 16)}`,
       tickers: [ticker],
-      line: plain.line,
-      details: plain.details,
+      line: presented.line,
+      details: presented.details,
       sentiment,
       source: sourceName(row.url, null),
       sourceUrl: row.url,
@@ -277,7 +277,7 @@ async function main() {
     for (const t of item.tickers) covered.add(t.toUpperCase());
   }
   console.log(
-    `Wrote ${news.length} beginner headlines covering ${covered.size} tickers → data/news.json`
+    `Wrote ${news.length} headlines covering ${covered.size} tickers → data/news.json`
   );
   console.log("Sample:", news[0]?.line);
 }
