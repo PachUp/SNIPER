@@ -300,6 +300,28 @@ export default function DashboardPage() {
     [chartPositions]
   );
 
+  // Must stay above any early return — hooks can't run after conditional returns.
+  const weightSlices = useMemo(
+    () =>
+      holdings
+        .map((h) => {
+          const s =
+            stockMap.get(h.current) ?? stockFromHolding(h.holding, stockMap);
+          if (!s) return null;
+          return {
+            ticker: s.ticker,
+            sector: s.sector || "Other",
+            industry: s.industry,
+            weightPct:
+              typeof h.weightPct === "number" && h.weightPct > 0
+                ? h.weightPct
+                : 0,
+          };
+        })
+        .filter((x): x is NonNullable<typeof x> => x != null),
+    [holdings, stockMap]
+  );
+
   // Search full FvIndustries universe (~805 symbols), not just the site catalog.
   useEffect(() => {
     if (!addOpen) return;
@@ -584,27 +606,6 @@ export default function DashboardPage() {
   }
 
   const canAdd = added.length < MAX_PERSONAL_ADDS;
-
-  const weightSlices = useMemo(
-    () =>
-      holdings
-        .map((h) => {
-          const s =
-            stockMap.get(h.current) ?? stockFromHolding(h.holding, stockMap);
-          if (!s) return null;
-          return {
-            ticker: s.ticker,
-            sector: s.sector || "Other",
-            industry: s.industry,
-            weightPct:
-              typeof h.weightPct === "number" && h.weightPct > 0
-                ? h.weightPct
-                : 0,
-          };
-        })
-        .filter((x): x is NonNullable<typeof x> => x != null),
-    [holdings, stockMap]
-  );
 
   return (
     <div className="flex flex-col gap-3 pb-4">
