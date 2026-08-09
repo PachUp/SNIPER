@@ -14,10 +14,10 @@ fi
 bash scripts/sync-runtime-to-seeds.sh >/dev/null 2>&1 || true
 
 # Untracked workflow files alone are not a deploy (need workflow OAuth scope).
+# Matches ?? .github / ?? .github/ / ?? .github/workflows/...
 dirty="$(
   git status --porcelain \
-    | grep -Ev '^\?\? \.github(/workflows(/.*)?)?$' \
-    | grep -Ev '^\?\? \.github/workflows/' \
+    | grep -Ev '^\?\? \.github(/|$)' \
     || true
 )"
 if [[ -z "$dirty" ]]; then
