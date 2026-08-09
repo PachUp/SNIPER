@@ -32,12 +32,12 @@ export default function NewsPopup({
       onClick={onClose}
     >
       <div
-        className="max-h-[88dvh] w-full max-w-md overflow-y-auto rounded-xl border border-terminal-border bg-terminal-panel p-6 shadow-2xl"
+        className="max-h-[88dvh] w-full max-w-md overflow-y-auto rounded-2xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl sm:p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
           <span
-            className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-bold tracking-wide ${
+            className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.14em] ${
               good
                 ? "bg-terminal-good/15 text-terminal-good"
                 : "bg-terminal-bad/15 text-terminal-bad"
@@ -47,34 +47,34 @@ export default function NewsPopup({
           </span>
           <button
             onClick={onClose}
-            className="text-terminal-muted hover:text-terminal-text"
+            className="min-h-9 min-w-9 text-terminal-muted active:text-terminal-text"
             aria-label={t("common.close")}
           >
             ✕
           </button>
         </div>
 
-        <h2 className="mt-4 text-lg font-bold leading-snug text-terminal-text">
+        <h2 className="mt-4 text-[15px] font-semibold leading-[1.4] tracking-[0.01em] text-white">
           {item.line}
         </h2>
 
         {item.details ? (
-          <div className="mt-3 rounded-md border border-terminal-border bg-black/40 px-3 py-2.5">
-            <div className="text-[9px] font-medium uppercase tracking-[0.18em] text-terminal-accent">
+          <div className="mt-4 rounded-xl border border-terminal-border bg-black/40 px-3.5 py-3">
+            <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-terminal-accent">
               {t("popup.edge")}
             </div>
-            <p className="mt-1.5 text-sm leading-relaxed text-terminal-muted">
+            <p className="mt-2 text-[13px] leading-relaxed text-white/70">
               {item.details}
             </p>
           </div>
         ) : null}
 
         {affects && affects.length > 0 ? (
-          <div className="mt-4 rounded-md border border-terminal-accent/30 bg-terminal-accent/10 px-3 py-2.5">
-            <div className="text-[9px] font-medium uppercase tracking-[0.18em] text-terminal-accent">
-              {t("news.mayAffect")}
+          <div className="mt-4 rounded-xl border border-terminal-accent/30 bg-terminal-accent/10 px-3.5 py-3">
+            <div className="text-[9px] font-semibold uppercase tracking-[0.18em] text-terminal-accent">
+              {t("news.yourHolding")}
             </div>
-            <div className="mt-1.5 flex flex-wrap gap-1.5">
+            <div className="mt-2 flex flex-wrap gap-1.5">
               {affects.map((ticker) => {
                 const whyLabel =
                   affectWhy?.[ticker] === "holding" || !affectWhy?.[ticker]
@@ -83,7 +83,7 @@ export default function NewsPopup({
                 return (
                   <span
                     key={ticker}
-                    className="rounded bg-black/40 px-2 py-1 text-[11px] font-bold text-terminal-accent"
+                    className="rounded-md bg-black/40 px-2.5 py-1 text-[12px] font-bold text-terminal-accent"
                     title={whyLabel}
                   >
                     {ticker}
@@ -99,21 +99,21 @@ export default function NewsPopup({
           </div>
         ) : null}
 
-        <div className="mt-4 flex flex-wrap items-center gap-1.5">
+        <div className="mt-5 flex flex-wrap items-center gap-1.5">
           <span className="text-[11px] text-terminal-muted">
             {t("popup.companies")}
           </span>
           {item.tickers.map((ticker) => (
             <span
               key={ticker}
-              className="rounded bg-terminal-bg px-1.5 py-0.5 text-[10px] font-bold text-terminal-muted"
+              className="rounded-md bg-terminal-bg px-2 py-0.5 text-[10px] font-bold text-terminal-muted"
             >
               {ticker}
             </span>
           ))}
         </div>
 
-        <div className="mt-5 flex items-center justify-between border-t border-terminal-border pt-4">
+        <div className="mt-5 flex items-center justify-between gap-3 border-t border-terminal-border pt-4">
           <span className="text-[11px] text-terminal-muted">
             {item.source} · {ago(item.timestamp)}
           </span>
@@ -121,7 +121,7 @@ export default function NewsPopup({
             href={item.sourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="rounded-md bg-terminal-accent/10 px-3 py-1.5 text-xs font-bold text-terminal-accent hover:bg-terminal-accent/20"
+            className="rounded-lg bg-terminal-accent px-3.5 py-2 text-[12px] font-bold text-black active:opacity-90"
           >
             {t("popup.readFull")}
           </a>

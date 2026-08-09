@@ -97,20 +97,20 @@ export default function BreakingNewsPage() {
   const hasPortfolio = holdings.length > 0;
 
   return (
-    <div className="flex flex-col gap-2 pb-4">
-      <div className="flex items-center justify-between gap-2">
-        <div className="min-w-0">
-          <h1 className="text-base font-bold tracking-wide sm:text-lg">
+    <div className="flex flex-col gap-4 pb-6">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <h1 className="text-[15px] font-bold tracking-wide text-white sm:text-base">
             {t("news.holdingTitle")}
           </h1>
-          <p className="text-[10px] text-terminal-muted">
+          <p className="mt-1 max-w-[22rem] text-[11px] leading-relaxed text-terminal-muted">
             {hasPortfolio
               ? t("news.holdingSubtitle", { n: holdings.length })
               : t("news.holdingEmptyHint")}
           </p>
         </div>
         {hasPortfolio ? (
-          <div className="flex shrink-0 gap-0.5">
+          <div className="flex shrink-0 gap-1 rounded-lg border border-terminal-border bg-terminal-panel/80 p-0.5">
             {(
               [
                 ["all", "filter.all"],
@@ -121,10 +121,10 @@ export default function BreakingNewsPage() {
               <button
                 key={f}
                 onClick={() => setFilter(f)}
-                className={`rounded px-2 py-1 text-[10px] tracking-wider ${
+                className={`rounded-md px-2.5 py-1.5 text-[10px] font-semibold tracking-wider ${
                   filter === f
-                    ? "bg-terminal-accent/15 text-terminal-accent"
-                    : "text-terminal-muted hover:text-terminal-text"
+                    ? "bg-terminal-accent/20 text-terminal-accent"
+                    : "text-terminal-muted active:text-terminal-text"
                 }`}
               >
                 {t(key)}
@@ -139,21 +139,23 @@ export default function BreakingNewsPage() {
           {t("common.loading")}
         </div>
       ) : !hasPortfolio ? (
-        <div className="rounded-xl border border-terminal-border bg-terminal-panel px-4 py-10 text-center">
-          <p className="text-sm text-terminal-muted">{t("news.holdingNeedBook")}</p>
+        <div className="rounded-xl border border-terminal-border bg-terminal-panel px-5 py-12 text-center">
+          <p className="text-sm leading-relaxed text-terminal-muted">
+            {t("news.holdingNeedBook")}
+          </p>
           <Link
             href="/build"
-            className="mt-4 inline-block rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
+            className="mt-5 inline-block rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
           >
             {t("dash.getStarted")}
           </Link>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="rounded-xl border border-terminal-border bg-terminal-panel px-4 py-10 text-center text-sm text-terminal-muted">
+        <div className="rounded-xl border border-terminal-border bg-terminal-panel px-5 py-12 text-center text-sm leading-relaxed text-terminal-muted">
           {t("news.holdingNone")}
         </div>
       ) : (
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-3">
           {filtered.map((item) => {
             const good = item.sentiment === "good";
             return (
@@ -161,39 +163,41 @@ export default function BreakingNewsPage() {
                 key={item.id}
                 type="button"
                 onClick={() => setOpen(item)}
-                className={`flex w-full min-w-0 flex-col gap-1.5 rounded-md border-l-2 px-2.5 py-2 text-left ${
+                className={`group flex w-full min-w-0 flex-col gap-2.5 rounded-xl border-l-[3px] px-3.5 py-3.5 text-left active:scale-[0.99] ${
                   good
-                    ? "border-l-terminal-good border border-terminal-good/15 bg-terminal-good/[0.06]"
-                    : "border-l-terminal-bad border border-terminal-bad/15 bg-terminal-bad/[0.06]"
+                    ? "border-l-terminal-good border border-terminal-good/20 bg-terminal-good/[0.07] active:bg-terminal-good/[0.12]"
+                    : "border-l-terminal-bad border border-terminal-bad/20 bg-terminal-bad/[0.07] active:bg-terminal-bad/[0.12]"
                 }`}
               >
-                <div className="flex w-full min-w-0 items-start gap-2">
+                <div className="flex w-full min-w-0 items-start gap-2.5">
                   <span
-                    className={`w-9 shrink-0 pt-0.5 text-[9px] font-bold uppercase tracking-wider ${
-                      good ? "text-terminal-good" : "text-terminal-bad"
+                    className={`mt-0.5 shrink-0 rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-[0.14em] ${
+                      good
+                        ? "bg-terminal-good/15 text-terminal-good"
+                        : "bg-terminal-bad/15 text-terminal-bad"
                     }`}
                   >
                     {good ? t("newsline.good") : t("newsline.bad")}
                   </span>
-                  {/* Full sentence — wrap on phone, never ellipsis/truncate */}
-                  <span className="min-w-0 flex-1 whitespace-normal break-words text-[13px] leading-snug text-terminal-text">
+                  {/* Full sentence — roomy wrap, crisp type, never truncate */}
+                  <span className="min-w-0 flex-1 whitespace-normal break-words text-[12px] font-medium leading-[1.45] tracking-[0.01em] text-white">
                     {item.line}
                   </span>
                 </div>
-                <div className="flex flex-wrap items-center gap-1 ps-11">
-                  <span className="text-[9px] uppercase tracking-wider text-terminal-muted">
+                <div className="flex flex-wrap items-center gap-1.5 border-t border-white/[0.06] pt-2.5">
+                  <span className="text-[9px] uppercase tracking-[0.16em] text-terminal-muted">
                     {t("news.yourHolding")}
                   </span>
                   {item.affects.map((sym) => (
                     <span
                       key={sym}
-                      className="rounded bg-terminal-accent/15 px-1.5 py-0.5 text-[10px] font-bold text-terminal-accent"
+                      className="rounded-md bg-terminal-accent/20 px-2 py-0.5 text-[11px] font-bold tracking-wide text-terminal-accent"
                       title={t("news.whyHolding")}
                     >
                       {sym}
                     </span>
                   ))}
-                  <span className="ms-auto text-[10px] text-terminal-muted">
+                  <span className="ms-auto text-[11px] font-medium text-terminal-accent/90 group-active:text-terminal-accent">
                     {t("newsline.details")}
                   </span>
                 </div>
