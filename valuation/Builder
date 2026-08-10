@@ -93,7 +93,6 @@ class Stock:
     famous: bool
     high_upside: bool
     sharpe_ratio: Optional[float] = None
-    sortino_ratio: Optional[float] = None
 
 
 def load_famous_stocks_file(path: Path) -> tuple[str, ...]:
@@ -209,9 +208,9 @@ def resolve_sector(
     return symbol_to_sector.get(symbol.upper()) or industry_to_sector.get(industry) or ""
 
 
-def load_risk_map(sharpe_path: Path) -> dict[str, dict[str, float]]:
-    """symbol → {sharpe, sortino} from ``all_stocks_sharpe_ratios.json``."""
-    out: dict[str, dict[str, float]] = {}
+def load_sharpe_map(sharpe_path: Path) -> dict[str, float]:
+    """symbol → 1y Sharpe ratio (from ``all_stocks_sharpe_ratios.json``)."""
+    out: dict[str, float] = {}
     try:
         data = json.loads(sharpe_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
@@ -220,43 +219,18 @@ def load_risk_map(sharpe_path: Path) -> dict[str, dict[str, float]]:
         if not isinstance(row, dict):
             continue
         sym = row.get("symbol")
-        if not sym:
-            continue
-        entry: dict[str, float] = {}
         sh = row.get("sharpe_ratio")
-        so = row.get("sortino_ratio")
-        if isinstance(sh, (int, float)) and math.isfinite(float(sh)):
-            entry["sharpe"] = float(sh)
-        if isinstance(so, (int, float)) and math.isfinite(float(so)):
-            entry["sortino"] = float(so)
-        if entry:
-            out[str(sym).upper()] = entry
+        if sym and isinstance(sh, (int, float)) and math.isfinite(float(sh)):
+            out[str(sym).upper()] = float(sh)
     return out
 
 
-def load_sharpe_map(sharpe_path: Path) -> dict[str, float]:
-    """symbol → 1y Sharpe ratio (from ``all_stocks_sharpe_ratios.json``)."""
-    return {
-        sym: vals["sharpe"]
-        for sym, vals in load_risk_map(sharpe_path).items()
-        if "sharpe" in vals
-    }
-
-
 def apply_sharpe_map(stocks: dict[str, Stock], sharpe_map: dict[str, float]) -> dict[str, Stock]:
-    """Back-compat: apply Sharpe only. Prefer ``apply_risk_map``."""
-    risk = {sym: {"sharpe": sh} for sym, sh in sharpe_map.items()}
-    return apply_risk_map(stocks, risk)
-
-
-def apply_risk_map(
-    stocks: dict[str, Stock], risk_map: dict[str, dict[str, float]]
-) -> dict[str, Stock]:
-    if not risk_map:
+    if not sharpe_map:
         return stocks
     out: dict[str, Stock] = {}
     for sym, s in stocks.items():
-        risk = risk_map.get(s.symbol.upper()) or {}
+        sh = sharpe_map.get(s.symbol.upper())
         out[sym] = Stock(
             symbol=s.symbol,
             beta=s.beta,
@@ -267,8 +241,7 @@ def apply_risk_map(
             sector=s.sector,
             famous=s.famous,
             high_upside=s.high_upside,
-            sharpe_ratio=risk.get("sharpe", s.sharpe_ratio),
-            sortino_ratio=risk.get("sortino", s.sortino_ratio),
+            sharpe_ratio=sh,
         )
     return out
 
@@ -371,7 +344,6 @@ def famous_picks_json(
                 "industry": s.industry,
                 "sector": s.sector or None,
                 "sharpe_ratio": round(s.sharpe_ratio, 3) if s.sharpe_ratio is not None else None,
-                "sortino_ratio": round(s.sortino_ratio, 3) if s.sortino_ratio is not None else None,
                 "reason": None if eligible else "below_min_upside_or_disqualified",
             }
         )
@@ -451,7 +423,6 @@ def build_universe(all_stocks: dict[str, Stock], famous_eligible: tuple[str, ...
                 famous=True,
                 high_upside=s.high_upside,
                 sharpe_ratio=s.sharpe_ratio,
-                sortino_ratio=s.sortino_ratio,
             )
     for s in all_stocks.values():
         if is_symbol_disqualified(s.symbol):
@@ -469,7 +440,6 @@ def build_universe(all_stocks: dict[str, Stock], famous_eligible: tuple[str, ...
                 famous=s.symbol in famous_set,
                 high_upside=True,
                 sharpe_ratio=s.sharpe_ratio,
-                sortino_ratio=s.sortino_ratio,
             )
             if prev is None or (flags.upside_pct or -1e9) > (prev.upside_pct or -1e9):
                 picked[s.symbol] = flags
@@ -1680,7 +1650,6 @@ def portfolio_summary(
                 "beta": round(s.beta, 3),
                 "upside_pct": round(s.upside_pct, 1) if s.upside_pct is not None else None,
                 "sharpe_ratio": round(s.sharpe_ratio, 3) if s.sharpe_ratio is not None else None,
-                "sortino_ratio": round(s.sortino_ratio, 3) if s.sortino_ratio is not None else None,
                 "price": round(s.price, 2) if s.price is not None else None,
                 "fair_value": round(s.fair_value, 2) if s.fair_value is not None else None,
                 "industry": s.industry,
@@ -1871,8 +1840,8 @@ def main() -> None:
         symbol_to_sector=symbol_to_sector,
         industry_to_sector=industry_to_sector,
     )
-    risk_map = load_risk_map(args.sharpe_file)
-    all_stocks = apply_risk_map(all_stocks, risk_map)
+    sharpe_map = load_sharpe_map(args.sharpe_file)
+    all_stocks = apply_sharpe_map(all_stocks, sharpe_map)
     if not all_stocks:
         print(f"No stocks loaded from {args.fv_dir}", file=sys.stderr)
         sys.exit(1)

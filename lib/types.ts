@@ -31,8 +31,6 @@ export type Stock = {
   upsidePct: number;
   beta: number;
   sharpe: number;
-  /** Trailing ~1y Sortino (FvIndustries / FMP). */
-  sortino?: number;
   /** Core business one-liner (StockAnalysis headline). */
   business?: string;
   /** Entry thesis / why own it — plain-language facts. */
@@ -120,7 +118,6 @@ export type HoldingSnapshot = {
   upsidePct?: number;
   beta?: number;
   sharpe?: number;
-  sortino?: number;
   /** Core business one-liner. */
   business?: string;
   /** Entry thesis shown on dashboard cards. */

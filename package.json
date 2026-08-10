@@ -9,8 +9,7 @@
     "lint": "next lint",
     "sync:seeds": "bash scripts/sync-runtime-to-seeds.sh",
     "deploy:live": "bash scripts/deploy-live.sh",
-    "refresh:news": "node scripts/refresh-news.mjs",
-    "sync:risk": "python3 scripts/sync-risk-ratios.py"
+    "refresh:news": "node scripts/refresh-news.mjs"
   },
   "dependencies": {
     "next": "14.2.5",
