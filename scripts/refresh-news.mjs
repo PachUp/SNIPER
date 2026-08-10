@@ -2,7 +2,7 @@
 /**
  * Refresh data/news.json from Financial Modeling Prep stock news.
  * Picks the newest useful stories per ticker (max 2).
- * List title = factual gist (never clickbait). EDGAR / heavy jargon simplified.
+ * List title = what happened + likely effect on the stock (beginner-clear).
  *
  * Env:
  *   FMP_API_KEY  (required)
@@ -14,6 +14,7 @@ import {
   presentStory,
   storyQuality,
   isClickbait,
+  canExplainEffect,
 } from "./plainNews.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -28,7 +29,7 @@ const FMP_BASE = "https://financialmodelingprep.com/api/v3";
 /** Newest / best stories kept per ticker in the seed file. */
 const PER_TICKER = 2;
 /** Pull extras so we can skip clickbait and still fill 2 slots. */
-const FETCH_LIMIT = 12;
+const FETCH_LIMIT = 20;
 const CONCURRENCY = 6;
 
 const BAD =
@@ -72,12 +73,37 @@ function catalogTickers() {
   return [...set];
 }
 
+function prettyName(ticker, name, business) {
+  const t = String(ticker || "").toUpperCase();
+  const n = cleanName(name);
+  const biz = String(business || "").trim();
+  const fromBiz = biz.match(
+    /^([A-Z][\w&'.]*(?:\s+[A-Z][\w&'.]*){0,3})\s+(?:makes|is|provides|builds|operates|offers|delivers|runs)/
+  );
+  const bizName = fromBiz ? fromBiz[1] : "";
+  // Prefer real company name over ticker-as-name or industry-label names
+  if (bizName && (!n || n.toUpperCase() === t || /services$/i.test(n))) {
+    return bizName;
+  }
+  if (n && n.toUpperCase() !== t) return n;
+  if (bizName) return bizName;
+  return n || t;
+}
+
+function cleanName(name) {
+  return String(name || "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function companyNames() {
   const map = new Map();
   try {
     const stocks = JSON.parse(readFileSync(STOCKS, "utf8"));
     for (const s of stocks) {
-      if (s.ticker && s.name) map.set(String(s.ticker).toUpperCase(), s.name);
+      if (!s.ticker) continue;
+      const t = String(s.ticker).toUpperCase();
+      map.set(t, prettyName(t, s.name, s.business));
     }
   } catch {
     /* optional */
@@ -85,10 +111,10 @@ function companyNames() {
   try {
     const house = JSON.parse(readFileSync(SNIPERS, "utf8"));
     for (const h of house.holdings || []) {
-      if (h.ticker && h.name) {
-        const t = String(h.ticker).toUpperCase();
-        if (!map.has(t)) map.set(t, h.name);
-      }
+      if (!h.ticker) continue;
+      const t = String(h.ticker).toUpperCase();
+      const pretty = prettyName(t, h.name, h.business);
+      if (!map.has(t) || map.get(t) === t) map.set(t, pretty);
     }
   } catch {
     /* optional */
@@ -176,35 +202,41 @@ function mapTickerRows(ticker, rows, seen, names) {
       ? new Date(row.publishedDate).toISOString()
       : new Date().toISOString();
 
-    const quality = storyQuality(title, text, published);
+    if (!canExplainEffect(title, text, name, ticker)) continue;
+    const quality = storyQuality(title, text, published, name, ticker);
     scored.push({ title, url, text, published, dedupe, quality });
   }
 
-  // Newest useful first: quality already folds recency; break ties by time.
   scored.sort((a, b) => {
     if (b.quality !== a.quality) return b.quality - a.quality;
     return new Date(b.published) - new Date(a.published);
   });
 
-  // Prefer non-clickbait sources; still allow them if we can pull a real gist.
   const preferred = scored.filter((r) => !isClickbait(r.title));
-  const ordered = preferred.length >= PER_TICKER ? preferred : scored;
+  const ordered = preferred.length >= 1 ? preferred : scored;
 
   const items = [];
   for (const row of ordered) {
     if (items.length >= PER_TICKER) break;
-    const sentiment = sentimentFrom(row.title, row.text);
     const presented = presentStory({
       ticker,
       name,
       title: row.title,
       text: row.text,
-      sentiment,
     });
-    // Skip if the gist still looks like a tease
-    if (isClickbait(presented.line) || /\?$/.test(presented.line.trim())) {
+    if (
+      presented.skip ||
+      !presented.line ||
+      isClickbait(presented.line) ||
+      /\?$/.test(presented.line.trim()) ||
+      !/—/.test(presented.line)
+    ) {
       continue;
     }
+    const sentiment =
+      presented.sentiment === "bad" || presented.sentiment === "good"
+        ? presented.sentiment
+        : sentimentFrom(row.title, row.text);
     seen.add(row.dedupe);
     items.push({
       id: `auto-${Buffer.from(row.dedupe).toString("base64url").slice(0, 16)}`,

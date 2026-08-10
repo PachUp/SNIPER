@@ -1,1080 +1,963 @@
 [
   {
-    "id": "auto-cmVhbHR5IGluY29t",
+    "id": "auto-YW1kIGJlYXQgcTIg",
     "tickers": [
-      "O"
+      "AMD"
     ],
-    "line": "Realty Income: Q2 Earnings Call Highlights.",
-    "details": "Realty Income NYSE: O raised its full-year 2026 outlook after reporting second-quarter adjusted funds from operations, or AFFO, per share growth of 3.8% to $1.09, supported by investment activity across industrial properties, Europe, private-capital vehicles and data centers.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/realty-income-q2-earnings-call-highlights-2026-08-08/",
-    "timestamp": "2026-08-09T01:04:48.000Z"
+    "line": "Advanced Micro Devices: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: Even though one customer isn't the whole AI race, SpaceX picked Nvidia exclusively for AI chips, which was announced on the same day as AMD released Q2 earnings. If you own AMD: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4934270-amd-beat-q2-estimates-then-elon-musk-stole-the-show-rating-downgrade",
+    "timestamp": "2026-08-10T23:48:04.000Z"
   },
   {
-    "id": "auto-YWlybGluZSBpbnNp",
+    "id": "auto-bnZpZGlhOiBidXkg",
     "tickers": [
-      "DAL"
+      "NVDA"
     ],
-    "line": "Delta Air Lines: a top leader sold some of their shares (SEC filing).",
-    "details": "Official filing language is dense — here is the useful part: Insider liquidated 28% of equity holdings following option exercise at $51.23 strike, capturing gains as stock surged 76% over one year. For someone who owns DAL: this is paperwork about shares or disclosures, not a full business update.",
+    "line": "NVIDIA: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: NVDA's Q2 guidance targets $91B revenue with gross margin near 75%, excluding China Data Center compute, reinforcing the core bull thesis. If you own NVDA: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4934263-nvidia-buy-before-q2-shows-the-ai-factory-trade-is-still-early-upgrade",
+    "timestamp": "2026-08-10T23:18:29.000Z"
+  },
+  {
+    "id": "auto-YnVsbCB2LiBiZWFy",
+    "tickers": [
+      "AAPL"
+    ],
+    "line": "Apple: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: (AAPL) got a downgrade and price target cut from Jefferies, with the firm hinting toward the iPhone maker canceling its all-glass model. If you own AAPL: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "youtube.com",
+    "sourceUrl": "https://www.youtube.com/watch?v=68ufEA3f9Nk",
+    "timestamp": "2026-08-10T22:00:01.000Z"
+  },
+  {
+    "id": "auto-ZXh4b24gc3RvY2sg",
+    "tickers": [
+      "XOM"
+    ],
+    "line": "Exxon Mobil: reported its latest sales or profits — investors watch whether the numbers beat expectations.",
+    "details": "What happened: (XOM), the oil-and-gas giant with operations stretching from the Permian to Guyana and Qatar, reported a monster $14.5 billion second-quarter profit. If you own XOM: investors watch whether the numbers beat expectations. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/9021596/exxon-stock-jumps-33-as-oil-supply-fears-return",
+    "timestamp": "2026-08-10T21:33:00.000Z"
+  },
+  {
+    "id": "auto-Y29zdGNvOiBiZWFy",
+    "tickers": [
+      "COST"
+    ],
+    "line": "Costco: reported solid recent sales trends — usually supportive if growth holds up.",
+    "details": "What happened: Wholesale Corporation demonstrates robust growth, driven by a unique, profitable membership ecosystem and strong customer loyalty. If you own COST: usually supportive if growth holds up. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4934221-costco-bears-have-been-calling-it-overpriced-for-years-but-the-company-keeps-winning",
+    "timestamp": "2026-08-10T21:19:32.000Z"
+  },
+  {
+    "id": "auto-Y29jYS1jb2xhIHN0",
+    "tickers": [
+      "KO"
+    ],
+    "line": "Coca-Cola: expects about 5% sales growth — investors judge if that outlook is strong enough.",
+    "details": "What happened: expects to grow its sales by around 5% this year. If you own KO: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/08/airline-insider-hits-eject-sells-40-460-shares-valued-at-usd3-8-million/",
-    "timestamp": "2026-08-08T21:05:01.000Z"
+    "sourceUrl": "https://www.fool.com/investing/2026/08/10/coca-cola-stock-recently-hit-a-new-all-time-high-h/",
+    "timestamp": "2026-08-10T21:16:38.000Z"
   },
   {
-    "id": "auto-ZWxpIGxpbGx5IGFu",
+    "id": "auto-Ym9mYTogbnZpZGlh",
     "tickers": [
-      "LLY"
+      "NVDA"
     ],
-    "line": "Eli Lilly: Q2 Earnings Call Highlights.",
-    "details": "Eli Lilly and Company NYSE: LLY reported 48% revenue growth in the second quarter of 2026, driven primarily by continued demand for its cardiometabolic medicines MOUNJARO and ZEPBOUND, while raising its full-year revenue and earnings guidance.",
+    "line": "NVIDIA: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: Corp (, XETRA:NVD) is set to report second-quarter earnings after the market closes on August 26 and Bank of America thinks the chipmaker is about to do what it usually does: beat expectations and raise its outlook,. If you own NVDA: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/eli-lilly-and-company-q2-earnings-call-highlights-2026-08-08/",
-    "timestamp": "2026-08-08T19:05:21.000Z"
+    "source": "proactiveinvestors.com",
+    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1096826",
+    "timestamp": "2026-08-10T21:04:20.000Z"
   },
   {
-    "id": "auto-d2h5IHBnLCBqbmos",
+    "id": "auto-cGZpemVyJ3MgZWFy",
+    "tickers": [
+      "PFE"
+    ],
+    "line": "Pfizer: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: Impairment charges crippled Pfizer's recent earnings. If you own PFE: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/10/pfizers-earnings-have-declined-58-this-year-is-a-d/",
+    "timestamp": "2026-08-10T20:40:59.000Z"
+  },
+  {
+    "id": "auto-bWNkb25hbGQncyAm",
+    "tickers": [
+      "MCD"
+    ],
+    "line": "McDonald's: expects about 0.8% sales growth — investors judge if that outlook is strong enough.",
+    "details": "What happened: Restaurant Brands International continues to outperform McDonald's in earnings growth and market share gains. If you own MCD: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4934190-flipping-burgers-mcdonalds-and-restaurant-brands-international",
+    "timestamp": "2026-08-10T20:12:45.000Z"
+  },
+  {
+    "id": "auto-Y3Z4J3MgcTIgZWFy",
+    "tickers": [
+      "CVX"
+    ],
+    "line": "Chevron: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Q2 beat, record production, Hess synergies and strong cash flow boost momentum, but commodity risks and maintenance may test the rally. If you own CVX: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2972210/cvx-s-q2-earnings-beat-can-strong-momentum-drive-the-stock-higher?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2972210",
+    "timestamp": "2026-08-10T20:01:18.000Z"
+  },
+  {
+    "id": "auto-YW1hem9uIGp1c3Qg",
+    "tickers": [
+      "AMZN"
+    ],
+    "line": "Amazon: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: topped a $3 trillion market valuation on the back of strong earnings results. If you own AMZN: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/10/amazon-just-joined-the-3-trillion-club-heres-why/",
+    "timestamp": "2026-08-10T20:00:00.000Z"
+  },
+  {
+    "id": "auto-bHlmdCwgaW5jLiBp",
+    "tickers": [
+      "LYFT"
+    ],
+    "line": "Lyft: legal or regulator news hit the company — adds risk until the issue is clearer.",
+    "details": "What happened: NEW YORK--(BUSINESS WIRE)---- #NASDAQ--Scott+Scott Attorneys at Law LLP has launched an urgent investigation into whether certain officers and directors of Lyft, Inc. If you own LYFT: adds risk until the issue is clearer. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "businesswire.com",
+    "sourceUrl": "https://www.businesswire.com/news/home/20260810566083/en/LYFT-INC.-INVESTOR-ALERT-ScottScott-Attorneys-at-Law-LLP-Investigates-Lyft-Inc.%E2%80%99s-Directors-and-Officers-for-Breach-of-Fiduciary-Duties-%E2%80%93-LYFT/",
+    "timestamp": "2026-08-10T19:47:00.000Z"
+  },
+  {
+    "id": "auto-YXBwbGUgZG93bmdy",
+    "tickers": [
+      "AAPL"
+    ],
+    "line": "Apple: an analyst cut their rating or price target — can pressure the stock short term.",
+    "details": "What happened: He cut Apple from hold to underperform and lowered the price target to $263.66 from $285.56. If you own AAPL: can pressure the stock short term. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "youtube.com",
+    "sourceUrl": "https://www.youtube.com/watch?v=UOrOjDqYvrU",
+    "timestamp": "2026-08-10T19:28:38.000Z"
+  },
+  {
+    "id": "auto-YnJpZ2h0c3ByaW5n",
+    "tickers": [
+      "BTSG"
+    ],
+    "line": "BrightSpring Health Group: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: BrightSpring Health Services (BTSG) has delivered 22% revenue CAGR over five years, with strong segment growth and a compelling integrated care platform. If you own BTSG: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4934162-brightspring-health-services-a-great-business-but-im-waiting-for-a-better-entry",
+    "timestamp": "2026-08-10T19:24:08.000Z"
+  },
+  {
+    "id": "auto-Y2FuIHN0cmVuZ3Ro",
+    "tickers": [
+      "HON"
+    ],
+    "line": "Honeywell: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: Technologies' Building Automation growth due to rising demand, building projects and data center investments points to further expansion. If you own HON: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2972023/can-strength-in-building-automation-segment-drive-hon-s-growth?cid=CS-STOCKNEWSAPI-FT-analyst_blog|quick_take-2972023",
+    "timestamp": "2026-08-10T19:21:03.000Z"
+  },
+  {
+    "id": "auto-YXJjaGVyIGF2aWF0",
+    "tickers": [
+      "BA"
+    ],
+    "line": "Boeing: is selling a business or assets in a deal — can free up cash, but may shrink future sales.",
+    "details": "What happened: Archer Aviation () shares jumped 16% Monday after the company announced a deal to acquire Boeing Co (, XETRA:BCO)'s Wisk Aero, SkyGrid and Insitu subsidiaries, expanding its presence across autonomous flight, electric. If you own BA: can free up cash, but may shrink future sales. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "proactiveinvestors.com",
+    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1096814",
+    "timestamp": "2026-08-10T18:41:24.000Z"
+  },
+  {
+    "id": "auto-Y2FuIGNvc3RjbyBr",
+    "tickers": [
+      "COST"
+    ],
+    "line": "Costco: reported solid recent sales trends — usually supportive if growth holds up.",
+    "details": "What happened: Wholesale Corporation's COST July sales results reflected resilient consumer demand, with comparable sales advancing across regions and digitally enabled sales maintaining strong momentum. If you own COST: usually supportive if growth holds up. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971971/can-costco-keep-its-sales-momentum-going-after-a-solid-july?cid=CS-STOCKNEWSAPI-FT-analyst_blog|quick_take-2971971",
+    "timestamp": "2026-08-10T18:41:09.000Z"
+  },
+  {
+    "id": "auto-YWxwaGFiZXQncyBo",
+    "tickers": [
+      "GOOGL"
+    ],
+    "line": "Alphabet: is raising investment for growth (e.g. AI or capacity) — can signal confidence, but spending can also pressure near-term profits.",
+    "details": "What happened: GOOGL boosts 2026 capex to $205B, signaling stronger AI demand. If you own GOOGL: can signal confidence, but spending can also pressure near-term profits. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2972055/alphabet-s-higher-ai-spending-could-boost-these-etfs?cid=CS-STOCKNEWSAPI-FT-etf_news_and_commentary-2972055",
+    "timestamp": "2026-08-10T18:41:05.000Z"
+  },
+  {
+    "id": "auto-bHVsdWxlbW9uOiBp",
+    "tickers": [
+      "LULU"
+    ],
+    "line": "Lululemon: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: is rated a Buy, with valuation reflecting overly pessimistic assumptions about permanent earnings impairment. If you own LULU: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4934132-lululemon-international-growth-execution-improvements-and-low-valuation",
+    "timestamp": "2026-08-10T18:25:59.000Z"
+  },
+  {
+    "id": "auto-c2VydmUgcTIgZWFy",
+    "tickers": [
+      "UBER"
+    ],
+    "line": "Uber Technologies: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: SERV resets its Uber relationship and 2026 outlook in Q2, cutting revenue guidance while prioritizing utilization, recurring revenues and direct access. If you own UBER: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971978/serve-q2-earnings-call-centers-on-uber-reset-and-lower-outlook?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2971978",
+    "timestamp": "2026-08-10T17:46:15.000Z"
+  },
+  {
+    "id": "auto-cGZpemVyIHJpc2Vz",
+    "tickers": [
+      "PFE"
+    ],
+    "line": "Pfizer: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: Q2 beat and raised 2026 revenue outlook signal progress, but declining COVID sales and patent losses challenge its growth path. If you own PFE: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2971745/pfizer-rises-almost-7-post-q2-results-how-to-play-the-stock?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2971745",
+    "timestamp": "2026-08-10T17:21:11.000Z"
+  },
+  {
+    "id": "auto-cmV0YWlsIHN0b2Nr",
+    "tickers": [
+      "WMT"
+    ],
+    "line": "Walmart: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: Retailers in the United States are a bit mixed in early Monday trading. If you own WMT: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fxempire.com",
+    "sourceUrl": "https://www.fxempire.com/forecasts/article/retail-stocks-forecasts-walmart-target-and-costco-consolidate-ahead-of-earnings-1615833",
+    "timestamp": "2026-08-10T16:25:39.000Z"
+  },
+  {
+    "id": "auto-bWV0YSB0byBvcGVu",
+    "tickers": [
+      "META"
+    ],
+    "line": "Meta Platforms: won a product, order, customer, or approval update — can help if it turns into real sales and profits.",
+    "details": "What happened: Meta CEO Mark Zuckerberg said the company would open the weights for Muse Spark 1.2, its latest AI model. If you own META: can help if it turns into real sales and profits. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "cnbc.com",
+    "sourceUrl": "https://www.cnbc.com/2026/08/10/meta-muse-glimmer-open-weight-ai.html",
+    "timestamp": "2026-08-10T15:23:11.000Z"
+  },
+  {
+    "id": "auto-YmFuayBvZiBhbWVy",
+    "tickers": [
+      "BAC"
+    ],
+    "line": "Bank of America: won a product, order, customer, or approval update — can help if it turns into real sales and profits.",
+    "details": "What happened: Nationally Recognized as Big Brothers Big Sisters of America's \" Agency of the Year,\" BBBSEHU Will Connect Thousands of New Jersey Youth Annually to Career Pathways, Higher Education, and Economic Opportunities with. If you own BAC: can help if it turns into real sales and profits. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/bank-of-america-expands-partnership-with-big-brothers-big-sisters-of-essex-hudson--union-counties-to-grow-mentoring-and-workforce-development-programming-302846749.html",
+    "timestamp": "2026-08-10T14:00:00.000Z"
+  },
+  {
+    "id": "auto-cyZwIDUwMCBlcHMg",
+    "tickers": [
+      "AMZN"
+    ],
+    "line": "Amazon: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: latest earnings release was also heavily affected by the Anthropic write-up: after removing the EPS value of the Anthropic mark-up, I have that Amazon missed on their EPS by 55%, printing operating EPS of $0.86 versus. If you own AMZN: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933985-sp500-eps-revenue-growth-amazon-earnings",
+    "timestamp": "2026-08-10T13:05:00.000Z"
+  },
+  {
+    "id": "auto-aSd2ZSBiZWVuIHdy",
+    "tickers": [
+      "PG"
+    ],
+    "line": "Procter & Gamble: an analyst raised their rating or price target — can support the stock short term.",
+    "details": "What happened: AI, product upgrades, and relentless cost control are strengthening P&G's dominant portfolio. If you own PG: can support the stock short term. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/10/ive-been-writing-about-proctor-stock-for-years-h/",
+    "timestamp": "2026-08-10T12:15:00.000Z"
+  },
+  {
+    "id": "auto-ZW1wb3dlcmVkIGZ1",
+    "tickers": [
+      "JPM"
+    ],
+    "line": "JPMorgan Chase: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: Empowered Funds LLC raised its position in JPMorgan Chase and Co. If you own JPM: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/10/empowered-funds-llc-has-136-61-million-stock-position-in-jpmorgan-chase-co-jpm.html",
+    "timestamp": "2026-08-10T11:47:17.000Z"
+  },
+  {
+    "id": "auto-ZGVhbmUgcmV0aXJl",
+    "tickers": [
+      "CAT"
+    ],
+    "line": "Caterpillar: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: trimmed its holdings in Caterpillar Inc. If you own CAT: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/10/deane-retirement-strategies-inc-has-2-81-million-stake-in-caterpillar-inc-cat.html",
+    "timestamp": "2026-08-10T11:41:03.000Z"
+  },
+  {
+    "id": "auto-ZGlja21leWVyIGJv",
+    "tickers": [
+      "MSFT"
+    ],
+    "line": "Microsoft: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: purchased a new position in shares of Microsoft Corporation () during the first quarter, according to the company in its most recent 13F filing with the Securities and Exchange Commission. If you own MSFT: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/10/dickmeyer-boyce-financial-management-inc-makes-new-investment-in-microsoft-corporation-msft.html",
+    "timestamp": "2026-08-10T11:36:45.000Z"
+  },
+  {
+    "id": "auto-Y29udHJhdmlzb3J5",
+    "tickers": [
+      "T",
+      "ROKU"
+    ],
+    "line": "AT&T: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: increased its position in shares of AT&T Inc. If you own T: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/10/contravisory-investment-management-inc-raises-stock-position-in-att-inc-t.html",
+    "timestamp": "2026-08-10T11:17:40.000Z"
+  },
+  {
+    "id": "auto-Zm9yZ2V0IGNoaXBz",
+    "tickers": [
+      "NEE"
+    ],
+    "line": "NextEra Energy: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: and OneOK are supplying power to boost the growth of AI data centers and deliver above-average dividends. If you own NEE: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/10/forget-chips-ai-is-now-a-power-trade-these-2-divid/",
+    "timestamp": "2026-08-10T07:45:00.000Z"
+  },
+  {
+    "id": "auto-YW1kOiBjYXBleCBp",
+    "tickers": [
+      "AMD"
+    ],
+    "line": "Advanced Micro Devices: expects about 07% sales growth — investors judge if that outlook is strong enough.",
+    "details": "What happened: AMD's data center revenue surged 107% to $6.7 billion, reaching 58% of revenue with a 31% operating margin. If you own AMD: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4933965-amd-q2-capex-is-fueling-the-next-leg",
+    "timestamp": "2026-08-10T07:27:36.000Z"
+  },
+  {
+    "id": "auto-YWxwaGFiZXQncyBj",
+    "tickers": [
+      "GOOGL"
+    ],
+    "line": "Alphabet: reported its latest sales or profits — investors watch whether the numbers beat expectations.",
+    "details": "What happened: saw its backlog of contracted cloud computing services climb to $514 billion last quarter. If you own GOOGL: investors watch whether the numbers beat expectations. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/09/alphabets-cloud-computing-business-just-posted-82/",
+    "timestamp": "2026-08-09T23:45:00.000Z"
+  },
+  {
+    "id": "auto-YnJvbnN0ZWluLCBn",
+    "tickers": [
+      "MSFT"
+    ],
+    "line": "Microsoft: legal or regulator news hit the company — adds risk until the issue is clearer.",
+    "details": "What happened: 09, 2026 (GLOBE NEWSWIRE) -- Bronstein, Gewirtz & Grossman, LLC, a nationally recognized investor-rights law firm, announces that a class action lawsuit has been filed against Microsoft Corporation () and certain of its. If you own MSFT: adds risk until the issue is clearer. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "globenewswire.com",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/09/3341491/9788/en/bronstein-gewirtz-grossman-llc-urges-microsoft-corporation-investors-to-act-class-action-filed-alleging-investor-harm.html",
+    "timestamp": "2026-08-09T19:00:00.000Z"
+  },
+  {
+    "id": "auto-am9obnNvbiAmIGpv",
     "tickers": [
       "JNJ"
     ],
-    "line": "Johnson & Johnson: why PG, JNJ, and KO Could Surprise Investors Next Year.",
-    "details": "Defensive blue chips rarely dominate headlines, but heading into 2027, three of the market's most reliable dividend payers stand out as durable compounders.",
+    "line": "Johnson & Johnson: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: Few companies have a longer track record of uninterrupted dividend growth. If you own JNJ: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/09/johnson-johnson-increased-dividend-king-yield/",
+    "timestamp": "2026-08-09T16:15:00.000Z"
+  },
+  {
+    "id": "auto-d2FsbCBzdHJlZXQg",
+    "tickers": [
+      "PG",
+      "V",
+      "DIS"
+    ],
+    "line": "Procter & Gamble: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: When Procter & Gamble ( | PG Price Prediction) cut its 70th consecutive annual dividend increase check to shareholders this past May, it sent out $1.08 per share. If you own PG: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/2026/08/08/why-pg-jnj-and-ko-could-surprise-investors-next-year/",
-    "timestamp": "2026-08-08T19:00:53.000Z"
+    "sourceUrl": "https://247wallst.com/investing/2026/08/09/wall-street-is-betting-pgs-dividend-growth-ends-the-cash-flow-suggests-thats-not-happening/",
+    "timestamp": "2026-08-09T16:00:33.000Z"
+  },
+  {
+    "id": "auto-dG9wIHNlbWljb25k",
+    "tickers": [
+      "AVGO"
+    ],
+    "line": "Broadcom: an analyst raised their rating or price target — can support the stock short term.",
+    "details": "What happened: positioning in the ASIC chip industry has helped it outperform Nvidia over the past six months. If you own AVGO: can support the stock short term. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/09/top-semiconductor-stock-outpacing-nvidia-with-a-36/",
+    "timestamp": "2026-08-09T16:00:00.000Z"
+  },
+  {
+    "id": "auto-ZWxvbiBtdXNrJ3Mg",
+    "tickers": [
+      "TSLA"
+    ],
+    "line": "Tesla: won a product, order, customer, or approval update — can help if it turns into real sales and profits.",
+    "details": "What happened: Neuralink's brain-computer interface is now implanted in 21 patients, and the company is targeting $1 billion in annual revenue by 2031, pending FDA approval. If you own TSLA: can help if it turns into real sales and profits. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/09/elon-musk-boring-company-raise-money-tesla/",
+    "timestamp": "2026-08-09T15:45:00.000Z"
+  },
+  {
+    "id": "auto-Y2FsaWZvcm5pYSBz",
+    "tickers": [
+      "BAP"
+    ],
+    "line": "Credicorp: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: California State Teachers Retirement System boosted its holdings in shares of Credicorp Ltd. If you own BAP: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/09/california-state-teachers-retirement-system-acquires-4233-shares-of-credicorp-ltd-bap.html",
+    "timestamp": "2026-08-09T11:17:57.000Z"
+  },
+  {
+    "id": "auto-MSBpbmNyZWRpYmxl",
+    "tickers": [
+      "HD",
+      "WMT"
+    ],
+    "line": "Home Depot: reported its latest sales or profits — investors watch whether the numbers beat expectations.",
+    "details": "What happened: reports Aug. If you own HD: investors watch whether the numbers beat expectations. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/08/09/reason-buy-home-depot-stock-before-earnings/",
+    "timestamp": "2026-08-09T09:45:00.000Z"
   },
   {
     "id": "auto-Y2hld3kgY2hpZWYg",
     "tickers": [
       "CHWY"
     ],
-    "line": "Chewy: a company leader sold shares (often for taxes — not always a warning).",
-    "details": "Official filing language is dense — here is the useful part: The transaction reduced the insider's direct equity holdings by 17%. For someone who owns CHWY: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
+    "line": "Chewy: a company leader sold shares, often to cover taxes — mild caution signal — usually not a business collapse.",
+    "details": "What happened: The transaction reduced the insider's direct equity holdings by 17%. If you own CHWY: mild caution signal — usually not a business collapse. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
     "source": "fool.com",
     "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/08/chewy-chief-accounting-officer-disposes-11-134-shares-for-usd254-000-in-tax-related-transaction/",
     "timestamp": "2026-08-08T18:39:04.000Z"
-  },
-  {
-    "id": "auto-YWkgaXMgaG9sbG93",
-    "tickers": [
-      "MSFT"
-    ],
-    "line": "AI is Hollowing Out Tech Sector Jobs: Oracle and Microsoft Help Push Layoff Rate to 20-Year High.",
-    "details": "The AI boom has created a strange split-screen economy.",
-    "sentiment": "bad",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/2026/08/08/ai-is-hollowing-out-tech-sector-jobs-oracle-and-microsoft-help-push-layoff-rate-to-20-year-high/",
-    "timestamp": "2026-08-08T18:38:36.000Z"
   },
   {
     "id": "auto-c291dGhlcm4gY29t",
     "tickers": [
       "DUK"
     ],
-    "line": "2026 hasn't been a year for utilities so far, but stocks like The Southern Company and Duke Energy have seen better-than-average price movements.",
-    "details": "2026 hasn't been a year for utilities so far, but stocks like The Southern Company and Duke Energy have seen better-than-average price movements. SO shows a bigger potential longer-term price upside, but DUK is more future-ready with a bigger clean energy contribution.",
+    "line": "Duke Energy: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: 2026 hasn't been a year for utilities so far, but stocks like The Southern Company and Duke Energy have seen better-than-average price movements. If you own DUK: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4933752-southern-company-and-duke-energy-utilities-with-long-term-potential",
     "timestamp": "2026-08-08T17:03:40.000Z"
   },
   {
-    "id": "auto-Ym9laW5nOiBidXkg",
-    "tickers": [
-      "BA"
-    ],
-    "line": "Boeing is making tangible progress on sustainable production growth, with Q2 revenue up 8% and free cash flow turning positive.",
-    "details": "Boeing is making tangible progress on sustainable production growth, with Q2 revenue up 8% and free cash flow turning positive. I maintain a Buy rating and a $321.75 price target, citing improving cash flow, disciplined balance sheet repair, and clearer recovery milestones.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4933743-boeing-buy-before-cash-flow-surge",
-    "timestamp": "2026-08-08T16:14:29.000Z"
-  },
-  {
-    "id": "auto-Y3ljbG9zcG9yYSBm",
-    "tickers": [
-      "YUM"
-    ],
-    "line": "Yum! Brands: cyclospora fears lead consumers to lose their appetite for salads.",
-    "details": "Dollars sales of prepackaged salads has also plummeted, according to data from NielsenIQ.",
-    "sentiment": "good",
-    "source": "cnbc.com",
-    "sourceUrl": "https://www.cnbc.com/2026/08/08/cyclospora-salads-lettuce-restaurants.html",
-    "timestamp": "2026-08-08T15:00:01.000Z"
-  },
-  {
-    "id": "auto-ZnJvbSBtZXRhIHRv",
-    "tickers": [
-      "META"
-    ],
-    "line": "Meta Platforms: from Meta to OpenAI: AI security enters a new era as autonomous cyberattacks emerge.",
-    "details": "Artificial intelligence companies are facing growing scrutiny after Meta became the latest developer to reveal that one of its AI models carried out a cyberattack during a controlled security evaluation, adding to a series of recent incidents that have intensified concerns over the cybersecurity risks posed by increasingly capable AI systems.",
-    "sentiment": "good",
-    "source": "invezz.com",
-    "sourceUrl": "https://invezz.com/news/2026/08/08/from-meta-to-openai-ai-security-enters-a-new-era-as-autonomous-cyberattacks-emerge/",
-    "timestamp": "2026-08-08T15:00:00.000Z"
-  },
-  {
-    "id": "auto-aXMgc2FsZXNmb3Jj",
-    "tickers": [
-      "CRM"
-    ],
-    "line": "Salesforce is using Agentforce, Data Cloud, and Slack to pursue an ambitious enterprise AI opportunity.",
-    "details": "Salesforce is using Agentforce, Data Cloud, and Slack to pursue an ambitious enterprise AI opportunity. Its recurring revenue, customer relationships, and cash generation provide a strong foundation, but the investment hinges on whether AI agents become a meaningful new spending category.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/08/is-salesforce-the-most-undervalued-ai-stock-right/",
-    "timestamp": "2026-08-08T14:50:41.000Z"
-  },
-  {
-    "id": "auto-c2hvdWxkIHlvdSBi",
-    "tickers": [
-      "AMD"
-    ],
-    "line": "Advanced Micro Devices has become one of Nvidia's fiercest competitors in the market for artificial intelligence data center chips.",
-    "details": "Advanced Micro Devices has become one of Nvidia's fiercest competitors in the market for artificial intelligence data center chips. The company's data center revenue more than doubled during the 2026 second quarter.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/08/should-you-buy-amd-stock-after-12-month-return-200/",
-    "timestamp": "2026-08-08T14:45:00.000Z"
-  },
-  {
-    "id": "auto-ZWxvbiBtdXNrIGp1",
-    "tickers": [
-      "NVDA"
-    ],
-    "line": "A glowing endorsement of Nvidia's products should calm investors' fears of rising competition. SpaceX and Nvidia have long been partners.",
-    "details": "SpaceX and Nvidia have long been partners. A glowing endorsement of Nvidia's products should calm investors' fears of rising competition.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/08/elon-musk-just-announced-major-news-for-nvidia-sha/",
-    "timestamp": "2026-08-08T14:30:00.000Z"
-  },
-  {
-    "id": "auto-YXBwbGUgYW5kIG9w",
-    "tickers": [
-      "AAPL"
-    ],
-    "line": "A legal battle between Apple and OpenAI over the ChatGPT maker's secretive device project escalated this week when the artificial intelligence (AI) developer called the iPhone.",
-    "details": "A legal battle between Apple and OpenAI over the ChatGPT maker's secretive device project escalated this week when the artificial intelligence (AI) developer called the iPhone maker's allegations \"baseless\" and asked for the lawsuit to be dismissed.",
-    "sentiment": "bad",
-    "source": "techxplore.com",
-    "sourceUrl": "https://techxplore.com/news/2026-08-apple-openai-escalate-legal-devices.html",
-    "timestamp": "2026-08-08T14:20:01.000Z"
-  },
-  {
-    "id": "auto-c3BhY2V4J3MgbnZp",
-    "tickers": [
-      "NVDA"
-    ],
-    "line": "SpaceX's Nvidia deal could be bad news for neoclouds like CoreWeave and Nebius, analysts say.",
-    "details": "Nvidia could bump SpaceX to “the front of the line” when it comes to its limited supply of chips, according to Bernstein.",
-    "sentiment": "good",
-    "source": "marketwatch.com",
-    "sourceUrl": "https://www.marketwatch.com/story/spacexs-nvidia-deal-could-be-bad-news-for-neoclouds-like-coreweave-and-nebius-analysts-say-168c9ed1",
-    "timestamp": "2026-08-08T14:00:00.000Z"
-  },
-  {
-    "id": "auto-bWljcm9zb2Z0IGNv",
-    "tickers": [
-      "MSFT"
-    ],
-    "line": "Microsoft's recent rally followed an earnings call that dispelled over-pessimism, with the stock outperforming the market by approximately 14% since the last upgrade.",
-    "details": "Microsoft's recent rally followed an earnings call that dispelled over-pessimism, with the stock outperforming the market by approximately 14% since the last upgrade. Cloud revenue acceleration and an overlooked gaming segment are driving near-term upside, while valuation remains attractive relative to historical highs.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4933700-microsoft-corporation-a-buy-and-hold-forever-type-of-stock",
-    "timestamp": "2026-08-08T13:05:42.000Z"
-  },
-  {
-    "id": "auto-ZXUgdGVsbHMgbWV0",
-    "tickers": [
-      "META"
-    ],
-    "line": "Meta Platforms: EU tells Meta, TikTok to boost monitoring, fact-checking.",
-    "details": "The EU's tech chief called on Meta and TikTok to \"act decisively\" to stem disinformation at times of crisis, saying the European Commission held talks with both platforms Friday following last week's Ceuta migrant surge.",
-    "sentiment": "good",
-    "source": "techxplore.com",
-    "sourceUrl": "https://techxplore.com/news/2026-08-eu-meta-tiktok-boost-fact.html",
-    "timestamp": "2026-08-08T11:10:56.000Z"
-  },
-  {
-    "id": "auto-Zmx1b3IgcTIgZWFy",
-    "tickers": [
-      "FLR"
-    ],
-    "line": "Fluor: Q2 Earnings Call Highlights.",
-    "details": "Fluor NYSE: FLR reported second-quarter revenue of $4.3 billion, up 9% from a year earlier, as strong project execution helped lift adjusted operating profit to $149 million from $96 million in the prior-year period. Adjusted earnings per share rose to $0.91 from $0.43.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/fluor-q2-earnings-call-highlights-2026-08-08/",
-    "timestamp": "2026-08-08T11:04:40.000Z"
-  },
-  {
-    "id": "auto-YXVyb3JhIGludmVz",
-    "tickers": [
-      "JNJ"
-    ],
-    "line": "bought a new position in shares of Johnson and Johnson (NYSE: JNJ) in the second quarter, according to the company in its most recent filing with the SEC.",
-    "details": "Aurora Investment Managers LLC. bought a new position in shares of Johnson and Johnson (NYSE: JNJ) in the second quarter, according to the company in its most recent filing with the SEC.",
-    "sentiment": "good",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/08/aurora-investment-managers-llc-takes-position-in-johnson-johnson-jnj.html",
-    "timestamp": "2026-08-08T10:54:55.000Z"
-  },
-  {
-    "id": "auto-bmlrZSwgaW5jLiAk",
-    "tickers": [
-      "NKE"
-    ],
-    "line": "Nike: a large investor reported changing its share count (ownership filing).",
-    "details": "Official filing language is dense — here is the useful part: (NYSE: NKE) by 140.5% during the second quarter, according to its most recent disclosure with the Securities and Exchange Commission (SEC). increased its holdings in shares of NIKE, Inc. For someone who owns NKE: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/08/nike-inc-nke-shares-purchased-by-assenagon-asset-management-s-a.html",
-    "timestamp": "2026-08-08T10:51:47.000Z"
-  },
-  {
-    "id": "auto-YXJ2ZXN0IGJhbmsg",
-    "tickers": [
-      "AAPL"
-    ],
-    "line": "Apple: a large investor reported changing its share count (ownership filing).",
-    "details": "Official filing language is dense — here is the useful part: (NASDAQ: AAPL) by 6.6% during the first quarter, according to the company in its most recent filing with the Securities and Exchange Commission. Arvest Bank Trust Division boosted its holdings in Apple Inc. For someone who owns AAPL: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/08/arvest-bank-trust-division-acquires-11460-shares-of-apple-inc-aapl.html",
-    "timestamp": "2026-08-08T10:51:47.000Z"
-  },
-  {
     "id": "auto-anBtb3JnYW4gY2hh",
     "tickers": [
       "JPM"
     ],
-    "line": "JPMorgan Chase: a large investor reported changing its share count (ownership filing).",
-    "details": "Official filing language is dense — here is the useful part: Abner Herrman and Brock LLC trimmed its stake in shares of JPMorgan Chase and Co. JPMorgan Chase and For someone who owns JPM: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
+    "line": "JPMorgan Chase: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: Abner Herrman and Brock LLC trimmed its stake in shares of JPMorgan Chase and Co. If you own JPM: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
     "source": "defenseworld.net",
     "sourceUrl": "https://www.defenseworld.net/2026/08/08/jpmorgan-chase-co-jpm-shares-sold-by-abner-herrman-brock-llc.html",
     "timestamp": "2026-08-08T10:39:59.000Z"
-  },
-  {
-    "id": "auto-Y291cmFnZSBjYXBp",
-    "tickers": [
-      "AMZN"
-    ],
-    "line": "Courage Capital Management LLC Acquires Shares of 4,000 Amazon.com, Inc.",
-    "details": "(NASDAQ: AMZN) in the first quarter, according to its most recent disclosure with the Securities and Exchange Commission (SEC). Courage Capital Management LLC bought a new position in Amazon.com, Inc.",
-    "sentiment": "good",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/08/courage-capital-management-llc-acquires-shares-of-4000-amazon-com-inc-amzn.html",
-    "timestamp": "2026-08-08T10:32:47.000Z"
-  },
-  {
-    "id": "auto-ZGFpIGljaGkgbGlm",
-    "tickers": [
-      "AMZN"
-    ],
-    "line": "Amazon: a large investor reported changing its share count (ownership filing).",
-    "details": "Official filing language is dense — here is the useful part: (NASDAQ: AMZN) by 2.4% during the first quarter, according to its most recent disclosure with the Securities and Exchange Commission. Dai ichi Life Insurance Company Ltd raised its stake in shares of Amazon.com, Inc. For someone who owns AMZN: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/08/dai-ichi-life-insurance-company-ltd-acquires-12401-shares-of-amazon-com-inc-amzn.html",
-    "timestamp": "2026-08-08T10:32:39.000Z"
-  },
-  {
-    "id": "auto-YWxwaGFiZXQganVz",
-    "tickers": [
-      "GOOGL"
-    ],
-    "line": "Alphabet: just Posted a Jaw-Dropping $112 Billion Profit. Here's the Catch.",
-    "details": "A large chunk of Alphabet's record-setting quarter was due to a SpaceX investment. Alphabet still posted a phenomenal quarter on its own.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/08/alphabet-just-posted-a-jaw-dropping-112-billion-pr/",
-    "timestamp": "2026-08-08T08:00:00.000Z"
-  },
-  {
-    "id": "auto-Y29ub2NvcGhpbGxp",
-    "tickers": [
-      "COP"
-    ],
-    "line": "ConocoPhillips: Q2 Earnings Call Highlights.",
-    "details": "ConocoPhillips NYSE: COP reported second-quarter 2026 production above the high end of its guidance range, supported by record Permian Basin output, while also announcing that Chairman and Chief Executive Officer Ryan Lance will retire from the CEO role effective Sept.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/conocophillips-q2-earnings-call-highlights-2026-08-07/",
-    "timestamp": "2026-08-08T05:04:07.000Z"
-  },
-  {
-    "id": "auto-dGhlIHBvcnRmb2xp",
-    "tickers": [
-      "CVX"
-    ],
-    "line": "Chevron: the Portfolio Blueprint for Building $50,000 a Month in Dividend Income.",
-    "details": "Chasing a $50,000 monthly dividend stream sounds like a math problem, but the yield you pick determines whether your portfolio funds four decades of freedom or quietly cannibalizes itself while the checks keep arriving.",
-    "sentiment": "good",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/personal-finance/2026/08/07/the-portfolio-blueprint-for-building-50000-a-month-in-dividend-income/",
-    "timestamp": "2026-08-08T04:35:26.000Z"
-  },
-  {
-    "id": "auto-cTIgZWFybmluZ3M6",
-    "tickers": [
-      "GOOGL"
-    ],
-    "line": "Alphabet: Q2 Earnings: Robust Results and Positive Estimate Revisions Validate Market Fundamentals.",
-    "details": "Rather than simply clearing reduced consensus hurdles, reporting companies are offering encouraging reads on order trends, margin resilience, and full-year demand.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/commentary/2971475/q2-earnings-robust-results-and-positive-estimate-revisions-validate-market-fundamentals?cid=CS-STOCKNEWSAPI-FT-earnings_preview-2971475",
-    "timestamp": "2026-08-08T02:46:06.000Z"
-  },
-  {
-    "id": "auto-ZGlhbW9uZGJhY2sg",
-    "tickers": [
-      "FANG"
-    ],
-    "line": "Diamondback (FANG) Q2 Earnings: How Key Metrics Compare to Wall Street Estimates.",
-    "details": "The headline numbers for Diamondback (FANG) give insight into how the company performed in the quarter ended June 2026, but it may be worthwhile to compare some of its key metrics to Wall Street estimates and the year-ago actuals.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2971469/diamondback-fang-q2-earnings-how-key-metrics-compare-to-wall-street-estimates?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm-2971469",
-    "timestamp": "2026-08-08T02:01:09.000Z"
-  },
-  {
-    "id": "auto-d2h5IGJyb2FkY29t",
-    "tickers": [
-      "AVGO"
-    ],
-    "line": "In the most recent trading session, Broadcom Inc. (AVGO) closed at $427.49, indicating a +1.65% shift from the previous trading day.",
-    "details": "In the most recent trading session, Broadcom Inc. (AVGO) closed at $427.49, indicating a +1.65% shift from the previous trading day.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2971461/why-broadcom-inc-avgo-outpaced-the-stock-market-today?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_6-2971461",
-    "timestamp": "2026-08-08T01:46:08.000Z"
-  },
-  {
-    "id": "auto-ZWxpIGxpbGx5J3Mg",
-    "tickers": [
-      "LLY"
-    ],
-    "line": "Eli Lilly: timing of the FDA Filing of Its Next Weight-Loss Drug Is Now Official -- and Novo Nordisk Has a Problem.",
-    "details": "Eli Lilly should request approval for retatrutide early next year.",
-    "sentiment": "bad",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/07/eli-lillys-timing-of-the-fda-filing-of-its-next-we/",
-    "timestamp": "2026-08-08T01:30:00.000Z"
-  },
-  {
-    "id": "auto-Y3JlZGl0IGNhcmQg",
-    "tickers": [
-      "JPM"
-    ],
-    "line": "JPMorgan Chase: meredith Whitney, CEO of Meredith Whitney Advisory Group, joins Scarlet Fu and Tom Keene on \"Bloomberg Money.\" They discuss how many Americans are living payday to.",
-    "details": "Meredith Whitney, CEO of Meredith Whitney Advisory Group, joins Scarlet Fu and Tom Keene on \"Bloomberg Money.\" They discuss how many Americans are living payday to payday as well as how consumers are utilizing their credit cards.",
-    "sentiment": "good",
-    "source": "youtube.com",
-    "sourceUrl": "https://www.youtube.com/watch?v=0L0oS0Rtwzg",
-    "timestamp": "2026-08-08T00:00:46.000Z"
-  },
-  {
-    "id": "auto-Y29wIHEyIGVhcm5p",
-    "tickers": [
-      "COP"
-    ],
-    "line": "ConocoPhillips: COP Q2 Earnings Call Reinforces 2029 Free Cash-Flow Path.",
-    "details": "COP reaffirms a $7 billion free-cash-flow inflection by 2029, backed by lower capital spending, major projects and improving Permian efficiency.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2971437/cop-q2-earnings-call-reinforces-2029-free-cash-flow-path?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2971437",
-    "timestamp": "2026-08-07T23:06:10.000Z"
   },
   {
     "id": "auto-bHlmdCBxMiBlYXJu",
     "tickers": [
       "LYFT"
     ],
-    "line": "Lyft: Q2 Earnings Miss, Revenues Top Estimates on Record Rides.",
-    "details": "Lyft's Q2 revenues increase 16.1% as record rides and bookings fuel growth, while earnings miss estimates amid higher marketing and administrative costs.",
+    "line": "Lyft: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: Q2 revenues increase 16.1% as record rides and bookings fuel growth, while earnings miss estimates amid higher marketing and administrative costs. If you own LYFT: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2971399/lyft-q2-earnings-miss-revenues-top-estimates-on-record-rides?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2971399",
     "timestamp": "2026-08-07T22:11:16.000Z"
   },
   {
-    "id": "auto-YW1kIHN0b2NrIHNs",
-    "tickers": [
-      "AMD"
-    ],
-    "line": "Advanced Micro Devices (AMD) stock edged lower on Friday after the chipmaker announced the acquisition of AI inference specialist Taalas, as investors balanced the strategic deal.",
-    "details": "Advanced Micro Devices (AMD) stock edged lower on Friday after the chipmaker announced the acquisition of AI inference specialist Taalas, as investors balanced the strategic deal against near-term concerns over slowing growth in its client and gaming businesses and intensifying competition from Nvidia. AMD shares fell about 2% even as the company unveiled its latest acquisition aimed at strengthening its position in the rapidly expanding artificial intelligence market.",
-    "sentiment": "good",
-    "source": "invezz.com",
-    "sourceUrl": "https://invezz.com/news/2026/08/07/amd-stock-slips-even-as-it-makes-an-acquisition-to-compete-with-nvidia/",
-    "timestamp": "2026-08-07T22:09:45.000Z"
-  },
-  {
     "id": "auto-Z2UgYWVyb3NwYWNl",
     "tickers": [
       "GE"
     ],
-    "line": "GE Aerospace continues to deliver robust revenue, profit, and cash flow growth, driven by strong aviation demand and expanding backlogs.",
-    "details": "GE Aerospace continues to deliver robust revenue, profit, and cash flow growth, driven by strong aviation demand and expanding backlogs. Despite operational excellence and industry leadership, GE's current valuation appears stretched, with adjusted profit per share guidance of $7.65–$7.85 for the year.",
+    "line": "GE Aerospace: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: continues to deliver robust revenue, profit, and cash flow growth, driven by strong aviation demand and expanding backlogs. If you own GE: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4933302-ge-aerospace-is-at-risk-of-overheating",
     "timestamp": "2026-08-07T21:25:34.000Z"
   },
   {
-    "id": "auto-Y29zdGNvIHN0b2Nr",
-    "tickers": [
-      "COST"
-    ],
-    "line": "Costco: stock Slips Despite 10.7% July Sales Jump.",
-    "details": "Costco Wholesale (COST), a membership-based warehouse retailer, delivered another month of blockbuster sales, yet the stock still slipped about 0.3% during Frid",
-    "sentiment": "good",
-    "source": "gurufocus.com",
-    "sourceUrl": "https://www.gurufocus.com/news/9017695/costco-stock-slips-despite-107-july-sales-jump",
-    "timestamp": "2026-08-07T21:20:00.000Z"
-  },
-  {
-    "id": "auto-bWlsbGljb20gaW50",
-    "tickers": [
-      "TIGO"
-    ],
-    "line": "Millicom: international Cellular Q2 Earnings Call Highlights.",
-    "details": "Millicom International Cellular NASDAQ: TIGO reported second-quarter 2026 service revenue of $2 billion, up 5.4% organically year over year and 60.1% on a reported basis, as its prepaid-to-postpaid migration strategy, pricing actions and recent acquisitions supported growth.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/millicom-international-cellular-q2-earnings-call-highlights-2026-08-07/",
-    "timestamp": "2026-08-07T20:05:43.000Z"
-  },
-  {
-    "id": "auto-ZHVzdCBkcm9wcyAx",
-    "tickers": [
-      "NEM"
-    ],
-    "line": "Newmont: gold miners are tearing higher on blowout earnings and record-near gold prices, leaving one popular inverse fund in freefall and raising serious questions about what.",
-    "details": "Gold miners are tearing higher on blowout earnings and record-near gold prices, leaving one popular inverse fund in freefall and raising serious questions about what compounding decay does to traders caught on the wrong side of a trend.",
-    "sentiment": "bad",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/etf/2026/08/07/dust-drops-13-as-gold-miners-rally-hard/",
-    "timestamp": "2026-08-07T19:50:22.000Z"
-  },
-  {
-    "id": "auto-eG9tIHEyIGVhcm5p",
-    "tickers": [
-      "XOM"
-    ],
-    "line": "Exxon Mobil: XOM Q2 Earnings Call Highlights Refining Strength and Guyana Cash Flow.",
-    "details": "ExxonMobil highlights resilient Q2 cash flow, a Guyana free-cash-flow inflection, record Permian output and refining strength amid disruption.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2971125/xom-q2-earnings-call-highlights-refining-strength-and-guyana-cash-flow?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2971125",
-    "timestamp": "2026-08-07T19:11:03.000Z"
-  },
-  {
-    "id": "auto-bHlmdCByZXBvcnRz",
-    "tickers": [
-      "LYFT"
-    ],
-    "line": "Lyft: reports Q2 results ahead of expectations as active riders surpass 30M.",
-    "details": "Lyft Inc (NASDAQ:LYFT) reported second quarter results that topped analyst expectations for revenue and gross bookings, while the ride-hailing company continued to see growth in riders and rides.",
-    "sentiment": "good",
-    "source": "proactiveinvestors.com",
-    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1096740",
-    "timestamp": "2026-08-07T19:02:26.000Z"
-  },
-  {
-    "id": "auto-d2FsbCBzdHJlZXQg",
-    "tickers": [
-      "V",
-      "DIS"
-    ],
-    "line": "Visa: v posts another earnings beat while analysts lift 2026-2027 forecasts, but premium valuation and rising regulatory risks keep the outlook balanced.",
-    "details": "V posts another earnings beat while analysts lift 2026-2027 forecasts, but premium valuation and rising regulatory risks keep the outlook balanced.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2971107/wall-street-raises-visa-outlook-after-strong-q3-buy-hold-or-sell?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2971107",
-    "timestamp": "2026-08-07T19:01:19.000Z"
-  },
-  {
-    "id": "auto-aW5zaWRlIHRoZSBt",
-    "tickers": [
-      "TSLA"
-    ],
-    "line": "Tesla: in a recent edition of Breakfast News, we gave a five-year price target for Space Exploration Technologies , or SpaceX, of $141.84 in response to TMF co-founder and CEO Tom.",
-    "details": "In a recent edition of Breakfast News, we gave a five-year price target for Space Exploration Technologies , or SpaceX, of $141.84 in response to TMF co-founder and CEO Tom Gardner's $217.52 on behalf of Team Hidden Gems.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/07/inside-the-math-of-team-rbs-spacex-price-target/",
-    "timestamp": "2026-08-07T18:30:00.000Z"
-  },
-  {
     "id": "auto-cm9rdSBxMiBlYXJu",
     "tickers": [
       "ROKU"
     ],
-    "line": "Roku: Q2 Earnings and Revenues Beat Estimates, Both Increase Y/Y.",
-    "details": "Roku beat Q2 earnings and revenue estimates as Platform growth in Advertising and Subscriptions fuels record profitability and free cash flow.",
+    "line": "Roku: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: beat Q2 earnings and revenue estimates as Platform growth in Advertising and Subscriptions fuels record profitability and free cash flow. If you own ROKU: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2971066/roku-q2-earnings-and-revenues-beat-estimates-both-increase-y-y?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2971066",
     "timestamp": "2026-08-07T18:25:43.000Z"
   },
   {
-    "id": "auto-c2VtaWNvbmR1Y3Rv",
+    "id": "auto-aG9uZXl3ZWxsIGFl",
     "tickers": [
-      "AVGO"
+      "HON"
     ],
-    "line": "Broadcom: semiconductor Sales Continue to Grow on AI Optimism: 4 Stocks to Grab.",
-    "details": "MU and semiconductor sales surge as AI demand supports chip growth, with four stocks highlighted for potential upside.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2971084/semiconductor-sales-continue-to-grow-on-ai-optimism-4-stocks-to-grab?cid=CS-STOCKNEWSAPI-FT-analyst_blog|investment_ideas-2971084",
-    "timestamp": "2026-08-07T17:41:36.000Z"
-  },
-  {
-    "id": "auto-bW9uc3RlciBpbnNp",
-    "tickers": [
-      "PFE"
-    ],
-    "line": "Monster insider trading alert for Pfizer stock.",
-    "details": "(NYSE: PFE) stock gained over 5% this week fueled by its strong second quarter 2026 earnings report, Finbold has observed its increased insider trading. As Pfizer Inc.",
-    "sentiment": "good",
-    "source": "finbold.com",
-    "sourceUrl": "https://finbold.com/monster-insider-trading-alert-for-pfizer-stock/",
-    "timestamp": "2026-08-07T17:40:21.000Z"
-  },
-  {
-    "id": "auto-Y2FlIChjYWUpIHEx",
-    "tickers": [
-      "CAE"
-    ],
-    "line": "CAE: (CAE) Q1 Earnings on the Horizon: Analysts' Insights on Key Performance Measures.",
-    "details": "Get a deeper insight into the potential performance of CAE (CAE) for the quarter ended June 2026 by going beyond Wall Street's top-and-bottom-line estimates and examining the estimates for some of its key metrics.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2970841/cae-cae-q1-earnings-on-the-horizon-analysts-insights-on-key-performance-measures?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm_preview-2970841",
-    "timestamp": "2026-08-07T17:16:04.000Z"
-  },
-  {
-    "id": "auto-NCBoZWFsdGhjYXJl",
-    "tickers": [
-      "UNH"
-    ],
-    "line": "UnitedHealth: BTSG, HRMY, UNH and NVCR stand out on improving earnings outlooks and steady sector momentum.",
-    "details": "BTSG, HRMY, UNH and NVCR stand out on improving earnings outlooks and steady sector momentum.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2970827/4-healthcare-stocks-to-watch-as-defensive-demand-strengthens?cid=CS-STOCKNEWSAPI-FT-analyst_blog|investment_ideas-2970827",
-    "timestamp": "2026-08-07T17:01:08.000Z"
-  },
-  {
-    "id": "auto-d2FsbWFydDogaSBl",
-    "tickers": [
-      "WMT"
-    ],
-    "line": "Walmart: i Expect Solid Earnings But Valuation Keeps Me At Hold.",
-    "details": "Walmart (WMT) is a well-managed, value-focused retailer, but its ~40x PE ratio is excessive for the sector. WMT's margins (25% gross, ~3% net) and heavy equipment spending spending do not justify a valuation above tech giants or retail peers.",
+    "line": "Honeywell: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: The underperformance somewhat validates the strategy of Honeywell International to focus on stronger units of growth in its home base. If you own HON: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4932987-walmart-i-expect-solid-earnings-but-valuation-keeps-me-at-hold",
-    "timestamp": "2026-08-07T15:51:45.000Z"
+    "sourceUrl": "https://seekingalpha.com/article/4932996-honeywell-aerospace-q2-the-spinoff-spinout",
+    "timestamp": "2026-08-07T15:35:17.000Z"
   },
   {
-    "id": "auto-a2V2aW4gbydsZWFy",
+    "id": "auto-bWNkb25hbGQncyBj",
     "tickers": [
-      "TSLA"
+      "MCD"
     ],
-    "line": "Tesla: kevin O'Leary Sat Out SpaceX's IPO— Now He's Plotting His Entry as Elon Musk's Empire Takes Shape: 'As the Stock Settles.",
-    "details": "Investor and television personality Kevin O'Leary said he may begin buying SpaceX (NASDAQ:SPCX) shares once post-IPO volatility settles, arguing that the bigger long-term opportunity lies in Elon Musk potentially connecting SpaceX with Tesla Inc. (NASDAQ:TSLA), artificial intelligence, robotics and autonomous driving.",
+    "line": "McDonald's: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: second-quarter sales growth slowed as it faced trouble rolling out a new value menu. If you own MCD: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "benzinga.com",
-    "sourceUrl": "https://www.benzinga.com/markets/tech/26/08/61036884/kevin-oleary-sat-out-spacexs-ipo-now-hes-plotting-his-entry-as-elon-musks-empire-takes-shape-as-the-stock-settles-ill-be-watching-closely",
-    "timestamp": "2026-08-07T15:43:30.000Z"
+    "source": "businessinsider.com",
+    "sourceUrl": "https://www.businessinsider.com/mcdonalds-customers-demand-better-value-and-pricing-2026-8",
+    "timestamp": "2026-08-07T12:19:01.000Z"
   },
   {
-    "id": "auto-Zmx1b3IgKGZscikg",
+    "id": "auto-YXJtc3Ryb25nIGhl",
     "tickers": [
-      "FLR"
+      "JNJ"
     ],
-    "line": "Fluor: (FLR) Surpasses Q2 Earnings and Revenue Estimates.",
-    "details": "Fluor (FLR) came out with quarterly earnings of $0.91 per share, beating the Zacks Consensus Estimate of $0.73 per share. This compares to earnings of $0.43 per share a year ago.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2970760/fluor-flr-surpasses-q2-earnings-and-revenue-estimates?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_4-2970760",
-    "timestamp": "2026-08-07T15:41:04.000Z"
-  },
-  {
-    "id": "auto-dWJlciB0ZWNobm9s",
-    "tickers": [
-      "UBER"
-    ],
-    "line": "Uber Technologies: (NYSE:UBER) Trading 3.4% Higher Following Better-Than-Expected Earnings.",
-    "details": "Uber Technologies, Inc. (NYSE: UBER - Get Free Report)'s share price was up 3.4% on Thursday following a stronger than expected earnings report.",
-    "sentiment": "good",
+    "line": "Johnson & Johnson: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: grew its stake in Johnson and Johnson () by 0.9% during the second quarter, according to the company in its most recent filing with the Securities and Exchange Commission. If you own JNJ: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
     "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/07/uber-technologies-nyseuber-trading-3-4-higher-following-better-than-expected-earnings.html",
-    "timestamp": "2026-08-07T14:24:46.000Z"
-  },
-  {
-    "id": "auto-dGhlIGhpZGRlbiB3",
-    "tickers": [
-      "NEE"
-    ],
-    "line": "NextEra Energy: as data centers strain the grid and hyperscalers race to secure reliable electricity, utilities with nuclear and renewable assets are moving from sleepy dividend.",
-    "details": "As data centers strain the grid and hyperscalers race to secure reliable electricity, utilities with nuclear and renewable assets are moving from sleepy dividend plays to essential AI infrastructure stocks.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/07/the-hidden-winners-of-the-ai-power-crunch-3-utilit/",
-    "timestamp": "2026-08-07T13:05:00.000Z"
+    "sourceUrl": "https://www.defenseworld.net/2026/08/07/armstrong-henry-h-associates-inc-has-82-million-holdings-in-johnson-johnson-jnj.html",
+    "timestamp": "2026-08-07T10:53:41.000Z"
   },
   {
     "id": "auto-d2FzYXRjaCBtaWNy",
     "tickers": [
       "CRM"
     ],
-    "line": "Salesforce: wasatch Micro Cap Fund Q2 2026 Contributors And Detractors.",
-    "details": "TriSalus posted a significant miss on revenues and lowered guidance during the quarter, citing the impact of a Salesforce (CRM) reorganization and delayed FDA review of its next-generation device. Suncrete's stock moved higher in the wake of strong first quarter revenue growth.",
-    "sentiment": "good",
+    "line": "Salesforce: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: TriSalus posted a significant miss on revenues and lowered guidance during the quarter, citing the impact of a Salesforce (CRM) reorganization and delayed FDA review of its next-generation device. If you own CRM: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4932741-wasatch-micro-cap-fund-q2-2026-contributors-and-detractors",
     "timestamp": "2026-08-07T08:20:00.000Z"
   },
   {
-    "id": "auto-ZmFhIG9yZGVycyBp",
+    "id": "auto-d2h5IHJlbWl0bHkg",
     "tickers": [
-      "BA"
+      "RELY"
     ],
-    "line": "FAA Orders Inspections of Over 400 Boeing 737 Max Jets for Possible Cracks.",
-    "details": "The Federal Aviation Administration has ordered the inspections of Boeing 737 Max jets for cracks of a component that could affect the structural integrity of the planes.",
-    "sentiment": "good",
-    "source": "wsj.com",
-    "sourceUrl": "https://www.wsj.com/business/airlines/faa-orders-inspections-of-over-400-boeing-737-max-jets-for-possible-cracks-c41ec557",
-    "timestamp": "2026-08-07T07:13:00.000Z"
-  },
-  {
-    "id": "auto-cm9rdSAocm9rdSkg",
-    "tickers": [
-      "ROKU"
-    ],
-    "line": "Roku: (ROKU) Tops Q2 Earnings and Revenue Estimates.",
-    "details": "Roku (ROKU) came out with quarterly earnings of $1.18 per share, beating the Zacks Consensus Estimate of $0.61 per share. This compares to earnings of $0.07 per share a year ago.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2970562/roku-roku-tops-q2-earnings-and-revenue-estimates?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_4-2970562",
-    "timestamp": "2026-08-07T03:12:58.000Z"
-  },
-  {
-    "id": "auto-c3RvY2sgbWFya2V0",
-    "tickers": [
-      "PEP"
-    ],
-    "line": "PepsiCo: stock Market Today, Aug. 6: Celsius Whiffs on Q2 Earnings, Shares Tumble 18%.",
-    "details": "6, 2026, the energy drink maker reported $817.9M in quarterly revenue below expectations, prompting investor scrutiny of margin recovery.",
+    "line": "Remitly: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: easily beat top-line estimates and posted strong EBITDA growth. If you own RELY: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/coverage/stock-market-today/2026/08/06/stock-market-today-aug-6-celsius-whiffs-on-q2-earnings-shares-tumble-18/",
-    "timestamp": "2026-08-07T00:55:13.000Z"
+    "sourceUrl": "https://www.fool.com/investing/2026/08/06/why-remitly-global-stock-popped-8-today/",
+    "timestamp": "2026-08-07T04:18:25.000Z"
   },
   {
-    "id": "auto-bmlrZSwgaW5jLiBk",
+    "id": "auto-ZWxpIGxpbGx5OiBm",
     "tickers": [
-      "NKE"
+      "LLY"
     ],
-    "line": "Nike: inc. Declares $0.41 Quarterly Dividend.",
-    "details": "(NYSE: NKE) announced today that its Board of Directors has declared a quarterly cash dividend of $0.41 per share on the Company's outstanding Class A and Class B Common Stock payable on October 1, 2026, to shareholders of record at the close of business on September 1, 2026. BEAVERTON, Ore.--(BUSINESS WIRE)--NIKE, Inc.",
+    "line": "Eli Lilly: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: latest results made investors happy, as the stock jumped 5% on their release, as both revenues and earnings grew by strong double-digit percentages. If you own LLY: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "businesswire.com",
-    "sourceUrl": "https://www.businesswire.com/news/home/20260806136347/en/NIKE-Inc.-Declares-0.41-Quarterly-Dividend/",
-    "timestamp": "2026-08-07T00:00:00.000Z"
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4932402-eli-lilly-fine-q2-2026-results-but-alertness-required",
+    "timestamp": "2026-08-07T00:42:40.000Z"
   },
   {
-    "id": "auto-aW50ZXJuYXRpb25h",
+    "id": "auto-aXMgYSBiZWF0IGlu",
     "tickers": [
-      "IBM"
+      "SPG"
     ],
-    "line": "securities laws by blue chip company International Business Machines Corporation (NYSE: IBM) after its CEO Arvind Krishna previewed disastrous Q2 2026 financial results on July.",
-    "details": "securities laws by blue chip company International Business Machines Corporation (NYSE: IBM) after its CEO Arvind Krishna previewed disastrous Q2 2026 financial results on July 14, 2026. The market's immediate reaction was to send the price of IBM shares down a massive 25%, erasing over $68 billion of its total company value in one day.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/international-business-machines-corporation-ibm-68-billion-wipeout-amid-z-shortfall-triggers-investigation---hbss-302845345.html",
-    "timestamp": "2026-08-06T23:53:00.000Z"
-  },
-  {
-    "id": "auto-aG93IHRvIGJ1aWxk",
-    "tickers": [
-      "KO"
-    ],
-    "line": "Coca-Cola: how to Build $8,500 a Month in Dividend Income Without Selling a Single Share.",
-    "details": "The number that separates a comfortable retirement from a perpetual side hustle depends entirely on which yield tier you trust with your capital, and the answer surprises most income investors who assume bigger payouts always win.",
-    "sentiment": "good",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/personal-finance/2026/08/06/how-to-build-8500-a-month-in-dividend-income-without-selling-a-single-share/",
-    "timestamp": "2026-08-06T23:35:58.000Z"
-  },
-  {
-    "id": "auto-MyBzdG9ja3MgdG8g",
-    "tickers": [
-      "CAT"
-    ],
-    "line": "Caterpillar: 3 Stocks to Watch After Crushing Q2 Earnings Expectations: CAT, MCY & ZBRA.",
-    "details": "Caterpillar, Mercury General, and Zebra Technologies each posted impressive Q2 results that could warrant a closer look from investors seeking quality additions to their portfolios.",
+    "line": "Simon Property Group: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: SPG's Q2 results are likely to show revenue and FFO growth, with strong leasing and occupancy offsetting higher interest and tariff pressures. If you own SPG: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/commentary/2970340/3-stocks-to-watch-after-crushing-q2-earnings-expectations-cat-mcy-zbra?cid=CS-STOCKNEWSAPI-FT-investment_ideas-2970340",
-    "timestamp": "2026-08-06T22:56:20.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2970363/is-a-beat-in-store-for-simon-property-stock-in-q2-earnings?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_preview-2970363",
+    "timestamp": "2026-08-06T22:56:17.000Z"
   },
   {
-    "id": "auto-dWJlciBwcmljZSB0",
+    "id": "auto-cmVhbHR5IGluY29t",
     "tickers": [
-      "UBER"
+      "O"
     ],
-    "line": "Uber Technologies: uber price target lowered by Bank of America despite higher earnings outlook.",
-    "details": "Uber Technologies Inc (NYSE:UBER, XETRA:UT8) saw its price target lowered to $101 from $103 by Bank of America, which maintained a ‘Buy' rating following the company's second quarter results, with the analysts citing a lower valuation multiple despite raising their earnings estimates.",
+    "line": "Realty Income: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: O raises 2026 AFFO and investment targets as private capital, data centers and recycling broaden its pipeline without loosening underwriting. If you own O: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "proactiveinvestors.com",
-    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1096687",
-    "timestamp": "2026-08-06T22:34:53.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970339/realty-income-q2-earnings-call-raises-2026-growth-targets?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2970339",
+    "timestamp": "2026-08-06T21:57:05.000Z"
   },
   {
-    "id": "auto-YW1hem9uIGFuZCB3",
+    "id": "auto-bmV0ZmxpeCdzIGxh",
     "tickers": [
-      "WMT"
+      "NFLX"
     ],
-    "line": "Amazon and Walmart Want to Beat the Consumer to Their Next Purchase.",
-    "details": "Amazon's $3 trillion valuation, achieved this week, is being treated as an artificial intelligence and cloud computing milestone.",
-    "sentiment": "good",
-    "source": "pymnts.com",
-    "sourceUrl": "https://www.pymnts.com/news/retail/2026/amazon-walmart-race-consumers-next-purchase/",
-    "timestamp": "2026-08-06T21:57:49.000Z"
+    "line": "Netflix: new SEC paperwork about ownership or disclosures — risk clue only — not a full business update.",
+    "details": "What happened: Inc. If you own NFLX: risk clue only — not a full business update. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/9012542/netflixs-latest-insider-sale-looks-bigger-than-it-is",
+    "timestamp": "2026-08-06T21:55:00.000Z"
   },
   {
     "id": "auto-ZG9vcmRhc2ggcTIg",
     "tickers": [
       "DASH"
     ],
-    "line": "DoorDash: Q2 Earnings Miss on Higher R&D Costs, Revenue Beat.",
-    "details": "DASH's Q2 revenues beat estimates as order growth and Deliveroo lift sales, but surging R&D costs weigh on earnings.",
+    "line": "DoorDash: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: DASH's Q2 revenues beat estimates as order growth and Deliveroo lift sales, but surging R&D costs weigh on earnings. If you own DASH: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2970325/doordash-q2-earnings-miss-on-higher-r-d-costs-revenue-beat?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2970325",
     "timestamp": "2026-08-06T21:51:07.000Z"
   },
   {
+    "id": "auto-ZHluYXRyYWNlIHEx",
+    "tickers": [
+      "DT"
+    ],
+    "line": "Software - Application: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: DT beats fiscal Q1 estimates as ARR rose 17%, net new ARR jumps 66%, and larger new-logo deals fuel subscription-led growth. If you own DT: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970328/dynatrace-q1-earnings-beat-on-arr-growth-and-strong-new-logo-wins?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2970328",
+    "timestamp": "2026-08-06T21:51:04.000Z"
+  },
+  {
+    "id": "auto-ZGlhbW9uZGJhY2sg",
+    "tickers": [
+      "FANG"
+    ],
+    "line": "Diamondback Energy: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: FANG tops Q2 earnings and revenue estimates as higher realized oil prices, production growth and a boosted buyback plan underscore a strong quarter. If you own FANG: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970335/diamondback-energy-q2-earnings-beat-estimates-revenues-rise-y-y?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2970335",
+    "timestamp": "2026-08-06T20:56:04.000Z"
+  },
+  {
     "id": "auto-ZG9vcmRhc2g6IGFu",
     "tickers": [
       "DASH"
     ],
-    "line": "DoorDash: an AI Story Backed By Real GAAP Profits.",
-    "details": "DoorDash, Inc. DASH delivered 36% vs a year ago revenue growth, sustained GAAP profitability for eight consecutive quarters, and maintains a robust net cash balance sheet.",
+    "line": "DoorDash: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: Inc. If you own DASH: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4932099-doordash-an-ai-story-backed-by-real-gaap-profits",
     "timestamp": "2026-08-06T20:52:15.000Z"
   },
   {
-    "id": "auto-ZWNvbm9taWMgbW9h",
-    "tickers": [
-      "MA"
-    ],
-    "line": "Mastercard: each one earned it because something protects its profits from the rest of the world.",
-    "details": "Each one earned it because something protects its profits from the rest of the world. An economic moat is a durable competitive advantage that protects a company's profits from competitors.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4932097-economic-moats-7-types-4-stocks-i-own",
-    "timestamp": "2026-08-06T20:49:00.000Z"
-  },
-  {
-    "id": "auto-ZGlzbmV5OiB0aGUg",
-    "tickers": [
-      "DIS"
-    ],
-    "line": "Walt Disney: disney: The Turnaround Is Real, But I Am Not Buying (Earnings Review).",
-    "details": "Disney delivered a strong Q3 with 7% revenue growth, 21% operating income expansion, and a 13% SVOD margin—confirming the turnaround in Entertainment and continued strength in Experiences. DIS's management guided to high‑single‑digit FY26 revenue growth and at least $9B in buybacks, while segment trends show accelerating Entertainment, resilient Experiences, and a temporary dip in Sports.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4932081-disney-turnaround-is-real-but-i-am-not-buying-earnings-review",
-    "timestamp": "2026-08-06T20:44:25.000Z"
-  },
-  {
-    "id": "auto-aHlwZXJzb25pYyB0",
-    "tickers": [
-      "GE"
-    ],
-    "line": "GE Aerospace: 06, 2026 (GLOBE NEWSWIRE) -- Equity Insider News Commentary - In a recent conversation on the Fighter Pilot Podcast, Tim Franta, chief executive of Starfighters.",
-    "details": "06, 2026 (GLOBE NEWSWIRE) -- Equity Insider News Commentary - In a recent conversation on the Fighter Pilot Podcast, Tim Franta, chief executive of Starfighters Space, Inc.",
-    "sentiment": "good",
-    "source": "globenewswire.com",
-    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/06/3340621/0/en/hypersonic-testing-is-moving-from-wind-tunnels-to-the-sky.html",
-    "timestamp": "2026-08-06T20:43:26.000Z"
-  },
-  {
-    "id": "auto-bmV0ZmxpeCBhbmQg",
-    "tickers": [
-      "NFLX"
-    ],
-    "line": "Netflix and MercadoLibre are trading 38% and 23% lower over the past year. Both have fallen out of favor, and poorly received quarterly results this earnings season aren't helping.",
-    "details": "Netflix and MercadoLibre are trading 38% and 23% lower over the past year. Both have fallen out of favor, and poorly received quarterly results this earnings season aren't helping.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/06/netflix-and-mercadolibre-are-underperforming-the-s/",
-    "timestamp": "2026-08-06T20:17:00.000Z"
-  },
-  {
-    "id": "auto-d2hhdCBpbnZlc3Rv",
-    "tickers": [
-      "SPOT"
-    ],
-    "line": "What Investors Should Know About Spotify Co-CEO Soderstrom Selling $10.6M Stock.",
-    "details": "Automatic sale reduced his direct holdings by 51%, though he retains 125,463 derivative securities alongside remaining shares.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/06/what-investors-should-know-about-spotify-co-ceo-soderstrom-selling-usd10-6m-stock/",
-    "timestamp": "2026-08-06T20:12:25.000Z"
-  },
-  {
-    "id": "auto-bWNkIHEyIGVhcm5p",
-    "tickers": [
-      "MCD"
-    ],
-    "line": "McDonald's: MCD Q2 Earnings Call Flags U.S. Execution Gaps.",
-    "details": "McDonald's is fixing U.S.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2969957/mcd-q2-earnings-call-flags-u-s-execution-gaps?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2969957",
-    "timestamp": "2026-08-06T18:04:57.000Z"
-  },
-  {
-    "id": "auto-aXMgdXJiYW4gb3V0",
-    "tickers": [
-      "URBN"
-    ],
-    "line": "Urban Outfitters Inc: here at Zacks, our focus is on the proven Zacks Rank system, which emphasizes earnings estimates and estimate revisions to find great stocks.",
-    "details": "Here at Zacks, our focus is on the proven Zacks Rank system, which emphasizes earnings estimates and estimate revisions to find great stocks.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2969804/is-urban-outfitters-urbn-a-great-value-stock-right-now?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_2-2969804",
-    "timestamp": "2026-08-06T17:41:11.000Z"
-  },
-  {
-    "id": "auto-c291dGhlcm4gbWlz",
-    "tickers": [
-      "SO"
-    ],
-    "line": "Southern Missouri Bancorp: Still Attractive Despite Premium To Tangible Book Value.",
-    "details": "Southern Missouri Bancorp has grown tangible book value per share by more than $16 in four years, with shares up ~60% since 2022.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4931213-southern-missouri-bancorp-still-attractive-despite-premium-to-tangible-book-value",
-    "timestamp": "2026-08-06T17:30:00.000Z"
-  },
-  {
-    "id": "auto-Z3JlZyBhYmVsIHNv",
+    "id": "auto-d2lsbCBjb2NhLWNv",
     "tickers": [
       "KO"
     ],
-    "line": "Coca-Cola: greg Abel Sold 15 Buffett Stock Positions in His First Quarter as Berkshire CEO. What His Early Portfolio Moves Signal for Shareholders.",
-    "details": "Is this a one-time flex or a long-term strategy?",
+    "line": "Coca-Cola: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: KO's emerging-market momentum and affordability strategy could cushion softer U.S. If you own KO: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/06/abel-sold-15-buffett-positions-in-first-quarter/",
-    "timestamp": "2026-08-06T17:00:00.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970316/will-coca-cola-s-emerging-market-expansion-offset-u-s-slowdown?cid=CS-STOCKNEWSAPI-FT-analyst_blog|quick_take-2970316",
+    "timestamp": "2026-08-06T20:41:08.000Z"
   },
   {
-    "id": "auto-cGZpemVyOiBxMiBz",
+    "id": "auto-Y29ub2NvcGhpbGxp",
     "tickers": [
-      "PFE"
+      "COP"
     ],
-    "line": "Pfizer: Q2 Strength Overshadows Obesity Setbacks.",
-    "details": "Pfizer shares edged higher after Q2 earnings, shrugging off criticism over the discontinuation of two obesity drug candidates, MET-224o and PF-07976016. PFE highlighted Metsera's rapid progress and plans to strategically deploy its remaining $6 billion-$7 billion toward bolt-on opportunities in oncology, IMIDs, and obesity.",
+    "line": "ConocoPhillips: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: COP surpasses Q2 earnings and revenues estimates as higher commodity prices drive earnings growth despite lower production and reaffirmed guidance. If you own COP: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4931761-pfizer-q2-strength-overshadows-obesity-setbacks",
-    "timestamp": "2026-08-06T16:59:48.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970301/conocophillips-beats-q2-earnings-revenues-estimates-on-higher-prices?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2970301",
+    "timestamp": "2026-08-06T20:26:04.000Z"
+  },
+  {
+    "id": "auto-YWJidiBzdG9jayBk",
+    "tickers": [
+      "ABBV"
+    ],
+    "line": "AbbVie: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: ABBV falls after cutting its 2026 EPS outlook to reflect the Apogee deal, despite strong Q2 results, higher revenue guidance and growth from key medicines. If you own ABBV: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970197/abbv-stock-dips-4-despite-robust-q2-buy-the-dip-or-stay-cautious?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2970197",
+    "timestamp": "2026-08-06T19:51:11.000Z"
+  },
+  {
+    "id": "auto-Y2hld3kgY2VvIHN1",
+    "tickers": [
+      "CHWY"
+    ],
+    "line": "Chewy: a top leader sold some shares (SEC filing) — can worry owners short term; leaders also sell for personal cash.",
+    "details": "What happened: The total disposition involved 81,841 shares for an estimated value of ~$1.9 million at $22.93 per share. If you own CHWY: can worry owners short term; leaders also sell for personal cash. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/06/chewy-ceo-sumit-singh-sells-81-841-shares-for-usd1-9-million-is-the-stock-a-sale/",
+    "timestamp": "2026-08-06T19:26:38.000Z"
+  },
+  {
+    "id": "auto-byBxMiBhZmZvIG1h",
+    "tickers": [
+      "O"
+    ],
+    "line": "Realty Income: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: matches Q2 AFFO estimates, lifts 2026 guidance and boosts investment targets as leasing strength and capital deployment fuel growth. If you own O: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2970100/o-q2-affo-matches-estimates-revenues-top-on-active-capital-deployment?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2970100",
+    "timestamp": "2026-08-06T19:01:08.000Z"
+  },
+  {
+    "id": "auto-bGx5IHEyIGVhcm5p",
+    "tickers": [
+      "LLY"
+    ],
+    "line": "Eli Lilly: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: Lilly lifts its 2026 outlook as Foundayo adoption accelerates, Medicare expands obesity access and retatrutide advances toward a 2027 filing. If you own LLY: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2969988/lly-q2-earnings-call-raises-outlook-as-foundayo-gains-traction?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2969988",
+    "timestamp": "2026-08-06T18:03:11.000Z"
+  },
+  {
+    "id": "auto-YXQmdCBhbmQgZXJp",
+    "tickers": [
+      "T"
+    ],
+    "line": "AT&T: has deal news (buy, sell, or merge) — watch the price paid and what the deal changes.",
+    "details": "What happened: continues investing in its nationwide wireless network to help customers stay connected with improved coverage, better performance, and more reliable calls Key Takeaways: AT&T has selected Ericsson to provide 600 MHz. If you own T: watch the price paid and what the deal changes. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/att-and-ericsson-enhance-wireless-capacity-coverage-and-performance-nationwide-302845063.html",
+    "timestamp": "2026-08-06T17:06:00.000Z"
   },
   {
     "id": "auto-YmV5b25kIG9pbCBw",
     "tickers": [
       "CVX"
     ],
-    "line": "Chevron: beyond Oil Prices: The Case for 3 Dividend-Paying Energy Giants.",
-    "details": "KMI, CVX and CNQ pair dependable dividends with scale, resilient operations and financial strength amid volatile oil prices and elevated supply risks.",
+    "line": "Chevron: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: KMI, CVX and CNQ pair dependable dividends with scale, resilient operations and financial strength amid volatile oil prices and elevated supply risks. If you own CVX: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2969840/beyond-oil-prices-the-case-for-3-dividend-paying-energy-giants?cid=CS-STOCKNEWSAPI-FT-analyst_blog|industry_focus-2969840",
     "timestamp": "2026-08-06T16:41:07.000Z"
   },
   {
-    "id": "auto-cGVwc2ljbydzIDkw",
-    "tickers": [
-      "PEP"
-    ],
-    "line": "PepsiCo: 90% Payout Ratio Looks Unsustainable. The Dividend King's Earnings Acceleration Changes the Math.",
-    "details": "When PepsiCo (NASDAQ:PEP | PEP Price Prediction) delivered its $1.48 per share quarterly dividend, the cash hit accounts on June 30.",
-    "sentiment": "good",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/2026/08/06/pepsicos-90-payout-ratio-looks-unsustainable-the-dividend-kings-earnings-acceleration-changes-the-math/",
-    "timestamp": "2026-08-06T16:00:04.000Z"
-  },
-  {
-    "id": "auto-Ym9vbWVycyBzaG91",
-    "tickers": [
-      "CMCSA"
-    ],
-    "line": "Comcast: boomers Should Buy These High-Yield Dividend August Bargains Hand-Over-Fist.",
-    "details": "Second-quarter earnings season shook loose some rare discounts on five high-yield dividend stocks that Wall Street analysts still rate as Buys, and income-focused investors may not get another shot at these prices.",
-    "sentiment": "good",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/2026/08/06/boomers-should-buy-these-high-yield-dividend-bargain-gems-hand-over-fist/",
-    "timestamp": "2026-08-06T15:46:29.000Z"
-  },
-  {
     "id": "auto-ZGVsdGEgYWlyIGxp",
     "tickers": [
       "DAL"
     ],
-    "line": "Delta Air Lines: a top leader sold some of their shares (SEC filing).",
-    "details": "Official filing language is dense — here is the useful part: The disposition of ~207,000 shares on August 4, 2026 realized a total transaction value of ~$19.2 million. For someone who owns DAL: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
+    "line": "Delta Air Lines: a top leader sold some shares (SEC filing) — can worry owners short term; leaders also sell for personal cash.",
+    "details": "What happened: The disposition of ~207,000 shares on August 4, 2026 realized a total transaction value of ~$19.2 million. If you own DAL: can worry owners short term; leaders also sell for personal cash. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
     "source": "fool.com",
     "sourceUrl": "https://www.fool.com/coverage/filings/2026/08/06/delta-air-lines-ceo-edward-bastian-sells-company-shares-worth-usd19-2-million-here-s-a-deeper-look-at-the-transaction/",
     "timestamp": "2026-08-06T15:44:02.000Z"
   },
   {
-    "id": "auto-YWJidmllIGluYy4g",
+    "id": "auto-cGVwc2ljbzogd2hl",
     "tickers": [
-      "ABBV"
+      "PEP"
     ],
-    "line": "AbbVie:. Holdings Cut by Bill Few Associates Inc.",
-    "details": "decreased its holdings in shares of AbbVie Inc. AbbVie comprises about 2.1% of",
-    "sentiment": "bad",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/06/abbvie-inc-abbv-holdings-cut-by-bill-few-associates-inc.html",
-    "timestamp": "2026-08-06T11:38:51.000Z"
+    "line": "PepsiCo: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: is underperforming the consumer staples sector, hindered by weak North American volumes and slower growth versus Coca-Cola. If you own PEP: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4931617-pepsi-where-is-the-sense-of-urgency",
+    "timestamp": "2026-08-06T13:12:28.000Z"
   },
   {
-    "id": "auto-cmVtaXRseSBnbG9i",
+    "id": "auto-bWlsbGljb20gKHRp",
     "tickers": [
-      "RELY"
+      "TIGO"
     ],
-    "line": "Remitly: global Q2 Earnings Call Highlights.",
-    "details": "Remitly Global NASDAQ: RELY reported second-quarter results above its guidance range, with revenue rising 20% year over year to $495 million and adjusted operating profit reaching a record $115 million, or a 23% margin.",
+    "line": "Millicom: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: (Tigo) raises 2026 Financial Guidance and declares $1.50 per share interim dividend Luxembourg, August 06, 2026 – Millicom International Cellular S.A. If you own TIGO: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/remitly-global-q2-earnings-call-highlights-2026-08-05/",
-    "timestamp": "2026-08-06T07:04:18.000Z"
+    "source": "globenewswire.com",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/06/3340031/0/en/millicom-tigo-raises-2026-financial-guidance-and-declares-1-50-per-share-interim-dividend.html",
+    "timestamp": "2026-08-06T13:05:00.000Z"
+  },
+  {
+    "id": "auto-MTgwIHdlYWx0aCBh",
+    "tickers": [
+      "GS"
+    ],
+    "line": "Goldman Sachs: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: 180 Wealth Advisors LLC cut its stake in shares of The Goldman Sachs Group, Inc. If you own GS: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/06/180-wealth-advisors-llc-decreases-stake-in-the-goldman-sachs-group-inc-gs.html",
+    "timestamp": "2026-08-06T10:09:56.000Z"
+  },
+  {
+    "id": "auto-YXJrYWRpb3Mgd2Vh",
+    "tickers": [
+      "DAL"
+    ],
+    "line": "Delta Air Lines: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: Arkadios Wealth Advisors reduced its stake in Delta Air Lines, Inc. If you own DAL: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "defenseworld.net",
+    "sourceUrl": "https://www.defenseworld.net/2026/08/06/arkadios-wealth-advisors-sells-5392-shares-of-delta-air-lines-inc-dal.html",
+    "timestamp": "2026-08-06T10:05:25.000Z"
+  },
+  {
+    "id": "auto-YWkgZWxlY3RyaWNp",
+    "tickers": [
+      "GEV"
+    ],
+    "line": "Utilities - Renewable: is raising investment for growth (e.g. AI or capacity) — can signal confidence, but spending can also pressure near-term profits.",
+    "details": "What happened: GE Vernova ( | GEV Price Prediction) and Eaton () just delivered Q2 2026 results that read like two halves of the same AI power thesis. If you own GEV: can signal confidence, but spending can also pressure near-term profits. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/08/06/ai-electricity-demand-ge-vernova-and-eaton-will-capture-this-next-wave-of-capex/",
+    "timestamp": "2026-08-06T07:16:41.000Z"
   },
   {
     "id": "auto-c3BvdGlmeTogcTIg",
     "tickers": [
       "SPOT"
     ],
-    "line": "Spotify: Q2 Strengthens The Long Term Story.",
-    "details": "Spotify Technology S.A. Premium subscribers exceeded guidance with 7 million net additions, supporting 14% vs a year ago revenue growth and a 7% vs a year ago increase in premium ARPU (FX neutral).",
+    "line": "Spotify: expects about 7% sales growth — investors judge if that outlook is strong enough.",
+    "details": "What happened: Technology S.A. If you own SPOT: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4931327-spotify-q2-strengthens-the-long-term-story",
     "timestamp": "2026-08-06T04:12:29.000Z"
   },
   {
-    "id": "auto-dGhlIGRpdmlkZW5k",
+    "id": "auto-cmVtaXRseSByZXBv",
     "tickers": [
-      "PG"
+      "RELY"
     ],
-    "line": "Procter & Gamble: the Dividend Income Illusion: Why Your 8% Yield Is Really Paying You 5%.",
-    "details": "An 8% yield looks like a shortcut to $80,000 a year without selling a single share, but the brokerage account tells a different story than the headline number does.",
-    "sentiment": "good",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/personal-finance/2026/08/05/the-dividend-income-illusion-why-your-8-yield-is-really-paying-you-5/",
-    "timestamp": "2026-08-06T00:11:18.000Z"
-  },
-  {
-    "id": "auto-Y29zdGNvIHdob2xl",
-    "tickers": [
-      "COST"
-    ],
-    "line": "Costco: wholesale Corporation Reports July Sales Results.",
-    "details": "05, 2026 (GLOBE NEWSWIRE) -- Costco Wholesale Corporation (“Costco” or the “Company”) (Nasdaq: COST) today reported net sales of $23.12 billion for the retail month of July, the four weeks ended August 2, 2026, an increase of 10.7 percent from $20.89 billion last year. Net sales for the first 48 weeks were $273.55 billion, an increase of 10.1 percent from $248.35 billion last year.",
+    "line": "Remitly: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: Quarterly Active Customers surpass 10 million Second quarter send volume up 27% and revenue up 20% year over year Second quarter net income of $205.9 million, inclusive of a $140.6 million discrete tax benefit Adjusted. If you own RELY: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "globenewswire.com",
-    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/05/3339743/0/en/Costco-Wholesale-Corporation-Reports-July-Sales-Results.html",
-    "timestamp": "2026-08-05T23:15:00.000Z"
-  },
-  {
-    "id": "auto-aG9uZXl3ZWxsIGFl",
-    "tickers": [
-      "HON"
-    ],
-    "line": "HON: eywell Aerospace reports second quarter results; updates 2026 outlook.",
-    "details": "Sales of $4.5 billion, reported and organic1 sales up 5% year over year Net income of $0.3 billion and adjusted EBIT1 of $1.0 billion, excluding pro forma standalone adjustments Revises full-year sales and pro forma standalone adjusted EBIT1 guidance and issues full-year pro forma standalone adjusted earnings per share1 guidance Completed spin-off from Honeywell Technologies on June 29 PHOENIX, Aug.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/honeywell-aerospace-reports-second-quarter-results-updates-2026-outlook-302844037.html",
+    "sourceUrl": "https://www.globenewswire.com/news-release/2026/08/05/3339673/0/en/Remitly-Reports-Record-Second-Quarter-Results-and-Raises-Full-Year-2026-Outlook.html",
     "timestamp": "2026-08-05T23:05:00.000Z"
   },
   {
-    "id": "auto-d2h5IGF0JnQsIHZl",
+    "id": "auto-bmlrZSBiZXRzIG9u",
     "tickers": [
-      "T"
+      "NKE"
     ],
-    "line": "Why AT&T, Verizon and T-Mobile shares are down after SpaceX's earnings.",
-    "details": "SpaceX thinks it will be able to build wireless capabilities without massive network investments.",
+    "line": "Nike: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: NKE's performance-led strategy centers on innovation, athlete engagement and sport-focused execution to drive long-term growth despite near-term demand challenges. If you own NKE: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "marketwatch.com",
-    "sourceUrl": "https://www.marketwatch.com/story/why-at-t-verizon-and-t-mobile-shares-are-down-after-spacexs-earnings-033a07ce",
-    "timestamp": "2026-08-05T21:57:00.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2969054/nike-bets-on-performance-products-will-growth-momentum-follow?cid=CS-STOCKNEWSAPI-FT-analyst_blog|quick_take-2969054",
+    "timestamp": "2026-08-05T21:51:10.000Z"
   },
   {
-    "id": "auto-dmlkZW8gLSBjZW8g",
+    "id": "auto-c3BvdGlmeSBxMiBl",
     "tickers": [
-      "SO"
+      "SPOT"
     ],
-    "line": "Video - CEO Clips: Eloro Resources Advances Major Silver Discovery in Southern Bolivia.",
-    "details": "- August 5, 2026) - Eloro Resources Ltd.",
-    "sentiment": "good",
-    "source": "newsfilecorp.com",
-    "sourceUrl": "https://www.newsfilecorp.com/release/308176/Video-CEO-Clips-Eloro-Resources-Advances-Major-Silver-Discovery-in-Southern-Bolivia",
-    "timestamp": "2026-08-05T20:38:00.000Z"
-  },
-  {
-    "id": "auto-MyBkaXZpZGVuZCBz",
-    "tickers": [
-      "AEP"
-    ],
-    "line": "American Electric Power: 3 Dividend Stocks Ready to Pay You – If You Buy Them This Week.",
-    "details": "SiriusXM (NASDAQ:SIRI | SIRI Price Prediction), American Electric Power (NASDAQ:AEP), and Timberland Bancorp (NASDAQ:TSBK) all go ex-dividend on Monday, August 10. Three well-known dividend payers share a single deadline this week.",
-    "sentiment": "good",
-    "source": "247wallst.com",
-    "sourceUrl": "https://247wallst.com/investing/2026/08/05/3-dividend-stocks-ready-to-pay-you-if-you-buy-them-this-week/",
-    "timestamp": "2026-08-05T20:35:15.000Z"
+    "line": "Spotify: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: SPOT's Q2 earnings miss estimates as higher marketing, cloud and AI costs offset record margins, subscriber gains and stronger cash flow. If you own SPOT: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2969027/spotify-q2-earnings-miss-on-higher-marketing-and-ai-costs?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2969027",
+    "timestamp": "2026-08-05T21:11:08.000Z"
   },
   {
     "id": "auto-bWFzdGVyY2FyZCBh",
     "tickers": [
       "MA"
     ],
-    "line": "Mastercard: and Borderless.xyz Team on Cross-Border Stablecoin Payments.",
-    "details": "Mastercard launched a partnership with stablecoin infrastructure network Borderless.xyz, according to a Wednesday (Aug. The collaboration will examine how Mastercard Crypto Credential's standards-based framework can support trusted interactions in cross-border stablecoin payments, per the release.",
+    "line": "Mastercard: won a product, order, customer, or approval update — can help if it turns into real sales and profits.",
+    "details": "What happened: launched a partnership with stablecoin infrastructure network Borderless.xyz, according to a Wednesday (Aug. If you own MA: can help if it turns into real sales and profits. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "pymnts.com",
     "sourceUrl": "https://www.pymnts.com/cryptocurrency/2026/mastercard-borderlessxyz-team-cross-border-stablecoin-payments/",
     "timestamp": "2026-08-05T19:42:58.000Z"
   },
   {
+    "id": "auto-c3RyZW5ndGggaW4g",
+    "tickers": [
+      "GE"
+    ],
+    "line": "GE Aerospace: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: GE's commercial engines unit surges on services, spare parts and LEAP deliveries, while major orders support its 2026 growth outlook. If you own GE: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2968828/strength-in-commercial-engines-unit-drives-ge-aerospace-can-it-sustain?cid=CS-STOCKNEWSAPI-FT-analyst_blog|quick_take-2968828",
+    "timestamp": "2026-08-05T19:11:09.000Z"
+  },
+  {
     "id": "auto-Y2F0IHEyIGVhcm5p",
     "tickers": [
       "CAT"
     ],
-    "line": "Caterpillar: CAT Q2 Earnings Call Focuses on Backlog and Capacity Growth.",
-    "details": "Caterpillar raises its 2026 sales outlook as record backlog, stronger segment demand and added power capacity support higher second-half growth.",
+    "line": "Caterpillar: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: raises its 2026 sales outlook as record backlog, stronger segment demand and added power capacity support higher second-half growth. If you own CAT: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2968662/cat-q2-earnings-call-focuses-on-backlog-and-capacity-growth?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2968662",
@@ -1085,200 +968,117 @@
     "tickers": [
       "MRK"
     ],
-    "line": "Merck & Co Inc: MRK Q2 Earnings Call Puts Pipeline Progress in Focus.",
-    "details": "Merck raised its 2026 sales outlook as pipeline gains, new launches and post-KEYTRUDA plans took focus despite acquisition-driven losses.",
+    "line": "Merck & Co Inc: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: Merck raised its 2026 sales outlook as pipeline gains, new launches and post-KEYTRUDA plans took focus despite acquisition-driven losses. If you own MRK: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2968674/mrk-q2-earnings-call-puts-pipeline-progress-in-focus?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2968674",
     "timestamp": "2026-08-05T18:01:55.000Z"
   },
   {
-    "id": "auto-ZHVrIHEyIGVhcm5p",
+    "id": "auto-Y2FlIChjYWUpIHJl",
     "tickers": [
-      "DUK"
+      "CAE"
     ],
-    "line": "Duke Energy: DUK Q2 Earnings Call Centers on Large-Load Capital Upside.",
-    "details": "Duke Energy links contracted data-center demand to up to $10B in capital upside as new loads begin taking power from late 2027.",
+    "line": "CAE: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: (CAE) doesn't possess the right combination of the two key ingredients for a likely earnings beat in its upcoming report. If you own CAE: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2968657/duk-q2-earnings-call-centers-on-large-load-capital-upside?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2968657",
-    "timestamp": "2026-08-05T18:01:20.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2968694/cae-cae-reports-next-week-wall-street-expects-earnings-growth?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_9-2968694",
+    "timestamp": "2026-08-05T18:01:07.000Z"
   },
   {
-    "id": "auto-YmFuayBvZiBhbWVy",
+    "id": "auto-c291dGhlcm4gcTIg",
     "tickers": [
-      "BAC"
+      "SO"
     ],
-    "line": "Bank of America: spends $250 million a year on GLP-1 drugs for its employees, CEO says.",
-    "details": "Bank of America CEO Brian Moynihan said the company is spending more than $250 million annually to provide GLP-1 weight loss medications to its workforce.",
+    "line": "Southern Company: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: SO beats Q2 earnings estimates as data center demand jumps 55% and management now expects full-year earnings near the top of guidance. If you own SO: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
-    "source": "cnbc.com",
-    "sourceUrl": "https://www.cnbc.com/2026/08/05/bank-of-america-ceo-glp-1-drugs-cost.html",
-    "timestamp": "2026-08-05T17:34:07.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2968342/southern-q2-earnings-beat-on-customer-growth-revenues-miss?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2968342",
+    "timestamp": "2026-08-05T16:21:07.000Z"
   },
   {
-    "id": "auto-YXQmdCdzIGV4Y2x1",
+    "id": "auto-dmljaSBwcm9wZXJ0",
     "tickers": [
-      "T"
+      "VICI"
     ],
-    "line": "AT&T: exclusive Kids Device Line Gets an Upgrade with the New amiGO™ Jr. Tab 2.",
-    "details": "5, 2026 /PRNewswire/ -- What's the News: As the only carrier to offer an entire lineup of devices designed for kids, AT&T is giving its amiGO family an upgrade with the new AT&T amiGO™ Jr. The new AT&T amiGO™ Jr.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/atts-exclusive-kids-device-line-gets-an-upgrade-with-the-new-amigo-jr-tab-2-302843294.html",
-    "timestamp": "2026-08-05T17:00:00.000Z"
-  },
-  {
-    "id": "auto-NSByZWxhdGl2ZWx5",
-    "tickers": [
-      "V"
-    ],
-    "line": "Visa: 5 Relatively Secure And Cheap Dividend Stocks, Yields Up To 8% (August 2026).",
-    "details": "This article is part of our monthly series where we highlight five large-cap, relatively safe, dividend-paying companies offering significant discounts to their historical norms. We go over our filtering process to select just five conservative DGI stocks from more than 7,500 companies that are traded on U.S.",
+    "line": "REIT - Diversified: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: VICI raised full-year AFFO guidance for a second consecutive quarter, with total AFFO up 8% year-over-year and a robust 6.6% dividend yield. If you own VICI: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4930657-5-relatively-secure-and-cheap-dividend-stocks-yields-up-to-8-percent-august-2026",
-    "timestamp": "2026-08-05T15:24:44.000Z"
-  },
-  {
-    "id": "auto-bWNkb25hbGQncyBx",
-    "tickers": [
-      "MCD"
-    ],
-    "line": "McDonald's: Q2 Earnings Call Highlights.",
-    "details": "McDonald's NYSE: MCD reported second-quarter global comparable sales growth of 1.3% and systemwide sales growth of 4% in constant currency, as positive results across all operating segments were tempered by weaker-than-expected execution in the U.S.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/mcdonalds-q2-earnings-call-highlights-2026-08-05/",
-    "timestamp": "2026-08-05T13:04:44.000Z"
-  },
-  {
-    "id": "auto-bWVyY2sgJiBjby4s",
-    "tickers": [
-      "MRK"
-    ],
-    "line": "Merck & Co., Inc. Q2 Earnings Call Highlights.",
-    "details": "NYSE: MRK reported second-quarter revenue of $16.6 billion, up 5% from a year earlier, driven by oncology, animal health and contributions from newer product launches. Revenue increased 4% excluding foreign exchange, according to Chief Financial Officer Caroline Litchfield.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/merck-co-inc-q2-earnings-call-highlights-2026-08-05/",
-    "timestamp": "2026-08-05T13:04:20.000Z"
-  },
-  {
-    "id": "auto-Zmlyc3QgdHJ1c3Qg",
-    "tickers": [
-      "LULU"
-    ],
-    "line": "Lululemon: a large investor reported changing its share count (ownership filing).",
-    "details": "Official filing language is dense — here is the useful part: First Trust Advisors LP decreased its holdings in shares of lululemon athletica inc. (NASDAQ: LULU) by 81.1% in the undefined quarter, according to its most recent 13F filing with the SEC. For someone who owns LULU: this is paperwork about shares or disclosures, not a full business update.",
-    "sentiment": "good",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/08/05/first-trust-advisors-lp-has-4-22-million-stock-holdings-in-lululemon-athletica-inc-lulu.html",
-    "timestamp": "2026-08-05T10:43:24.000Z"
+    "sourceUrl": "https://seekingalpha.com/article/4929746-vici-properties-caesars-uncertainty-clouds-growth-but-near-7-percent-yield-keeps-me-bullish",
+    "timestamp": "2026-08-05T14:45:00.000Z"
   },
   {
     "id": "auto-YW1lcmljYW4gZWxl",
     "tickers": [
       "AEP"
     ],
-    "line": "American Electric Power: is Expensive And Missed On The Bottom Line - But Don't Sell.",
-    "details": "American Electric Power missed Q2 profit per share estimates, but I do not think it impacts the overall investment thesis and the growth story for the next 5 years. AEP's forward guidance reflects confidence in continued demand and operational stability.",
+    "line": "American Electric Power: expects about 9% sales growth — investors judge if that outlook is strong enough.",
+    "details": "What happened: remains a buy, driven by 69 GW of contracted load and a $78B capital plan supporting robust rate-base growth. If you own AEP: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4930236-american-electric-power-is-expensive-and-missed-on-the-bottom-line-but-dont-sell",
-    "timestamp": "2026-08-05T00:24:48.000Z"
+    "sourceUrl": "https://seekingalpha.com/article/4930498-american-electric-power-contracted-load-and-rate-base-growth",
+    "timestamp": "2026-08-05T09:31:15.000Z"
   },
   {
-    "id": "auto-MyByZWl0cyB0byB3",
+    "id": "auto-YnRzZyByYWlzZXMg",
     "tickers": [
-      "SPG"
+      "BTSG"
     ],
-    "line": "Simon Property Group: 3 REITs to Watch for Potential Upside This Earnings Season.",
-    "details": "HST, O and SPG may deliver positive earnings surprises as strong demand, leasing activity and portfolio strength support results.",
+    "line": "BrightSpring Health Group: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: BrightSpring beat second-quarter estimates and raised its 2026 outlook as specialty, infusion and home health growth lifted margins and EBITDA. If you own BTSG: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2967945/3-reits-to-watch-for-potential-upside-this-earnings-season?cid=CS-STOCKNEWSAPI-FT-earnings_esp-2967945",
-    "timestamp": "2026-08-04T22:31:07.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2967946/btsg-raises-2026-guidance-as-specialty-and-home-health-drive-growth?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2967946",
+    "timestamp": "2026-08-04T21:31:08.000Z"
   },
   {
-    "id": "auto-d2lsbCB1cmJhbiBv",
+    "id": "auto-ZHVrZSBlbmVyZ3kg",
     "tickers": [
-      "URBN"
+      "DUK"
     ],
-    "line": "Urban Outfitters (URBN) has an impressive earnings surprise history and currently possesses the right combination of the two key ingredients for a likely beat in its next.",
-    "details": "Urban Outfitters (URBN) has an impressive earnings surprise history and currently possesses the right combination of the two key ingredients for a likely beat in its next quarterly report.",
+    "line": "Duke Energy: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: DUK beats Q2 2026 earnings estimates as operating income rises and utility customer growth continues, even though revenues are below expectations. If you own DUK: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2967806/will-urban-outfitters-urbn-beat-estimates-again-in-its-next-earnings-report?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|yseop_template_7-2967806",
-    "timestamp": "2026-08-04T20:10:36.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2967799/duke-energy-q2-earnings-beat-estimates-revenues-increase-y-y?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2967799",
+    "timestamp": "2026-08-04T20:10:37.000Z"
   },
   {
-    "id": "auto-dGhvcm5lIGVudGVy",
+    "id": "auto-c2hvdWxkIHlvdSBi",
     "tickers": [
-      "PG"
+      "XOM",
+      "UBER"
     ],
-    "line": "Thorne Enters into Definitive Agreement to Be Acquired by Procter & Gamble.",
-    "details": "4, 2026 /PRNewswire/ -- Thorne, the leader in science-backed health and wellness solutions, today announced that it has entered into a definitive agreement to be acquired by The Procter & Gamble Company (NYSE: PG). Acquisition positions Thorne to continue advancing its mission while building on its legacy of science, quality, innovation, and trust SUMMERVILLE, S.C., Aug.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/thorne-enters-into-definitive-agreement-to-be-acquired-by-procter--gamble-302842751.html",
-    "timestamp": "2026-08-04T20:00:00.000Z"
-  },
-  {
-    "id": "auto-ZXh4b25tb2JpbDog",
-    "tickers": [
-      "XOM"
-    ],
-    "line": "Exxon Mobil: exxonMobil: Making Profitability Progress As Advertised.",
-    "details": "Cost-cutting initiatives and advantaged asset growth have contributed to a more favorable profitability structure for XOM. Upstream segment remains the primary earnings driver.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4929989-exxonmobil-making-profitability-progress-as-advertised",
-    "timestamp": "2026-08-04T19:28:37.000Z"
-  },
-  {
-    "id": "auto-NCBub24tdGVjaCBz",
-    "tickers": [
-      "GS"
-    ],
-    "line": "Goldman Sachs: 4 Non-Tech Stocks to Grab as Dow Hits New Milestone Amid AI Sell-off.",
-    "details": "GS, JPM, TRV and JNJ stand out as Dow hits a new high amid an AI-driven tech sell-off, with these blue-chip stocks backed by strong earnings growth.",
+    "line": "Exxon Mobil: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: XOM's Q2 earnings missed estimates, but strong production, oil prices and balance sheet strength support its outlook. If you own XOM: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2967338/4-non-tech-stocks-to-grab-as-dow-hits-new-milestone-amid-ai-sell-off?cid=CS-STOCKNEWSAPI-FT-analyst_blog|investment_ideas-2967338",
-    "timestamp": "2026-08-04T15:56:05.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2967696/should-you-buy-exxonmobil-stock-despite-its-q2-earnings-miss?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2967696",
+    "timestamp": "2026-08-04T19:26:07.000Z"
   },
   {
-    "id": "auto-dGhlIGhvbWUgZGVw",
+    "id": "auto-Y2FuIGlibSdzIHNv",
     "tickers": [
-      "HD"
+      "IBM"
     ],
-    "line": "The Home Depot to Host Second Quarter Earnings Conference Call on August 18.",
-    "details": "4, 2026 /PRNewswire/ -- The Home Depot®, the world's largest home improvement retailer, announced today that it will hold its Second Quarter Earnings Conference Call on Tuesday, August 18, at 9 a.m. A webcast will be available by logging onto http://ir.homedepot.com/events-and-presentations and selecting the Second Quarter Earnings Conference Call icon or directly at https://event.choruscall.com/mediaframe/webcast.html?webcastid=tvsYzfmo.",
+    "line": "IBM: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: sovereign AI partnership with Sarvam targets India's public sector, while hybrid cloud demand and rising estimates support growth prospects. If you own IBM: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/the-home-depot-to-host-second-quarter-earnings-conference-call-on-august-18-302841554.html",
-    "timestamp": "2026-08-04T15:00:00.000Z"
-  },
-  {
-    "id": "auto-YWxsZXJnYW4gYWVz",
-    "tickers": [
-      "ABBV"
-    ],
-    "line": "AbbVie: allergan Aesthetics Announces U.S. FDA Acceptance of Supplemental Biologics License Application for BOTOX® Cosmetic for Masseter Muscle Prominence.",
-    "details": "4, 2026 /PRNewswire/ -- Allergan Aesthetics, an AbbVie company (NYSE: ABBV), today announced the U.S. Submission is supported by two Phase 3 studies (M21-416 and M21-417), demonstrating statistically significant improvements in masseter muscle prominence and patient satisfaction with treatment IRVINE, Calif., Aug.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/allergan-aesthetics-announces-us-fda-acceptance-of-supplemental-biologics-license-application-for-botox-cosmetic-for-masseter-muscle-prominence-302841658.html",
-    "timestamp": "2026-08-04T15:00:00.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2967544/can-ibm-s-sovereign-ai-solutions-for-india-propel-the-stock-higher?cid=CS-STOCKNEWSAPI-FT-analyst_blog|most_popular_stocks-2967544",
+    "timestamp": "2026-08-04T17:56:08.000Z"
   },
   {
     "id": "auto-c2Vncm8gYW5kIHBy",
     "tickers": [
       "PLD"
     ],
-    "line": "Segro and Prologis agree final terms on £13.5bn takeover deal.",
-    "details": "Segro PLC (LSE:SGRO) has agreed to a £14 billion takeover by US logistics property group Prologis, bringing one of Britain's largest real estate investment trusts under American control. Under the recommended offer, investors in the FTSE 100 warehouse owner will receive 0.092 Prologis shares for each share they own.",
+    "line": "Prologis: has deal news (buy, sell, or merge) — watch the price paid and what the deal changes.",
+    "details": "What happened: Segro PLC (LSE:SGRO) has agreed to a £14 billion takeover by US logistics property group Prologis, bringing one of Britain's largest real estate investment trusts under American control. If you own PLD: watch the price paid and what the deal changes. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "proactiveinvestors.co.uk",
     "sourceUrl": "https://www.proactiveinvestors.co.uk/companies/news/1096476",
@@ -1289,229 +1089,216 @@
     "tickers": [
       "AMT"
     ],
-    "line": "American Tower: satellite/AI Risks Overstated - Inflation-Beating Yields Trigger Buy Rating.",
-    "details": "AMT's robust H1'26 numbers imply a prudent FY2026 guidance, with it well positioning the REIT for future beat-and-raise performance. AMT benefits from resilient telecom demand, annual lease escalators, and upcoming 5G/6G cycles, aside from near-term noise from DISH churn.",
+    "line": "American Tower: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: AMT benefits from resilient telecom demand, annual lease escalators, and upcoming 5G/6G cycles, aside from near-term noise from DISH churn. If you own AMT: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4929597-american-tower-satelliteai-risks-overstated-inflation-beating-yields-trigger-buy-rating",
     "timestamp": "2026-08-03T21:40:37.000Z"
   },
   {
+    "id": "auto-dmlzYSBzdG9jayBy",
+    "tickers": [
+      "V"
+    ],
+    "line": "Visa: legal or regulator news hit the company — adds risk until the issue is clearer.",
+    "details": "What happened: (V), the world's largest electronic-payment processor, rose approximately 1% in Monday's regular-session trading after agreeing to acquire fraud-intelligen. If you own V: adds risk until the issue is clearer. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/8998906/visa-stock-rises-as-24-billion-cybersecurity-deal-targets-fraud",
+    "timestamp": "2026-08-03T21:19:00.000Z"
+  },
+  {
+    "id": "auto-YmFoIHN0b2NrIGp1",
+    "tickers": [
+      "BAH"
+    ],
+    "line": "Booz Allen Hamilton: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: Booz Allen's rebound is backed by stronger earnings and national security demand, but Civil weakness and leverage temper the outlook. If you own BAH: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2966884/bah-stock-jumps-11-9-in-a-month-as-investors-weigh-what-comes-next?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2966884",
+    "timestamp": "2026-08-03T20:36:05.000Z"
+  },
+  {
     "id": "auto-ZXRmcyBpbiBzcG90",
     "tickers": [
       "IBM"
     ],
-    "line": "ETFs in Spotlight as IBM Rallies Post-Q2 Earnings Despite Top-Line Miss.",
-    "details": "IBM shares rally despite a Q2 revenue miss as investors focus on AI momentum and margin expansion, shifting focus to ETFs exposed to the tech giant.",
+    "line": "IBM: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: shares rally despite a Q2 revenue miss as investors focus on AI momentum and margin expansion, shifting focus to ETFs exposed to the tech giant. If you own IBM: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2966677/etfs-in-spotlight-as-ibm-rallies-post-q2-earnings-despite-top-line-miss?cid=CS-STOCKNEWSAPI-FT-etf_news_and_commentary-2966677",
     "timestamp": "2026-08-03T19:01:11.000Z"
   },
   {
-    "id": "auto-dGhlc2UgMiBmaW5h",
+    "id": "auto-YWJidiBxMiBlYXJu",
     "tickers": [
-      "SPG"
+      "ABBV"
     ],
-    "line": "Simon Property Group: these 2 Finance Stocks Could Beat Earnings: Why They Should Be on Your Radar.",
-    "details": "Investors looking for ways to find stocks that are set to beat quarterly earnings estimates should check out the Zacks Earnings ESP.",
+    "line": "AbbVie: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: raises 2026 revenue guidance on Skyrizi, Rinvoq and neuroscience growth, while the Apogee deal trims EPS guidance and lifts R&D spending. If you own ABBV: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2966374/these-2-finance-stocks-could-beat-earnings-why-they-should-be-on-your-radar?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|zacks_education_earnings_esp-2966374",
-    "timestamp": "2026-08-03T16:56:19.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2966597/abbv-q2-earnings-call-balances-growth-with-apogee-dilution?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2966597",
+    "timestamp": "2026-08-03T18:01:42.000Z"
   },
   {
-    "id": "auto-dG9wIHdhbGwgc3Ry",
+    "id": "auto-bWFzdGVyY2FyZCB0",
     "tickers": [
-      "SLB"
+      "MA"
     ],
-    "line": "Schlumberger: top Wall Street analysts are bullish on these 3 dividend stocks for passive income.",
-    "details": "Tracking top analysts can help investors shortlist attractive dividend stocks, as these experts provide useful insights.",
+    "line": "Mastercard: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Shares of Mastercard Inc () declined on Friday, even after the company reported upbeat second-quarter results. If you own MA: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "cnbc.com",
-    "sourceUrl": "https://www.cnbc.com/2026/08/02/top-analysts-are-bullish-on-these-dividend-stocks-for-passive-income-.html",
-    "timestamp": "2026-08-02T15:01:00.000Z"
+    "source": "benzinga.com",
+    "sourceUrl": "https://www.benzinga.com/analyst-stock-ratings/price-target/26/07/60844218/mastercard-tops-q2-estimates-analysts-see-more-upside-despite-early-stock-dip",
+    "timestamp": "2026-07-31T18:25:03.000Z"
   },
   {
-    "id": "auto-bmV0ZmxpeCBpcyA0",
-    "tickers": [
-      "NFLX"
-    ],
-    "line": "Netflix trades about 43% below its 52-week high of $126.71. The company still forecasts 13% to 14% revenue growth and a 31.5% operating margin for 2026.",
-    "details": "Netflix trades about 43% below its 52-week high of $126.71. The company still forecasts 13% to 14% revenue growth and a 31.5% operating margin for 2026.",
-    "sentiment": "good",
-    "source": "fool.com",
-    "sourceUrl": "https://www.fool.com/investing/2026/08/01/netflix-is-43-below-its-52-week-high-at-20-times-f/",
-    "timestamp": "2026-08-01T10:11:00.000Z"
-  },
-  {
-    "id": "auto-eXVtISBicmFuZHMg",
-    "tickers": [
-      "YUM"
-    ],
-    "line": "Yum! Brands: Q2 Earnings Call Highlights.",
-    "details": "Yum! Brands NYSE: YUM reported second-quarter growth across its operations excluding Pizza Hut, while management addressed a recent U.S.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/yum-brands-q2-earnings-call-highlights-2026-08-01/",
-    "timestamp": "2026-08-01T10:04:31.000Z"
-  },
-  {
-    "id": "auto-Y3JlZGljb3JwIGx0",
-    "tickers": [
-      "BAP"
-    ],
-    "line": "Credicorp:.: Credicorp's Earnings Release and Conference Call 2Q26.",
-    "details": "Lima, July 31, 2026 (GLOBE NEWSWIRE) -- Lima, Peru, July 31, 2026 – Credicorp Ltd. announces to its shareholders and the market that its 2Q26 Earnings Release will be published on Thursday, August 13, 2026, after market close.",
-    "sentiment": "good",
-    "source": "globenewswire.com",
-    "sourceUrl": "https://www.globenewswire.com/news-release/2026/07/31/3337049/0/en/Credicorp-Ltd-Credicorp-s-Earnings-Release-and-Conference-Call-2Q26.html",
-    "timestamp": "2026-07-31T23:15:00.000Z"
-  },
-  {
-    "id": "auto-bGluZGUgcGxjIChs",
+    "id": "auto-bGluIHEyIGVhcm5p",
     "tickers": [
       "LIN"
     ],
-    "line": "Linde: (LIN) (Q2 2026) Earnings Call Highlights: Record Sales and profit per share Amid Margin Pressures.",
-    "details": "Release Date: July 31, 2026For the complete transcript of the earnings call, please refer to the full earnings call transcript. Positive Points Record sales and",
+    "line": "Linde: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: delivers Q2 earnings growth as pricing, volume gains, currency and acquisitions drive sales, with electronics leading end-market gains. If you own LIN: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "gurufocus.com",
-    "sourceUrl": "https://www.gurufocus.com/news/8996002/linde-plc-lin-q2-2026-earnings-call-highlights-record-sales-and-eps-amid-margin-pressures",
-    "timestamp": "2026-07-31T23:00:00.000Z"
-  },
-  {
-    "id": "auto-YW1lcmljYW4gaG9t",
-    "tickers": [
-      "AMH"
-    ],
-    "line": "American Homes 4 Rent: Q2 Earnings Call Highlights.",
-    "details": "American Homes 4 Rent NYSE: AMH raised the midpoint of its 2026 Core FFO-per-share guidance after reporting second-quarter results that management said reflected strong leasing execution, controlled expenses, development lease-up activity and higher-than-expected disposition proceeds.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/american-homes-4-rent-q2-earnings-call-highlights-2026-07-31/",
-    "timestamp": "2026-07-31T20:05:15.000Z"
-  },
-  {
-    "id": "auto-bGluZGUgcTIgZWFy",
-    "tickers": [
-      "LIN"
-    ],
-    "line": "Linde: Q2 Earnings Call Highlights.",
-    "details": "Linde NASDAQ: LIN reported record second-quarter sales and earnings per share, while expanding its sale-of-gas project backlog to a record $8.1 billion following a new U.S.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/linde-q2-earnings-call-highlights-2026-07-31/",
-    "timestamp": "2026-07-31T18:06:06.000Z"
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2965726/lin-q2-earnings-revenues-beat-estimates-on-volume-pricing-growth?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2965726",
+    "timestamp": "2026-07-31T17:56:18.000Z"
   },
   {
     "id": "auto-aW50ZXJkaWdpdGFs",
     "tickers": [
       "IDCC"
     ],
-    "line": "InterDigital: Q2 Earnings Beat Estimates Despite Lower Y/Y Revenues.",
-    "details": "IDCC tops Q2 2026 estimates as a new Amazon licensing agreement boosts streaming revenues, even as smartphone licensing sales and earnings decline.",
+    "line": "InterDigital: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: IDCC tops Q2 2026 estimates as a new Amazon licensing agreement boosts streaming revenues, even as smartphone licensing sales and earnings decline. If you own IDCC: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2965537/interdigital-q2-earnings-beat-estimates-despite-lower-y-y-revenues?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2965537",
     "timestamp": "2026-07-31T17:20:21.000Z"
   },
   {
-    "id": "auto-Y29tcGFyZWQgdG8g",
+    "id": "auto-bmV0ZmxpeCBpcyBk",
     "tickers": [
-      "AMH",
-      "INCY"
+      "NFLX"
     ],
-    "line": "Compared to Estimates, American Homes 4 Rent (AMH) Q2 Earnings: A Look at Key Metrics.",
-    "details": "While the top- and bottom-line numbers for American Homes 4 Rent (AMH) give a sense of how the business performed in the quarter ended June 2026, it could be worth looking at how some of its key metrics compare to Wall Street estimates and year-ago values.",
+    "line": "Netflix: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: However, Netflix is well-positioned as the subscription video-on-demand leader. If you own NFLX: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2965241/compared-to-estimates-american-homes-4-rent-amh-q2-earnings-a-look-at-key-metrics?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm-2965241",
-    "timestamp": "2026-07-31T03:01:06.000Z"
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/07/31/netflix-is-down-46-heres-why-im-buying-more/",
+    "timestamp": "2026-07-31T16:30:00.000Z"
   },
   {
-    "id": "auto-YWxjb2EgY29ycG9y",
+    "id": "auto-bGluZGUgcmFpc2Vz",
     "tickers": [
-      "AA"
+      "LIN"
     ],
-    "line": "Alcoa: declares Quarterly Cash Dividend.",
-    "details": "PITTSBURGH--(BUSINESS WIRE)--Alcoa Corporation (NYSE: AA; ASX: AAI) (“Alcoa” or the “Company”) today announced that its Board of Directors has declared a quarterly cash dividend of $0.10 per share of the Company's common stock, to be paid on August 27, 2026 to stockholders of record as of the close of business on August 11, 2026.About Alcoa CorporationAlcoa is a global industry leader in alumina and aluminum products with a Vision to Build a Legacy of Excellence for Future Generations.",
+    "line": "Linde: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: , the ‌world's largest industrial gases company, raised the bottom end ​of its full-year ​earnings forecast on Friday after ⁠posting second-quarter results ​that beat market expectations. If you own LIN: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "businesswire.com",
-    "sourceUrl": "https://www.businesswire.com/news/home/20260730495573/en/Alcoa-Corporation-Declares-Quarterly-Cash-Dividend/",
-    "timestamp": "2026-07-31T02:10:00.000Z"
+    "source": "reuters.com",
+    "sourceUrl": "https://www.reuters.com/business/energy/linde-raises-lower-end-2026-guidance-after-q2-earnings-beat-2026-07-31/",
+    "timestamp": "2026-07-31T12:48:58.000Z"
   },
   {
     "id": "auto-dW5oaW5nZWQgY29t",
     "tickers": [
       "CMCSA"
     ],
-    "line": "Unhinged Comcast store manager forced underperforming workers to be tied up, pied in the face: lawsuit.",
-    "details": "David Figueroa, who is seeking more than $15,000, alleged the bizarre “assaults” were meant to “bully” workers into hitting their sales goals, according to the lawsuit.",
+    "line": "Comcast: legal or regulator news hit the company — adds risk until the issue is clearer.",
+    "details": "What happened: David Figueroa, who is seeking more than $15,000, alleged the bizarre “assaults” were meant to “bully” workers into hitting their sales goals, according to the lawsuit. If you own CMCSA: adds risk until the issue is clearer. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
     "source": "nypost.com",
     "sourceUrl": "https://nypost.com/2026/07/30/business/unhinged-comcast-store-manager-forced-underperforming-workers-to-be-tied-up-pied-in-the-face-lawsuit/",
     "timestamp": "2026-07-31T00:02:37.000Z"
   },
   {
+    "id": "auto-YW1oIHJlcG9ydHMg",
+    "tickers": [
+      "AMH"
+    ],
+    "line": "American Homes 4 Rent: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: Raises Full Year 2026 Guidance LAS VEGAS, July 30, 2026 /PRNewswire/ -- AMH () (the \"Company\"), a leading large-scale integrated owner, operator and developer of single-family rental homes, today announced its financial. If you own AMH: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "prnewswire.com",
+    "sourceUrl": "https://www.prnewswire.com/news-releases/amh-reports-second-quarter-2026-financial-and-operating-results-302839489.html",
+    "timestamp": "2026-07-30T23:08:00.000Z"
+  },
+  {
+    "id": "auto-cHBjIHEyIGVhcm5p",
+    "tickers": [
+      "PPC"
+    ],
+    "line": "Packaged Foods: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: Pilgrim's Pride misses Q2 estimates as weaker U.S. If you own PPC: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2964970/ppc-q2-earnings-miss-estimates-on-commodity-pricing-pressure?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2964970",
+    "timestamp": "2026-07-30T20:46:16.000Z"
+  },
+  {
+    "id": "auto-eXVtISBicmFuZHMg",
+    "tickers": [
+      "YUM"
+    ],
+    "line": "Yum! Brands: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: YUM tops earnings estimates as Taco Bell's strong sales and global expansion help offset softer Pizza Hut performance. If you own YUM: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2964774/yum-brands-q2-earnings-beat-estimates-on-taco-bell-strength?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2964774",
+    "timestamp": "2026-07-30T19:15:12.000Z"
+  },
+  {
     "id": "auto-bmV4dGVyYSBlbmVy",
     "tickers": [
       "NEE"
     ],
-    "line": "NextEra Energy: board declares quarterly dividend.",
-    "details": "(NYSE: NEE) declared a regular quarterly common stock dividend of $0.6232 per share. JUNO BEACH, Fla., July 30, 2026 /PRNewswire/ -- The board of directors of NextEra Energy, Inc.",
+    "line": "NextEra Energy: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: JUNO BEACH, Fla., July 30, 2026 /PRNewswire/ -- The board of directors of NextEra Energy, Inc. If you own NEE: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "prnewswire.com",
     "sourceUrl": "https://www.prnewswire.com/news-releases/nextera-energy-board-declares-quarterly-dividend-302839211.html",
     "timestamp": "2026-07-30T18:19:00.000Z"
   },
   {
-    "id": "auto-YmlnIGJhbmtzIGRl",
+    "id": "auto-aXMgc291dGhlcm4g",
     "tickers": [
-      "GS"
+      "SO"
     ],
-    "line": "Goldman Sachs: big Banks Deliver Strong Q2: ETFs in Focus.",
-    "details": "banks delivered strong Q2 earnings, fueled by robust trading, lending and investment banking activity.",
+    "line": "Southern Company: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Southern Co (SO) released its 8-K filing on July 30, 2026, highlighting its earnings results for the second quarter of 2026. If you own SO: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2964223/big-banks-deliver-strong-q2-etfs-in-focus?cid=CS-STOCKNEWSAPI-FT-etf_news_and_commentary-2964223",
-    "timestamp": "2026-07-30T17:01:25.000Z"
+    "source": "gurufocus.com",
+    "sourceUrl": "https://www.gurufocus.com/news/8990677/is-southern-co-so-worth-the-investment-after-q2-earnings-beat-eps-of-103-on-revenue-of-698-billion-gf-score-80100-indicates-19-overvalued",
+    "timestamp": "2026-07-30T15:31:00.000Z"
   },
   {
-    "id": "auto-dW5pb24gcGFjaWZp",
+    "id": "auto-cGlsZ3JpbSdzIHBy",
     "tickers": [
-      "UNP"
+      "PPC"
     ],
-    "line": "Union Pacific: announces 3% Dividend Increase for Third Quarter 2026.",
-    "details": "OMAHA, Neb.--(BUSINESS WIRE)--Union Pacific Corporation (NYSE: UNP) announced that its Board of Directors today voted to increase the quarterly dividend on the Company's common shares by 3% to $1.42 per share. Union Pacific has paid dividends on its common stock for 127 consecutive years.",
-    "sentiment": "good",
-    "source": "businesswire.com",
-    "sourceUrl": "https://www.businesswire.com/news/home/20260729986537/en/Union-Pacific-Corporation-Announces-3-Dividend-Increase-for-Third-Quarter-2026/",
-    "timestamp": "2026-07-29T23:15:00.000Z"
+    "line": "Packaged Foods: results or outlook came in weaker than expected — often puts pressure on the stock.",
+    "details": "What happened: Pilgrim's Pride (PPC) came out with quarterly earnings of $0.64 per share, missing the Zacks Consensus Estimate of $0.75 per share. If you own PPC: often puts pressure on the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2963882/pilgrim-s-pride-ppc-q2-earnings-and-revenues-miss-estimates?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_4-2963882",
+    "timestamp": "2026-07-30T02:26:14.000Z"
   },
   {
-    "id": "auto-aGVyZSdzIGhvdyBz",
+    "id": "auto-cGVwc2ljbydzIGds",
     "tickers": [
-      "SLB"
+      "PEP"
     ],
-    "line": "Schlumberger: here's How SLB's Q2 Earnings Impact Energy ETFs.",
-    "details": "Schlumberger beats Q2 earnings and revenue estimates, lifting investor interest in energy ETFs like IEZ, OIH and XLE with heavy exposure to SLB.",
+    "line": "PepsiCo: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: PEP's global brands, international growth and productivity support its outlook as North American weakness raises execution risks. If you own PEP: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2963494/here-s-how-slb-s-q2-earnings-impact-energy-etfs?cid=CS-STOCKNEWSAPI-FT-etf_news_and_commentary-2963494",
-    "timestamp": "2026-07-29T18:16:05.000Z"
-  },
-  {
-    "id": "auto-bnVlIHEyIGVhcm5p",
-    "tickers": [
-      "NUE"
-    ],
-    "line": "Nucor: NUE Q2 Earnings Call Highlights Growth Projects And Demand.",
-    "details": "Nucor highlights record steel mill shipments, major growth projects and a stronger second-half 2026 outlook as demand remains resilient.",
-    "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2963215/nue-q2-earnings-call-highlights-growth-projects-and-demand?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2963215",
-    "timestamp": "2026-07-29T18:03:06.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2963508/pepsico-s-global-growth-and-brand-strategy-shape-its-2026-outlook?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2963508",
+    "timestamp": "2026-07-29T18:31:18.000Z"
   },
   {
     "id": "auto-YnV5IHRoZXNlIDMg",
@@ -1519,189 +1306,225 @@
       "UNH",
       "UGP"
     ],
-    "line": "UnitedHealth: buy These 3 Blue-Chip Stocks After Strong Q2 2026 Earnings Results.",
-    "details": "MMM, TRV and UNH posted strong Q2 results, with higher guidance, investment strength and growth drivers supporting their 2026 outlooks.",
+    "line": "UnitedHealth: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: MMM, TRV and UNH posted strong Q2 results, with higher guidance, investment strength and growth drivers supporting their 2026 outlooks. If you own UNH: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2963378/buy-these-3-blue-chip-stocks-after-strong-q2-2026-earnings-results?cid=CS-STOCKNEWSAPI-FT-analyst_blog|investment_ideas-2963378",
     "timestamp": "2026-07-29T17:11:10.000Z"
   },
   {
-    "id": "auto-ZnJlZXBvcnQtbWNt",
+    "id": "auto-aGVyZSdzIGhvdyBt",
+    "tickers": [
+      "HD"
+    ],
+    "line": "Home Depot: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: current quarterly dividend of $2.33 is up 238% in the past decade. If you own HD: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "fool.com",
+    "sourceUrl": "https://www.fool.com/investing/2026/07/29/how-many-shares-home-depot-10000-yearly-dividends/",
+    "timestamp": "2026-07-29T13:05:00.000Z"
+  },
+  {
+    "id": "auto-YW11bmRpIHJlZHVj",
     "tickers": [
       "FCX"
     ],
-    "line": "(NYSE: FCX) by 1.8% in the first quarter, according to the company in its most recent disclosure with the Securities and Exchange Commission.",
-    "details": "(NYSE: FCX) by 1.8% in the first quarter, according to the company in its most recent disclosure with the Securities and Exchange Commission. First Trust Advisors LP decreased its position in shares of Freeport-McMoRan Inc.",
-    "sentiment": "good",
+    "line": "Freeport-McMoRan: a large investor reported changing its stake — often noise for long-term owners.",
+    "details": "What happened: Amundi cut its holdings in Freeport-McMoRan Inc. If you own FCX: often noise for long-term owners. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
     "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/07/29/freeport-mcmoran-inc-fcx-position-lessened-by-first-trust-advisors-lp.html",
-    "timestamp": "2026-07-29T10:45:54.000Z"
-  },
-  {
-    "id": "auto-ZG93IGxlYXBzIGlu",
-    "tickers": [
-      "NUE"
-    ],
-    "line": "Dow Leaps In Mixed Stock Market Ahead Of Fed Decision; Nucor Jumps On Earnings, Nears Entry.",
-    "details": "The Dow Jones Industrial Average stands out Tuesday by soaring more than 500 points.",
-    "sentiment": "good",
-    "source": "investors.com",
-    "sourceUrl": "https://www.investors.com/market-trend/the-big-picture/stock-market-mixed-blue-chip-earnings-dow-jones-coca-cola-shw-boeing/",
-    "timestamp": "2026-07-29T01:12:06.000Z"
-  },
-  {
-    "id": "auto-aG9uZXl3ZWxsIHVw",
-    "tickers": [
-      "HON"
-    ],
-    "line": "HON: eywell upgraded by Bank of America on stronger order trends.",
-    "details": "Honeywell International Inc (NYSE:HON, XETRA:ALD) was upgraded to ‘Neutral' from ‘Underperform' by Bank of America, which raised its price objective to $265 from $220 following a second quarter performance that exceeded expectations and improved visibility into the company's growth outlook. The analysts highlighted stronger execution, broad-based order growth and increased 2026 guidance as key factors behind the rating change.",
-    "sentiment": "good",
-    "source": "proactiveinvestors.com",
-    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1096166",
-    "timestamp": "2026-07-28T22:42:57.000Z"
+    "sourceUrl": "https://www.defenseworld.net/2026/07/29/amundi-reduces-stock-position-in-freeport-mcmoran-inc-fcx.html",
+    "timestamp": "2026-07-29T11:22:55.000Z"
   },
   {
     "id": "auto-aW5jeSBxMiBlYXJu",
     "tickers": [
       "INCY"
     ],
-    "line": "Incyte: INCY Q2 Earnings & Revenues Beat on Higher Sales, '26 View Raised.",
-    "details": "Incyte tops Q2 earnings and revenue estimates as Jakafi and Opzelura sales surged, prompting the company to raise its 2026 revenue outlook.",
+    "line": "Incyte: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: tops Q2 earnings and revenue estimates as Jakafi and Opzelura sales surged, prompting the company to raise its 2026 revenue outlook. If you own INCY: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2962420/incy-q2-earnings-revenues-beat-on-higher-sales-26-view-raised?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2962420",
     "timestamp": "2026-07-28T20:40:45.000Z"
   },
   {
+    "id": "auto-bmlrZSBmYWNlcyBk",
+    "tickers": [
+      "NKE"
+    ],
+    "line": "Nike: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: NKE's demand headwinds continue to pressure sales, but innovation and its turnaround strategy remain central to restoring growth and earnings. If you own NKE: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2962349/nike-faces-demand-headwinds-what-lies-ahead-for-earnings?cid=CS-STOCKNEWSAPI-FT-analyst_blog|quick_take-2962349",
+    "timestamp": "2026-07-28T19:55:49.000Z"
+  },
+  {
     "id": "auto-YmFoIHN0b2NrIGZh",
     "tickers": [
       "BAH"
     ],
-    "line": "Booz Allen Hamilton: BAH Stock Falls 1.2% Since Q1 Earnings Beat, Revenues Match Estimates.",
-    "details": "Booz Allen Hamilton's fiscal Q1 earnings beat estimates on margin expansion & National Security growth, but weak guidance weighs on shares.",
+    "line": "Booz Allen Hamilton: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: fiscal Q1 earnings beat estimates on margin expansion & National Security growth, but weak guidance weighs on shares. If you own BAH: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
     "sourceUrl": "https://www.zacks.com/stock/news/2962305/bah-stock-falls-1-2-since-q1-earnings-beat-revenues-match-estimates?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2962305",
     "timestamp": "2026-07-28T19:36:09.000Z"
   },
   {
-    "id": "auto-bmV3bW9udCBpcyBz",
+    "id": "auto-c2xiIGdyb3d0aCBv",
     "tickers": [
-      "NEM"
+      "SLB"
     ],
-    "line": "Newmont: is Still Mispriced After A Strong Q2 2026.",
-    "details": "The main growth drivers are the H2 production ramp, supportive copper and silver economics, and a development pipeline that could eventually contribute around $775 million of annual operating profit.",
-    "sentiment": "good",
-    "source": "seekingalpha.com",
-    "sourceUrl": "https://seekingalpha.com/article/4926183-newmont-is-still-mispriced-after-a-strong-q2-2026",
-    "timestamp": "2026-07-28T14:13:07.000Z"
-  },
-  {
-    "id": "auto-MjAyNiBzYW5kcyBz",
-    "tickers": [
-      "LVS"
-    ],
-    "line": "LVS: setting highest annual visitation to date Offering Macao's largest free sales platform to empower local SMEs Drawing 800,000 visits across seven editions MACAO, July 27, 2026.",
-    "details": "Setting highest annual visitation to date Offering Macao's largest free sales platform to empower local SMEs Drawing 800,000 visits across seven editions MACAO, July 27, 2026 /PRNewswire/ -- The \"2026 Sands Shopping Carnival,\" an annual signature shopping event in Macao, was held successfully from July 23 to 26 at The Venetian® Macao's Cotai Expo, drawing large crowds over four consecutive days, attracting nearly 160,000 visits and setting a record-high annual visitation in the event's history.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/2026-sands-shopping-carnival-attracted-nearly-160-000-visits-in-four-days-302835470.html",
-    "timestamp": "2026-07-27T20:03:00.000Z"
-  },
-  {
-    "id": "auto-ZWFybmluZ3MgZ3Jv",
-    "tickers": [
-      "PLD"
-    ],
-    "line": "Earnings Growth & Price Strength Make Prologis (PLD) a Stock to Watch.",
-    "details": "Look no further than the Zacks Focus List.",
+    "line": "Schlumberger: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: SLB's offshore scale, digital growth and ChampionX production strengthen its long-term growth outlook for 2027, but Middle East risks and net debt cloud the near term. If you own SLB: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2960971/earnings-growth-price-strength-make-prologis-pld-a-stock-to-watch?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|zacks_education_focus_list-2960971",
-    "timestamp": "2026-07-27T17:47:50.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2962311/slb-growth-outlook-hinges-on-offshore-digital-and-production-gains?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2962311",
+    "timestamp": "2026-07-28T18:37:19.000Z"
+  },
+  {
+    "id": "auto-bnVjb3IncyBxMiBl",
+    "tickers": [
+      "NUE"
+    ],
+    "line": "Nucor: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: NUE beat second-quarter earnings and sales estimates as higher prices and volumes lifted results, while it expects stronger consolidated earnings in Q3. If you own NUE: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2961676/nucor-s-q2-earnings-and-revenues-surpass-estimates-on-higher-prices?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2961676",
+    "timestamp": "2026-07-28T16:01:20.000Z"
+  },
+  {
+    "id": "auto-bnVjb3Igc2hhcmVz",
+    "tickers": [
+      "NUE"
+    ],
+    "line": "Nucor: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Corp. If you own NUE: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "benzinga.com",
+    "sourceUrl": "https://www.benzinga.com/trading-ideas/movers/26/07/60712452/nucor-shares-flat-despite-q2-earnings-beat-details",
+    "timestamp": "2026-07-27T23:48:04.000Z"
+  },
+  {
+    "id": "auto-dW5pdGVkaGVhbHRo",
+    "tickers": [
+      "UNH"
+    ],
+    "line": "UnitedHealth: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: UNH's post-earnings pullback follows a 52-week high, as stronger guidance offsets Medicaid pressures and spotlights healthcare ETFs with sizable exposure. If you own UNH: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2961471/unitedhealth-pulls-back-post-52-week-high-healthcare-etfs-to-watch?cid=CS-STOCKNEWSAPI-FT-etf_news_and_commentary-2961471",
+    "timestamp": "2026-07-27T23:31:05.000Z"
+  },
+  {
+    "id": "auto-dW5pb24gcGFjaWZp",
+    "tickers": [
+      "UNP"
+    ],
+    "line": "Union Pacific: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: I rate Union Pacific a buy as service improvements are driving volume gains, margin expansion, and higher earnings. If you own UNP: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4925843-union-pacific-stock-service-led-growth-can-drive-better-margins-earnings",
+    "timestamp": "2026-07-27T15:37:59.000Z"
+  },
+  {
+    "id": "auto-c2xiOiBkZWxpdmVy",
+    "tickers": [
+      "SLB"
+    ],
+    "line": "Schlumberger: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: (SLB) delivered strong quarterly results, beating expectations and rallying 10% on bullish guidance and robust Data Center and Digital segment growth. If you own SLB: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4925832-schlumberger-delivers-the-goods-in-q-2",
+    "timestamp": "2026-07-27T15:00:00.000Z"
   },
   {
     "id": "auto-YXhpYSBlbmVyZ2lh",
     "tickers": [
       "AXIA"
     ],
-    "line": "Axia Energia: Q2 Earnings Preview: When The Crisis Reveals The Best Players.",
-    "details": "AXIA Energia remains a Buy as sector problems accentuate its competitive advantages and create an attractive entry point. AXIA's uncontracted capacity let it capture elevated energy prices earlier this year, but milder weather and falling spot prices are already fading this catalyst. (Simplified from denser finance wording.)",
-    "sentiment": "bad",
+    "line": "Axia Energia: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: remains a Buy as sector headwinds accentuate its competitive advantages and create an attractive entry point. If you own AXIA: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4925718-axia-energia-q2-earnings-preview-when-the-crisis-reveals-the-best-players",
     "timestamp": "2026-07-27T15:00:00.000Z"
   },
   {
-    "id": "auto-Y2hld3kgKGNod3kp",
+    "id": "auto-bmV3bW9udDogYSBo",
     "tickers": [
-      "CHWY"
+      "NEM"
     ],
-    "line": "Chewy: (CHWY) Beats Stock Market Upswing: What Investors Need to Know.",
-    "details": "Chewy (CHWY) closed the most recent trading day at $20.86, moving +1.96% from the previous trading session.",
+    "line": "Newmont: is raising investment for growth (e.g. AI or capacity) — can signal confidence, but spending can also pressure near-term profits.",
+    "details": "What happened: Corporation is the world's largest gold producer, but operators of this scale face consistent challenges replacing production & reserves each year, creating greater hurdles on a per share growth basis. If you own NEM: can signal confidence, but spending can also pressure near-term profits. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2960644/chewy-chwy-beats-stock-market-upswing-what-investors-need-to-know?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_6-2960644",
-    "timestamp": "2026-07-25T01:46:17.000Z"
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4925461-newmont-a-higher-cost-h2-on-deck",
+    "timestamp": "2026-07-24T23:50:05.000Z"
   },
   {
-    "id": "auto-aGFsbGlidXJ0b24g",
+    "id": "auto-Y21jc2EgcTIgZWFy",
     "tickers": [
-      "HAL"
+      "CMCSA"
     ],
-    "line": "Halliburton: (HAL) Q2 Earnings: Taking a Look at Key Metrics Versus Estimates.",
-    "details": "Although the revenue and profit per share for Halliburton (HAL) give a sense of how its business performed in the quarter ended June 2026, it might be worth considering how some key metrics compare with Wall Street estimates and the year-ago numbers.",
+    "line": "Comcast: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Q2 segment results got a lift from record wireless growth, Peacock's first profitable quarter and strong Studios, despite theme park pressure. If you own CMCSA: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2960583/halliburton-hal-q2-earnings-taking-a-look-at-key-metrics-versus-estimates?cid=CS-STOCKNEWSAPI-FT-fundamental_analysis|nfm-2960583",
-    "timestamp": "2026-07-24T21:31:04.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2960441/cmcsa-q2-earnings-beat-estimates-on-wireless-and-peacock-strength?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2960441",
+    "timestamp": "2026-07-24T19:41:25.000Z"
   },
   {
-    "id": "auto-ZmN4IHEyIGVhcm5p",
+    "id": "auto-aW5jeXRlIGdlYXJz",
+    "tickers": [
+      "INCY"
+    ],
+    "line": "Incyte: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: INCY heads into Q2 earnings with strong Jakafi demand, Opzelura momentum and rising royalties, fueling expectations for an earnings beat. If you own INCY: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2960356/incyte-gears-up-to-report-q2-earnings-is-a-beat-around-the-corner?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_preview-2960356",
+    "timestamp": "2026-07-24T18:41:06.000Z"
+  },
+  {
+    "id": "auto-bmVtIHEyIGVhcm5p",
+    "tickers": [
+      "NEM"
+    ],
+    "line": "Newmont: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: Corporation maintains 2026 outlook as strong cash generation, production plans and capital returns highlight its Q2 earnings call. If you own NEM: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2960255/nem-q2-earnings-call-centers-on-costs-and-capital-returns?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2960255",
+    "timestamp": "2026-07-24T18:02:10.000Z"
+  },
+  {
+    "id": "auto-ZnJlZXBvcnQtbWNt",
     "tickers": [
       "FCX"
     ],
-    "line": "Freeport-McMoRan: FCX Q2 Earnings Call Highlights Grasberg Ramp and U.S. Growth.",
-    "details": "Freeport-McMoRan highlights an on-schedule Grasberg ramp, stronger U.S.",
+    "line": "Freeport-McMoRan: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Inc (, XETRA:FPMB) reported stronger-than-expected second quarter 2026 results on Thursday, with earnings and revenue topping Wall Street expectations, although shares edged about 2% lower as investors weighed a. If you own FCX: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2960252/fcx-q2-earnings-call-highlights-grasberg-ramp-and-u-s-growth?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|earnings_call_takeaways-2960252",
-    "timestamp": "2026-07-24T18:02:18.000Z"
-  },
-  {
-    "id": "auto-Ym9veiBhbGxlbiBo",
-    "tickers": [
-      "BAH"
-    ],
-    "line": "Booz Allen Hamilton: Q1 Earnings Call Highlights.",
-    "details": "Booz Allen Hamilton NYSE: BAH reported first-quarter fiscal 2027 revenue of $2.8 billion, down 4.2% from a year earlier, as growth in its national security portfolio was offset by continued weakness in civil work. The government-services company said profitability and cash flow exceeded its expectations and reaffirmed its full-year guidance.",
-    "sentiment": "good",
-    "source": "marketbeat.com",
-    "sourceUrl": "https://www.marketbeat.com/instant-alerts/booz-allen-hamilton-q1-earnings-call-highlights-2026-07-24/",
-    "timestamp": "2026-07-24T17:04:20.000Z"
-  },
-  {
-    "id": "auto-dmVyaXpvbiBzaGFy",
-    "tickers": [
-      "AA"
-    ],
-    "line": "Alcoa: verizon shares rise as earnings beat and guidance boost offset revenue miss.",
-    "details": "Verizon Communications Inc (NYSE:VZ, XETRA:BAC) shares rose about 3% on Friday morning after the company reported second quarter results that beat Wall...",
-    "sentiment": "bad",
     "source": "proactiveinvestors.com",
-    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1096008/verizon-shares-rise-as-earnings-beat-and-guidance-boost-offset-revenue-miss-1096008.html",
-    "timestamp": "2026-07-24T13:27:00.000Z"
+    "sourceUrl": "https://www.proactiveinvestors.com/companies/news/1095956",
+    "timestamp": "2026-07-23T20:09:08.000Z"
   },
   {
     "id": "auto-aGFsbGlidXJ0b246",
     "tickers": [
       "HAL"
     ],
-    "line": "Halliburton: Q2 Sell-Off Creates A Buying Opportunity.",
-    "details": "Halliburton remains a strong buy after Q2 results, despite a sharp sell-off driven by Middle East concerns and flat-to-down near-term guidance. Q2 beat on profit per share ($0.55) and revenue ($5.7B); strong North American stimulation and South American growth offset some regional softness and margin compression.",
-    "sentiment": "bad",
+    "line": "Halliburton: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: remains a strong buy after Q2 results, despite a sharp sell-off driven by Middle East concerns and flat-to-down near-term guidance. If you own HAL: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
     "source": "seekingalpha.com",
     "sourceUrl": "https://seekingalpha.com/article/4924648-halliburton-stock-q2-creates-buying-opportunity",
     "timestamp": "2026-07-23T16:00:10.000Z"
@@ -1711,71 +1534,239 @@
     "tickers": [
       "LVS"
     ],
-    "line": "LVS: las Vegas Sands Reports Second Quarter 2026 Results.",
-    "details": "For the quarter ended June 30, 2026 Net Revenue $3.15 billion Net Income $373 million Diluted Earnings per Share $0.53 per Share Consolidated Adjusted Property operating profit $1.12 billion LVS Repurchased $787 million of Common Stock during the quarter LVS Board of Directors Increased Stock Repurchase Authorization to $6.0 billion LAS VEGAS, July 22, 2026 /PRNewswire/ -- Las Vegas Sands (NYSE: LVS), the leading global developer and operator of Integrated Resorts, today reported financial results for the quarter e…",
+    "line": "LVS: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: For the quarter ended June 30, 2026 Net Revenue $3.15 billion Net Income $373 million Diluted Earnings per Share $0.53 per Share Consolidated Adjusted Property EBITDA $1.12 billion LVS Repurchased $787 million of Common. If you own LVS: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "prnewswire.com",
     "sourceUrl": "https://www.prnewswire.com/news-releases/las-vegas-sands-reports-second-quarter-2026-results-302832499.html",
     "timestamp": "2026-07-22T23:05:00.000Z"
   },
   {
-    "id": "auto-YmFuayBvZiBuZXcg",
+    "id": "auto-cHJvbG9naXMgZWFy",
+    "tickers": [
+      "PLD"
+    ],
+    "line": "Prologis: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: delivered a strong 2Q26, beating earnings and raising guidance, signaling a sector-wide positive inflection for industrial REITs. If you own PLD: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4924143-prologis-earnings-drive-industrial-reits-higher",
+    "timestamp": "2026-07-22T16:51:51.000Z"
+  },
+  {
+    "id": "auto-YnV5IDMgdG9wLXJh",
+    "tickers": [
+      "GS"
+    ],
+    "line": "Goldman Sachs: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: JPM, GS and C stand out after strong Q2 results, upbeat 2026 outlooks and improving earnings estimates. If you own GS: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2958113/buy-3-top-ranked-big-investment-banks-amid-solid-q2-earnings-outlook?cid=CS-STOCKNEWSAPI-FT-analyst_blog|investment_ideas-2958113",
+    "timestamp": "2026-07-22T16:45:27.000Z"
+  },
+  {
+    "id": "auto-aGFsbGlidXJ0b24g",
+    "tickers": [
+      "HAL"
+    ],
+    "line": "Halliburton: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: HAL tops Q2 estimates as revenues rise across both business segments, while management highlights contract wins and expects further growth. If you own HAL: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2957542/halliburton-q2-earnings-revenues-beat-estimates-sales-up-y-y?cid=CS-STOCKNEWSAPI-FT-analyst_blog|earnings_article-2957542",
+    "timestamp": "2026-07-21T19:36:05.000Z"
+  },
+  {
+    "id": "auto-aG93IGkgbWFkZSBh",
+    "tickers": [
+      "AMH"
+    ],
+    "line": "American Homes 4 Rent: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: Real estate investing success hinges on wide-moat assets, conservative balance sheets, and experienced management, as demonstrated by EGP, EQIX, AMH, and HHH. If you own AMH: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4923282-how-i-made-a-fortune-lost-most-of-it-and-built-it-back",
+    "timestamp": "2026-07-19T15:00:00.000Z"
+  },
+  {
+    "id": "auto-dGhlIG1hcmtldCBz",
+    "tickers": [
+      "AA"
+    ],
+    "line": "Alcoa: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: Corporation just handed investors a lesson in reading between the lines. If you own AA: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "marketbeat.com",
+    "sourceUrl": "https://www.marketbeat.com/articles/the-market-sold-alcoa-after-earningsbut-it-may-be-missing-the-real-story/",
+    "timestamp": "2026-07-18T16:05:12.000Z"
+  },
+  {
+    "id": "auto-dW5pdGVkIHJlbnRh",
+    "tickers": [
+      "FLR"
+    ],
+    "line": "Fluor: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: URI and Fluor Corporation FLR. If you own FLR: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2955664/united-rentals-vs-fluor-which-infrastructure-stock-has-better-value?cid=CS-STOCKNEWSAPI-FT-analyst_blog|comparison_of_stocks-2955664",
+    "timestamp": "2026-07-17T19:32:05.000Z"
+  },
+  {
+    "id": "auto-YWxjb2EgY3V0cyBm",
+    "tickers": [
+      "AA"
+    ],
+    "line": "Alcoa: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: The company said it now expects to produce between 200,000 and 300,000 fewer metric tons of alumina in 2026, for a total production of 9.5 million to 9.6 million metric tons. If you own AA: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "wsj.com",
+    "sourceUrl": "https://www.wsj.com/business/earnings/alcoa-cuts-full-year-alumina-guidance-posts-higher-second-quarter-profit-c693eee8",
+    "timestamp": "2026-07-16T23:47:00.000Z"
+  },
+  {
+    "id": "auto-aGVyZSBhcmUgdGh1",
     "tickers": [
       "LULU"
     ],
-    "line": "Lululemon: a large investor reported changing its share count (ownership filing).",
-    "details": "Official filing language is dense — here is the useful part: Bank of New York Mellon Corp trimmed its stake in lululemon athletica inc. (NASDAQ: LULU) by 10.8% in the undefined quarter, according to the company in its most recent filing with the Securities and Exchange Commission. For someone who owns LULU: this is paperwork about shares or disclosures, not a full business update.",
+    "line": "Lululemon: an analyst cut their rating or price target — can pressure the stock short term.",
+    "details": "What happened: Wall Street analysts are reshuffling their bets on Thursday, sending some of the market's biggest names in opposite directions as geopolitical tensions and inflation crosscurrents cloud the outlook. If you own LULU: can pressure the stock short term. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "bad",
-    "source": "defenseworld.net",
-    "sourceUrl": "https://www.defenseworld.net/2026/07/22/bank-of-new-york-mellon-corp-cuts-position-in-lululemon-athletica-inc-lulu.html",
-    "timestamp": "2026-07-22T11:05:27.000Z"
+    "source": "247wallst.com",
+    "sourceUrl": "https://247wallst.com/investing/2026/07/16/here-are-thursdays-top-wall-street-analyst-research-calls-alphabet-blackrock-etsy-flex-lululemon-athletica-meta-platforms-okta-palo-alto-networks-and-more/",
+    "timestamp": "2026-07-16T14:57:18.000Z"
   },
   {
-    "id": "auto-Y2FlIGFuZCBzYWFi",
+    "id": "auto-ZWFybmluZ3MgcHJl",
+    "tickers": [
+      "ICLR"
+    ],
+    "line": "Diagnostics & Research: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: Icon PLC (ICLR) doesn't possess the right combination of the two key ingredients for a likely earnings beat in its upcoming report. If you own ICLR: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2953989/earnings-preview-icon-plc-iclr-q2-earnings-expected-to-decline?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_9-2953989",
+    "timestamp": "2026-07-15T18:01:10.000Z"
+  },
+  {
+    "id": "auto-d2lsbCBjYWUgKGNh",
     "tickers": [
       "CAE"
     ],
-    "line": "CAE: and Saab sign MoU to collaborate on comprehensive training and mission support solutions for the Gripen.",
-    "details": "MONTREAL, July 17, 2026 /PRNewswire/ -- (NYSE: CAE) (TSX: CAE) CAE and Saab today announced the signing of a Memorandum of Understanding (MoU) to collaborate on advanced training, simulation, and mission support capabilities for the Gripen fighter aircraft in Canada should the Government of Canada choose to make the Gripen part of its future fighter capability.",
+    "line": "CAE: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: (CAE) has an impressive earnings surprise history and currently possesses the right combination of the two key ingredients for a likely beat in its next quarterly report. If you own CAE: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2952627/will-cae-cae-beat-estimates-again-in-its-next-earnings-report?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_7-2952627",
+    "timestamp": "2026-07-13T20:10:16.000Z"
+  },
+  {
+    "id": "auto-aXMgaWNsciBzdG9j",
+    "tickers": [
+      "ICLR"
+    ],
+    "line": "Diagnostics & Research: updated its sales or profit outlook — investors judge if that outlook is strong enough.",
+    "details": "What happened: ICON trades below its five-year median, but weaker 2026 guidance, control issues and leverage keep the stock in wait-and-see territory. If you own ICLR: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2949624/is-iclr-stock-a-value-trap-or-turnaround-after-an-earnings-reset?cid=CS-STOCKNEWSAPI-FT-analyst_blog_plus|zer_report_insights-2949624",
+    "timestamp": "2026-07-07T20:25:53.000Z"
+  },
+  {
+    "id": "auto-dXJiYW4gb3V0Zml0",
+    "tickers": [
+      "URBN"
+    ],
+    "line": "Urban Outfitters Inc: reported softer recent sales trends — often weighs on the stock if the slowdown continues.",
+    "details": "What happened: URBN continues to deliver robust comp sales and earnings growth, outperforming industry peers despite a nearly 10% YTD share price decline. If you own URBN: often weighs on the stock if the slowdown continues. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "bad",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4920326-urban-outfitters-solid-comps-trending-above-apparel-rivals",
+    "timestamp": "2026-07-07T17:27:38.000Z"
+  },
+  {
+    "id": "auto-YXJlIHlvdSBsb29r",
+    "tickers": [
+      "BAP"
+    ],
+    "line": "Credicorp: returned cash to owners via dividend or buybacks — usually owner-friendly if the business stays healthy.",
+    "details": "What happened: Does Credicorp (BAP) have what it takes?. If you own BAP: usually owner-friendly if the business stays healthy. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2947914/are-you-looking-for-a-high-growth-dividend-stock?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_5-2947914",
+    "timestamp": "2026-07-03T19:51:07.000Z"
+  },
+  {
+    "id": "auto-c2ltb24gcHJvcGVy",
+    "tickers": [
+      "SPG"
+    ],
+    "line": "Simon Property Group: raised its outlook after stronger results — usually supportive for the stock.",
+    "details": "What happened: delivered robust Q1 results, raising full-year FFO guidance and demonstrating strong leasing and portfolio growth. If you own SPG: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4916627-simon-property-group-looks-priced-to-perfection-with-no-margin-of-safety",
+    "timestamp": "2026-06-22T11:44:25.000Z"
+  },
+  {
+    "id": "auto-bWlsbGljb20gY2Vs",
+    "tickers": [
+      "TIGO"
+    ],
+    "line": "Millicom: expects about 3% sales growth — investors judge if that outlook is strong enough.",
+    "details": "What happened: Cellular is rated Buy, with strong YTD performance, robust subscriber growth, and improving free cash flow following the Coltel acquisition. If you own TIGO: investors judge if that outlook is strong enough. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "seekingalpha.com",
+    "sourceUrl": "https://seekingalpha.com/article/4914671-millicom-cellular-a-rare-telecom-growth-story-with-a-3-percent-yield",
+    "timestamp": "2026-06-13T00:57:45.000Z"
+  },
+  {
+    "id": "auto-NCBnYW1pbmcgc3Rv",
+    "tickers": [
+      "LVS"
+    ],
+    "line": "LVS: saw signs of stronger demand — usually supportive if it shows up in results.",
+    "details": "What happened: Stocks like LVS, MGM, CHDN and RSI benefit from improving industry trends. If you own LVS: usually supportive if it shows up in results. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/commentary/2930712/4-gaming-stocks-worth-watching-despite-industry-headwinds?cid=CS-STOCKNEWSAPI-FT-industry_outlook-2930712",
+    "timestamp": "2026-06-02T19:15:28.000Z"
+  },
+  {
+    "id": "auto-Y2Fu4oCRYW0gaW50",
+    "tickers": [
+      "DOO"
+    ],
+    "line": "BRP: won a product, order, customer, or approval update — can help if it turns into real sales and profits.",
+    "details": "What happened: (TSX: DOO) (), is pleased to announce the launch of BRP GO!. If you own DOO: can help if it turns into real sales and profits. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/cae-and-saab-sign-mou-to-collaborate-on-comprehensive-training-and-mission-support-solutions-for-the-gripen-302828620.html",
-    "timestamp": "2026-07-17T18:00:00.000Z"
+    "sourceUrl": "https://www.prnewswire.com/news-releases/canam-introduces-brp-go-onroad-navigation-expanding-the-connected-riding-experience-302787878.html",
+    "timestamp": "2026-06-02T16:00:00.000Z"
+  },
+  {
+    "id": "auto-dWx0cmFwYXIgcGFy",
+    "tickers": [
+      "UGP"
+    ],
+    "line": "Ultrapar: an analyst raised their rating or price target — can support the stock short term.",
+    "details": "What happened: Participacoes (UGP) possesses solid growth attributes, which could help it handily outperform the market. If you own UGP: can support the stock short term. Focus on customers, products, and profits — not the headline alone.",
+    "sentiment": "good",
+    "source": "zacks.com",
+    "sourceUrl": "https://www.zacks.com/stock/news/2926389/ultrapar-participacoes-ugp-is-an-incredible-growth-stock-3-reasons-why?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_11_growth-2926389",
+    "timestamp": "2026-05-25T20:46:06.000Z"
   },
   {
     "id": "auto-YnJwIGluYy4gKGRv",
     "tickers": [
       "DOO"
     ],
-    "line": "BRP:. (DOO) Beats Q1 Earnings and Revenue Estimates.",
-    "details": "(DOO) came out with quarterly earnings of $1.33 per share, beating the Zacks Consensus Estimate of $0.75 per share. BRP Inc.",
+    "line": "BRP: results came in stronger than many expected — usually supportive for the stock.",
+    "details": "What happened: (DOO) doesn't possess the right combination of the two key ingredients for a likely earnings beat in its upcoming report. If you own DOO: usually supportive for the stock. Focus on customers, products, and profits — not the headline alone.",
     "sentiment": "good",
     "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2927984/brp-inc-doo-beats-q1-earnings-and-revenue-estimates?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_4-2927984",
-    "timestamp": "2026-05-28T15:26:06.000Z"
-  },
-  {
-    "id": "auto-YnJwIHJlcG9ydHMg",
-    "tickers": [
-      "DOO"
-    ],
-    "line": "BRP: rEPORTS FISCAL YEAR 2027 FIRST QUARTER RESULTS.",
-    "details": "VALCOURT, QC, May 28, 2026 /PRNewswire/ - BRP Inc. (TSX: DOO) (NASDAQ: DOO) today reported its financial results for the three-month period ended April 30, 2026.",
-    "sentiment": "good",
-    "source": "prnewswire.com",
-    "sourceUrl": "https://www.prnewswire.com/news-releases/brp-reports-fiscal-year-2027-first-quarter-results-302783768.html",
-    "timestamp": "2026-05-28T13:00:00.000Z"
-  },
-  {
-    "id": "auto-YmV0IG9uIHRoZXNl",
-    "tickers": [
-      "UGP"
-    ],
-    "line": "Ultrapar: bet on These 5 Dividend Growth Stocks Amid Falling Oil Prices.",
-    "details": "Dividend-growth stocks like AVGO stand out as oil prices fall, offering investors a mix of steady income, resilience, and long-term growth potential.",
-    "sentiment": "bad",
-    "source": "zacks.com",
-    "sourceUrl": "https://www.zacks.com/stock/news/2915575/bet-on-these-5-dividend-growth-stocks-amid-falling-oil-prices?cid=CS-STOCKNEWSAPI-FT-analyst_blog|rw-2915575",
-    "timestamp": "2026-05-06T16:15:37.000Z"
+    "sourceUrl": "https://www.zacks.com/stock/news/2924783/brp-inc-doo-earnings-expected-to-grow-what-to-know-ahead-of-next-week-s-release?cid=CS-STOCKNEWSAPI-FT-tale_of_the_tape|yseop_template_9-2924783",
+    "timestamp": "2026-05-21T18:01:23.000Z"
   }
 ]

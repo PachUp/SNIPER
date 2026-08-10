@@ -102,7 +102,7 @@ const en: Dict = {
   "news.title": "Breaking News",
   "news.holdingTitle": "News for your holdings",
   "news.holdingSubtitle":
-    "Newest gists for your {n} stocks (up to 2 each) — what happened, not clickbait.",
+    "Up to 2 newest stories per stock — what happened and how it may affect the shares.",
   "news.holdingEmptyHint": "Build a portfolio to see news that matters to you.",
   "news.holdingNeedBook":
     "No portfolio yet. Build one first — then we’ll explain news about your stocks in plain English.",
@@ -122,7 +122,7 @@ const en: Dict = {
   "newsline.bad": "BAD",
   "newsline.details": "More →",
   "popup.companies": "Tickers in the story:",
-  "popup.edge": "Details",
+  "popup.edge": "What it means if you own this stock",
   "popup.readFull": "Read full story →",
   "popup.notAdvice": "General education, not personal investment advice.",
 
