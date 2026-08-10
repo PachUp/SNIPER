@@ -163,6 +163,12 @@ export async function POST(req: NextRequest) {
       ? { ep: levels.ep, tp: levels.tp, sl: levels.sl }
       : undefined;
 
+  // When levels are edited, upside is always (TP − EP) / EP.
+  const upsideFromLevels =
+    nextLevels && nextLevels.ep > 0
+      ? Math.round(((nextLevels.tp - nextLevels.ep) / nextLevels.ep) * 1000) / 10
+      : null;
+
   const stock = await provider.upsertStock({
     ticker,
     name: body?.name != null ? String(body.name) : fv?.name ?? existing?.name ?? ticker,
@@ -177,11 +183,15 @@ export async function POST(req: NextRequest) {
     fairValue:
       typeof body?.fairValue === "number"
         ? body.fairValue
+        : nextLevels && typeof nextLevels.tp === "number"
+        ? nextLevels.tp
         : typeof fv?.fairValue === "number"
         ? fv.fairValue
         : undefined,
     upsidePct:
-      typeof body?.upsidePct === "number"
+      upsideFromLevels != null
+        ? upsideFromLevels
+        : typeof body?.upsidePct === "number"
         ? body.upsidePct
         : typeof fv?.upsidePct === "number"
         ? fv.upsidePct

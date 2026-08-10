@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { Stock } from "@/lib/types";
+import type { Levels, Stock } from "@/lib/types";
 import { GICS_SECTORS } from "@/lib/types";
+import { upsidePctFromLevels } from "@/lib/format";
 import {
   Field,
   NumberInput,
@@ -92,6 +93,23 @@ export default function StocksEditor() {
   function update(ticker: string, patch: Partial<Row>) {
     setRows((prev) =>
       prev.map((s) => (s.ticker === ticker ? { ...s, ...patch } : s))
+    );
+  }
+
+  /** Edit EP/TP/SL and keep Upside % (+ fair value) in sync with EP→TP. */
+  function updateLevels(ticker: string, part: Partial<Levels>) {
+    setRows((prev) =>
+      prev.map((s) => {
+        if (s.ticker !== ticker) return s;
+        const levels = { ...s.levels, ...part };
+        const upsidePct = upsidePctFromLevels(levels);
+        return {
+          ...s,
+          levels,
+          ...(upsidePct != null ? { upsidePct } : {}),
+          ...(typeof part.tp === "number" ? { fairValue: part.tp } : {}),
+        };
+      })
     );
   }
 
@@ -332,12 +350,12 @@ export default function StocksEditor() {
                   placeholder="e.g. Software - Infrastructure"
                 />
               </Field>
-              <Field label="Upside %">
+              <Field label="Upside % (auto EP→TP)">
                 <NumberInput
                   value={s.upsidePct}
-                  onChange={(e) =>
-                    update(s.ticker, { upsidePct: Number(e.target.value) })
-                  }
+                  readOnly
+                  tabIndex={-1}
+                  title="Recalculated when you change EP or TP"
                 />
               </Field>
             </div>
@@ -347,9 +365,7 @@ export default function StocksEditor() {
                 <NumberInput
                   value={s.levels.ep}
                   onChange={(e) =>
-                    update(s.ticker, {
-                      levels: { ...s.levels, ep: Number(e.target.value) },
-                    })
+                    updateLevels(s.ticker, { ep: Number(e.target.value) })
                   }
                 />
               </Field>
@@ -357,9 +373,7 @@ export default function StocksEditor() {
                 <NumberInput
                   value={s.levels.tp}
                   onChange={(e) =>
-                    update(s.ticker, {
-                      levels: { ...s.levels, tp: Number(e.target.value) },
-                    })
+                    updateLevels(s.ticker, { tp: Number(e.target.value) })
                   }
                 />
               </Field>
@@ -367,9 +381,7 @@ export default function StocksEditor() {
                 <NumberInput
                   value={s.levels.sl}
                   onChange={(e) =>
-                    update(s.ticker, {
-                      levels: { ...s.levels, sl: Number(e.target.value) },
-                    })
+                    updateLevels(s.ticker, { sl: Number(e.target.value) })
                   }
                 />
               </Field>

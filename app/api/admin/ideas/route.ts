@@ -26,6 +26,12 @@ async function ideaFromLevels(symbol: string): Promise<Idea> {
   const business = blurb?.headline || stock.business || "";
   const entry = blurb?.entry || stock.reasoning || "";
   const numbers = blurb?.numbers || stock.numbers;
+  const ep = stock.levels.ep;
+  const tp = stock.levels.tp;
+  const upsidePct =
+    ep > 0
+      ? Math.round(((tp - ep) / ep) * 1000) / 10
+      : stock.upsidePct ?? 0;
 
   return {
     id: `i${Date.now()}`,
@@ -37,10 +43,10 @@ async function ideaFromLevels(symbol: string): Promise<Idea> {
     business,
     entry,
     numbers,
-    upsidePct: stock.upsidePct ?? 0,
+    upsidePct,
     levels: {
-      ep: stock.levels.ep,
-      tp: stock.levels.tp,
+      ep,
+      tp,
       sl: stock.levels.sl,
     },
   };
@@ -86,7 +92,19 @@ export async function POST(req: NextRequest) {
   }
 
   // Bulk save curated list — ideas store only; does not touch LEVELS or house book.
-  const ideas: Idea[] = Array.isArray(body?.ideas) ? body.ideas : [];
+  const ideas: Idea[] = (Array.isArray(body?.ideas) ? body.ideas : []).map(
+    (idea) => {
+      const ep = Number(idea?.levels?.ep);
+      const tp = Number(idea?.levels?.tp);
+      if (Number.isFinite(ep) && Number.isFinite(tp) && ep > 0) {
+        return {
+          ...idea,
+          upsidePct: Math.round(((tp - ep) / ep) * 1000) / 10,
+        };
+      }
+      return idea;
+    }
+  );
   const saved = await provider.saveIdeas(ideas);
   warmLogos(saved.map((i) => i.ticker));
   await appendAudit({

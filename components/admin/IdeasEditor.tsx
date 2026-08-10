@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GICS_SECTORS, type Idea } from "@/lib/types";
+import { GICS_SECTORS, type Idea, type Levels } from "@/lib/types";
+import { upsidePctFromLevels } from "@/lib/format";
 import {
   Field,
   NumberInput,
@@ -33,6 +34,22 @@ export default function IdeasEditor() {
 
   function update(id: string, patch: Partial<Idea>) {
     setIdeas((prev) => prev.map((i) => (i.id === id ? { ...i, ...patch } : i)));
+  }
+
+  /** Edit EP/TP/SL and keep Upside % in sync with EP→TP. */
+  function updateLevels(id: string, part: Partial<Levels>) {
+    setIdeas((prev) =>
+      prev.map((i) => {
+        if (i.id !== id) return i;
+        const levels = { ...i.levels, ...part };
+        const upsidePct = upsidePctFromLevels(levels);
+        return {
+          ...i,
+          levels,
+          ...(upsidePct != null ? { upsidePct } : {}),
+        };
+      })
+    );
   }
 
   async function addIdea() {
@@ -204,24 +221,19 @@ export default function IdeasEditor() {
             </div>
 
             <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <Field label="Upside %">
+              <Field label="Upside % (auto EP→TP)">
                 <NumberInput
                   value={idea.upsidePct}
-                  onChange={(e) =>
-                    update(idea.id, { upsidePct: Number(e.target.value) })
-                  }
+                  readOnly
+                  tabIndex={-1}
+                  title="Recalculated when you change EP or TP"
                 />
               </Field>
               <Field label="EP">
                 <NumberInput
                   value={idea.levels.ep}
                   onChange={(e) =>
-                    update(idea.id, {
-                      levels: {
-                        ...idea.levels,
-                        ep: Number(e.target.value),
-                      },
-                    })
+                    updateLevels(idea.id, { ep: Number(e.target.value) })
                   }
                 />
               </Field>
@@ -229,12 +241,7 @@ export default function IdeasEditor() {
                 <NumberInput
                   value={idea.levels.tp}
                   onChange={(e) =>
-                    update(idea.id, {
-                      levels: {
-                        ...idea.levels,
-                        tp: Number(e.target.value),
-                      },
-                    })
+                    updateLevels(idea.id, { tp: Number(e.target.value) })
                   }
                 />
               </Field>
@@ -242,12 +249,7 @@ export default function IdeasEditor() {
                 <NumberInput
                   value={idea.levels.sl}
                   onChange={(e) =>
-                    update(idea.id, {
-                      levels: {
-                        ...idea.levels,
-                        sl: Number(e.target.value),
-                      },
-                    })
+                    updateLevels(idea.id, { sl: Number(e.target.value) })
                   }
                 />
               </Field>

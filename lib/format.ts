@@ -49,6 +49,27 @@ export function levelsWithUserEntry(
 }
 
 /**
+ * Upside % from planned entry → take-profit: ((TP − EP) / EP) × 100.
+ * Rounded to 1 decimal. Null if levels are unusable.
+ */
+export function upsidePctFromLevels(
+  levels: Pick<Levels, "ep" | "tp"> | undefined | null
+): number | null {
+  if (!levels) return null;
+  const { ep, tp } = levels;
+  if (
+    typeof ep !== "number" ||
+    typeof tp !== "number" ||
+    !Number.isFinite(ep) ||
+    !Number.isFinite(tp) ||
+    ep <= 0
+  ) {
+    return null;
+  }
+  return Math.round(((tp - ep) / ep) * 1000) / 10;
+}
+
+/**
  * Hypothetical % move from entry if take-profit or stop-loss is hit.
  * `lossPct` is a positive magnitude (display with a minus sign).
  */
