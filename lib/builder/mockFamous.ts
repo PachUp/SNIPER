@@ -1,6 +1,16 @@
 import type { Stock } from "@/lib/types";
 import type { FamousListResult } from "@/lib/builder/map";
 
+/** Always pickable even when model upside is under the 20% famous bar. */
+export const FAMOUS_UPSIDE_EXCEPTIONS = new Set(["IBM", "YUM"]);
+
+const FAMOUS_MIN_UPSIDE_PCT = 20;
+
+function isFamousEligible(symbol: string, upsidePct: number): boolean {
+  if (FAMOUS_UPSIDE_EXCEPTIONS.has(symbol.toUpperCase())) return true;
+  return upsidePct >= FAMOUS_MIN_UPSIDE_PCT;
+}
+
 /** Build famous-pick list from admin symbols + catalog metrics. */
 export function FAMOUS_MOCK(
   stocks: Stock[],
@@ -12,7 +22,7 @@ export function FAMOUS_MOCK(
     if (!s) {
       return { symbol, eligible: false, reason: "not_in_mock" as const };
     }
-    const eligible = s.upsidePct >= 20;
+    const eligible = isFamousEligible(symbol, s.upsidePct);
     return {
       symbol,
       eligible,
@@ -32,7 +42,7 @@ export function FAMOUS_MOCK(
   return {
     min_manual_picks: 1,
     max_manual_picks: 4,
-    famous_min_upside_pct: 20,
+    famous_min_upside_pct: FAMOUS_MIN_UPSIDE_PCT,
     eligible: picks.filter((p) => p.eligible).map((p) => p.symbol),
     picks,
     built_at: new Date().toISOString(),

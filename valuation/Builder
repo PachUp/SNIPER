@@ -56,6 +56,8 @@ FAMOUS_RESERVE: tuple[str, ...] = (
 )
 FAMOUS_CANDIDATES: tuple[str, ...] = FAMOUS_STOCKS + FAMOUS_RESERVE
 FAMOUS_MIN_UPSIDE_PCT = 20.0
+# Always allowed as manual picks even when upside is under the 20% bar.
+FAMOUS_UPSIDE_EXCEPTIONS: frozenset[str] = frozenset({"IBM", "YUM"})
 MAX_MANUAL_PICKS = 4
 MIN_MANUAL_PICKS = 1
 MIN_PICK_PORTFOLIO_SIZE = 2
@@ -263,26 +265,32 @@ def _upside_weighted_start(
     return x0 / total if total > 0 else np.full(n, 1.0 / n)
 
 
+def _meets_famous_upside_bar(sym: str, all_stocks: dict[str, Stock]) -> bool:
+    """True if upside ≥ 20%, or ticker is on the explicit exception list."""
+    if sym in FAMOUS_UPSIDE_EXCEPTIONS:
+        return sym in all_stocks
+    s = all_stocks.get(sym)
+    return (
+        s is not None
+        and s.upside_pct is not None
+        and float(s.upside_pct) >= FAMOUS_MIN_UPSIDE_PCT
+    )
+
+
 def famous_eligible_symbols(all_stocks: dict[str, Stock]) -> tuple[str, ...]:
-    """Any ``FAMOUS_CANDIDATES`` name with model upside ≥ ``FAMOUS_MIN_UPSIDE_PCT``."""
+    """Any ``FAMOUS_CANDIDATES`` name with model upside ≥ ``FAMOUS_MIN_UPSIDE_PCT`` (or exception)."""
     return tuple(
-        sym
-        for sym in FAMOUS_CANDIDATES
-        if sym in all_stocks
-        and all_stocks[sym].upside_pct is not None
-        and float(all_stocks[sym].upside_pct) >= FAMOUS_MIN_UPSIDE_PCT
+        sym for sym in FAMOUS_CANDIDATES if _meets_famous_upside_bar(sym, all_stocks)
     )
 
 
 def famous_manual_pick_symbols(all_stocks: dict[str, Stock]) -> tuple[str, ...]:
-    """The 16 ``FAMOUS_STOCKS`` that currently meet the ≥20% upside manual-pick bar."""
+    """The 16 ``FAMOUS_STOCKS`` that currently meet the ≥20% upside manual-pick bar (or exception)."""
     return tuple(
         sym
         for sym in FAMOUS_STOCKS
-        if sym in all_stocks
-        and not is_symbol_disqualified(sym)
-        and all_stocks[sym].upside_pct is not None
-        and float(all_stocks[sym].upside_pct) >= FAMOUS_MIN_UPSIDE_PCT
+        if not is_symbol_disqualified(sym)
+        and _meets_famous_upside_bar(sym, all_stocks)
     )
 
 
