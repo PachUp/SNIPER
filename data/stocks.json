@@ -1597,9 +1597,9 @@
     "sharpe": 0.547,
     "reasoning": "Cheaper than peers at 18× earnings vs 37× median — cash flow jumped $91M → $529M; ~89% below our fair value.",
     "levels": {
-      "ep": 344.56,
-      "tp": 589.71,
-      "sl": 310.1
+      "ep": 345.82,
+      "tp": 524.55,
+      "sl": 334.14
     },
     "alternatives": [],
     "business": "InterDigital licenses wireless and video technology patents to smartphone, IoT, and consumer electronics manufacturers worldwide.",
