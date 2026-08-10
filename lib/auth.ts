@@ -12,7 +12,7 @@ function sessionToken(): string {
 }
 
 export function verifyPassword(input: string): boolean {
-  return input === PASSWORD;
+  return input.trim() === String(PASSWORD).trim();
 }
 
 export function issueToken(): string {

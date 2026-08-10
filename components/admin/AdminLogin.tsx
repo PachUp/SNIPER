@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function AdminLogin() {
-  const router = useRouter();
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -14,17 +12,23 @@ export default function AdminLogin() {
     e.preventDefault();
     setBusy(true);
     setError(false);
-    const res = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
-    });
-    setBusy(false);
-    if (res.ok) {
-      router.refresh();
-      router.replace("/admin");
-    } else {
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ password: password.trim() }),
+      });
+      if (res.ok) {
+        // Full navigation so the httpOnly session cookie is sent on /admin.
+        window.location.assign("/admin");
+        return;
+      }
       setError(true);
+    } catch {
+      setError(true);
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -64,7 +68,8 @@ export default function AdminLogin() {
           {busy ? "…" : "ENTER"}
         </button>
         <p className="mt-3 text-center text-[10px] text-terminal-muted">
-          Set ADMIN_PASSWORD in .env.local (do not use a shared default in production)
+          Local: ADMIN_PASSWORD in .env.local · Live: same key in Netlify
+          Site settings → Environment variables
         </p>
       </form>
     </main>
