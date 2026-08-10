@@ -1255,14 +1255,14 @@
     "name": "Comcast",
     "sector": "Communication Services",
     "price": 25.36,
-    "fairValue": 49.59,
-    "upsidePct": 95.6,
+    "fairValue": 54.44,
+    "upsidePct": 117.8,
     "beta": 0.79,
     "sharpe": 0.9,
     "reasoning": "Broadband and NBCU cash fund the dividend while streaming losses narrow — cable customer loss is the risk, not the media assets — cheaper than peers at 5× earnings vs 10× median; ~78% below our fair value; profits up about 269%.",
     "levels": {
-      "ep": 23.78,
-      "tp": 49.59,
+      "ep": 25,
+      "tp": 54.44,
       "sl": 21.4
     },
     "alternatives": [
@@ -1572,15 +1572,15 @@
     "name": "Diamondback Energy",
     "sector": "Energy",
     "price": 188.04,
-    "fairValue": 245.87,
-    "upsidePct": 30.8,
+    "fairValue": 220,
+    "upsidePct": 13,
     "beta": 0.488,
     "sharpe": 1.295,
     "reasoning": "~88% below our fair value — cash flow jumped $1.7B → $5.2B; top-half growth (#6/13) in Oil & Gas E&P.",
     "levels": {
-      "ep": 195.38,
-      "tp": 245.87,
-      "sl": 175.84
+      "ep": 194.71,
+      "tp": 220,
+      "sl": 184.4
     },
     "alternatives": [],
     "business": "Diamondback Energy explores for and produces oil and natural gas in the Permian Basin of West Texas and New Mexico.",
@@ -1592,7 +1592,7 @@
     "sector": "Information Technology",
     "price": 344.56,
     "fairValue": 589.71,
-    "upsidePct": 71.1,
+    "upsidePct": 51.7,
     "beta": 1.649,
     "sharpe": 0.547,
     "reasoning": "Cheaper than peers at 18× earnings vs 37× median — cash flow jumped $91M → $529M; ~89% below our fair value.",
@@ -1820,16 +1820,16 @@
     "sector": "Utilities",
     "industry": "Utilities - Renewable",
     "price": 990.32,
-    "fairValue": 1728.11,
-    "upsidePct": 74.5,
+    "fairValue": 1475,
+    "upsidePct": 55.7,
     "beta": 1.196,
     "sharpe": 2.263,
     "business": "GE Vernova manufactures gas turbines, wind turbines, and grid equipment for power generation and electrification.",
     "reasoning": "Cash flow jumped $-2.2B → $3.7B — #2 growth rank of 6 in Utilities - Renewable; profits up about 279%.",
     "levels": {
-      "ep": 990.32,
-      "tp": 1728.11,
-      "sl": 891.29
+      "ep": 947.28,
+      "tp": 1475,
+      "sl": 894
     },
     "alternatives": []
   },
@@ -1839,16 +1839,16 @@
     "sector": "Health Care",
     "industry": "Diagnostics & Research",
     "price": 164.51,
-    "fairValue": 303.03,
-    "upsidePct": 84.2,
+    "fairValue": 262.09,
+    "upsidePct": 58.6,
     "beta": 1.283,
     "sharpe": 0.508,
     "business": "ICON provides outsourced clinical research services that help pharmaceutical and biotech companies run drug trials globally.",
     "reasoning": "Cash flow jumped $544M → $1.1B — ~76% below our fair value; profits up about 417%.",
     "levels": {
-      "ep": 164.51,
-      "tp": 303.03,
-      "sl": 148.06
+      "ep": 165.23,
+      "tp": 262.09,
+      "sl": 146.74
     },
     "alternatives": []
   },
@@ -1877,16 +1877,16 @@
     "sector": "Real Estate",
     "industry": "REIT - Diversified",
     "price": 26.74,
-    "fairValue": 47.62,
-    "upsidePct": 78.1,
+    "fairValue": 40.51,
+    "upsidePct": 51.5,
     "beta": 0.696,
     "sharpe": -0.883,
     "business": "VICI Properties owns gaming, hospitality, and experiential real estate leased to casino and entertainment operators.",
     "reasoning": "Cheaper than peers at 9× earnings vs 18× median — cash flow jumped $894M → $2.5B; profits up about 148%.",
     "levels": {
       "ep": 26.74,
-      "tp": 47.62,
-      "sl": 24.07
+      "tp": 40.51,
+      "sl": 25.73
     },
     "alternatives": []
   },
@@ -1925,6 +1925,44 @@
       "ep": 62.43,
       "tp": 116.73,
       "sl": 56.19
+    },
+    "alternatives": []
+  },
+  {
+    "ticker": "IBN",
+    "name": "ICICI Bank Ltd ADR",
+    "sector": "Financials",
+    "industry": "Banks - Regional",
+    "price": 30.22,
+    "fairValue": 51.5,
+    "upsidePct": 70.4,
+    "beta": 0.288,
+    "sharpe": 0,
+    "business": "ICICI Bank is a leading Indian universal bank offering retail, corporate, and digital banking across India and overseas.",
+    "reasoning": "~72% below our fair value — profits up about 103%; top-half growth (#9/32) in Banks - Regional.",
+    "levels": {
+      "ep": 30.22,
+      "tp": 51.5,
+      "sl": 27.2
+    },
+    "alternatives": []
+  },
+  {
+    "ticker": "SARO",
+    "name": "StandardAero Inc",
+    "sector": "Industrials",
+    "industry": "Aerospace & Defense",
+    "price": 29.19,
+    "fairValue": 49.84,
+    "upsidePct": 68.8,
+    "beta": 1.3556,
+    "sharpe": 0,
+    "business": "StandardAero maintains, repairs, and overhauls aircraft engines and airframes for airlines and defense operators.",
+    "reasoning": "Cheaper than peers at 30× earnings vs 56× median — cash flow jumped $65M → $234M; profits up about 1484%.",
+    "levels": {
+      "ep": 29.52,
+      "tp": 49.84,
+      "sl": 26.27
     },
     "alternatives": []
   }
