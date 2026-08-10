@@ -5,13 +5,13 @@
     "name": "Urban Outfitters Inc",
     "sector": "Consumer Discretionary",
     "industry": "Apparel Retail",
-    "thesis": "Cheaper than peers at 14× earnings vs 30× median — cash flow jumped $97M → $445M; ~61% below our fair value.",
+    "thesis": "Cheaper than peers at 14\u00d7 earnings vs 30\u00d7 median \u2014 cash flow jumped $97M \u2192 $445M; ~61% below our fair value.",
     "business": "Urban Outfitters retails apparel and home goods through Urban Outfitters, Anthropologie, and Free People brands.",
-    "entry": "Cheaper than peers at 14× earnings vs 30× median — cash flow jumped $97M → $445M; ~61% below our fair value.",
-    "upsidePct": 60.6,
+    "entry": "Cheaper than peers at 14\u00d7 earnings vs 30\u00d7 median \u2014 cash flow jumped $97M \u2192 $445M; ~61% below our fair value.",
+    "upsidePct": 58.3,
     "levels": {
       "ep": 74.39,
-      "tp": 123.14,
+      "tp": 121.78,
       "sl": 66.23
     }
   },
@@ -21,13 +21,13 @@
     "name": "VICI Properties Inc",
     "sector": "Real Estate",
     "industry": "REIT - Diversified",
-    "thesis": "Cheaper than peers at 9× earnings vs 18× median — cash flow jumped $894M → $2.5B; profits up about 148%.",
+    "thesis": "Cheaper than peers at 9\u00d7 earnings vs 18\u00d7 median \u2014 cash flow jumped $894M \u2192 $2.5B; profits up about 148%.",
     "business": "VICI Properties owns gaming, hospitality, and experiential real estate leased to casino and entertainment operators.",
-    "entry": "Cheaper than peers at 9× earnings vs 18× median — cash flow jumped $894M → $2.5B; profits up about 148%.",
-    "upsidePct": 55.9,
+    "entry": "Cheaper than peers at 9\u00d7 earnings vs 18\u00d7 median \u2014 cash flow jumped $894M \u2192 $2.5B; profits up about 148%.",
+    "upsidePct": 78.1,
     "levels": {
       "ep": 27.28,
-      "tp": 40.51,
+      "tp": 47.62,
       "sl": 25.44
     }
   }
