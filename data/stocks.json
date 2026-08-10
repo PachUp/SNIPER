@@ -1908,5 +1908,24 @@
       "sl": 24.7
     },
     "alternatives": []
+  },
+  {
+    "ticker": "BTSG",
+    "name": "Health Information Services",
+    "sector": "Health Care",
+    "industry": "Health Information Services",
+    "price": 62.43,
+    "fairValue": 116.73,
+    "upsidePct": 87,
+    "beta": 1.721,
+    "sharpe": 3.915,
+    "business": "BrightSpring Health Group delivers home- and community-based healthcare, pharmacy, and behavioral health services in the United States.",
+    "reasoning": "Cash flow jumped $211M → $395M — ~79% below our fair value; profits up about 618%.",
+    "levels": {
+      "ep": 62.43,
+      "tp": 116.73,
+      "sl": 56.19
+    },
+    "alternatives": []
   }
 ]
