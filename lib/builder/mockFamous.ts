@@ -36,6 +36,7 @@ export function FAMOUS_MOCK(
       industry: s.sector,
       sector: s.sector,
       sharpe_ratio: s.sharpe,
+      sortino_ratio: s.sortino ?? null,
       reason: eligible ? null : "below_min_upside_or_disqualified",
     };
   });

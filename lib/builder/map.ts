@@ -25,6 +25,7 @@ export type BuilderHolding = {
   beta: number;
   upside_pct: number | null;
   sharpe_ratio: number | null;
+  sortino_ratio?: number | null;
   price: number | null;
   fair_value: number | null;
   industry: string;
@@ -60,6 +61,7 @@ export type FamousPick = {
   industry?: string;
   sector?: string | null;
   sharpe_ratio?: number | null;
+  sortino_ratio?: number | null;
   reason?: string | null;
   levels?: { ep: number; tp: number; sl: number };
 };
@@ -175,6 +177,7 @@ export function mapBuilderResult(
         upsidePct,
         beta,
         sharpe: h.sharpe_ratio ?? known?.sharpe ?? undefined,
+        sortino: h.sortino_ratio ?? known?.sortino ?? undefined,
         business,
         reasoning,
         numbers: fromBlurb.numbers ?? known?.numbers,
@@ -232,6 +235,7 @@ export function enrichPortfolioWithBlurbs(
           upsidePct,
           beta,
           sharpe: h.snapshot?.sharpe ?? known?.sharpe,
+          sortino: h.snapshot?.sortino ?? known?.sortino,
           business,
           reasoning,
           numbers: fromBlurb.numbers ?? h.snapshot?.numbers ?? known?.numbers,
@@ -311,6 +315,7 @@ export function stockFromHolding(
     upsidePct,
     beta,
     sharpe: snap?.sharpe ?? known?.sharpe ?? 0,
+    sortino: snap?.sortino ?? known?.sortino,
     business,
     reasoning,
     numbers: snap?.numbers ?? known?.numbers,

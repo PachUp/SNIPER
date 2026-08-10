@@ -129,6 +129,7 @@ export default function StocksEditor() {
           upsidePct: s.upsidePct,
           beta: s.beta,
           sharpe: s.sharpe,
+          sortino: s.sortino,
           reasoning: s.reasoning,
           business: s.business,
           entry: s.entry,
@@ -356,6 +357,40 @@ export default function StocksEditor() {
                   readOnly
                   tabIndex={-1}
                   title="Recalculated when you change EP or TP"
+                />
+              </Field>
+            </div>
+
+            <div className="mb-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <Field label="Sharpe">
+                <NumberInput
+                  value={s.sharpe}
+                  step="0.001"
+                  onChange={(e) =>
+                    update(s.ticker, { sharpe: Number(e.target.value) })
+                  }
+                />
+              </Field>
+              <Field label="Sortino">
+                <NumberInput
+                  value={s.sortino ?? ""}
+                  step="0.001"
+                  placeholder="—"
+                  onChange={(e) => {
+                    const v = e.target.value;
+                    update(s.ticker, {
+                      sortino: v === "" ? undefined : Number(v),
+                    });
+                  }}
+                />
+              </Field>
+              <Field label="Beta">
+                <NumberInput
+                  value={s.beta}
+                  step="0.01"
+                  onChange={(e) =>
+                    update(s.ticker, { beta: Number(e.target.value) })
+                  }
                 />
               </Field>
             </div>

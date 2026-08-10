@@ -203,6 +203,7 @@ export async function POST(req: NextRequest) {
         ? fv.beta
         : undefined,
     sharpe: typeof body?.sharpe === "number" ? body.sharpe : undefined,
+    sortino: typeof body?.sortino === "number" ? body.sortino : undefined,
     reasoning:
       body?.reasoning != null
         ? String(body.reasoning)
