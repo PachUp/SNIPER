@@ -2054,5 +2054,24 @@
     },
     "alternatives": [],
     "sortino": -0.562
+  },
+  {
+    "ticker": "CIB",
+    "name": "Banks - Regional",
+    "sector": "Financials",
+    "industry": "Banks - Regional",
+    "price": 88.85,
+    "fairValue": 151.93,
+    "upsidePct": 71,
+    "beta": 0.686,
+    "sharpe": 2.106,
+    "business": "Grupo Aval's Bancolombia is Colombia's largest bank, serving retail and corporate customers nationwide.",
+    "reasoning": "Cheaper than peers at 9× earnings vs 13× median — cash flow jumped $4417.0B → $11210.7B; ~42% below our fair value.",
+    "levels": {
+      "ep": 88.85,
+      "tp": 151.93,
+      "sl": 79.97
+    },
+    "alternatives": []
   }
 ]
