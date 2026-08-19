@@ -1,4 +1,7 @@
-# https://sniper-proj.netlify.app/ — Git push to main triggers a redeploy.
+# https://sniper-proj.netlify.app/
+# Git push to main should trigger a rebuild. Requires @netlify/plugin-nextjs
+# so App Router / API routes (admin login cookies) actually run.
+
 [build]
   command = "npm run build"
   publish = ".next"
@@ -6,3 +9,6 @@
 [build.environment]
   NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
