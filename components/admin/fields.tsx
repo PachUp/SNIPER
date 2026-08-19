@@ -23,13 +23,26 @@ const inputCls =
 export function TextInput(
   props: React.InputHTMLAttributes<HTMLInputElement>
 ) {
-  return <input {...props} className={inputCls} />;
+  return (
+    <input
+      {...props}
+      className={`${inputCls} min-h-11 text-base sm:min-h-0 sm:text-sm`}
+    />
+  );
 }
 
 export function NumberInput(
   props: React.InputHTMLAttributes<HTMLInputElement>
 ) {
-  return <input type="number" step="0.01" {...props} className={inputCls} />;
+  return (
+    <input
+      type="number"
+      inputMode="decimal"
+      step="0.01"
+      {...props}
+      className={`${inputCls} min-h-11 text-base sm:min-h-0 sm:text-sm`}
+    />
+  );
 }
 
 export function TextArea(

@@ -95,6 +95,14 @@ export default function ConsentGate() {
         >
           {t("consent.cta")}
         </button>
+        <p className="mt-3 text-center text-[10px] text-terminal-muted">
+          <Link
+            href="/admin"
+            className="tracking-[0.2em] text-terminal-muted underline-offset-2 hover:text-terminal-accent hover:underline"
+          >
+            ADMIN
+          </Link>
+        </p>
       </div>
     </div>
   );

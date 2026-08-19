@@ -33,29 +33,31 @@ export default function AdminLogin() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-4">
+    <main className="flex min-h-[100dvh] flex-col items-center justify-center px-4 safe-pt safe-pb">
       <Link
         href="/"
-        className="absolute top-6 left-6 text-xs tracking-[0.35em] text-terminal-muted hover:text-terminal-accent"
+        className="absolute top-0 start-0 z-10 inline-flex min-h-11 items-center px-4 text-xs tracking-[0.35em] text-terminal-muted hover:text-terminal-accent safe-pt"
       >
         ← SNIPER
       </Link>
       <form
         onSubmit={submit}
-        className="w-full max-w-sm rounded-xl border border-terminal-border bg-terminal-panel p-6"
+        className="w-full max-w-sm rounded-xl border border-terminal-border bg-terminal-panel p-5 sm:p-6"
       >
         <h1 className="text-lg font-bold tracking-[0.2em]">ADMIN ACCESS</h1>
         <p className="mt-1 text-xs text-terminal-muted">
-          Desk-only controls for levels, alternatives, ideas, news and the house
-          book.
+          Phone or desktop — edit levels, alternatives, ideas, news, and the
+          house book.
         </p>
         <input
           type="password"
+          name="password"
+          autoComplete="current-password"
+          enterKeyHint="go"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
-          className="mt-4 w-full rounded-lg border border-terminal-border bg-terminal-bg px-3 py-2 text-sm outline-none focus:border-terminal-accent"
-          autoFocus
+          className="mt-4 w-full rounded-lg border border-terminal-border bg-terminal-bg px-3 py-3 text-base outline-none focus:border-terminal-accent"
         />
         {error && (
           <p className="mt-2 text-xs text-terminal-bad">Incorrect password.</p>
@@ -63,13 +65,13 @@ export default function AdminLogin() {
         <button
           type="submit"
           disabled={busy}
-          className="mt-4 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.2em] text-terminal-bg disabled:opacity-50"
+          className="mt-4 min-h-12 w-full rounded-lg bg-terminal-accent py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg disabled:opacity-50"
         >
           {busy ? "…" : "ENTER"}
         </button>
-        <p className="mt-3 text-center text-[10px] text-terminal-muted">
-          Local: ADMIN_PASSWORD in .env.local · Live: same key in Netlify
-          Site settings → Environment variables
+        <p className="mt-3 text-center text-[10px] leading-relaxed text-terminal-muted">
+          Bookmark sniper-proj.netlify.app/admin on your phone for quick access.
+          Password: Netlify env ADMIN_PASSWORD (local: .env.local).
         </p>
       </form>
     </main>

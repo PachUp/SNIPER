@@ -62,11 +62,13 @@ export default function LandingPage() {
         </Link>
       )}
 
-      <div className="absolute top-6 start-6 text-xs font-semibold tracking-[0.35em] text-terminal-accent">
-        SNIPER
-      </div>
-      <div className="absolute top-6 end-6 z-50 flex items-center gap-4">
-        <AdminLink />
+      <div className="absolute top-0 start-0 end-0 z-50 flex items-start justify-between safe-pt safe-px">
+        <div className="px-4 py-3 text-xs font-semibold tracking-[0.35em] text-terminal-accent">
+          SNIPER
+        </div>
+        <div className="px-2 py-1">
+          <AdminLink />
+        </div>
       </div>
 
       {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (
