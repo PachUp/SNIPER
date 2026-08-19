@@ -60,7 +60,12 @@ export default function AdminLogin() {
           className="mt-4 w-full rounded-lg border border-terminal-border bg-terminal-bg px-3 py-3 text-base outline-none focus:border-terminal-accent"
         />
         {error && (
-          <p className="mt-2 text-xs text-terminal-bad">Incorrect password.</p>
+          <p className="mt-2 text-xs leading-relaxed text-terminal-bad">
+            Incorrect password for this site. On the live site, set{" "}
+            <span className="text-terminal-text">ADMIN_PASSWORD</span> in
+            Netlify → Site settings → Environment variables, then trigger a
+            redeploy. Local uses <span className="text-terminal-text">.env.local</span>.
+          </p>
         )}
         <button
           type="submit"
