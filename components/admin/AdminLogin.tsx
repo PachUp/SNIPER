@@ -1,37 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 
-export default function AdminLogin() {
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [busy, setBusy] = useState(false);
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    setBusy(true);
-    setError(false);
-    try {
-      const res = await fetch("/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "same-origin",
-        body: JSON.stringify({ password: password.trim() }),
-      });
-      if (res.ok) {
-        // Full navigation so the httpOnly session cookie is sent on /admin.
-        window.location.assign("/admin");
-        return;
-      }
-      setError(true);
-    } catch {
-      setError(true);
-    } finally {
-      setBusy(false);
-    }
-  }
-
+/**
+ * Native form POST → Set-Cookie + redirect.
+ * More reliable on iOS Safari than fetch() + location.assign().
+ */
+export default function AdminLogin({
+  loginFailed = false,
+  passwordEnvSet = true,
+}: {
+  loginFailed?: boolean;
+  passwordEnvSet?: boolean;
+}) {
   return (
     <main className="flex min-h-[100dvh] flex-col items-center justify-center px-4 safe-pt safe-pb">
       <Link
@@ -41,7 +22,8 @@ export default function AdminLogin() {
         ← SNIPER
       </Link>
       <form
-        onSubmit={submit}
+        method="POST"
+        action="/api/admin/login"
         className="w-full max-w-sm rounded-xl border border-terminal-border bg-terminal-panel p-5 sm:p-6"
       >
         <h1 className="text-lg font-bold tracking-[0.2em]">ADMIN ACCESS</h1>
@@ -49,34 +31,47 @@ export default function AdminLogin() {
           Phone or desktop — edit levels, alternatives, ideas, news, and the
           house book.
         </p>
+
+        {!passwordEnvSet ? (
+          <p className="mt-3 rounded-lg border border-terminal-bad/40 bg-terminal-bad/10 px-3 py-2 text-[11px] leading-relaxed text-terminal-bad">
+            This live deploy has no{" "}
+            <span className="font-semibold text-terminal-text">
+              ADMIN_PASSWORD
+            </span>{" "}
+            environment variable. Your local password will not work here. In
+            Netlify → Site configuration → Environment variables, add{" "}
+            <span className="font-semibold text-terminal-text">
+              ADMIN_PASSWORD
+            </span>
+            , then Trigger deploy.
+          </p>
+        ) : null}
+
         <input
           type="password"
           name="password"
           autoComplete="current-password"
           enterKeyHint="go"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          required
           placeholder="Password"
           className="mt-4 w-full rounded-lg border border-terminal-border bg-terminal-bg px-3 py-3 text-base outline-none focus:border-terminal-accent"
         />
-        {error && (
+        {loginFailed ? (
           <p className="mt-2 text-xs leading-relaxed text-terminal-bad">
-            Incorrect password for this site. On the live site, set{" "}
-            <span className="text-terminal-text">ADMIN_PASSWORD</span> in
-            Netlify → Site settings → Environment variables, then trigger a
-            redeploy. Local uses <span className="text-terminal-text">.env.local</span>.
+            Incorrect password for this site
+            {!passwordEnvSet
+              ? " (ADMIN_PASSWORD is not set on Netlify)."
+              : "."}
           </p>
-        )}
+        ) : null}
         <button
           type="submit"
-          disabled={busy}
-          className="mt-4 min-h-12 w-full rounded-lg bg-terminal-accent py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg disabled:opacity-50"
+          className="mt-4 min-h-12 w-full rounded-lg bg-terminal-accent py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg"
         >
-          {busy ? "…" : "ENTER"}
+          ENTER
         </button>
         <p className="mt-3 text-center text-[10px] leading-relaxed text-terminal-muted">
-          Bookmark sniper-proj.netlify.app/admin on your phone for quick access.
-          Password: Netlify env ADMIN_PASSWORD (local: .env.local).
+          Live password = Netlify env ADMIN_PASSWORD · Local = .env.local
         </p>
       </form>
     </main>

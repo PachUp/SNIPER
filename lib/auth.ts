@@ -1,22 +1,36 @@
 import { cookies } from "next/headers";
 import crypto from "crypto";
 
-const PASSWORD = process.env.ADMIN_PASSWORD || "sniper";
 export const ADMIN_COOKIE = "sniper_admin";
+
+/**
+ * Read at call time (bracket access) so Next/Netlify do not bake a missing
+ * build-time value into the bundle. Live password = Netlify ADMIN_PASSWORD.
+ */
+function configuredPassword(): string {
+  const raw = process.env["ADMIN_PASSWORD"];
+  return String(raw ?? "sniper").trim();
+}
 
 function sessionToken(): string {
   return crypto
     .createHash("sha256")
-    .update(`${PASSWORD}::sniper-session`)
+    .update(`${configuredPassword()}::sniper-session`)
     .digest("hex");
 }
 
 export function verifyPassword(input: string): boolean {
-  return input.trim() === String(PASSWORD).trim();
+  return input.trim() === configuredPassword();
 }
 
 export function issueToken(): string {
   return sessionToken();
+}
+
+/** True when Netlify / host set ADMIN_PASSWORD (not the built-in fallback). */
+export function isAdminPasswordConfigured(): boolean {
+  const raw = process.env["ADMIN_PASSWORD"];
+  return typeof raw === "string" && raw.trim().length > 0;
 }
 
 /** Server-side check for use in route handlers and server components. */
