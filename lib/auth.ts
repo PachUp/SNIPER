@@ -3,13 +3,20 @@ import crypto from "crypto";
 
 export const ADMIN_COOKIE = "sniper_admin";
 
+/** Strip iOS/invisible junk that can sneak into password fields. */
+function normalizePassword(input: string): string {
+  return String(input ?? "")
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
+    .trim();
+}
+
 /**
  * Read at call time (bracket access) so Next/Netlify do not bake a missing
  * build-time value into the bundle. Live password = Netlify ADMIN_PASSWORD.
  */
 function configuredPassword(): string {
   const raw = process.env["ADMIN_PASSWORD"];
-  return String(raw ?? "sniper").trim();
+  return normalizePassword(raw ?? "sniper");
 }
 
 function sessionToken(): string {
@@ -20,7 +27,7 @@ function sessionToken(): string {
 }
 
 export function verifyPassword(input: string): boolean {
-  return input.trim() === configuredPassword();
+  return normalizePassword(input) === configuredPassword();
 }
 
 export function issueToken(): string {

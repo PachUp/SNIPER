@@ -9,9 +9,11 @@ import Link from "next/link";
 export default function AdminLogin({
   loginFailed = false,
   passwordEnvSet = true,
+  buildStamp = "local",
 }: {
   loginFailed?: boolean;
   passwordEnvSet?: boolean;
+  buildStamp?: string;
 }) {
   return (
     <main className="flex min-h-[100dvh] flex-col items-center justify-center px-4 safe-pt safe-pb">
@@ -72,6 +74,9 @@ export default function AdminLogin({
         </button>
         <p className="mt-3 text-center text-[10px] leading-relaxed text-terminal-muted">
           Live password = Netlify env ADMIN_PASSWORD · Local = .env.local
+        </p>
+        <p className="mt-1 text-center text-[9px] tracking-wider text-terminal-muted/70">
+          build {buildStamp}
         </p>
       </form>
     </main>
