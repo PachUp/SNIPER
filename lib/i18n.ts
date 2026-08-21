@@ -5,6 +5,7 @@ const en: Dict = {
   "brand.build": "BUILD",
   "landing.tagline":
     "Create a smart stock portfolio in under a minute. No experience needed.",
+  "landing.tapAnywhere": "TAP ANYWHERE TO START",
   "landing.seePortfolio": "SEE MY PORTFOLIO →",
 
   // nav

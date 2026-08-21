@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { loadPortfolio } from "@/lib/clientPortfolio";
 import { useI18n } from "@/components/LanguageProvider";
@@ -8,14 +9,31 @@ import AdminLink from "@/components/AdminLink";
 
 export default function LandingPage() {
   const { t } = useI18n();
+  const router = useRouter();
   const [hasPortfolio, setHasPortfolio] = useState(false);
 
   useEffect(() => {
     setHasPortfolio(!!loadPortfolio());
   }, []);
 
+  function startBuild() {
+    router.push("/build");
+  }
+
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black">
+    <main
+      role="link"
+      tabIndex={0}
+      aria-label="Tap anywhere to build your portfolio"
+      onClick={startBuild}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          startBuild();
+        }
+      }}
+      className="relative flex min-h-[100dvh] cursor-pointer flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
@@ -40,29 +58,32 @@ export default function LandingPage() {
         }}
       />
 
-      <Link
-        href="/build"
-        className="group relative select-none transition-transform duration-300 ease-smooth hover:-translate-y-0.5"
-        aria-label="Build your portfolio"
-      >
-        <span className="glow block text-6xl font-black tracking-[0.28em] transition-transform duration-300 ease-smooth group-hover:scale-[1.03] sm:text-8xl">
+      <div className="group relative select-none transition-transform duration-300 ease-smooth">
+        <span className="glow block text-6xl font-black tracking-[0.28em] transition-transform duration-300 ease-smooth group-active:scale-[1.03] sm:text-8xl">
           {t("brand.build")}
         </span>
         <span className="mt-5 block max-w-xs text-center text-sm tracking-[0.08em] text-terminal-muted">
           {t("landing.tagline")}
         </span>
-      </Link>
+        <span className="mt-3 block text-center text-[11px] tracking-[0.22em] text-terminal-muted/80">
+          {t("landing.tapAnywhere")}
+        </span>
+      </div>
 
       {hasPortfolio && (
         <Link
           href="/dashboard"
-          className="absolute bottom-10 text-xs tracking-[0.28em] text-terminal-muted underline-offset-4 hover:text-terminal-accent hover:underline"
+          onClick={(e) => e.stopPropagation()}
+          className="absolute bottom-10 z-20 text-xs tracking-[0.28em] text-terminal-muted underline-offset-4 hover:text-terminal-accent hover:underline"
         >
           {t("landing.seePortfolio")}
         </Link>
       )}
 
-      <div className="absolute top-0 start-0 end-0 z-50 flex items-start justify-between safe-pt safe-px">
+      <div
+        className="absolute top-0 start-0 end-0 z-50 flex items-start justify-between safe-pt safe-px"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="px-4 py-3 text-xs font-semibold tracking-[0.35em] text-terminal-accent">
           SNIPER
         </div>
@@ -72,7 +93,7 @@ export default function LandingPage() {
       </div>
 
       {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (
-        <p className="absolute bottom-4 max-w-md px-4 text-center text-[10px] leading-relaxed text-terminal-muted">
+        <p className="pointer-events-none absolute bottom-4 max-w-md px-4 text-center text-[10px] leading-relaxed text-terminal-muted">
           Friends / testers only · draft product · not investment advice · your
           portfolio is saved in this browser only
         </p>
