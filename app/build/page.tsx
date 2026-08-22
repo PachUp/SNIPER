@@ -11,6 +11,9 @@ import ReasoningPopup from "@/components/ReasoningPopup";
 import CompactStockRow from "@/components/CompactStockRow";
 import TickerLogo from "@/components/TickerLogo";
 import AdminLink from "@/components/AdminLink";
+import BuildOptionPicker, {
+  type BuildStyle,
+} from "@/components/BuildOptionPicker";
 import type { FamousListResult, FamousPick } from "@/lib/builder/map";
 import type { Stock } from "@/lib/types";
 import { storageGet, storageSet } from "@/lib/safeStorage";
@@ -26,6 +29,8 @@ export default function BuildPage() {
   const [building, setBuilding] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [detail, setDetail] = useState<Stock | null>(null);
+  const [step, setStep] = useState<"picks" | "style">("picks");
+  const [buildStyle, setBuildStyle] = useState<BuildStyle | null>(null);
 
   useEffect(() => {
     try {
@@ -102,6 +107,15 @@ export default function BuildPage() {
     });
   }
 
+  function goToStyleStep() {
+    if (picked.length < MIN_USER_PICKS) {
+      setError(t("build.needPick", { min: MIN_USER_PICKS }));
+      return;
+    }
+    setError(null);
+    setStep("style");
+  }
+
   async function build() {
     if (building) return;
     if (picked.length < MIN_USER_PICKS) {
@@ -113,10 +127,18 @@ export default function BuildPage() {
     const ac = new AbortController();
     const timer = window.setTimeout(() => ac.abort(), BUILD_TIMEOUT_MS);
     try {
+      // Style is example UI only for now — same build API either way.
+      if (buildStyle) {
+        try {
+          storageSet("sniper.buildStyle.v1", buildStyle);
+        } catch {
+          /* ignore */
+        }
+      }
       const res = await fetch("/api/portfolio/build", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tickers: picked }),
+        body: JSON.stringify({ tickers: picked, style: buildStyle ?? undefined }),
         signal: ac.signal,
       });
       const data = (await res.json().catch(() => ({}))) as BuiltPortfolio & {
@@ -160,7 +182,7 @@ export default function BuildPage() {
           </Link>
           <button
             type="button"
-            onClick={() => void build()}
+            onClick={goToStyleStep}
             disabled={!canBuild}
             className="rounded-md bg-terminal-accent px-2.5 py-1 text-[10px] font-bold tracking-[0.12em] text-black disabled:opacity-40"
           >
@@ -199,6 +221,19 @@ export default function BuildPage() {
       {loading ? (
         <div className="mt-10 text-center text-terminal-muted">
           {t("common.loading")}
+        </div>
+      ) : step === "style" ? (
+        <div className="mt-10">
+          <BuildOptionPicker
+            selected={buildStyle}
+            onSelect={setBuildStyle}
+            onBack={() => {
+              setStep("picks");
+              setBuildStyle(null);
+            }}
+            onConfirm={() => void build()}
+            busy={building}
+          />
         </div>
       ) : (
         <>
@@ -332,21 +367,23 @@ export default function BuildPage() {
         </>
       )}
 
-      <div className="sticky bottom-4 z-20 mt-8 flex flex-col items-center gap-2 safe-pb">
-        {!canBuild && !building ? (
-          <p className="text-center text-[11px] text-terminal-muted">
-            {t("build.hintPick")}
-          </p>
-        ) : null}
-        <button
-          type="button"
-          onClick={() => void build()}
-          disabled={!canBuild}
-          className="rounded-full bg-terminal-accent px-12 py-3.5 text-sm font-bold tracking-[0.22em] text-black shadow-[0_0_40px_rgba(249,115,22,0.35)] transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-[0_0_56px_rgba(249,115,22,0.5)] disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none"
-        >
-          {building ? t("build.buildingCta") : t("build.buildMine")}
-        </button>
-      </div>
+      {step === "picks" ? (
+        <div className="sticky bottom-4 z-20 mt-8 flex flex-col items-center gap-2 safe-pb">
+          {!canBuild && !building ? (
+            <p className="text-center text-[11px] text-terminal-muted">
+              {t("build.hintPick")}
+            </p>
+          ) : null}
+          <button
+            type="button"
+            onClick={goToStyleStep}
+            disabled={!canBuild}
+            className="rounded-full bg-terminal-accent px-12 py-3.5 text-sm font-bold tracking-[0.22em] text-black shadow-[0_0_40px_rgba(249,115,22,0.35)] transition-all duration-300 ease-smooth hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-[0_0_56px_rgba(249,115,22,0.5)] disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none"
+          >
+            {building ? t("build.buildingCta") : t("build.buildMine")}
+          </button>
+        </div>
+      ) : null}
 
       {detail ? (
         <ReasoningPopup

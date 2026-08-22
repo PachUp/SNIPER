@@ -31,6 +31,7 @@ import {
 import { levelsWithUserEntry } from "@/lib/format";
 import { stockFromHolding } from "@/lib/builder/map";
 import PerformanceChart from "@/components/PerformanceChart";
+import PortfolioRiskPanel from "@/components/PortfolioRiskPanel";
 import ReasoningPopup from "@/components/ReasoningPopup";
 import StockTradePanel from "@/components/StockTradePanel";
 import PortfolioWeightPie from "@/components/PortfolioWeightPie";
@@ -730,6 +731,23 @@ export default function DashboardPage() {
           subtitle={
             hasAnyEntry ? t("perf.sinceEntry") : t("perf.sinceEntryEmpty")
           }
+        />
+      </div>
+
+      <div className="mt-3">
+        <PortfolioRiskPanel
+          holdings={holdings.map((h) => {
+            const s =
+              stockMap.get(h.current) ??
+              stockFromHolding(h.holding, stockMap);
+            return {
+              ticker: h.current,
+              name: s?.name ?? h.holding.snapshot?.name,
+              sector: s?.sector ?? h.holding.snapshot?.sector,
+              weightPct: h.weightPct,
+            };
+          })}
+          example={!holdings.length}
         />
       </div>
 
