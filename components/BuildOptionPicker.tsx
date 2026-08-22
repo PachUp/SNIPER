@@ -14,11 +14,11 @@ const OPTIONS: {
     title: "Broad & Balanced",
     tag: "Steadier mix",
     blurb:
-      "Spreads the book across more sectors. Your famous picks stay; the fill leans diversified.",
+      "Fills from industries StockAnalysis tags as defensive / diversified — utilities, banks, REITs, energy, staples. Shared industries (credit, big pharma, restaurants) stay eligible.",
     points: [
-      "More sectors represented",
-      "Lower single-theme concentration",
-      "Clear buy / sell / exit on every name",
+      "Industry-based fill from the valuation universe",
+      "Favors sector spread over max upside",
+      "Your famous picks stay either way",
     ],
   },
   {
@@ -26,16 +26,16 @@ const OPTIONS: {
     title: "Growth-Tilted",
     tag: "Higher upside bias",
     blurb:
-      "Keeps your famous picks and fills with more growth-oriented names. Same exit discipline.",
+      "Fills from growth industries — software, semis, biotech, internet, renewables — plus the same shared exceptions. Same EP / TP / SL discipline.",
     points: [
-      "Heavier growth / innovation tilt",
-      "Higher potential, higher swings",
+      "Industry-based fill from the valuation universe",
+      "Favors higher model upside",
       "Same EP / TP / SL guardrails",
     ],
   },
 ];
 
-/** Example UI: choose portfolio style before build (additive; same build API). */
+/** Choose portfolio style before build — drives industry-based fill. */
 export default function BuildOptionPicker({
   selected,
   onSelect,
@@ -52,14 +52,14 @@ export default function BuildOptionPicker({
   return (
     <div className="mx-auto max-w-3xl">
       <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
-        Example preview · step 2 of 2
+        Step 2 of 2 · style
       </p>
       <h2 className="mt-2 text-xl font-bold tracking-wide text-white sm:text-2xl">
         Choose how we complete your portfolio
       </h2>
       <p className="mt-2 text-sm text-terminal-muted">
-        Your picks stay in both. This is how a two-option build would look —
-        same desk levels, different fill style.
+        Your picks stay in both. Fill names come from Finviz industries in the
+        StockAnalysis universe — Broad vs Growth, with shared industries in either.
       </p>
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">

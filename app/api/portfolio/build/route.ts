@@ -6,6 +6,7 @@ import {
   MAX_USER_PICKS,
   MIN_USER_PICKS,
 } from "@/lib/portfolio";
+import { parseBuildStyle } from "@/lib/buildStyle";
 import { isMockBuilderEnabled } from "@/lib/builder/config";
 import { BuilderError, buildFromPicks } from "@/lib/builder/run";
 import { loadCompanyBlurbs } from "@/lib/builder/blurbs";
@@ -18,6 +19,7 @@ export async function POST(req: NextRequest) {
   const tickers: string[] = Array.isArray(body?.tickers)
     ? body.tickers.map((t: unknown) => String(t).toUpperCase())
     : [];
+  const style = parseBuildStyle(body?.style);
 
   if (tickers.length < MIN_USER_PICKS || tickers.length > MAX_USER_PICKS) {
     return NextResponse.json(
@@ -38,12 +40,12 @@ export async function POST(req: NextRequest) {
         loadCompanyBlurbs(),
       ]);
       portfolio = enrichPortfolioWithBlurbs(
-        buildPortfolio(stocks, tickers, MAX_HOLDINGS),
+        buildPortfolio(stocks, tickers, MAX_HOLDINGS, style),
         stocks,
         blurbs
       );
     } else {
-      portfolio = await buildFromPicks(tickers, MAX_HOLDINGS);
+      portfolio = await buildFromPicks(tickers, MAX_HOLDINGS, style);
     }
     // Seed AI-filled names into the catalog so desk can edit EP/TP/SL.
     await provider.ensureHoldingsInCatalog(portfolio);

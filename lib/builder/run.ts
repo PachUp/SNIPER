@@ -107,18 +107,23 @@ export async function listFamousPicks(): Promise<FamousListResult> {
 
 export async function buildFromPicks(
   tickers: string[],
-  size = 12
+  size = 12,
+  style: "broad" | "growth" | null = null
 ): Promise<BuiltPortfolio> {
   const { loadFamousSymbols } = await import("@/lib/builder/famousList");
   await loadFamousSymbols();
   const picks = tickers.map((t) => t.toUpperCase());
-  const data = (await runBuilder([
+  const args = [
     "--pick",
     ...picks,
     "--size",
     String(size),
     "--json-stdout",
-  ])) as BuilderPortfolioResult;
+  ];
+  if (style) {
+    args.push("--style", style);
+  }
+  const data = (await runBuilder(args)) as BuilderPortfolioResult;
 
   if (data.error) {
     throw new BuilderError(data.error, 400, data as Record<string, unknown>);

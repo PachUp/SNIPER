@@ -127,7 +127,7 @@ export default function BuildPage() {
     const ac = new AbortController();
     const timer = window.setTimeout(() => ac.abort(), BUILD_TIMEOUT_MS);
     try {
-      // Style is example UI only for now — same build API either way.
+// Style is preference for industry-based fill (Broad vs Growth).
       if (buildStyle) {
         try {
           storageSet("sniper.buildStyle.v1", buildStyle);

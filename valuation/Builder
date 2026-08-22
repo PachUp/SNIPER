@@ -38,6 +38,15 @@ except ImportError as e:
     raise SystemExit(1) from e
 
 _ROOT = Path(__file__).resolve().parent
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from build_style import (  # noqa: E402
+    matches_build_style,
+    parse_build_style,
+    style_fit_bonus,
+)
+
 DEFAULT_FV_DIR = _ROOT.parent / "FvIndustries-0-0-"
 DEFAULT_UNIVERSE = _ROOT / "extracted_symbols_newest.json"
 DEFAULT_OUTPUT = DEFAULT_FV_DIR / "portfolios.json"
@@ -473,13 +482,20 @@ def select_diversified_fillers(
     target_avg_beta: float,
     used_industries: set[str],
     used_sectors: Optional[set[str]] = None,
+    style: Optional[str] = None,
 ) -> list[Stock]:
-    """Greedy pick: admin replacements first, then upside, industry/sector spread and β fit."""
+    """Greedy pick: admin replacements first, then upside, industry/sector spread and β fit.
+
+    When ``style`` is ``broad`` or ``growth``, Finviz industry affinity from
+    StockAnalysis taxonomy biases (and prefers) matching industries; ``both``
+    industries are eligible for either book.
+    """
     chosen: list[Stock] = []
     pool = list(candidates)
     industries = set(used_industries)
     sectors = set(used_sectors or ())
     chosen_syms: set[str] = set()
+    build_style = parse_build_style(style)
 
     def pick_replacement_for_slot() -> Optional[Stock]:
         """Prefer admin replacement symbols (e.g. AA → MPC) when still available."""
@@ -491,6 +507,8 @@ def select_diversified_fillers(
                 if c.symbol != repl or not _meets_min_upside(c):
                     continue
                 score = float(c.upside_pct or 0)
+                if build_style:
+                    score += style_fit_bonus(build_style, c.industry, c.sector) * 100.0
                 if best is None or score > best[0]:
                     best = (score, c)
         return best[1] if best else None
@@ -507,11 +525,15 @@ def select_diversified_fillers(
             for c in pool:
                 if not _meets_min_upside(c):
                     continue
-                upside_score = float(c.upside_pct or 0) / 100.0
+                upside_w = 1.35 if build_style == "growth" else 0.85 if build_style == "broad" else 1.0
+                upside_score = (float(c.upside_pct or 0) / 100.0) * upside_w
                 beta_penalty = abs(c.beta - ideal_beta) * 0.12
-                industry_bonus = 0.15 if c.industry not in industries else 0.0
-                sector_bonus = 0.12 if c.sector and c.sector not in sectors else 0.0
-                score = upside_score - beta_penalty + industry_bonus + sector_bonus
+                ind_w = 0.22 if build_style == "broad" else 0.1 if build_style == "growth" else 0.15
+                sec_w = 0.18 if build_style == "broad" else 0.08 if build_style == "growth" else 0.12
+                industry_bonus = ind_w if c.industry not in industries else 0.0
+                sector_bonus = sec_w if c.sector and c.sector not in sectors else 0.0
+                fit = style_fit_bonus(build_style, c.industry, c.sector) if build_style else 0.0
+                score = upside_score - beta_penalty + industry_bonus + sector_bonus + fit
                 if best is None or score > best[0]:
                     best = (score, c)
             if best is None:
@@ -1359,6 +1381,7 @@ def complete_portfolio_from_picks(
     fill_count: int = DEFAULT_FILL_COUNT,
     max_weight: float = MAX_WEIGHT,
     famous_eligible: tuple[str, ...],
+    style: Optional[str] = None,
 ) -> dict:
     """
     User picks 1–4 anchors from ``FAMOUS_STOCKS``; auto-select ``fill_count`` diversified
@@ -1456,6 +1479,7 @@ def complete_portfolio_from_picks(
 
     pick_syms = {a.symbol for a in anchors}
     manual_famous = set(FAMOUS_STOCKS)
+    build_style = parse_build_style(style)
     candidates = [
         s
         for s in universe
@@ -1464,12 +1488,22 @@ def complete_portfolio_from_picks(
         and not is_symbol_disqualified(s.symbol)
         and _meets_min_upside(s)
     ]
+    if build_style:
+        styled = [
+            s
+            for s in candidates
+            if matches_build_style(build_style, s.industry, s.sector)
+        ]
+        # Prefer affinity pool; relax if too thin to fill the book.
+        if len(styled) >= fill_count:
+            candidates = styled
     fillers = select_diversified_fillers(
         candidates,
         count=fill_count,
         target_avg_beta=required_filler_beta_avg,
         used_industries=anchor_industries,
         used_sectors=anchor_sectors,
+        style=build_style,
     )
     if len(fillers) < fill_count:
         return {"error": f"only found {len(fillers)} filler candidates (wanted {fill_count})"}
@@ -1521,6 +1555,7 @@ def complete_portfolio_from_picks(
             "max_manual_picks": MAX_MANUAL_PICKS,
             "portfolio_size": total_names,
             "famous_min_upside_pct": FAMOUS_MIN_UPSIDE_PCT,
+            "build_style": build_style,
         },
         famous_eligible=famous_eligible,
     )
@@ -1805,6 +1840,12 @@ def main() -> None:
     )
     ap.add_argument("--min-upside", type=float, default=MIN_UPSIDE_PCT, help="Min model upside %% for filler pool (default 35)")
     ap.add_argument(
+        "--style",
+        choices=["broad", "growth"],
+        default=None,
+        help="Industry-based fill: broad (defensive/diversified) or growth (innovation tilt)",
+    )
+    ap.add_argument(
         "--sharpe-file",
         type=Path,
         default=DEFAULT_SHARPE_FILE,
@@ -1913,6 +1954,7 @@ def main() -> None:
             fill_count=fill_count,
             max_weight=args.max_weight,
             famous_eligible=manual_eligible,
+            style=args.style,
         )
         if "error" in result:
             if args.json_stdout:

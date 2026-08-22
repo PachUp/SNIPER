@@ -139,4 +139,6 @@ export type BuiltPortfolio = {
   holdings: PortfolioHolding[];
   portfolioBeta?: number;
   portfolioUpsidePct?: number;
+  /** Broad & Balanced vs Growth-Tilted fill (industry-based). */
+  buildStyle?: "broad" | "growth";
 };

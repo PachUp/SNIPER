@@ -187,6 +187,9 @@ export function mapBuilderResult(
     holdings,
     portfolioBeta: data.portfolio_beta,
     portfolioUpsidePct: data.portfolio_upside_pct,
+    ...(data.build_style === "broad" || data.build_style === "growth"
+      ? { buildStyle: data.build_style }
+      : {}),
   };
 }
 

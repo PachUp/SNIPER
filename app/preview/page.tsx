@@ -26,9 +26,9 @@ export default function PreviewPage() {
       </header>
 
       <p className="mb-10 max-w-xl text-sm text-terminal-muted">
-        Preview of additive product ideas: two-option build style, then a
-        dashboard risk panel. These are visual examples — wiring to a different
-        fill algorithm comes later.
+        Broad vs Growth uses Finviz industries from StockAnalysis: growth names
+        (software, semis, biotech…), broad names (utilities, banks, REITs,
+        energy…), and shared exceptions (credit cards, big pharma, restaurants…).
       </p>
 
       <section className="mb-14">
