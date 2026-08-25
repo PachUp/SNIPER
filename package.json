@@ -10,7 +10,8 @@
     "sync:seeds": "bash scripts/sync-runtime-to-seeds.sh",
     "deploy:live": "bash scripts/deploy-live.sh",
     "refresh:news": "node scripts/refresh-news.mjs",
-    "refresh:levels": "node scripts/refresh-untouched-levels.mjs"
+    "refresh:levels": "node scripts/refresh-untouched-levels.mjs",
+    "verify:live": "bash scripts/verify-live-catalog.sh"
   },
   "dependencies": {
     "next": "14.2.5",

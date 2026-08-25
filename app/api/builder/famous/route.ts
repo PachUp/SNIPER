@@ -6,15 +6,18 @@ import { FAMOUS_MOCK } from "@/lib/builder/mockFamous";
 import type { FamousListResult } from "@/lib/builder/map";
 import { loadCompanyBlurbs } from "@/lib/builder/blurbs";
 import { loadFamousSymbols } from "@/lib/builder/famousList";
+import { withLivePrices } from "@/lib/stocks/withLivePrices";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 /** Attach catalog + StockAnalysis blurbs so every pick shows business + entry. */
 async function withStockCopy(data: FamousListResult): Promise<FamousListResult> {
-  const [stocks, blurbs] = await Promise.all([
+  const [stocksRaw, blurbs] = await Promise.all([
     provider.getStocks(),
     loadCompanyBlurbs(),
   ]);
+  const { stocks } = await withLivePrices(stocksRaw);
   const byTicker = new Map(stocks.map((s) => [s.ticker, s]));
   return {
     ...data,
@@ -29,6 +32,9 @@ async function withStockCopy(data: FamousListResult): Promise<FamousListResult> 
           blurb?.entry ?? p.reasoning ?? s?.reasoning ?? undefined,
         numbers: blurb?.numbers ?? p.numbers ?? s?.numbers,
         levels: s?.levels ?? p.levels,
+        price: s?.price ?? p.price,
+        upside_pct:
+          typeof s?.upsidePct === "number" ? s.upsidePct : p.upside_pct,
       };
     }),
   };

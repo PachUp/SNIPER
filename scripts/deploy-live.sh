@@ -1,10 +1,24 @@
 #!/usr/bin/env bash
-# Sync desk runtime → committed seeds, verify build, commit, push (Netlify rebuilds).
+# Sync desk runtime → committed seeds, verify build, commit, push, verify live.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
 bash "$ROOT/scripts/sync-runtime-to-seeds.sh"
+
+# Keep untouched EP/TP/SL current before every ship (Audit-edited tickers frozen).
+if [[ -f "$ROOT/.env.local" ]] || [[ -n "${FMP_API_KEY:-}" ]]; then
+  echo "Refreshing untouched catalog levels (FMP + FvIndustries)…"
+  if ! npm run refresh:levels >/tmp/sniper-refresh-levels.log 2>&1; then
+    echo "LEVELS_REFRESH_FAILED — not pushing. See /tmp/sniper-refresh-levels.log"
+    tail -n 40 /tmp/sniper-refresh-levels.log
+    exit 1
+  fi
+  # refresh writes seed+runtime; re-sync in case other runtime files lagged
+  bash "$ROOT/scripts/sync-runtime-to-seeds.sh"
+else
+  echo "Skipping levels refresh (no FMP_API_KEY / .env.local)"
+fi
 
 # Fail fast locally — Netlify keeps the old Published deploy if `next build` errors.
 # Wipe .next first: a concurrent `next dev` often leaves a corrupt cache that fails with
@@ -63,11 +77,22 @@ if npx --yes netlify-cli status 2>/dev/null | grep -qi 'Logged in'; then
     if [[ -n "${PW}" ]]; then
       npx --yes netlify-cli env:set ADMIN_PASSWORD "${PW}" --force >/dev/null 2>&1 || true
     fi
+    FMP="$(grep -E '^FMP_API_KEY=' .env.local | head -1 | cut -d= -f2- | sed -e 's/^["'\'']//' -e 's/["'\'']$//')"
+    if [[ -n "${FMP}" ]]; then
+      npx --yes netlify-cli env:set FMP_API_KEY "${FMP}" --force >/dev/null 2>&1 || true
+    fi
   fi
   npx --yes netlify-cli deploy --build --prod --message "deploy-live.sh $(git rev-parse --short HEAD)" || {
-    echo "CLI deploy failed — Git push still done; check Netlify Deploys UI."
+    echo "CLI deploy failed — Git push still done; will still verify live catalog."
   }
 fi
 
+echo "Verifying live catalog matches this push…"
+if ! bash "$ROOT/scripts/verify-live-catalog.sh"; then
+  echo "LIVE_STALE — pushed, but https://sniper-proj.netlify.app/ is not serving this catalog yet."
+  exit 1
+fi
+
 echo "DEPLOY_PUSHED"
-echo "Pushed $branch → https://sniper-proj.netlify.app/ (confirm new deploy is Published in Netlify)"
+echo "LIVE_VERIFIED"
+echo "Live site matches local catalog → https://sniper-proj.netlify.app/"
