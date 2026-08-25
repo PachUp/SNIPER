@@ -51,16 +51,16 @@
     "ticker": "COP",
     "name": "ConocoPhillips",
     "sector": "Energy",
-    "price": 133.35,
+    "price": 131.84,
     "fairValue": 147.68,
-    "upsidePct": 10.7,
+    "upsidePct": 12,
     "beta": 1.18,
     "sharpe": 0.91,
     "reasoning": "Oil jumped back above $100 a barrel — cash flow jumped $11.7B → $16.8B; ~28% below our fair value; profits down about 57%.",
     "levels": {
-      "ep": 133.35,
+      "ep": 131.84,
       "tp": 147.68,
-      "sl": 120.02
+      "sl": 118.66
     },
     "alternatives": [
       "XOM",
@@ -75,16 +75,16 @@
     "ticker": "SLB",
     "name": "Schlumberger",
     "sector": "Energy",
-    "price": 54,
+    "price": 53.29,
     "fairValue": 63.83,
-    "upsidePct": 18.2,
+    "upsidePct": 19.8,
     "beta": 1.42,
     "sharpe": 0.82,
     "reasoning": "Schlumberger provides oilfield services, equipment, and digital solutions to energy companies globally.",
     "levels": {
-      "ep": 54,
+      "ep": 53.29,
       "tp": 63.83,
-      "sl": 48.6
+      "sl": 47.96
     },
     "alternatives": [
       "XOM",
@@ -123,16 +123,16 @@
     "ticker": "NUE",
     "name": "Nucor",
     "sector": "Materials",
-    "price": 244.64,
+    "price": 247.55,
     "fairValue": 267.5,
-    "upsidePct": 9.3,
+    "upsidePct": 8.1,
     "beta": 1.25,
     "sharpe": 0.95,
     "reasoning": "Nucor produces steel and steel products using electric-arc furnaces across the United States.",
     "levels": {
-      "ep": 244.64,
+      "ep": 247.55,
       "tp": 267.5,
-      "sl": 220.18
+      "sl": 222.8
     },
     "alternatives": [
       "LIN",
@@ -171,16 +171,16 @@
     "ticker": "NEM",
     "name": "Newmont",
     "sector": "Materials",
-    "price": 131.84,
+    "price": 135.14,
     "fairValue": 189.88,
-    "upsidePct": 44,
+    "upsidePct": 40.5,
     "beta": 0.48,
     "sharpe": 0.7,
     "reasoning": "Cash flow jumped $2.6B → $7.3B — profits up about 1961%; #2 growth rank of 11 in Gold.",
     "levels": {
-      "ep": 131.84,
+      "ep": 135.14,
       "tp": 189.88,
-      "sl": 118.66
+      "sl": 121.63
     },
     "alternatives": [
       "LIN",
@@ -219,16 +219,16 @@
     "ticker": "GE",
     "name": "GE Aerospace",
     "sector": "Industrials",
-    "price": 341.84,
+    "price": 349.54,
     "fairValue": 438.42,
-    "upsidePct": 28.3,
+    "upsidePct": 25.4,
     "beta": 1.43,
     "sharpe": 1.15,
     "reasoning": "Cash flow jumped $2.4B → $7.3B — profits up about 2490%; top-half growth (#8/19) in Aerospace & Defense.",
     "levels": {
-      "ep": 341.84,
+      "ep": 349.54,
       "tp": 438.42,
-      "sl": 307.66
+      "sl": 314.59
     },
     "alternatives": [
       "CAT",
@@ -243,16 +243,16 @@
     "ticker": "UNP",
     "name": "Union Pacific",
     "sector": "Industrials",
-    "price": 309.86,
+    "price": 309.59,
     "fairValue": 382.63,
-    "upsidePct": 23.5,
+    "upsidePct": 23.6,
     "beta": 0.99,
     "sharpe": 1,
     "reasoning": "~31% below our fair value.",
     "levels": {
-      "ep": 309.86,
+      "ep": 309.59,
       "tp": 382.63,
-      "sl": 278.87
+      "sl": 278.63
     },
     "alternatives": [
       "CAT",
@@ -267,16 +267,16 @@
     "ticker": "HON",
     "name": "HON",
     "sector": "Industrials",
-    "price": 214.77,
+    "price": 215.68,
     "fairValue": 393.41,
-    "upsidePct": 83.2,
+    "upsidePct": 82.4,
     "beta": 0.81,
     "sharpe": -0.331,
     "reasoning": "Cheaper than peers at 16× earnings vs 22× median — ~76% below our fair value.",
     "levels": {
-      "ep": 214.77,
+      "ep": 215.68,
       "tp": 393.41,
-      "sl": 193.29
+      "sl": 194.11
     },
     "alternatives": [
       "CAT",
@@ -291,16 +291,16 @@
     "ticker": "AMZN",
     "name": "Amazon",
     "sector": "Consumer Discretionary",
-    "price": 262.07,
+    "price": 261.06,
     "fairValue": 281.55,
-    "upsidePct": 7.4,
+    "upsidePct": 7.8,
     "beta": 1.38,
     "sharpe": 1.25,
     "reasoning": "AWS cloud growth plus tighter retail costs are the twin earnings drivers — AI capacity spend is the overhang, not the demand — cash flow jumped $-14.7B → $7.7B; profits up about 475%; top-half growth (#3/12) in Specialty Retail.",
     "levels": {
-      "ep": 262.07,
+      "ep": 261.06,
       "tp": 281.55,
-      "sl": 235.86
+      "sl": 234.95
     },
     "alternatives": [
       "HD",
@@ -367,16 +367,16 @@
     "ticker": "NKE",
     "name": "Nike",
     "sector": "Consumer Discretionary",
-    "price": 40.75,
-    "fairValue": 51.06,
-    "upsidePct": 25.3,
+    "price": 39.48,
+    "fairValue": 50.78,
+    "upsidePct": 28.6,
     "beta": 1.05,
     "sharpe": 0.6,
     "reasoning": "Nike designs and markets athletic footwear, apparel, and equipment sold worldwide.",
     "levels": {
-      "ep": 40.75,
-      "tp": 51.06,
-      "sl": 36.68
+      "ep": 39.48,
+      "tp": 50.78,
+      "sl": 35.53
     },
     "alternatives": [
       "HD",
@@ -392,16 +392,16 @@
     "ticker": "MCD",
     "name": "McDonald's",
     "sector": "Consumer Discretionary",
-    "price": 272.54,
+    "price": 268.1,
     "fairValue": 315.46,
-    "upsidePct": 15.7,
+    "upsidePct": 17.7,
     "beta": 0.7,
     "sharpe": 1.12,
     "reasoning": "McDonald's franchises and operates quick-service restaurants under the McDonald's brand globally.",
     "levels": {
-      "ep": 272.54,
+      "ep": 268.1,
       "tp": 315.46,
-      "sl": 245.29
+      "sl": 241.29
     },
     "alternatives": [
       "HD",
@@ -417,16 +417,16 @@
     "ticker": "PG",
     "name": "Procter & Gamble",
     "sector": "Consumer Staples",
-    "price": 146.59,
+    "price": 145.4,
     "fairValue": 157.78,
-    "upsidePct": 7.6,
+    "upsidePct": 8.5,
     "beta": 0.45,
     "sharpe": 1.1,
     "reasoning": "Procter & Gamble manufactures consumer packaged goods including personal care, fabric care, and household brands.",
     "levels": {
-      "ep": 146.59,
+      "ep": 145.4,
       "tp": 157.78,
-      "sl": 131.93
+      "sl": 130.86
     },
     "alternatives": [
       "KO",
@@ -467,16 +467,16 @@
     "ticker": "PEP",
     "name": "PepsiCo",
     "sector": "Consumer Staples",
-    "price": 144.67,
+    "price": 142.27,
     "fairValue": 155.64,
-    "upsidePct": 7.6,
+    "upsidePct": 9.4,
     "beta": 0.58,
     "sharpe": 1.02,
     "reasoning": "PepsiCo produces snacks and beverages under brands such as Pepsi, Frito-Lay, and Gatorade.",
     "levels": {
-      "ep": 144.67,
+      "ep": 142.27,
       "tp": 155.64,
-      "sl": 130.2
+      "sl": 128.04
     },
     "alternatives": [
       "PG",
@@ -517,16 +517,16 @@
     "ticker": "WMT",
     "name": "Walmart",
     "sector": "Consumer Staples",
-    "price": 106.49,
+    "price": 105.38,
     "fairValue": 129.9,
-    "upsidePct": 22,
+    "upsidePct": 23.3,
     "beta": 0.52,
     "sharpe": 1.18,
     "reasoning": "Walmart operates discount retail stores, clubs, and e-commerce serving everyday consumers worldwide.",
     "levels": {
-      "ep": 106.49,
+      "ep": 105.38,
       "tp": 129.9,
-      "sl": 95.84
+      "sl": 94.84
     },
     "alternatives": [
       "PG",
@@ -542,16 +542,16 @@
     "ticker": "UNH",
     "name": "UnitedHealth",
     "sector": "Health Care",
-    "price": 398.76,
+    "price": 396.59,
     "fairValue": 473.89,
-    "upsidePct": 18.8,
+    "upsidePct": 19.5,
     "beta": 0.75,
     "sharpe": 1.05,
     "reasoning": "UnitedHealth provides health insurance and healthcare services through UnitedHealthcare and Optum.",
     "levels": {
-      "ep": 398.76,
+      "ep": 396.59,
       "tp": 473.89,
-      "sl": 358.88
+      "sl": 356.93
     },
     "alternatives": [
       "JNJ",
@@ -567,16 +567,16 @@
     "ticker": "JNJ",
     "name": "Johnson & Johnson",
     "sector": "Health Care",
-    "price": 273.04,
+    "price": 273.14,
     "fairValue": 385.32,
     "upsidePct": 41.1,
     "beta": 0.26,
     "sharpe": 0.98,
     "reasoning": "Profits up about 49%.",
     "levels": {
-      "ep": 273.04,
+      "ep": 273.14,
       "tp": 385.32,
-      "sl": 245.74
+      "sl": 245.83
     },
     "alternatives": [
       "UNH",
@@ -592,16 +592,16 @@
     "ticker": "LLY",
     "name": "Eli Lilly",
     "sector": "Health Care",
-    "price": 1247.92,
+    "price": 1233.49,
     "fairValue": 1369.48,
-    "upsidePct": 9.7,
+    "upsidePct": 11,
     "beta": 0.5,
     "sharpe": 1.4,
     "reasoning": "Cash flow jumped $5.4B → $9.0B — #1 growth rank of 8 in Drug Manufacturers - General; profits up about 230%.",
     "levels": {
-      "ep": 1247.92,
+      "ep": 1233.49,
       "tp": 1369.48,
-      "sl": 1123.13
+      "sl": 1110.14
     },
     "alternatives": [
       "UNH",
@@ -642,16 +642,16 @@
     "ticker": "ABBV",
     "name": "AbbVie",
     "sector": "Health Care",
-    "price": 264.52,
+    "price": 265.79,
     "fairValue": 285.92,
-    "upsidePct": 8.1,
+    "upsidePct": 7.6,
     "beta": 0.68,
     "sharpe": 1,
     "reasoning": "AbbVie develops and markets specialty pharmaceuticals including immunology and oncology therapies.",
     "levels": {
-      "ep": 264.52,
+      "ep": 265.79,
       "tp": 285.92,
-      "sl": 238.07
+      "sl": 239.21
     },
     "alternatives": [
       "UNH",
@@ -667,16 +667,16 @@
     "ticker": "JPM",
     "name": "JPMorgan Chase",
     "sector": "Financials",
-    "price": 356.39,
+    "price": 356.69,
     "fairValue": 491.86,
-    "upsidePct": 38,
+    "upsidePct": 37.9,
     "beta": 1.04,
     "sharpe": 1.12,
     "reasoning": "Interest income is holding up as the Fed stays on hold, and deal fees are recovering — JPMorgan still looks like the strongest big bank this cycle — profits up about 51%; ~43% below our fair value; cash flow up $78.1B → $100.9B.",
     "levels": {
-      "ep": 356.39,
+      "ep": 356.69,
       "tp": 491.86,
-      "sl": 320.75
+      "sl": 321.02
     },
     "alternatives": [
       "BAC",
@@ -692,16 +692,16 @@
     "ticker": "BAC",
     "name": "Bank of America",
     "sector": "Financials",
-    "price": 62.33,
+    "price": 62.43,
     "fairValue": 72.21,
-    "upsidePct": 15.8,
+    "upsidePct": 15.7,
     "beta": 1.24,
     "sharpe": 0.9,
     "reasoning": "Deposits and consumer loans are the swing factors into the Fed decision; a soft landing would help money-center banks re-rate — cash flow jumped $-7.2B → $12.6B; cheaper than peers at 14× earnings vs 17× median; ~20% below our fair value.",
     "levels": {
-      "ep": 62.33,
+      "ep": 62.43,
       "tp": 72.21,
-      "sl": 56.1
+      "sl": 56.19
     },
     "alternatives": [
       "JPM",
@@ -717,16 +717,16 @@
     "ticker": "GS",
     "name": "Goldman Sachs",
     "sector": "Financials",
-    "price": 1036.28,
+    "price": 1058.88,
     "fairValue": 1155.6,
-    "upsidePct": 11.5,
+    "upsidePct": 9.1,
     "beta": 1.31,
     "sharpe": 0.95,
     "reasoning": "Profits up about 53% — ~19% below our fair value; cash flow slipped $1.6B → $-47.2B.",
     "levels": {
-      "ep": 1036.28,
+      "ep": 1058.88,
       "tp": 1155.6,
-      "sl": 932.65
+      "sl": 952.99
     },
     "alternatives": [
       "JPM",
@@ -742,16 +742,16 @@
     "ticker": "V",
     "name": "Visa",
     "sector": "Financials",
-    "price": 382.41,
+    "price": 384.14,
     "fairValue": 436,
-    "upsidePct": 14,
+    "upsidePct": 13.5,
     "beta": 0.8,
     "sharpe": 1.3,
     "reasoning": "Card spending near World Cup cities jumped about 20%, a clean reminder that travel and big events still feed Visa's fees — cash flow jumped $14.5B → $21.6B; top-half growth (#3/9) in Credit Services; ~20% below our fair value.",
     "levels": {
-      "ep": 382.41,
+      "ep": 384.14,
       "tp": 436,
-      "sl": 344.17
+      "sl": 345.73
     },
     "alternatives": [
       "JPM",
@@ -767,16 +767,16 @@
     "ticker": "MA",
     "name": "Mastercard",
     "sector": "Financials",
-    "price": 599.86,
+    "price": 599.37,
     "fairValue": 810.02,
-    "upsidePct": 35,
+    "upsidePct": 35.1,
     "beta": 0.83,
     "sharpe": 1.32,
     "reasoning": "Payments stocks watch consumer spending into busy earnings week — cash flow jumped $8.6B → $16.9B; #1 growth rank of 9 in Credit Services; profits up about 51%.",
     "levels": {
-      "ep": 599.86,
+      "ep": 599.37,
       "tp": 810.02,
-      "sl": 539.87
+      "sl": 539.43
     },
     "alternatives": [
       "JPM",
@@ -792,16 +792,16 @@
     "ticker": "AAPL",
     "name": "Apple",
     "sector": "Information Technology",
-    "price": 310.34,
+    "price": 309.9,
     "fairValue": 340.72,
-    "upsidePct": 9.8,
+    "upsidePct": 9.9,
     "beta": 1.05,
     "sharpe": 1.2,
     "reasoning": "Services and the huge installed base cushion hardware cycles; AI features are the next way to earn more from each device owner.",
     "levels": {
-      "ep": 310.34,
+      "ep": 309.9,
       "tp": 340.72,
-      "sl": 279.31
+      "sl": 278.91
     },
     "alternatives": [
       "MSFT",
@@ -843,16 +843,16 @@
     "name": "Salesforce",
     "sector": "Information Technology",
     "industry": "Software - Application",
-    "price": 209.06,
-    "fairValue": 264.13,
-    "upsidePct": 26.3,
+    "price": 205.69,
+    "fairValue": 269.78,
+    "upsidePct": 31.2,
     "beta": 1.28,
     "sharpe": 0.95,
     "reasoning": "Enterprise CRM leader with sticky subscriptions — watch AI (Agentforce) attach rates and margin expansion versus cloud spend growth.",
     "levels": {
-      "ep": 209.06,
-      "tp": 264.13,
-      "sl": 188.15
+      "ep": 205.69,
+      "tp": 269.78,
+      "sl": 185.12
     },
     "alternatives": [
       "MSFT",
@@ -867,16 +867,16 @@
     "ticker": "NVDA",
     "name": "NVIDIA",
     "sector": "Information Technology",
-    "price": 208.48,
+    "price": 213.05,
     "fairValue": 237.01,
-    "upsidePct": 13.7,
+    "upsidePct": 11.2,
     "beta": 2.34,
     "sharpe": 1.3,
     "reasoning": "Data-center chips are still the scarce asset in AI buildouts; the debate is how long big cloud buyers keep spending, not who leads the product — cheaper than peers at 31× earnings vs 59× median; cash flow jumped $8.1B → $96.7B; profits up about 2649%.",
     "levels": {
-      "ep": 208.48,
+      "ep": 213.05,
       "tp": 237.01,
-      "sl": 187.63
+      "sl": 191.75
     },
     "alternatives": [
       "AAPL",
@@ -992,16 +992,16 @@
     "ticker": "NFLX",
     "name": "Netflix",
     "sector": "Communication Services",
-    "price": 80.01,
+    "price": 82.23,
     "fairValue": 93.53,
-    "upsidePct": 16.9,
+    "upsidePct": 13.7,
     "beta": 1.67,
     "sharpe": 1.1,
     "reasoning": "Ad tier and paid-sharing keep lifting what each subscriber pays, even after a post-earnings selloff on slower growth optics; buybacks are running hard — cash flow jumped $-132M → $9.5B; cheaper than peers at 21× earnings vs 27× median; #1 growth rank of 10 in Entertainment.",
     "levels": {
-      "ep": 80.01,
+      "ep": 82.23,
       "tp": 93.53,
-      "sl": 72.01
+      "sl": 74.01
     },
     "alternatives": [
       "GOOGL",
@@ -1042,16 +1042,16 @@
     "ticker": "T",
     "name": "AT&T",
     "sector": "Communication Services",
-    "price": 25.69,
+    "price": 25.76,
     "fairValue": 31.1,
-    "upsidePct": 21.1,
+    "upsidePct": 20.7,
     "beta": 0.54,
     "sharpe": 0.7,
     "reasoning": "Wireless and fiber cash paid for a bigger stock buyback — about $10B after a clean earnings beat — so more cash is going back to owners — cheaper than peers at 7× earnings vs 10× median; profits up about 373%; ~34% below our fair value.",
     "levels": {
-      "ep": 25.69,
+      "ep": 25.76,
       "tp": 31.1,
-      "sl": 23.12
+      "sl": 23.18
     },
     "alternatives": [
       "GOOGL",
@@ -1139,16 +1139,16 @@
     "ticker": "AEP",
     "name": "American Electric Power",
     "sector": "Utilities",
-    "price": 121.98,
+    "price": 122.77,
     "fairValue": 141.5,
-    "upsidePct": 16,
+    "upsidePct": 15.3,
     "beta": 0.57,
     "sharpe": 0.88,
     "reasoning": "Cash flow jumped $-1.9B → $6.8B — #3 growth rank of 17 in Utilities - Regulated Electric; profits up about 55%.",
     "levels": {
-      "ep": 121.98,
+      "ep": 122.77,
       "tp": 141.5,
-      "sl": 109.78
+      "sl": 110.49
     },
     "alternatives": [
       "NEE",
@@ -1163,16 +1163,16 @@
     "ticker": "PLD",
     "name": "Prologis",
     "sector": "Real Estate",
-    "price": 143.35,
+    "price": 143.32,
     "fairValue": 154.15,
-    "upsidePct": 7.5,
+    "upsidePct": 7.6,
     "beta": 1.05,
     "sharpe": 0.85,
     "reasoning": "Prologis owns and operates logistics real estate used by e-commerce and supply-chain customers worldwide.",
     "levels": {
-      "ep": 143.35,
+      "ep": 143.32,
       "tp": 154.15,
-      "sl": 129.01
+      "sl": 128.99
     },
     "alternatives": [
       "AMT",
@@ -1187,16 +1187,16 @@
     "ticker": "AMT",
     "name": "American Tower",
     "sector": "Real Estate",
-    "price": 178.39,
+    "price": 178.57,
     "fairValue": 210,
-    "upsidePct": 17.7,
+    "upsidePct": 17.6,
     "beta": 0.9,
     "sharpe": 0.82,
     "reasoning": "#2 growth rank of 5 in REIT - Specialty — profits up about 43%; ~27% below our fair value.",
     "levels": {
-      "ep": 178.39,
+      "ep": 178.57,
       "tp": 210,
-      "sl": 160.55
+      "sl": 160.71
     },
     "alternatives": [
       "PLD",
@@ -1211,16 +1211,16 @@
     "ticker": "O",
     "name": "Realty Income",
     "sector": "Real Estate",
-    "price": 63.17,
+    "price": 62.83,
     "fairValue": 97.69,
-    "upsidePct": 54.6,
+    "upsidePct": 55.5,
     "beta": 0.8,
     "sharpe": 0.78,
     "reasoning": "Cash flow jumped $1.3B → $3.9B — #1 growth rank of 6 in REIT - Retail; ~52% below our fair value.",
     "levels": {
-      "ep": 63.17,
+      "ep": 62.83,
       "tp": 97.69,
-      "sl": 56.85
+      "sl": 56.55
     },
     "alternatives": [
       "PLD",
@@ -1235,16 +1235,16 @@
     "ticker": "SPG",
     "name": "Simon Property Group",
     "sector": "Real Estate",
-    "price": 220.73,
+    "price": 218.99,
     "fairValue": 238.21,
-    "upsidePct": 7.9,
+    "upsidePct": 8.8,
     "beta": 1.4,
     "sharpe": 0.72,
     "reasoning": "Cheaper than peers at 16× earnings vs 34× median — profits up about 116%.",
     "levels": {
-      "ep": 220.73,
+      "ep": 218.99,
       "tp": 238.21,
-      "sl": 198.66
+      "sl": 197.09
     },
     "alternatives": [
       "PLD",
@@ -1283,16 +1283,16 @@
     "ticker": "UBER",
     "name": "Uber Technologies",
     "sector": "Industrials",
-    "price": 79.29,
+    "price": 80.35,
     "fairValue": 118.78,
-    "upsidePct": 49.8,
+    "upsidePct": 47.8,
     "beta": 1.21,
     "sharpe": 0.88,
     "reasoning": "Ride and delivery fees are rising, and the Delivery Hero bid would grow Uber Eats in Europe if regulators clear it — cheaper than peers at 18× earnings vs 37× median; cash flow jumped $-743M → $9.8B; #2 growth rank of 27 in Software - Application.",
     "levels": {
-      "ep": 79.29,
+      "ep": 80.35,
       "tp": 118.78,
-      "sl": 71.36
+      "sl": 72.32
     },
     "alternatives": [
       "LYFT",
@@ -1331,16 +1331,16 @@
     "ticker": "SPOT",
     "name": "Spotify",
     "sector": "Communication Services",
-    "price": 537.84,
+    "price": 552.57,
     "fairValue": 686.25,
-    "upsidePct": 27.6,
+    "upsidePct": 24.2,
     "beta": 1.7,
     "sharpe": 0.8,
     "reasoning": "Higher prices for Premium users and better margins show Spotify can earn more from listening without only chasing new subscribers — cash flow jumped $276M → $2.9B; profits up about 5118%; #2 growth rank of 7 in Internet Content & Information.",
     "levels": {
-      "ep": 537.84,
+      "ep": 552.57,
       "tp": 686.25,
-      "sl": 484.06
+      "sl": 497.31
     },
     "alternatives": [
       "NFLX",
@@ -1355,16 +1355,16 @@
     "ticker": "DASH",
     "name": "DoorDash",
     "sector": "Consumer Discretionary",
-    "price": 229.06,
+    "price": 233.5,
     "fairValue": 315.46,
-    "upsidePct": 37.7,
+    "upsidePct": 35.1,
     "beta": 1.93,
     "sharpe": 0.75,
     "reasoning": "More restaurants and more ads on the app are lifting profits as people keep ordering food online — cash flow jumped $455M → $2.2B; profits up about 517%; ~59% below our fair value.",
     "levels": {
-      "ep": 229.06,
+      "ep": 233.5,
       "tp": 315.46,
-      "sl": 206.15
+      "sl": 210.15
     },
     "alternatives": [
       "UBER",
@@ -1403,16 +1403,16 @@
     "ticker": "LYFT",
     "name": "Lyft",
     "sector": "Industrials",
-    "price": 17.68,
+    "price": 17.65,
     "fairValue": 25.32,
-    "upsidePct": 43.2,
+    "upsidePct": 43.5,
     "beta": 1.86,
     "sharpe": 0.55,
     "reasoning": "Cash flow jumped $-181M → $1.1B — profits up about 480%; ~60% below our fair value.",
     "levels": {
-      "ep": 17.68,
+      "ep": 17.65,
       "tp": 25.32,
-      "sl": 15.91
+      "sl": 15.89
     },
     "alternatives": [
       "UBER",
@@ -1427,16 +1427,16 @@
     "ticker": "YUM",
     "name": "Yum! Brands",
     "sector": "Consumer Discretionary",
-    "price": 157.35,
+    "price": 156.31,
     "fairValue": 177.9,
-    "upsidePct": 13.1,
+    "upsidePct": 13.8,
     "beta": 0.66,
     "sharpe": 1.1,
     "reasoning": "Yum Brands sets July 30 for its next earnings report — ~22% below our fair value.",
     "levels": {
-      "ep": 157.35,
+      "ep": 156.31,
       "tp": 177.9,
-      "sl": 141.62
+      "sl": 140.68
     },
     "alternatives": [
       "MCD",
@@ -1451,16 +1451,16 @@
     "ticker": "ROKU",
     "name": "Roku",
     "sector": "Communication Services",
-    "price": 158.18,
+    "price": 159.76,
     "fairValue": 282.38,
-    "upsidePct": 78.5,
+    "upsidePct": 76.8,
     "beta": 2,
     "sharpe": 0.5,
     "reasoning": "More streaming hours mean more ads and platform fees — that is how Roku turns attention into money — cash flow jumped $188M → $478M; profits up about 421%; ~65% below our fair value.",
     "levels": {
-      "ep": 158.18,
+      "ep": 159.76,
       "tp": 282.38,
-      "sl": 142.36
+      "sl": 143.78
     },
     "alternatives": [
       "NFLX",
@@ -1475,16 +1475,16 @@
     "ticker": "LULU",
     "name": "Lululemon",
     "sector": "Consumer Discretionary",
-    "price": 122.78,
+    "price": 118.33,
     "fairValue": 181.33,
-    "upsidePct": 47.7,
+    "upsidePct": 53.2,
     "beta": 0.9,
     "sharpe": 0.95,
     "reasoning": "Lululemon was downgraded after growth looked slower — cheaper than peers at 9× earnings vs 30× median; profits up about 85%; ~44% below our fair value.",
     "levels": {
-      "ep": 122.78,
+      "ep": 118.33,
       "tp": 181.33,
-      "sl": 110.5
+      "sl": 106.5
     },
     "alternatives": [
       "NKE",
@@ -1539,16 +1539,16 @@
     "ticker": "AMH",
     "name": "American Homes 4 Rent",
     "sector": "Real Estate",
-    "price": 34.81,
+    "price": 34.56,
     "fairValue": 55.02,
-    "upsidePct": 58.1,
+    "upsidePct": 59.2,
     "beta": 0.81,
     "sharpe": -0.68,
     "reasoning": "Cash flow jumped $473M → $746M — ~63% below our fair value; profits up about 66%.",
     "levels": {
-      "ep": 34.81,
+      "ep": 34.56,
       "tp": 55.02,
-      "sl": 31.33
+      "sl": 31.1
     },
     "alternatives": [],
     "business": "American Homes 4 Rent owns and leases single-family rental homes across the United States.",
@@ -1579,16 +1579,16 @@
     "ticker": "BAP",
     "name": "Credicorp",
     "sector": "Financials",
-    "price": 379.74,
+    "price": 383.3,
     "fairValue": 668.05,
-    "upsidePct": 75.9,
+    "upsidePct": 74.3,
     "beta": 0.89,
     "sharpe": 1.728,
     "reasoning": "Cash flow jumped $3.3B → $7.7B — ~74% below our fair value; #3 growth rank of 32 in Banks - Regional.",
     "levels": {
-      "ep": 379.74,
+      "ep": 383.3,
       "tp": 668.05,
-      "sl": 341.77
+      "sl": 344.97
     },
     "alternatives": [],
     "business": "Credicorp is Peru's largest financial holding company, operating universal banking, insurance, and microfinance businesses.",
@@ -1619,16 +1619,16 @@
     "ticker": "DOO",
     "name": "BRP",
     "sector": "Consumer Discretionary",
-    "price": 63.77,
+    "price": 61.57,
     "fairValue": 102.15,
-    "upsidePct": 60.2,
+    "upsidePct": 65.9,
     "beta": 0.98,
     "sharpe": -0.112,
     "reasoning": "~66% below our fair value — cash flow slipped $609M → $314M; profits down about 127%.",
     "levels": {
-      "ep": 63.77,
+      "ep": 61.57,
       "tp": 102.15,
-      "sl": 57.39
+      "sl": 55.41
     },
     "alternatives": [],
     "business": "BRP manufactures powersports vehicles including Ski-Doo snowmobiles, Can-Am ATVs, and Sea-Doo personal watercraft.",
@@ -1719,16 +1719,16 @@
     "ticker": "TIGO",
     "name": "Millicom",
     "sector": "Communication Services",
-    "price": 92.97,
+    "price": 95.23,
     "fairValue": 164.2,
-    "upsidePct": 76.6,
+    "upsidePct": 72.4,
     "beta": 0.86,
     "sharpe": 3.762,
     "reasoning": "Cash flow jumped $48M → $1.2B — profits up about 1430%; ~65% below our fair value.",
     "levels": {
-      "ep": 92.97,
+      "ep": 95.23,
       "tp": 164.2,
-      "sl": 83.67
+      "sl": 85.71
     },
     "alternatives": [],
     "business": "Millicom (Tigo) provides mobile, broadband, and pay-TV services across Latin America.",
@@ -1819,17 +1819,17 @@
     "ticker": "BA",
     "name": "Boeing",
     "sector": "Industrials",
-    "price": 210.46,
+    "price": 211.08,
     "fairValue": 274.29,
-    "upsidePct": 30.3,
+    "upsidePct": 29.9,
     "beta": 1.35,
     "sharpe": 0,
     "business": "Boeing designs and builds commercial airplanes, defense systems, and space vehicles.",
     "reasoning": "737 MAX deliveries and defense cash are the recovery spine — hitting production targets is what rebuilds trust in Boeing's earnings.",
     "levels": {
-      "ep": 210.46,
+      "ep": 211.08,
       "tp": 274.29,
-      "sl": 189.41
+      "sl": 189.97
     },
     "alternatives": [],
     "industry": "Aerospace & Defense",
@@ -1839,17 +1839,17 @@
     "ticker": "HAL",
     "name": "Halliburton",
     "sector": "Energy",
-    "price": 34.63,
+    "price": 33.8,
     "fairValue": 42.78,
-    "upsidePct": 23.5,
+    "upsidePct": 26.6,
     "beta": 1.4,
     "sharpe": 0,
     "business": "Halliburton provides oilfield services and equipment for drilling, completions, and production worldwide.",
     "reasoning": "When oil is high, oilfield work picks up; Halliburton's international mix helps if US fracking slows. there's also a 750m Venezuelan debt to HAL which would be most likely collected and added to free cash flow when the US would make an entry and take some of the oilfields they abandoned in 2008 for peace which no longer exits under current regime.",
     "levels": {
-      "ep": 34.63,
+      "ep": 33.8,
       "tp": 42.78,
-      "sl": 31.17
+      "sl": 30.42
     },
     "alternatives": [],
     "industry": "Oil & Gas Equipment & Services",
@@ -1940,17 +1940,17 @@
     "name": "Software - Application",
     "sector": "Information Technology",
     "industry": "Software - Application",
-    "price": 49.05,
+    "price": 50.07,
     "fairValue": 82.11,
-    "upsidePct": 67.4,
+    "upsidePct": 64,
     "beta": 0.79,
     "sharpe": -0.51,
     "business": "Dynatrace sells AI-powered software observability that monitors application performance and cloud infrastructure for enterprises.",
     "reasoning": "Cash flow jumped $206M → $433M — ~73% below our fair value; profits up about 822%.",
     "levels": {
-      "ep": 49.05,
+      "ep": 50.07,
       "tp": 82.11,
-      "sl": 44.15
+      "sl": 45.06
     },
     "alternatives": [],
     "sortino": -0.671
@@ -1980,17 +1980,17 @@
     "name": "Packaged Foods",
     "sector": "Consumer Staples",
     "industry": "Packaged Foods",
-    "price": 31.79,
+    "price": 32.43,
     "fairValue": 45.88,
-    "upsidePct": 44.3,
+    "upsidePct": 41.5,
     "beta": 0.48,
     "sharpe": -1.395,
     "business": "Pilgrim's Pride raises, processes, and sells chicken and prepared poultry products globally.",
     "reasoning": "Cheaper than peers at 8× earnings vs 16× median — cash flow jumped $-55M → $661M; #2 growth rank of 7 in Packaged Foods.",
     "levels": {
-      "ep": 31.79,
+      "ep": 32.43,
       "tp": 45.88,
-      "sl": 28.61
+      "sl": 29.19
     },
     "alternatives": [],
     "sortino": -1.795
@@ -2000,17 +2000,17 @@
     "name": "Health Information Services",
     "sector": "Health Care",
     "industry": "Health Information Services",
-    "price": 59.49,
+    "price": 57.23,
     "fairValue": 116.73,
-    "upsidePct": 96.2,
+    "upsidePct": 104,
     "beta": 1.72,
     "sharpe": 3.915,
     "business": "BrightSpring Health Group delivers home- and community-based healthcare, pharmacy, and behavioral health services in the United States.",
     "reasoning": "Cash flow jumped $211M → $395M — ~79% below our fair value; profits up about 618%.",
     "levels": {
-      "ep": 59.49,
+      "ep": 57.23,
       "tp": 116.73,
-      "sl": 53.54
+      "sl": 51.51
     },
     "alternatives": [],
     "sortino": 6.132
@@ -2060,17 +2060,17 @@
     "name": "Banks - Regional",
     "sector": "Financials",
     "industry": "Banks - Regional",
-    "price": 101.82,
+    "price": 103.26,
     "fairValue": 151.93,
-    "upsidePct": 49.2,
+    "upsidePct": 47.1,
     "beta": 0.69,
     "sharpe": 2.106,
     "business": "Grupo Aval's Bancolombia is Colombia's largest bank, serving retail and corporate customers nationwide.",
     "reasoning": "Cheaper than peers at 9× earnings vs 13× median — cash flow jumped $4417.0B → $11210.7B; ~42% below our fair value.",
     "levels": {
-      "ep": 101.82,
+      "ep": 103.26,
       "tp": 151.93,
-      "sl": 91.64
+      "sl": 92.93
     },
     "alternatives": []
   },
@@ -2079,17 +2079,17 @@
     "name": "Credit Services",
     "sector": "Financials",
     "industry": "Credit Services",
-    "price": 11.4,
+    "price": 11.36,
     "fairValue": 18.99,
-    "upsidePct": 66.6,
+    "upsidePct": 67.2,
     "beta": 0.7,
     "sharpe": -1.171,
     "business": "Blue Owl Capital Corporation is a business development company that lends to and invests in middle-market private companies.",
     "reasoning": "Cheaper than peers at 16× earnings vs 26× median — cash flow jumped $-1.2B → $1.7B; ~68% below our fair value.",
     "levels": {
-      "ep": 11.4,
+      "ep": 11.36,
       "tp": 18.99,
-      "sl": 10.26
+      "sl": 10.22
     },
     "alternatives": []
   },
@@ -2098,17 +2098,17 @@
     "name": "Waste Management",
     "sector": "Industrials",
     "industry": "Waste Management",
-    "price": 41.5,
+    "price": 40.72,
     "fairValue": 71.48,
-    "upsidePct": 72.2,
+    "upsidePct": 75.5,
     "beta": 0.51,
     "sharpe": -1.188,
     "business": "GFL operates in Waste Management.",
     "reasoning": "Profits up about 1594% — cash flow slipped $251M → $175M.",
     "levels": {
-      "ep": 41.5,
+      "ep": 40.72,
       "tp": 71.48,
-      "sl": 37.35
+      "sl": 36.65
     },
     "alternatives": []
   },
@@ -2117,17 +2117,36 @@
     "name": "Utilities - Regulated Water",
     "sector": "Utilities",
     "industry": "Utilities - Regulated Water",
-    "price": 4.63,
+    "price": 4.8,
     "fairValue": 8.07,
-    "upsidePct": 74.3,
+    "upsidePct": 68.1,
     "beta": 0.19,
     "sharpe": 1.054,
     "business": "Sabesp provides regulated water supply and sanitation services to São Paulo, Brazil.",
     "reasoning": "Cash flow jumped $3.9B → $7.9B — profits up about 166%; ~46% below our fair value.",
     "levels": {
-      "ep": 4.63,
+      "ep": 4.8,
       "tp": 8.07,
-      "sl": 4.17
+      "sl": 4.32
+    },
+    "alternatives": []
+  },
+  {
+    "ticker": "SIRI",
+    "name": "Entertainment",
+    "sector": "Communication Services",
+    "industry": "Entertainment",
+    "price": 28.73,
+    "fairValue": 48.15,
+    "upsidePct": 67.6,
+    "beta": 0.86,
+    "sharpe": 0.772,
+    "business": "Sirius XM broadcasts satellite and streaming audio entertainment, including music, talk, and podcasts, across North America.",
+    "reasoning": "Cheaper than peers at 12× earnings vs 27× median — ~58% below our fair value.",
+    "levels": {
+      "ep": 28.73,
+      "tp": 48.15,
+      "sl": 25.86
     },
     "alternatives": []
   }
