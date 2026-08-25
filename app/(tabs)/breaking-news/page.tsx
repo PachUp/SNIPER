@@ -17,6 +17,7 @@ import {
   type HoldingNewsItem,
   type HoldingRef,
 } from "@/lib/holdingNews";
+import Skeleton from "@/components/Skeleton";
 
 export default function BreakingNewsPage() {
   const { t } = useI18n();
@@ -135,9 +136,7 @@ export default function BreakingNewsPage() {
       </div>
 
       {loading ? (
-        <div className="py-16 text-center text-terminal-muted">
-          {t("common.loading")}
-        </div>
+        <Skeleton variant="row" count={5} className="mt-2" />
       ) : !hasPortfolio ? (
         <div className="rounded-xl border border-terminal-border bg-terminal-panel px-5 py-12 text-center">
           <p className="text-sm leading-relaxed text-terminal-muted">

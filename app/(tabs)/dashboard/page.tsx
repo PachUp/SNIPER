@@ -43,6 +43,7 @@ import {
   livePortfolioReturnPct,
   returnSinceEntryPct,
 } from "@/lib/livePerformance";
+import Skeleton, { DashboardSkeleton } from "@/components/Skeleton";
 
 type HoldingView = {
   original: string;
@@ -585,11 +586,7 @@ export default function DashboardPage() {
       ? returnSinceEntryPct(popupUserEp, popupLive)
       : null;
   if (loading) {
-    return (
-      <div className="py-20 text-center text-terminal-muted">
-        {t("common.loading")}
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   if (!portfolio || (portfolio.holdings.length === 0 && added.length === 0)) {
@@ -721,7 +718,12 @@ export default function DashboardPage() {
       ) : null}
 
       {/* Top: performance */}
-      <div className="min-h-[220px] sm:min-h-[260px]">
+      <div className="relative min-h-[220px] sm:min-h-[260px]">
+        {quotesLoading && !hasAnyEntry ? (
+          <div className="absolute inset-0 z-10 flex items-center bg-black/40 px-1">
+            <Skeleton variant="block" className="w-full" />
+          </div>
+        ) : null}
         <PerformanceChart
           compact
           liveReturnPct={liveReturnPct}
@@ -734,7 +736,7 @@ export default function DashboardPage() {
         />
       </div>
 
-      <div className="mt-3">
+      <div className="mt-3 animate-fadeIn">
         <PortfolioRiskPanel
           holdings={holdings.map((h) => {
             const s =

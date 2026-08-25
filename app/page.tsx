@@ -11,13 +11,18 @@ export default function LandingPage() {
   const { t } = useI18n();
   const router = useRouter();
   const [hasPortfolio, setHasPortfolio] = useState(false);
+  const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
     setHasPortfolio(!!loadPortfolio());
   }, []);
 
   function startBuild() {
-    router.push("/build");
+    if (exiting) return;
+    setExiting(true);
+    window.setTimeout(() => {
+      router.push("/build");
+    }, 220);
   }
 
   return (
@@ -32,7 +37,9 @@ export default function LandingPage() {
           startBuild();
         }
       }}
-      className="relative flex min-h-[100dvh] cursor-pointer flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb"
+      className={`relative flex min-h-[100dvh] cursor-pointer flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb transition-opacity duration-200 ease-smooth ${
+        exiting ? "opacity-0" : "opacity-100"
+      }`}
     >
       <div
         aria-hidden
@@ -58,7 +65,11 @@ export default function LandingPage() {
         }}
       />
 
-      <div className="group relative select-none transition-transform duration-300 ease-smooth">
+      <div
+        className={`group relative select-none transition-transform duration-300 ease-smooth ${
+          exiting ? "scale-95" : "scale-100"
+        }`}
+      >
         <span className="glow block text-6xl font-black tracking-[0.28em] transition-transform duration-300 ease-smooth group-active:scale-[1.03] sm:text-8xl">
           {t("brand.build")}
         </span>

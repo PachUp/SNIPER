@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export type BuildStyle = "broad" | "growth";
 
 const OPTIONS: {
@@ -49,8 +51,17 @@ export default function BuildOptionPicker({
   onConfirm: () => void;
   busy?: boolean;
 }) {
+  const [flash, setFlash] = useState<BuildStyle | null>(null);
+
+  useEffect(() => {
+    if (!selected) return;
+    setFlash(selected);
+    const id = window.setTimeout(() => setFlash(null), 420);
+    return () => window.clearTimeout(id);
+  }, [selected]);
+
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl animate-fadeIn">
       <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
         Step 2 of 2 · style
       </p>
@@ -65,16 +76,17 @@ export default function BuildOptionPicker({
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {OPTIONS.map((opt) => {
           const on = selected === opt.id;
+          const flashing = flash === opt.id;
           return (
             <button
               key={opt.id}
               type="button"
               onClick={() => onSelect(opt.id)}
-              className={`rounded-2xl border p-4 text-left transition-colors ${
+              className={`rounded-2xl border p-4 text-left transition-transform duration-300 ease-smooth ${
                 on
-                  ? "border-terminal-accent bg-terminal-accent/10"
-                  : "border-terminal-border bg-terminal-panel hover:border-terminal-accent/40"
-              }`}
+                  ? "scale-[1.02] border-terminal-accent bg-terminal-accent/10"
+                  : "border-terminal-border bg-terminal-panel hover:border-terminal-accent/40 active:scale-[0.99]"
+              } ${flashing ? "opacity-100 ring-2 ring-terminal-accent/50" : ""}`}
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="text-sm font-bold tracking-wide text-white">
@@ -107,7 +119,7 @@ export default function BuildOptionPicker({
           type="button"
           onClick={onBack}
           disabled={busy}
-          className="text-xs tracking-[0.2em] text-terminal-muted hover:text-terminal-accent disabled:opacity-40"
+          className="text-xs tracking-[0.2em] text-terminal-muted transition-opacity hover:text-terminal-accent disabled:opacity-40"
         >
           ← BACK TO PICKS
         </button>
@@ -115,7 +127,7 @@ export default function BuildOptionPicker({
           type="button"
           onClick={onConfirm}
           disabled={!selected || busy}
-          className="rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.18em] text-black disabled:opacity-40"
+          className="rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.18em] text-black transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97] disabled:scale-100 disabled:opacity-40"
         >
           {busy ? "BUILDING…" : "BUILD THIS STYLE"}
         </button>

@@ -52,10 +52,26 @@ const config: Config = {
           "0%, 100%": { textShadow: "0 0 20px rgba(249,115,22,0.25)" },
           "50%": { textShadow: "0 0 36px rgba(249,115,22,0.55)" },
         },
+        skeleton: {
+          "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.01)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translateY(4px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        readyPulse: {
+          "0%": { opacity: "0", transform: "scale(0.96)" },
+          "40%": { opacity: "1", transform: "scale(1.02)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         shine: "shine 2s ease-in-out infinite",
         softGlow: "softGlow 3.2s ease-in-out infinite",
+        skeleton: "skeleton 1.4s ease-in-out infinite",
+        fadeIn: "fadeIn 0.45s ease-smooth both",
+        readyPulse: "readyPulse 0.55s ease-smooth both",
       },
     },
   },

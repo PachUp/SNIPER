@@ -5,6 +5,7 @@ import type { Idea, Stock } from "@/lib/types";
 import { useI18n } from "@/components/LanguageProvider";
 import ReasoningPopup from "@/components/ReasoningPopup";
 import CompactStockRow from "@/components/CompactStockRow";
+import Skeleton from "@/components/Skeleton";
 
 function ideaToStock(idea: Idea): Stock {
   return {
@@ -56,9 +57,7 @@ export default function IdeasPage() {
       </div>
 
       {loading ? (
-        <div className="py-16 text-center text-terminal-muted">
-          {t("common.loading")}
-        </div>
+        <Skeleton variant="row" count={8} className="mt-2" />
       ) : (
         <div className="grid auto-rows-min grid-cols-1 content-start gap-1 sm:grid-cols-2 lg:grid-cols-3">
           {ideas.map((idea) => (

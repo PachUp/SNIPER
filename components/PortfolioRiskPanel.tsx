@@ -62,7 +62,7 @@ export default function PortfolioRiskPanel({
   const shock = holdings.length ? equalShock : 3.5;
 
   return (
-    <section className="rounded-xl border border-terminal-border bg-terminal-panel p-3 sm:p-4">
+    <section className="animate-fadeIn rounded-xl border border-terminal-border bg-terminal-panel p-3 sm:p-4">
       <div className="flex items-start justify-between gap-2">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-terminal-accent">
