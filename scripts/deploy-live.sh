@@ -7,10 +7,15 @@ cd "$ROOT"
 bash "$ROOT/scripts/sync-runtime-to-seeds.sh"
 
 # Fail fast locally — Netlify keeps the old Published deploy if `next build` errors.
+# Wipe .next first: a concurrent `next dev` often leaves a corrupt cache that fails with
+# "Cannot find module for page: /api/…" / processTicksAndRejections noise.
 echo "Verifying production build…"
+rm -rf .next
 npm run build >/tmp/sniper-predeploy-build.log 2>&1 || {
   echo "BUILD_FAILED — not pushing. See /tmp/sniper-predeploy-build.log"
-  tail -n 40 /tmp/sniper-predeploy-build.log
+  # Prefer the real Next error line over the trailing stack frame the hook used to show.
+  grep -E "^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile|> Build )" /tmp/sniper-predeploy-build.log | tail -n 12 || true
+  tail -n 20 /tmp/sniper-predeploy-build.log
   exit 1
 }
 

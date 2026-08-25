@@ -32,7 +32,14 @@ if bash scripts/deploy-live.sh >/tmp/sniper-deploy-live.log 2>&1; then
     echo '{}'
   fi
 else
-  err="$(tail -n 3 /tmp/sniper-deploy-live.log 2>/dev/null | tr '\n' ' ' | sed 's/"/\\"/g')"
+  # Prefer Next's real error over trailing stack frames (processTicksAndRejections…).
+  err="$(
+    {
+      grep -E '^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile|BUILD_FAILED)' /tmp/sniper-deploy-live.log 2>/dev/null \
+        || grep -E '^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile)' /tmp/sniper-predeploy-build.log 2>/dev/null \
+        || tail -n 5 /tmp/sniper-deploy-live.log 2>/dev/null
+    } | head -n 3 | tr '\n' ' ' | sed 's/"/\\"/g'
+  )"
   printf '%s\n' "{\"followup_message\":\"Live deploy failed: ${err}\"}"
 fi
 exit 0

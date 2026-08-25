@@ -2111,5 +2111,24 @@
       "sl": 37.19
     },
     "alternatives": []
+  },
+  {
+    "ticker": "SBS",
+    "name": "Utilities - Regulated Water",
+    "sector": "Utilities",
+    "industry": "Utilities - Regulated Water",
+    "price": 5.31,
+    "fairValue": 8.07,
+    "upsidePct": 51.9,
+    "beta": 0.191,
+    "sharpe": 1.054,
+    "business": "Sabesp provides regulated water supply and sanitation services to São Paulo, Brazil.",
+    "reasoning": "Cash flow jumped $3.9B → $7.9B — profits up about 166%; ~46% below our fair value.",
+    "levels": {
+      "ep": 5.31,
+      "tp": 8.07,
+      "sl": 4.78
+    },
+    "alternatives": []
   }
 ]
