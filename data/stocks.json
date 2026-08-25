@@ -2073,5 +2073,43 @@
       "sl": 79.97
     },
     "alternatives": []
+  },
+  {
+    "ticker": "OBDC",
+    "name": "Credit Services",
+    "sector": "Financials",
+    "industry": "Credit Services",
+    "price": 11.64,
+    "fairValue": 18.99,
+    "upsidePct": 63.2,
+    "beta": 0.698,
+    "sharpe": -1.171,
+    "business": "Blue Owl Capital Corporation is a business development company that lends to and invests in middle-market private companies.",
+    "reasoning": "Cheaper than peers at 16× earnings vs 26× median — cash flow jumped $-1.2B → $1.7B; ~68% below our fair value.",
+    "levels": {
+      "ep": 11.64,
+      "tp": 18.99,
+      "sl": 10.48
+    },
+    "alternatives": []
+  },
+  {
+    "ticker": "GFL",
+    "name": "Waste Management",
+    "sector": "Industrials",
+    "industry": "Waste Management",
+    "price": 41.32,
+    "fairValue": 71.48,
+    "upsidePct": 73,
+    "beta": 0.513,
+    "sharpe": -1.188,
+    "business": "GFL operates in Waste Management.",
+    "reasoning": "Profits up about 1594% — cash flow slipped $251M → $175M.",
+    "levels": {
+      "ep": 41.32,
+      "tp": 71.48,
+      "sl": 37.19
+    },
+    "alternatives": []
   }
 ]
