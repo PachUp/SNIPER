@@ -44,6 +44,9 @@ import {
   returnSinceEntryPct,
 } from "@/lib/livePerformance";
 import Skeleton, { DashboardSkeleton } from "@/components/Skeleton";
+import { storageGet, storageSet } from "@/lib/safeStorage";
+
+const ENTRY_COACH_KEY = "sniper.entryCoach.v1";
 
 type HoldingView = {
   original: string;
@@ -89,6 +92,7 @@ export default function DashboardPage() {
   const [quoteNonce, setQuoteNonce] = useState(0);
 
   const [storageWarn, setStorageWarn] = useState(false);
+  const [entryCoachDismissed, setEntryCoachDismissed] = useState(true);
 
   function hydrateFromStorage() {
     setPortfolio(loadPortfolio());
@@ -98,6 +102,7 @@ export default function DashboardPage() {
     setRemoved(loadRemoved());
     setAdded(loadAdded());
     setReplaceStack(loadReplaceStack());
+    setEntryCoachDismissed(storageGet(ENTRY_COACH_KEY) === "true");
   }
 
   useEffect(() => {
@@ -301,6 +306,22 @@ export default function DashboardPage() {
     () => chartPositions.length > 0,
     [chartPositions]
   );
+
+  const showEntryCoach = !hasAnyEntry && !entryCoachDismissed;
+
+  const firstUnsetTicker = useMemo(() => {
+    for (const h of holdings) {
+      const ticker = h.current.toUpperCase();
+      const entry = entries[ticker];
+      if (typeof entry !== "number" || entry <= 0) return ticker;
+    }
+    return null;
+  }, [holdings, entries]);
+
+  function dismissEntryCoach() {
+    storageSet(ENTRY_COACH_KEY, "true");
+    setEntryCoachDismissed(true);
+  }
 
   // Must stay above any early return — hooks can't run after conditional returns.
   const weightSlices = useMemo(
@@ -604,6 +625,7 @@ export default function DashboardPage() {
   }
 
   const canAdd = added.length < MAX_PERSONAL_ADDS;
+  const demoteExtras = !hasAnyEntry;
 
   return (
     <div className="flex flex-col gap-3 pb-4">
@@ -620,15 +642,20 @@ export default function DashboardPage() {
             · {t("perf.tapRow")}
           </p>
         </div>
-        <div className="flex shrink-0 items-center gap-1.5">
+        <div
+          className={`flex shrink-0 items-center gap-1.5 transition-opacity ${
+            demoteExtras ? "opacity-35" : ""
+          }`}
+        >
           <span className="hidden text-[10px] text-terminal-muted sm:inline">
             {t("dash.addLeft", { n: MAX_PERSONAL_ADDS - added.length })}
           </span>
           <button
             type="button"
-            disabled={!canAdd}
+            disabled={!canAdd || demoteExtras}
             onClick={() => setAddOpen((v) => !v)}
             className="rounded-md border border-terminal-orange/40 bg-terminal-orange/10 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-terminal-orange disabled:opacity-40"
+            title={demoteExtras ? t("dash.entryCoachTitle") : undefined}
           >
             {t("dash.addMine")}
           </button>
@@ -637,7 +664,9 @@ export default function DashboardPage() {
               clearPortfolio();
               window.location.href = "/build";
             }}
-            className="rounded-md border border-terminal-border px-2 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
+            className="rounded-md border border-terminal-border px-2 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent disabled:opacity-40"
+            disabled={demoteExtras}
+            title={demoteExtras ? t("dash.entryCoachTitle") : undefined}
           >
             {t("dash.startOver")}
           </button>
@@ -647,6 +676,24 @@ export default function DashboardPage() {
       {storageWarn ? (
         <div className="rounded-lg border border-terminal-bad/40 bg-terminal-bad/10 px-3 py-2 text-[11px] leading-snug text-terminal-bad">
           {t("dash.storageBlocked")}
+        </div>
+      ) : null}
+
+      {showEntryCoach ? (
+        <div className="animate-fadeIn rounded-xl border border-terminal-accent/50 bg-terminal-accent/10 px-3.5 py-3">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-terminal-accent">
+            {t("dash.entryCoachTitle")}
+          </p>
+          <p className="mt-1.5 text-sm leading-relaxed text-white/90">
+            {t("dash.entryCoachBody")}
+          </p>
+          <button
+            type="button"
+            onClick={dismissEntryCoach}
+            className="mt-3 rounded-lg bg-terminal-accent px-4 py-2 text-[11px] font-bold tracking-[0.16em] text-black"
+          >
+            {t("dash.entryCoachCta")}
+          </button>
         </div>
       ) : null}
 
@@ -680,8 +727,11 @@ export default function DashboardPage() {
         </div>
       ) : null}
 
-      {addOpen && canAdd ? (
+      {addOpen && canAdd && !demoteExtras ? (
         <div className="rounded-lg border border-terminal-border bg-terminal-panel p-2">
+          <p className="mb-1.5 text-[10px] leading-snug text-terminal-muted">
+            {t("dash.addHint")}
+          </p>
           <input
             value={addQuery}
             onChange={(e) => setAddQuery(e.target.value)}
@@ -717,8 +767,12 @@ export default function DashboardPage() {
         </div>
       ) : null}
 
-      {/* Top: performance */}
-      <div className="relative min-h-[220px] sm:min-h-[260px]">
+      {/* Top: performance — secondary until first entry */}
+      <div
+        className={`relative min-h-[220px] sm:min-h-[260px] transition-opacity ${
+          !hasAnyEntry ? "opacity-55" : ""
+        }`}
+      >
         {quotesLoading && !hasAnyEntry ? (
           <div className="absolute inset-0 z-10 flex items-center bg-black/40 px-1">
             <Skeleton variant="block" className="w-full" />
@@ -736,7 +790,11 @@ export default function DashboardPage() {
         />
       </div>
 
-      <div className="mt-3 animate-fadeIn">
+      <div
+        className={`mt-3 animate-fadeIn transition-opacity ${
+          !hasAnyEntry ? "opacity-60" : ""
+        }`}
+      >
         <PortfolioRiskPanel
           holdings={holdings.map((h) => {
             const s =
@@ -753,7 +811,7 @@ export default function DashboardPage() {
         />
       </div>
 
-      {/* Stock panels — no compact symbol list */}
+      {/* Stock panels — primary surface for first entry */}
       <div>
         <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
           {holdings.map((h) => {
@@ -772,61 +830,80 @@ export default function DashboardPage() {
             const isSwitched =
               h.source === "ai" &&
               h.current.toUpperCase() !== h.original.toUpperCase();
+            const isCoachFocus =
+              showEntryCoach &&
+              firstUnsetTicker != null &&
+              s.ticker.toUpperCase() === firstUnsetTicker;
 
             return (
-              <StockTradePanel
+              <div
                 key={`panel-${h.original}-${h.current}`}
-                stock={{ ...s, levels, price: livePx ?? s.price }}
-                sinceEntry={sinceEntry}
-                weightPct={h.weightPct}
-                badge={
-                  h.source === "ai" ? t("dash.ourPick") : t("dash.yourPick")
+                className={
+                  isCoachFocus
+                    ? "rounded-xl ring-2 ring-terminal-accent/70 ring-offset-2 ring-offset-black animate-fadeIn"
+                    : undefined
                 }
-                livePrice={livePx}
-                onClick={() =>
-                  setPopup({
-                    ...s,
-                    levels,
-                    price: livePx ?? s.price,
-                  })
-                }
-                buyControl={
-                  <EditableEp
-                    plannedEp={s.levels.ep}
-                    value={userEp}
-                    priceOnly
-                    onSave={(price) => handleSaveEntry(s.ticker, price)}
-                  />
-                }
-                trailing={
-                  <>
-                    {h.source === "ai" && switchPool.length > 1 ? (
-                      <SwitchArrow
-                        pool={switchPool}
-                        currentTicker={h.current}
-                        onSwitch={(next) => handleSwitch(h.original, next)}
-                      />
-                    ) : null}
-                    {isSwitched ? (
-                      <button
-                        type="button"
-                        onClick={() => handleRevertSwitch(h.original)}
-                        className="px-0.5 text-[8px] uppercase text-white/50"
-                        title={t("dash.revertSwitch")}
-                      >
-                        ↺
-                      </button>
-                    ) : null}
-                  </>
-                }
-              />
+              >
+                {isCoachFocus ? (
+                  <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-terminal-accent">
+                    {t("dash.entryCoachFocus")}
+                  </p>
+                ) : null}
+                <StockTradePanel
+                  stock={{ ...s, levels, price: livePx ?? s.price }}
+                  sinceEntry={sinceEntry}
+                  weightPct={h.weightPct}
+                  badge={
+                    h.source === "ai" ? t("dash.ourPick") : t("dash.yourPick")
+                  }
+                  livePrice={livePx}
+                  onClick={() =>
+                    setPopup({
+                      ...s,
+                      levels,
+                      price: livePx ?? s.price,
+                    })
+                  }
+                  buyControl={
+                    <EditableEp
+                      plannedEp={s.levels.ep}
+                      value={userEp}
+                      priceOnly
+                      onSave={(price) => handleSaveEntry(s.ticker, price)}
+                    />
+                  }
+                  trailing={
+                    <>
+                      {h.source === "ai" && switchPool.length > 1 ? (
+                        <SwitchArrow
+                          pool={switchPool}
+                          currentTicker={h.current}
+                          onSwitch={(next) => handleSwitch(h.original, next)}
+                        />
+                      ) : null}
+                      {isSwitched ? (
+                        <button
+                          type="button"
+                          onClick={() => handleRevertSwitch(h.original)}
+                          className="px-0.5 text-[8px] uppercase text-white/50"
+                          title={t("dash.revertSwitch")}
+                        >
+                          ↺
+                        </button>
+                      ) : null}
+                    </>
+                  }
+                />
+              </div>
             );
           })}
         </div>
       </div>
 
       {/* Under panels: weight pie by sector → industries */}
-      <PortfolioWeightPie holdings={weightSlices} />
+      <div className={!hasAnyEntry ? "opacity-50" : undefined}>
+        <PortfolioWeightPie holdings={weightSlices} />
+      </div>
 
       {popup && (
         <ReasoningPopup

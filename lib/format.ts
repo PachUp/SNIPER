@@ -30,10 +30,10 @@ export function r2rFromLevels(levels: Levels | undefined | null): number | null 
   return reward / risk;
 }
 
-/** Display like "2.4R" (reward units per 1R risk from entry). */
+/** Display like "2.4" (reward units per 1 unit of risk from entry). */
 export function formatR2r(ratio: number | null | undefined): string {
   if (ratio == null || !Number.isFinite(ratio)) return "—";
-  return `${ratio.toFixed(1)}R`;
+  return ratio.toFixed(1);
 }
 
 /** Replace planned EP with the user's actual fill while keeping TP/SL. */

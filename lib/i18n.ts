@@ -9,19 +9,19 @@ const en: Dict = {
   "landing.seePortfolio": "SEE MY PORTFOLIO →",
 
   // nav
-  "nav.dashboard": "DASHBOARD",
+  "nav.dashboard": "YOURS",
   "nav.news": "YOUR NEWS",
   "nav.ideas": "IDEAS",
-  "nav.snipers": "SNIPER",
+  "nav.snipers": "HOUSE",
   "nav.admin": "ADMIN",
 
   // common
   "common.loading": "Loading…",
-  "common.potential": "{v} R2R",
-  "common.r2r": "{v} R2R",
-  "common.r2rHint": "Tap R2R for hypothetical P/L",
-  "common.hypoProfit": "If target hit: {v} profit",
-  "common.hypoLoss": "If stop hit: {v} loss",
+  "common.potential": "{v}× reward/risk",
+  "common.r2r": "{v}× reward/risk",
+  "common.r2rHint": "Tap for hypothetical profit vs loss",
+  "common.hypoProfit": "If sell target hit: {v} profit",
+  "common.hypoLoss": "If safety exit hit: {v} loss",
   "common.buy": "Buy",
   "common.sell": "Sell",
   "common.exit": "Exit",
@@ -33,21 +33,25 @@ const en: Dict = {
   "build.chosen": "{n} of {max} chosen",
   "build.title": "Pick a few famous companies you like",
   "build.subtitle":
-    "Choose 1–{max} well-known stocks. We'll complete a balanced portfolio of up to 12. Each card shows reward-to-risk (R2R) from buy → target vs buy → stop.",
+    "Choose 1–{max} well-known stocks. We’ll complete a portfolio of up to 12 with clear buy, sell, and exit levels. Cards can show reward vs risk from buy → sell target vs buy → safety exit.",
   "build.buildingCta": "BUILDING…",
   "build.pickForMe": "PICK FOR ME",
   "build.buildMine": "BUILD MY PORTFOLIO",
-  "build.needPick": "Pick at least {min} stock first (tap + on a card), then press BUILD.",
+  "build.needPick": "Pick at least {min} stock first (tap a logo), then press BUILD.",
   "build.failed": "Could not build your portfolio. Try again.",
   "build.timeout":
     "Build timed out — check your connection and try again.",
   "build.badResponse": "Build returned an empty portfolio. Try again.",
   "build.storageBlocked":
     "Your browser blocked saving (Private mode or in-app browser). Open this link in Safari or Chrome, then build again.",
-  "build.hintPick": "Select 1–4 stocks below, then press BUILD MY PORTFOLIO.",
+  "build.hintPick": "Tap 1–4 logos below, then press BUILD MY PORTFOLIO.",
   "build.noneEligible":
-    "No famous stocks meet the upside bar today. Check your valuation data or try again later.",
-  "build.notEligibleToday": "NOT ELIGIBLE TODAY",
+    "No famous stocks clear our upside bar right now. Try again later.",
+  "build.notEligibleToday": "NOT A FIT TODAY",
+  "build.notEligibleHint":
+    "These don’t clear our upside bar right now — pick from the logos above instead.",
+  "build.listToggle": "Or pick from the list",
+  "build.listHide": "Hide list",
   "dash.storageBlocked":
     "Saving is blocked in this browser. Open SNIPER in Safari or Chrome (not Instagram/Messages preview) so your entries stick.",
 
@@ -80,11 +84,11 @@ const en: Dict = {
   "dash.addMine": "+ My stock",
   "dash.add": "Add",
   "dash.addHint":
-    "Add up to 2 stocks. Each add replaces the closest book name by industry/sector and beta — fair value loads from FvIndustries.",
-  "dash.addSearch": "Search ticker, name, or industry…",
+    "Add up to 2 of your own. Each add may replace a similar name we filled so the portfolio stays balanced.",
+  "dash.addSearch": "Search ticker or company name…",
   "dash.addNone": "No matches.",
   "dash.addLeft": "{n} add left",
-  "dash.replaced": "Added {added} · dropped {dropped} (closest industry & beta)",
+  "dash.replaced": "Added {added} · removed {dropped} (closest similar name)",
   "dash.revert": "Revert",
   "dash.revertSwitch": "Revert switch",
   "dash.revertedAdd": "Reverted — {added} removed, {dropped} restored",
@@ -98,17 +102,22 @@ const en: Dict = {
     "Weight-compounded from each stock’s buy → sell target and buy → safety exit.",
   "dash.company": "Company",
   "dash.whyOwn": "Why own it",
+  "dash.entryCoachTitle": "Next: set your first entry",
+  "dash.entryCoachBody":
+    "Tap Buy on a stock and enter the price you paid (or plan to pay). Then we can track how you’re doing.",
+  "dash.entryCoachCta": "GOT IT",
+  "dash.entryCoachFocus": "Start here — set Buy",
 
   // news (holding-related)
   "news.title": "Breaking News",
   "news.holdingTitle": "News for your holdings",
   "news.holdingSubtitle":
-    "Up to 2 newest stories per stock — what happened and how it may affect the shares.",
-  "news.holdingEmptyHint": "Build a portfolio to see news that matters to you.",
+    "Stories about names you own — what happened and how it may affect the shares.",
+  "news.holdingEmptyHint": "Build a portfolio to see news about stocks you own.",
   "news.holdingNeedBook":
-    "No portfolio yet. Build one first — then we’ll explain news about your stocks in plain English.",
+    "No portfolio yet. Build one first — then we’ll show news about your stocks in plain English.",
   "news.holdingNone":
-    "No fresh headlines for your holdings right now. Check back soon.",
+    "No fresh headlines for names you own right now. Check back soon — or open YOURS to review your levels.",
   "news.mayAffect": "Your holding",
   "news.yourHolding": "Your holding",
   "news.whyHolding": "this is about a stock you own",
@@ -129,11 +138,13 @@ const en: Dict = {
 
   // ideas
   "ideas.title": "Ideas",
-  "ideas.subtitle": "Handpicked stock ideas from our team, explained simply",
+  "ideas.subtitle":
+    "Desk ideas with buy / sell / exit levels — learn here, then compare with YOURS",
+  "ideas.empty": "No ideas published yet. Check back soon.",
 
   // snipers (house book — not the user's dashboard)
   "snipers.subtitle":
-    "SNIPER house book — buys already filled · updated {date}",
+    "House book (not yours) — desk buys already filled · updated {date}",
   "snipers.noHouse": "No house portfolio published.",
   "snipers.holdings": "HOLDINGS",
   "snipers.tradePanels": "HOUSE POSITIONS",
@@ -147,7 +158,7 @@ const en: Dict = {
   "perf.default": "HOW YOU'RE DOING",
   "perf.since": "since you started",
   "perf.sinceEntry": "average of each stock’s % since its entry",
-  "perf.sinceEntryEmpty": "set entry on each stock — then we average those %s",
+  "perf.sinceEntryEmpty": "set your first Buy price below — then this chart comes alive",
   "perf.houseLive": "average of each holding’s % since house entry",
   "perf.fromEntry": "avg of per-stock since entry",
   "perf.entryVsLive": "avg of (live price − your entry) ÷ entry",
@@ -159,15 +170,15 @@ const en: Dict = {
   "perf.sinceEntryLive": "since entry (all-time): {v}",
   "perf.vsEntry": "vs entry",
   "perf.return": "Return",
-  "perf.tapRow": "Tap a symbol for thesis + numbers",
+  "perf.tapRow": "Tap a stock for why we own it + levels",
   "reason.numbers": "Fundamentals",
 
   // reasoning popup
-  "reason.growth": "{v} R2R from entry",
+  "reason.growth": "{v}× reward/risk from entry",
   "reason.riskLevel": "Risk level:",
   "reason.todayPrice": "Today's price:",
   "reason.help":
-    "R2R is (sell target − buy) ÷ (buy − safety exit) from the planned entry. Buy near the buy price, take profit at the target, and exit if it drops to the safety price.",
+    "Reward vs risk compares upside to the sell target against downside to the safety exit from the planned buy. Buy near the buy price, take profit at the sell target, and exit if it falls to the safety exit.",
   "reason.notAdvice":
     "General information, not investment advice. Investing involves risk of loss.",
 
@@ -203,16 +214,16 @@ const en: Dict = {
   // how-to prelude
   "prelude.eyebrow": "How to use SNIPER",
   "prelude.title": "Five quick moves",
-  "prelude.body": "Learn the desk in under a minute — then build.",
+  "prelude.body": "Learn your portfolio in under a minute — then build.",
   "prelude.s1":
-    "Pick up to 4 stocks of your choosing (BUILD), then we fill a balanced book around them.",
+    "Pick up to 4 companies you know (BUILD). We fill a balanced portfolio around them.",
   "prelude.s2":
-    "Press Buy on a stock to edit the entry price you paid so you can track performance.",
+    "On YOURS, tap Buy on a stock and set the price you paid so we can track performance.",
   "prelude.s3":
-    "Learn from Breaking News on market developments — overall, sector, industry, or single stocks.",
+    "YOUR NEWS explains headlines about stocks you own — in plain English.",
   "prelude.s4":
-    "Learn from Ideas about the admin’s new entry preparations.",
-  "prelude.s5": "Click a stock to learn it in about 10 seconds.",
+    "IDEAS shows desk picks with buy, sell, and exit levels you can learn from.",
+  "prelude.s5": "Tap any stock to see what it is, why it’s in, and the levels.",
   "prelude.cta": "GOT IT — LET’S GO",
 
   // risk levels

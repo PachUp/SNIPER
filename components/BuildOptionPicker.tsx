@@ -16,10 +16,10 @@ const OPTIONS: {
     title: "Broad & Balanced",
     tag: "Steadier mix",
     blurb:
-      "Fills from industries StockAnalysis tags as defensive / diversified — utilities, banks, REITs, energy, staples. Shared industries (credit, big pharma, restaurants) stay eligible.",
+      "We fill the rest with steadier industries — utilities, banks, real estate, energy, staples — plus a few shared names either style can use.",
     points: [
-      "Industry-based fill from the valuation universe",
-      "Favors sector spread over max upside",
+      "Favors spread across industries",
+      "Less chase for max upside",
       "Your famous picks stay either way",
     ],
   },
@@ -28,11 +28,11 @@ const OPTIONS: {
     title: "Growth-Tilted",
     tag: "Higher upside bias",
     blurb:
-      "Fills from growth industries — software, semis, biotech, internet, renewables — plus the same shared exceptions. Same EP / TP / SL discipline.",
+      "We fill the rest with growth industries — software, chips, biotech, internet, renewables — with the same buy / sell / exit discipline.",
     points: [
-      "Industry-based fill from the valuation universe",
       "Favors higher model upside",
-      "Same EP / TP / SL guardrails",
+      "Same buy, sell target, and safety exit levels",
+      "Your famous picks stay either way",
     ],
   },
 ];
@@ -69,8 +69,8 @@ export default function BuildOptionPicker({
         Choose how we complete your portfolio
       </h2>
       <p className="mt-2 text-sm text-terminal-muted">
-        Your picks stay in both. Fill names come from Finviz industries in the
-        StockAnalysis universe — Broad vs Growth, with shared industries in either.
+        Your picks stay in both. We fill the remaining names for a steadier mix
+        or a growth tilt — same clear buy, sell, and exit levels either way.
       </p>
 
       <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">

@@ -151,7 +151,13 @@ export default function BreakingNewsPage() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="rounded-xl border border-terminal-border bg-terminal-panel px-5 py-12 text-center text-sm leading-relaxed text-terminal-muted">
-          {t("news.holdingNone")}
+          <p>{t("news.holdingNone")}</p>
+          <Link
+            href="/dashboard"
+            className="mt-5 inline-block rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
+          >
+            {t("nav.dashboard")}
+          </Link>
         </div>
       ) : (
         <div className="flex flex-col gap-3">

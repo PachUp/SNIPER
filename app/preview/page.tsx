@@ -26,9 +26,9 @@ export default function PreviewPage() {
       </header>
 
       <p className="mb-10 max-w-xl text-sm text-terminal-muted">
-        Broad vs Growth uses Finviz industries from StockAnalysis: growth names
-        (software, semis, biotech…), broad names (utilities, banks, REITs,
-        energy…), and shared exceptions (credit cards, big pharma, restaurants…).
+        Broad vs Growth completes your portfolio with a steadier mix or a growth
+        tilt. Your famous picks stay either way — same buy, sell, and exit
+        levels.
       </p>
 
       <section className="mb-14">

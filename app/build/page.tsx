@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { BuiltPortfolio } from "@/lib/types";
 import { MAX_USER_PICKS, MIN_USER_PICKS } from "@/lib/portfolio";
 import { savePortfolio } from "@/lib/clientPortfolio";
-import { formatR2r, r2rFromLevels } from "@/lib/format";
 import { useI18n } from "@/components/LanguageProvider";
 import ReasoningPopup from "@/components/ReasoningPopup";
 import CompactStockRow from "@/components/CompactStockRow";
@@ -34,6 +33,7 @@ export default function BuildPage() {
   const [buildStyle, setBuildStyle] = useState<BuildStyle | null>(null);
   const [readyBeat, setReadyBeat] = useState(false);
   const [popSymbol, setPopSymbol] = useState<string | null>(null);
+  const [showPickList, setShowPickList] = useState(false);
 
   useEffect(() => {
     try {
@@ -271,10 +271,10 @@ export default function BuildPage() {
               <div className="mb-4 flex items-end justify-between gap-3">
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-terminal-accent">
-                    Famous names
+                    Step 1 · famous names
                   </p>
                   <p className="mt-1 text-sm text-terminal-muted">
-                    Tap a logo or press + on a row to shortlist, then BUILD.
+                    Tap logos to shortlist, then BUILD MY PORTFOLIO.
                   </p>
                 </div>
                 <span className="text-[11px] text-terminal-muted">
@@ -334,45 +334,59 @@ export default function BuildPage() {
               {t("build.noneEligible")}
             </div>
           ) : (
-            <div className="mt-4 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3">
-              {eligiblePicks.map((p) => {
-                const on = picked.includes(p.symbol);
-                const blocked = !on && picked.length >= MAX_USER_PICKS;
-                return (
-                  <div
-                    key={p.symbol}
-                    className={`flex items-center gap-1 rounded-md ${
-                      on ? "ring-1 ring-terminal-accent/50" : ""
-                    } ${blocked ? "opacity-40" : ""}`}
-                  >
-                    <CompactStockRow
-                      ticker={p.symbol}
-                      name={p.name || p.sector || undefined}
-                      badge={
-                        on
-                          ? "ON"
-                          : typeof p.upside_pct === "number"
-                            ? `${p.upside_pct >= 0 ? "+" : ""}${p.upside_pct.toFixed(0)}%`
-                            : undefined
-                      }
-                      onClick={() => setDetail(famousPickToStock(p))}
-                      className="min-w-0 flex-1"
-                    />
-                    <button
-                      type="button"
-                      disabled={blocked}
-                      onClick={() => toggle(p.symbol)}
-                      className={`shrink-0 rounded-md px-2 py-1.5 text-[10px] font-bold tracking-wider ${
-                        on
-                          ? "bg-terminal-accent text-black"
-                          : "border border-terminal-border text-terminal-accent"
-                      }`}
-                    >
-                      {on ? "✓" : "+"}
-                    </button>
-                  </div>
-                );
-              })}
+            <div className="mt-5">
+              <button
+                type="button"
+                onClick={() => setShowPickList((v) => !v)}
+                className="text-[11px] font-semibold tracking-[0.14em] text-terminal-muted transition-colors hover:text-terminal-accent"
+              >
+                {showPickList ? t("build.listHide") : t("build.listToggle")}
+                <span className="ms-1.5 text-terminal-accent">
+                  {showPickList ? "▲" : "▼"}
+                </span>
+              </button>
+              {showPickList ? (
+                <div className="mt-3 grid grid-cols-1 gap-1 sm:grid-cols-2 lg:grid-cols-3">
+                  {eligiblePicks.map((p) => {
+                    const on = picked.includes(p.symbol);
+                    const blocked = !on && picked.length >= MAX_USER_PICKS;
+                    return (
+                      <div
+                        key={p.symbol}
+                        className={`flex items-center gap-1 rounded-md ${
+                          on ? "ring-1 ring-terminal-accent/50" : ""
+                        } ${blocked ? "opacity-40" : ""}`}
+                      >
+                        <CompactStockRow
+                          ticker={p.symbol}
+                          name={p.name || p.sector || undefined}
+                          badge={
+                            on
+                              ? "ON"
+                              : typeof p.upside_pct === "number"
+                                ? `${p.upside_pct >= 0 ? "+" : ""}${p.upside_pct.toFixed(0)}%`
+                                : undefined
+                          }
+                          onClick={() => setDetail(famousPickToStock(p))}
+                          className="min-w-0 flex-1"
+                        />
+                        <button
+                          type="button"
+                          disabled={blocked}
+                          onClick={() => toggle(p.symbol)}
+                          className={`shrink-0 rounded-md px-2 py-1.5 text-[10px] font-bold tracking-wider ${
+                            on
+                              ? "bg-terminal-accent text-black"
+                              : "border border-terminal-border text-terminal-accent"
+                          }`}
+                        >
+                          {on ? "✓" : "+"}
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
             </div>
           )}
 
@@ -380,6 +394,9 @@ export default function BuildPage() {
             <div className="mt-10">
               <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-terminal-muted">
                 {t("build.notEligibleToday")}
+              </p>
+              <p className="mt-1.5 max-w-lg text-[11px] leading-relaxed text-terminal-muted">
+                {t("build.notEligibleHint")}
               </p>
               <div className="mt-3 flex flex-wrap gap-3">
                 {ineligiblePicks.map((p) => (
@@ -389,13 +406,8 @@ export default function BuildPage() {
                     title={p.reason ?? undefined}
                   >
                     <TickerLogo symbol={p.symbol} size={28} priority />
-                    <span>
-                      <span className="font-semibold text-white/80">
-                        {p.symbol}
-                      </span>
-                      {p.levels
-                        ? ` · ${formatR2r(r2rFromLevels(p.levels))}`
-                        : ""}
+                    <span className="font-semibold text-white/80">
+                      {p.symbol}
                     </span>
                   </span>
                 ))}

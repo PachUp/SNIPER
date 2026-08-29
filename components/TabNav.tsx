@@ -6,10 +6,10 @@ import { useI18n } from "@/components/LanguageProvider";
 import AdminLink from "@/components/AdminLink";
 
 const TABS = [
-  { href: "/dashboard", key: "nav.dashboard", short: "DASH" },
+  { href: "/dashboard", key: "nav.dashboard", short: "YOURS" },
   { href: "/breaking-news", key: "nav.news", short: "NEWS" },
   { href: "/ideas", key: "nav.ideas", short: "IDEAS" },
-  { href: "/snipers", key: "nav.snipers", short: "SNIPER" },
+  { href: "/snipers", key: "nav.snipers", short: "HOUSE" },
 ];
 
 export default function TabNav() {

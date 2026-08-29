@@ -58,6 +58,12 @@ export default function IdeasPage() {
 
       {loading ? (
         <Skeleton variant="row" count={8} className="mt-2" />
+      ) : ideas.length === 0 ? (
+        <div className="mt-4 rounded-xl border border-terminal-border bg-terminal-panel px-5 py-12 text-center">
+          <p className="text-sm leading-relaxed text-terminal-muted">
+            {t("ideas.empty")}
+          </p>
+        </div>
       ) : (
         <div className="grid auto-rows-min grid-cols-1 content-start gap-1 sm:grid-cols-2 lg:grid-cols-3">
           {ideas.map((idea) => (

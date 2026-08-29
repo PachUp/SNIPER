@@ -69,7 +69,7 @@ export default function PortfolioRiskPanel({
             {example ? "Example preview · risk shape" : "Risk shape"}
           </p>
           <h3 className="mt-1 text-sm font-semibold tracking-wide text-white">
-            How concentrated is this book?
+            How concentrated is this portfolio?
           </h3>
         </div>
       </div>
@@ -78,9 +78,10 @@ export default function PortfolioRiskPanel({
         {displayTop
           ? `${displayTop.sector} is about ${displayTop.weightPct.toFixed(0)}% of the portfolio.`
           : "Sector mix appears after you build."}{" "}
-        If one average-sized name fell about 20%, the book would move roughly{" "}
-        <span className="text-white/90">−{shock.toFixed(1)}%</span> (equal-weight
-        sketch — not advice).
+        If one average-sized name fell about 20%, the portfolio would move
+        roughly{" "}
+        <span className="text-white/90">−{shock.toFixed(1)}%</span> (simple
+        equal-weight sketch — not advice).
       </p>
 
       <div className="mt-4 space-y-2">
