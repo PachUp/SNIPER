@@ -47,6 +47,7 @@ import Skeleton, { DashboardSkeleton } from "@/components/Skeleton";
 import { storageGet, storageSet } from "@/lib/safeStorage";
 
 const ENTRY_COACH_KEY = "sniper.entryCoach.v1";
+const GUEST_TRUST_KEY = "sniper.guestTrust.v1";
 
 type HoldingView = {
   original: string;
@@ -94,6 +95,7 @@ export default function DashboardPage() {
 
   const [storageWarn, setStorageWarn] = useState(false);
   const [entryCoachDismissed, setEntryCoachDismissed] = useState(true);
+  const [guestTrustDismissed, setGuestTrustDismissed] = useState(true);
 
   function hydrateFromStorage() {
     setPortfolio(loadPortfolio());
@@ -104,6 +106,7 @@ export default function DashboardPage() {
     setAdded(loadAdded());
     setReplaceStack(loadReplaceStack());
     setEntryCoachDismissed(storageGet(ENTRY_COACH_KEY) === "true");
+    setGuestTrustDismissed(storageGet(GUEST_TRUST_KEY) === "true");
   }
 
   useEffect(() => {
@@ -309,6 +312,7 @@ export default function DashboardPage() {
   );
 
   const showEntryCoach = !hasAnyEntry && !entryCoachDismissed;
+  const showGuestTrust = !guestTrustDismissed;
 
   const firstUnsetTicker = useMemo(() => {
     for (const h of holdings) {
@@ -322,6 +326,11 @@ export default function DashboardPage() {
   function dismissEntryCoach() {
     storageSet(ENTRY_COACH_KEY, "true");
     setEntryCoachDismissed(true);
+  }
+
+  function dismissGuestTrust() {
+    storageSet(GUEST_TRUST_KEY, "true");
+    setGuestTrustDismissed(true);
   }
 
   // Must stay above any early return — hooks can't run after conditional returns.
@@ -685,6 +694,21 @@ export default function DashboardPage() {
       {storageWarn ? (
         <div className="rounded-lg border border-terminal-bad/40 bg-terminal-bad/10 px-3 py-2 text-[11px] leading-snug text-terminal-bad">
           {t("dash.storageBlocked")}
+        </div>
+      ) : null}
+
+      {showGuestTrust ? (
+        <div className="flex items-center justify-between gap-2 rounded-lg border border-terminal-border bg-terminal-panel/80 px-3 py-2 animate-fadeIn">
+          <p className="text-[11px] leading-snug text-terminal-muted">
+            {t("dash.guestTrust")}
+          </p>
+          <button
+            type="button"
+            onClick={dismissGuestTrust}
+            className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-terminal-accent"
+          >
+            {t("dash.guestTrustDismiss")}
+          </button>
         </div>
       ) : null}
 

@@ -40,6 +40,7 @@ export function resetUserPortfolioState(): void {
   storageRemove(ADDED_KEY);
   storageRemove(REPLACE_STACK_KEY);
   storageRemove("sniper.entryCoach.v1");
+  storageRemove("sniper.guestTrust.v1");
 }
 
 /**

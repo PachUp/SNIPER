@@ -13,7 +13,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "SNIPER",
-  description: "Precision stock portfolio builder",
+  description:
+    "Build a stock portfolio with clear buy, sell, and exit levels — no experience needed.",
 };
 
 export const viewport: Viewport = {

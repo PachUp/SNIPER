@@ -89,8 +89,7 @@ export default function LandingPage() {
 
         {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (
           <p className="pointer-events-none absolute bottom-4 max-w-md px-4 text-center text-[10px] leading-relaxed text-terminal-muted">
-            Friends / testers only · draft product · not investment advice · your
-            portfolio is saved in this browser only
+            {t("landing.softLaunch")}
           </p>
         )}
       </main>
@@ -167,8 +166,7 @@ export default function LandingPage() {
 
       {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (
         <p className="pointer-events-none absolute bottom-4 max-w-md px-4 text-center text-[10px] leading-relaxed text-terminal-muted">
-          Friends / testers only · draft product · not investment advice · your
-          portfolio is saved in this browser only
+          {t("landing.softLaunch")}
         </p>
       )}
     </main>

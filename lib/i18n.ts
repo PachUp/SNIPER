@@ -4,12 +4,14 @@ const en: Dict = {
   // landing
   "brand.build": "BUILD",
   "landing.tagline":
-    "Create a smart stock portfolio in under a minute. No experience needed.",
+    "Build a portfolio with clear buy, sell, and exit levels — in under a minute. No experience needed.",
   "landing.tapAnywhere": "TAP ANYWHERE TO START",
   "landing.seePortfolio": "SEE MY PORTFOLIO →",
   "landing.returnTagline":
     "Your book is ready in this browser — open it, or build a new one.",
   "landing.buildNew": "BUILD A NEW PORTFOLIO",
+  "landing.softLaunch":
+    "Friends / testers only · draft product · not investment advice · saved in this browser only",
 
   // nav
   "nav.dashboard": "YOURS",
@@ -113,6 +115,8 @@ const en: Dict = {
     "Tap Buy on a stock and enter the price you paid (or plan to pay). Then we can track how you’re doing.",
   "dash.entryCoachCta": "GOT IT",
   "dash.entryCoachFocus": "Start here — set Buy",
+  "dash.guestTrust": "Saved in this browser · not a broker",
+  "dash.guestTrustDismiss": "Got it",
 
   // news (holding-related)
   "news.title": "Breaking News",
@@ -146,12 +150,17 @@ const en: Dict = {
   "ideas.title": "Ideas",
   "ideas.subtitle":
     "Desk ideas with buy / sell / exit levels — learn here, then compare with YOURS",
-  "ideas.empty": "No ideas published yet. Check back soon.",
+  "ideas.empty": "No ideas published yet. Build your own book meanwhile — or browse the house book.",
+  "ideas.emptyBuild": "BUILD A PORTFOLIO",
+  "ideas.emptyHouse": "SEE HOUSE BOOK",
 
   // snipers (house book — not the user's dashboard)
   "snipers.subtitle":
     "House book (not yours) — desk buys already filled · updated {date}",
-  "snipers.noHouse": "No house portfolio published.",
+  "snipers.noHouse":
+    "No house portfolio published yet. This tab is the desk book — not YOURS.",
+  "snipers.emptyBuild": "BUILD YOUR PORTFOLIO",
+  "snipers.emptyYours": "GO TO YOURS",
   "snipers.holdings": "HOLDINGS",
   "snipers.tradePanels": "HOUSE POSITIONS",
   "snipers.allocTitle": "HOUSE WEIGHT BY SECTOR",

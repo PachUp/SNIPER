@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import type { Idea, Stock } from "@/lib/types";
 import { useI18n } from "@/components/LanguageProvider";
 import ReasoningPopup from "@/components/ReasoningPopup";
@@ -63,6 +64,20 @@ export default function IdeasPage() {
           <p className="text-sm leading-relaxed text-terminal-muted">
             {t("ideas.empty")}
           </p>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/build"
+              className="inline-block rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
+            >
+              {t("ideas.emptyBuild")}
+            </Link>
+            <Link
+              href="/snipers"
+              className="inline-block rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
+            >
+              {t("ideas.emptyHouse")}
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="grid auto-rows-min grid-cols-1 content-start gap-1 sm:grid-cols-2 lg:grid-cols-3">

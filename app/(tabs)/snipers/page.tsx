@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import type { HousePortfolio, Stock } from "@/lib/types";
 import PerformanceChart from "@/components/PerformanceChart";
 import ReasoningPopup from "@/components/ReasoningPopup";
@@ -129,8 +130,27 @@ export default function SnipersPage() {
   }
   if (!house) {
     return (
-      <div className="flex flex-1 items-center justify-center py-16 text-terminal-muted">
-        {t("snipers.noHouse")}
+      <div className="mx-auto max-w-md px-4 py-16 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
+          HOUSE
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-terminal-muted">
+          {t("snipers.noHouse")}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/build"
+            className="inline-block rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
+          >
+            {t("snipers.emptyBuild")}
+          </Link>
+          <Link
+            href="/dashboard"
+            className="inline-block rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
+          >
+            {t("snipers.emptyYours")}
+          </Link>
+        </div>
       </div>
     );
   }

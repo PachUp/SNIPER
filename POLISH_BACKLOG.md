@@ -13,8 +13,8 @@ Add-from-StockAnalysis is live on https://sniper-proj.netlify.app/
 
 ## Ranked ideas (pick when you return)
 
-1. **Landing sells levels** — Tagline names buy / sell / exit (and browser-only soft launch), not generic “smart portfolio.”  
-   `app/page.tsx`, `lib/i18n.ts`
+1. ~~**Landing sells levels**~~ **Done** — Tagline names buy / sell / exit.  
+   `app/page.tsx`, `lib/i18n.ts`, `app/layout.tsx`
 
 2. ~~**Returning users: YOURS first**~~ **Done** — With a saved book, primary CTA → dashboard; BUILD explicit.  
    `app/page.tsx`
@@ -28,11 +28,11 @@ Add-from-StockAnalysis is live on https://sniper-proj.netlify.app/
 5. ~~**Richer YOURS empty state**~~ **Done** — Explain fill-to-12 + levels, then GET STARTED.  
    `app/(tabs)/dashboard/page.tsx`, `lib/i18n.ts`
 
-6. **Guest trust chip on YOURS** — Dismissible “saved in this browser · not a broker” near entry coach.  
+6. ~~**Guest trust chip on YOURS**~~ **Done** — Dismissible “saved in this browser · not a broker”.  
    Dashboard + i18n
 
-7. **Ideas / HOUSE empty CTAs** — Link to BUILD or YOURS; reinforce HOUSE ≠ yours.  
-   `app/(tabs)/ideas/page.tsx`, `app/(tabs)/snipers/page.tsx`
+7. ~~**Ideas / HOUSE empty CTAs**~~ **Done** — Link to BUILD / YOURS / HOUSE; reinforce HOUSE ≠ yours.  
+   Ideas + snipers pages
 
 8. **Mobile nav labels** — Short labels that still say your book vs desk book.  
    `components/TabNav.tsx`
@@ -50,4 +50,4 @@ Add-from-StockAnalysis is live on https://sniper-proj.netlify.app/
 
 ## Suggested next ship
 
-Do **#1 + #6 + #7**: landing sells levels, guest trust chip, Ideas/HOUSE empty CTAs.
+Do **#4 + #9 + #10**: calmer mobile build CTA, LevelInfo mobile tips, risk panel tone.
