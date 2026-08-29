@@ -1,12 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { Idea, Stock } from "@/lib/types";
 import { useI18n } from "@/components/LanguageProvider";
 import ReasoningPopup from "@/components/ReasoningPopup";
 import CompactStockRow from "@/components/CompactStockRow";
 import Skeleton from "@/components/Skeleton";
+import {
+  loadAdded,
+  loadPortfolio,
+  loadRemoved,
+  loadSwaps,
+} from "@/lib/clientPortfolio";
 
 function ideaToStock(idea: Idea): Stock {
   return {
@@ -27,11 +33,37 @@ function ideaToStock(idea: Idea): Stock {
   };
 }
 
+function holdingTickerSet(): Set<string> {
+  const out = new Set<string>();
+  const removed = new Set(loadRemoved().map((t) => t.toUpperCase()));
+  const swaps = loadSwaps();
+  const portfolio = loadPortfolio();
+  for (const h of portfolio?.holdings ?? []) {
+    if (removed.has(h.ticker.toUpperCase())) continue;
+    const current = (swaps[h.ticker] ?? h.ticker).toUpperCase();
+    out.add(current);
+  }
+  for (const h of loadAdded()) {
+    out.add(h.ticker.toUpperCase());
+  }
+  return out;
+}
+
 export default function IdeasPage() {
   const { t } = useI18n();
   const [ideas, setIdeas] = useState<Idea[]>([]);
   const [loading, setLoading] = useState(true);
   const [popup, setPopup] = useState<Stock | null>(null);
+  const [bookTickers, setBookTickers] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    function refreshBook() {
+      setBookTickers(holdingTickerSet());
+    }
+    refreshBook();
+    window.addEventListener("sniper:portfolio", refreshBook);
+    return () => window.removeEventListener("sniper:portfolio", refreshBook);
+  }, []);
 
   useEffect(() => {
     fetch("/api/ideas")
@@ -45,6 +77,14 @@ export default function IdeasPage() {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const sorted = useMemo(() => {
+    return [...ideas].sort((a, b) => {
+      const aIn = bookTickers.has(a.ticker.toUpperCase()) ? 0 : 1;
+      const bIn = bookTickers.has(b.ticker.toUpperCase()) ? 0 : 1;
+      return aIn - bIn;
+    });
+  }, [ideas, bookTickers]);
 
   return (
     <div className="flex flex-col gap-2 pb-4">
@@ -81,14 +121,18 @@ export default function IdeasPage() {
         </div>
       ) : (
         <div className="grid auto-rows-min grid-cols-1 content-start gap-1 sm:grid-cols-2 lg:grid-cols-3">
-          {ideas.map((idea) => (
-            <CompactStockRow
-              key={idea.id}
-              ticker={idea.ticker}
-              name={idea.name}
-              onClick={() => setPopup(ideaToStock(idea))}
-            />
-          ))}
+          {sorted.map((idea) => {
+            const inBook = bookTickers.has(idea.ticker.toUpperCase());
+            return (
+              <CompactStockRow
+                key={idea.id}
+                ticker={idea.ticker}
+                name={idea.name}
+                badge={inBook ? t("ideas.inBook") : undefined}
+                onClick={() => setPopup(ideaToStock(idea))}
+              />
+            );
+          })}
         </div>
       )}
 

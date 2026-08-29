@@ -4,6 +4,8 @@ import "./globals.css";
 import ConsentGate from "@/components/ConsentGate";
 import HowToPrelude from "@/components/HowToPrelude";
 import { LanguageProvider } from "@/components/LanguageProvider";
+import { AccountsProvider } from "@/components/AccountsProvider";
+import SaveBookPrompt from "@/components/SaveBookPrompt";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,9 +35,12 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} scroll-smooth`}>
       <body className="bg-black font-sans text-terminal-text antialiased">
         <LanguageProvider>
-          {children}
-          <ConsentGate />
-          <HowToPrelude />
+          <AccountsProvider>
+            {children}
+            <ConsentGate />
+            <HowToPrelude />
+            <SaveBookPrompt />
+          </AccountsProvider>
         </LanguageProvider>
       </body>
     </html>

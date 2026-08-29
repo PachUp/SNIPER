@@ -241,6 +241,36 @@ const en: Dict = {
   "prelude.s5": "Tap any stock to see what it is, why it’s in, and the levels.",
   "prelude.cta": "GOT IT — LET’S GO",
 
+  // Phase 2 accounts
+  "auth.eyebrow": "Your book",
+  "auth.titleSave": "Save this book so it follows you",
+  "auth.titleReturn": "Sign in to open YOURS anywhere",
+  "auth.bodySave":
+    "Email a sign-in link. Your picks and levels sync before you set any entry price — guest mode still works without an account.",
+  "auth.bodyReturn":
+    "Use the same email on another phone to restore YOURS. No password — just a code or magic link.",
+  "auth.disabled":
+    "Cloud save isn’t configured on this host yet. Your book stays in this browser.",
+  "auth.namePlaceholder": "What should we call you? (optional)",
+  "auth.emailPlaceholder": "you@email.com",
+  "auth.sendCode": "SEND CODE",
+  "auth.sendLink": "EMAIL ME A LINK",
+  "auth.codePlaceholder": "6-digit code",
+  "auth.devCode": "Dev code: {code}",
+  "auth.verify": "VERIFY & SAVE",
+  "auth.otpSent": "Enter the code we sent (or the dev code below).",
+  "auth.magicSent": "Check your email for a sign-in link.",
+  "auth.signedIn": "Signed in — your book can sync now.",
+  "auth.mergedCloud": "Restored your saved book from the cloud.",
+  "auth.mergedLocal": "Kept this browser’s book and uploaded it.",
+  "auth.skipGuest": "Continue as guest",
+  "auth.signIn": "SIGN IN",
+  "auth.saveBanner": "Save YOURS with email so it isn’t lost if you clear this browser.",
+  "auth.saveCta": "SAVE",
+  "auth.later": "Later",
+  "ideas.inBook": "In YOURS",
+  "landing.signInHint": "Sign in to keep YOURS across devices",
+
   // risk levels
   "risk.Low": "Low",
   "risk.Medium": "Medium",

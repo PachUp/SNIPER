@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 import { useI18n } from "@/components/LanguageProvider";
 import AdminLink from "@/components/AdminLink";
+import AccountChip from "@/components/AccountChip";
+import SignInModal from "@/components/SignInModal";
 
 const TABS = [
   { href: "/dashboard", key: "nav.dashboard", short: "YOURS" },
@@ -15,6 +18,7 @@ const TABS = [
 export default function TabNav() {
   const pathname = usePathname();
   const { t } = useI18n();
+  const [signInOpen, setSignInOpen] = useState(false);
 
   return (
     <header className="z-40 shrink-0 border-b border-terminal-border bg-black/90 backdrop-blur-md safe-px">
@@ -35,7 +39,10 @@ export default function TabNav() {
               <span className="hidden sm:inline">{t("build.buildMine")}</span>
             </Link>
           </div>
-          <AdminLink />
+          <div className="flex items-center gap-1.5">
+            <AccountChip onSignIn={() => setSignInOpen(true)} />
+            <AdminLink />
+          </div>
         </div>
 
         <nav className="flex w-full gap-1">
@@ -58,6 +65,11 @@ export default function TabNav() {
           })}
         </nav>
       </div>
+      <SignInModal
+        open={signInOpen}
+        reason="return"
+        onClose={() => setSignInOpen(false)}
+      />
     </header>
   );
 }

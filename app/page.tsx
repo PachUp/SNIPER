@@ -85,6 +85,9 @@ export default function LandingPage() {
           >
             {t("landing.buildNew")}
           </button>
+          <p className="mt-6 max-w-xs text-center text-[10px] tracking-wide text-terminal-muted/80">
+            {t("landing.signInHint")}
+          </p>
         </div>
 
         {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (

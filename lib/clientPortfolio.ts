@@ -53,7 +53,17 @@ export function savePortfolio(p: BuiltPortfolio): StorageWriteResult {
     return { ok: false, reason: "unavailable" };
   }
   resetUserPortfolioState();
-  return storageSet(KEY, JSON.stringify(p));
+  const result = storageSet(KEY, JSON.stringify(p));
+  if (result.ok) {
+    void import("@/lib/user/syncClient").then((m) => {
+      m.touchLocalUpdatedAt();
+      m.scheduleCloudSync();
+    });
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("sniper:portfolio"));
+    }
+  }
+  return result;
 }
 
 export function clearPortfolio(): void {
@@ -127,7 +137,11 @@ export function saveEntry(ticker: string, price: number): StorageWriteResult {
   }
   const a = storageSet(ENTRIES_KEY, JSON.stringify(all));
   const b = storageSet(ENTRY_DATES_KEY, JSON.stringify(dates));
-  return a.ok && b.ok ? { ok: true } : a.ok ? b : a;
+  const ok = a.ok && b.ok;
+  if (ok) {
+    void import("@/lib/user/syncClient").then((m) => m.scheduleCloudSync());
+  }
+  return ok ? { ok: true } : a.ok ? b : a;
 }
 
 /** Built holdings auto-dropped when the user adds a personal stock. */
@@ -144,6 +158,7 @@ export function loadRemoved(): string[] {
 export function saveRemoved(tickers: string[]): void {
   if (typeof window === "undefined") return;
   storageSet(REMOVED_KEY, JSON.stringify(tickers));
+  void import("@/lib/user/syncClient").then((m) => m.scheduleCloudSync());
 }
 
 export type EliminateCandidate = {
@@ -208,6 +223,7 @@ export function loadAdded(): PortfolioHolding[] {
 export function saveAdded(holdings: PortfolioHolding[]): void {
   if (typeof window === "undefined") return;
   storageSet(ADDED_KEY, JSON.stringify(holdings));
+  void import("@/lib/user/syncClient").then((m) => m.scheduleCloudSync());
 }
 
 /** Records a user's switch from an AI-picked stock to an approved alternative. */
@@ -230,6 +246,7 @@ export function saveSwap(original: string, current: string): void {
     swaps[original] = current;
   }
   storageSet(SWAPS_KEY, JSON.stringify(swaps));
+  void import("@/lib/user/syncClient").then((m) => m.scheduleCloudSync());
 }
 
 export function clearSwap(original: string): void {
@@ -237,6 +254,7 @@ export function clearSwap(original: string): void {
   const swaps = loadSwaps();
   delete swaps[original];
   storageSet(SWAPS_KEY, JSON.stringify(swaps));
+  void import("@/lib/user/syncClient").then((m) => m.scheduleCloudSync());
 }
 
 export function loadReplaceStack(): ReplaceRecord[] {
@@ -252,6 +270,7 @@ export function loadReplaceStack(): ReplaceRecord[] {
 export function saveReplaceStack(stack: ReplaceRecord[]): void {
   if (typeof window === "undefined") return;
   storageSet(REPLACE_STACK_KEY, JSON.stringify(stack));
+  void import("@/lib/user/syncClient").then((m) => m.scheduleCloudSync());
 }
 
 export function pushReplace(record: ReplaceRecord): ReplaceRecord[] {

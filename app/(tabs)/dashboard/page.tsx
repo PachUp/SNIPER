@@ -135,9 +135,11 @@ export default function DashboardPage() {
     };
     window.addEventListener("focus", hydrateFromStorage);
     document.addEventListener("visibilitychange", onVis);
+    window.addEventListener("sniper:portfolio", hydrateFromStorage);
     return () => {
       window.removeEventListener("focus", hydrateFromStorage);
       document.removeEventListener("visibilitychange", onVis);
+      window.removeEventListener("sniper:portfolio", hydrateFromStorage);
     };
   }, []);
 
