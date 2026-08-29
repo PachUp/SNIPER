@@ -11,22 +11,17 @@ import { useAccounts } from "@/components/AccountsProvider";
 export default function LandingPage() {
   const { t } = useI18n();
   const router = useRouter();
-  const { enabled, loading } = useAccounts();
+  const { enabled } = useAccounts();
   const [hasPortfolio, setHasPortfolio] = useState(false);
   const [ready, setReady] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
 
+  // Landing keeps SIGN IN buttons; NameGate opens the modal on every visit.
   useEffect(() => {
     setHasPortfolio(!!loadPortfolio());
     setReady(true);
   }, []);
-
-  // Every visit to the site: offer name sign-in / switch (new or returning).
-  useEffect(() => {
-    if (loading || !enabled) return;
-    setSignInOpen(true);
-  }, [loading, enabled]);
 
   function go(href: string) {
     if (exiting) return;

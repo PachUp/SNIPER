@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useAccounts } from "@/components/AccountsProvider";
 import {
   applyCloudPayload,
@@ -15,6 +16,7 @@ import {
   loadNamedPayload,
   normalizeNameKey,
   payloadHasBook,
+  peekNamedBook,
   saveNamedPayload,
   setActiveName,
   stashWorkingUnderName,
@@ -31,6 +33,7 @@ export default function SignInModal({
   reason?: "save" | "return";
 }) {
   const { t } = useI18n();
+  const router = useRouter();
   const { enabled, user, refresh } = useAccounts();
   const [displayName, setDisplayName] = useState("");
   const [busy, setBusy] = useState(false);
@@ -38,7 +41,6 @@ export default function SignInModal({
   const [info, setInfo] = useState<string | null>(null);
   const [known, setKnown] = useState<string[]>([]);
 
-  // Fresh each open so every visit can pick / type a name.
   useEffect(() => {
     if (!open) return;
     setDisplayName("");
@@ -47,6 +49,9 @@ export default function SignInModal({
     setBusy(false);
     setKnown(listVaultNames());
   }, [open]);
+
+  const peek = useMemo(() => peekNamedBook(displayName), [displayName]);
+  const typed = displayName.trim().length >= 2;
 
   if (!open) return null;
 
@@ -58,7 +63,6 @@ export default function SignInModal({
       const name = displayName.trim().replace(/\s+/g, " ");
       if (name.length < 2) throw new Error(t("auth.nameRequired"));
 
-      // Park the current book under the previous name before switching.
       const prev = getActiveName();
       const working = readLocalCloudPayload();
       if (
@@ -87,15 +91,16 @@ export default function SignInModal({
       const sameName =
         !prev || normalizeNameKey(prev) === normalizeNameKey(name);
 
+      let restored = false;
       if (vaultHas) {
         applyCloudPayload(vault);
+        saveNamedPayload(name, vault);
         setInfo(t("auth.mergedCloud"));
+        restored = true;
       } else if (localHas && (sameName || !prev)) {
         stashWorkingUnderName(name, local);
         setInfo(t("auth.mergedLocal"));
-      } else if (localHas && prev && !sameName) {
-        applyCloudPayload(emptyCloudPayload());
-        setInfo(t("auth.newNameEmpty"));
+        restored = true;
       } else {
         applyCloudPayload(emptyCloudPayload());
         setInfo(t("auth.newNameEmpty"));
@@ -108,7 +113,12 @@ export default function SignInModal({
       window.setTimeout(() => {
         onClose();
         window.dispatchEvent(new Event("sniper:portfolio"));
-      }, 350);
+        if (restored && payloadHasBook(loadNamedPayload(name))) {
+          router.push("/dashboard");
+        } else {
+          router.push("/build");
+        }
+      }, 400);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Sign-in failed");
     } finally {
@@ -126,11 +136,7 @@ export default function SignInModal({
           {t("auth.titleWho")}
         </h2>
         <p className="mt-1.5 text-sm text-terminal-muted">
-          {!enabled
-            ? t("auth.disabled")
-            : user
-              ? t("auth.bodySwitch")
-              : t("auth.bodyName")}
+          {!enabled ? t("auth.disabled") : t("auth.bodyGate")}
         </p>
 
         {!enabled ? (
@@ -156,32 +162,54 @@ export default function SignInModal({
                 placeholder={t("auth.namePlaceholder")}
                 className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
               />
+
+              {typed ? (
+                <p
+                  className={`text-xs ${
+                    peek.known ? "text-terminal-accent" : "text-terminal-muted"
+                  }`}
+                >
+                  {peek.known
+                    ? t("auth.recognizeReturning", { n: peek.count })
+                    : t("auth.recognizeNew")}
+                </p>
+              ) : null}
+
               {known.length > 0 ? (
                 <div className="pt-1">
                   <p className="mb-1.5 text-[10px] uppercase tracking-wider text-terminal-muted">
                     {t("auth.savedNames")}
                   </p>
                   <div className="flex flex-wrap gap-1.5">
-                    {known.slice(0, 12).map((n) => (
-                      <button
-                        key={n}
-                        type="button"
-                        onClick={() => setDisplayName(n)}
-                        className="rounded-full border border-terminal-border px-2.5 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
-                      >
-                        {n}
-                      </button>
-                    ))}
+                    {known.slice(0, 12).map((n) => {
+                      const meta = peekNamedBook(n);
+                      return (
+                        <button
+                          key={n}
+                          type="button"
+                          onClick={() => setDisplayName(n)}
+                          className="rounded-full border border-terminal-border px-2.5 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
+                        >
+                          {n}
+                          {meta.count > 0 ? ` · ${meta.count}` : ""}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               ) : null}
+
               <button
                 type="button"
                 disabled={busy || displayName.trim().length < 2}
                 onClick={() => void signInWithName()}
                 className="w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
               >
-                {busy ? t("common.loading") : t("auth.continueName")}
+                {busy
+                  ? t("common.loading")
+                  : peek.known
+                    ? t("auth.openSaved")
+                    : t("auth.continueNew")}
               </button>
             </div>
 

@@ -66,6 +66,27 @@ export function listVaultNames(): string[] {
   return Array.from(new Set(names)).sort((a, b) => a.localeCompare(b));
 }
 
+/** Peek whether this name already has a built book on this device. */
+export function peekNamedBook(name: string): {
+  known: boolean;
+  count: number;
+  displayName: string | null;
+} {
+  const key = normalizeNameKey(name);
+  if (key.length < 2) return { known: false, count: 0, displayName: null };
+  const vault = readVault();
+  const hit = vault[key];
+  if (!payloadHasBook(hit)) {
+    return { known: false, count: 0, displayName: null };
+  }
+  return {
+    known: true,
+    count: hit.built?.holdings?.length || 0,
+    displayName: hit.prefs?.displayName || name.trim(),
+  };
+}
+
+
 export function loadNamedPayload(name: string): CloudPortfolioPayload {
   const key = normalizeNameKey(name);
   if (!key) return emptyCloudPayload();

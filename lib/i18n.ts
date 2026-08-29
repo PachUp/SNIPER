@@ -244,6 +244,14 @@ const en: Dict = {
   // Phase 2 accounts (demo: full name only)
   "auth.eyebrow": "Your book",
   "auth.titleWho": "Who’s playing?",
+  "auth.bodyGate":
+    "Enter your full name. If you’ve built here before, we’ll reopen that book. A new name starts a fresh book we’ll save for next time.",
+  "auth.recognizeReturning":
+    "Welcome back — {n} stocks saved under this name.",
+  "auth.recognizeNew":
+    "New name — after you BUILD, this book stays saved under it.",
+  "auth.openSaved": "OPEN MY SAVED BOOK",
+  "auth.continueNew": "CONTINUE — NEW BOOK",
   "auth.titleSave": "Save this book under your name",
   "auth.titleReturn": "Open YOURS with your name",
   "auth.bodyName":
