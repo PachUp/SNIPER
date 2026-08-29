@@ -5,22 +5,29 @@ import { usePathname } from "next/navigation";
 import { useAccounts } from "@/components/AccountsProvider";
 import SignInModal from "@/components/SignInModal";
 import { loadPortfolio } from "@/lib/clientPortfolio";
-import { storageGet, storageSet } from "@/lib/safeStorage";
 import { useI18n } from "@/components/LanguageProvider";
 import {
   setCloudSyncEnabled,
   pushCloudNow,
 } from "@/lib/user/syncClient";
 
-const SAVE_PROMPT_KEY = "sniper.savePrompt.v1";
-
-/** Soft “Save my book” after BUILD / on return when guest has a portfolio. */
+/**
+ * Always-available name save:
+ * - Banner returns every visit (Later only hides until next navigation)
+ * - Landing (/) always offers sign-in for guests — never permanently dismissed
+ */
 export default function SaveBookPrompt() {
   const { t } = useI18n();
   const pathname = usePathname();
   const { enabled, user, loading, refresh, hydrateFromCloud } = useAccounts();
   const [showBanner, setShowBanner] = useState(false);
   const [modal, setModal] = useState(false);
+  /** Session-only: "Later" hides banner until path changes / remount — never forever. */
+  const [laterThisView, setLaterThisView] = useState(false);
+
+  useEffect(() => {
+    setLaterThisView(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (loading) return;
@@ -28,6 +35,7 @@ export default function SaveBookPrompt() {
       setCloudSyncEnabled(true);
       void hydrateFromCloud().then(() => pushCloudNow());
       setShowBanner(false);
+      setModal(false);
       return;
     }
     setCloudSyncEnabled(false);
@@ -35,20 +43,27 @@ export default function SaveBookPrompt() {
       setShowBanner(false);
       return;
     }
+
     const hasBook = Boolean(loadPortfolio()?.holdings?.length);
-    const dismissed = storageGet(SAVE_PROMPT_KEY) === "true";
-    const onYoursOrHome =
-      pathname === "/" ||
-      pathname === "/dashboard" ||
-      pathname?.startsWith("/dashboard");
-    setShowBanner(hasBook && !dismissed && onYoursOrHome);
-  }, [enabled, user, loading, pathname, hydrateFromCloud]);
+    const onLanding = pathname === "/";
+    const onYours =
+      pathname === "/dashboard" || pathname?.startsWith("/dashboard");
+
+    // Landing has its own always-on SIGN IN CTAs — don't stack a second modal.
+    if (onLanding) {
+      setShowBanner(false);
+      return;
+    }
+
+    setShowBanner(hasBook && !laterThisView && onYours);
+  }, [enabled, user, loading, pathname, hydrateFromCloud, laterThisView]);
 
   useEffect(() => {
     function onPortfolio() {
       void refresh();
       const hasBook = Boolean(loadPortfolio()?.holdings?.length);
-      if (hasBook && enabled && !user && storageGet(SAVE_PROMPT_KEY) !== "true") {
+      if (hasBook && enabled && !user) {
+        setLaterThisView(false);
         setShowBanner(true);
         setModal(true);
       }
@@ -71,7 +86,7 @@ export default function SaveBookPrompt() {
               <button
                 type="button"
                 onClick={() => {
-                  storageSet(SAVE_PROMPT_KEY, "true");
+                  setLaterThisView(true);
                   setShowBanner(false);
                 }}
                 className="text-[10px] uppercase tracking-wider text-terminal-muted"
@@ -90,14 +105,21 @@ export default function SaveBookPrompt() {
         </div>
       ) : null}
 
+      {/* Persistent guest entry when banner is hidden */}
+      {!user && enabled && !showBanner && !modal && pathname !== "/" ? (
+        <button
+          type="button"
+          onClick={() => setModal(true)}
+          className="fixed bottom-16 end-3 z-40 rounded-full border border-terminal-accent/50 bg-terminal-accent px-4 py-2.5 text-[11px] font-bold tracking-[0.14em] text-black shadow-lg sm:bottom-6"
+        >
+          {t("auth.signIn")}
+        </button>
+      ) : null}
+
       <SignInModal
-        open={modal}
+        open={modal && !user}
         reason={pathname === "/" ? "return" : "save"}
-        onClose={() => {
-          setModal(false);
-          storageSet(SAVE_PROMPT_KEY, "true");
-          setShowBanner(false);
-        }}
+        onClose={() => setModal(false)}
       />
     </>
   );

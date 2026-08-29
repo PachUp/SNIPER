@@ -267,6 +267,7 @@ const en: Dict = {
   "auth.later": "Later",
   "ideas.inBook": "In YOURS",
   "landing.signInHint": "Sign in with your name to keep YOURS",
+  "landing.signInCta": "SIGN IN WITH YOUR NAME",
 
   // risk levels
   "risk.Low": "Low",

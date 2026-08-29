@@ -12,14 +12,15 @@ export default function AccountChip({
 }) {
   const { t } = useI18n();
   const { enabled, user, loading, signOut } = useAccounts();
-  if (loading || !enabled) return null;
+  if (loading) return null;
+  if (!enabled) return null;
 
   if (!user) {
     return (
       <button
         type="button"
         onClick={onSignIn}
-        className="rounded-md border border-terminal-border px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
+        className="rounded-md border border-terminal-accent bg-terminal-accent px-2.5 py-1 text-[9px] font-bold uppercase tracking-wider text-black hover:brightness-110"
       >
         {t("auth.signIn")}
       </button>
