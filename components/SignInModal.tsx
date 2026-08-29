@@ -2,8 +2,20 @@
 
 import { useState } from "react";
 import { useAccounts } from "@/components/AccountsProvider";
-import { setCloudSyncEnabled, pushCloudNow } from "@/lib/user/syncClient";
+import {
+  applyCloudPayload,
+  pushCloudNow,
+  readLocalCloudPayload,
+  setCloudSyncEnabled,
+} from "@/lib/user/syncClient";
 import { useI18n } from "@/components/LanguageProvider";
+import {
+  getActiveName,
+  listVaultNames,
+  loadNamedPayload,
+  saveNamedPayload,
+  setActiveName,
+} from "@/lib/user/namedVault";
 
 export default function SignInModal({
   open,
@@ -15,74 +27,60 @@ export default function SignInModal({
   reason?: "save" | "return";
 }) {
   const { t } = useI18n();
-  const { enabled, backend, refresh, hydrateFromCloud } = useAccounts();
-  const [email, setEmail] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [code, setCode] = useState("");
-  const [step, setStep] = useState<"email" | "otp" | "magic" | "done">("email");
-  const [devCode, setDevCode] = useState<string | null>(null);
+  const { enabled, refresh, hydrateFromCloud } = useAccounts();
+  const [displayName, setDisplayName] = useState(getActiveName() || "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  const known = listVaultNames();
 
   if (!open) return null;
 
-  async function requestLink() {
+  async function signInWithName() {
     setBusy(true);
     setError(null);
     setInfo(null);
     try {
-      const res = await fetch("/api/auth/request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, displayName }),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Could not start sign-in");
-      if (data.mode === "otp") {
-        setStep("otp");
-        setDevCode(typeof data.devCode === "string" ? data.devCode : null);
-        setInfo(data.message || t("auth.otpSent"));
-      } else {
-        setStep("magic");
-        setInfo(data.message || t("auth.magicSent"));
-      }
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Sign-in failed");
-    } finally {
-      setBusy(false);
-    }
-  }
+      const name = displayName.trim().replace(/\s+/g, " ");
+      if (name.length < 2) throw new Error(t("auth.nameRequired"));
 
-  async function verifyOtp() {
-    setBusy(true);
-    setError(null);
-    try {
-      const res = await fetch("/api/auth/verify", {
+      const res = await fetch("/api/auth/name", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, code, displayName }),
+        body: JSON.stringify({ displayName: name }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Wrong code");
-      await refresh();
+      if (!res.ok) throw new Error(data.error || "Could not sign in");
+
+      setActiveName(name);
       setCloudSyncEnabled(true);
+
+      const vault = loadNamedPayload(name);
+      const vaultHas = Boolean(vault.built?.holdings?.length);
+      const local = readLocalCloudPayload();
+      const localHas = Boolean(local.built?.holdings?.length);
+
+      if (vaultHas) {
+        applyCloudPayload(vault);
+        setInfo(t("auth.mergedCloud"));
+      } else if (localHas) {
+        saveNamedPayload(name, local);
+        setInfo(t("auth.mergedLocal"));
+      }
+
+      await refresh();
       const merge = await hydrateFromCloud();
+      if (!vaultHas && merge === "applied_cloud") {
+        setInfo(t("auth.mergedCloud"));
+      }
       await pushCloudNow();
-      setStep("done");
-      setInfo(
-        merge === "applied_cloud"
-          ? t("auth.mergedCloud")
-          : merge === "kept_local"
-            ? t("auth.mergedLocal")
-            : t("auth.signedIn")
-      );
+
       window.setTimeout(() => {
         onClose();
         window.dispatchEvent(new Event("sniper:portfolio"));
-      }, 900);
+      }, 400);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Verify failed");
+      setError(e instanceof Error ? e.message : "Sign-in failed");
     } finally {
       setBusy(false);
     }
@@ -98,11 +96,7 @@ export default function SignInModal({
           {reason === "return" ? t("auth.titleReturn") : t("auth.titleSave")}
         </h2>
         <p className="mt-1.5 text-sm text-terminal-muted">
-          {!enabled
-            ? t("auth.disabled")
-            : reason === "return"
-              ? t("auth.bodyReturn")
-              : t("auth.bodySave")}
+          {!enabled ? t("auth.disabled") : t("auth.bodyName")}
         </p>
 
         {!enabled ? (
@@ -115,62 +109,42 @@ export default function SignInModal({
           </button>
         ) : (
           <>
-            {step === "email" || step === "magic" ? (
-              <div className="mt-4 space-y-2">
-                <input
-                  type="text"
-                  value={displayName}
-                  onChange={(e) => setDisplayName(e.target.value)}
-                  placeholder={t("auth.namePlaceholder")}
-                  className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
-                />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder={t("auth.emailPlaceholder")}
-                  className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
-                />
-                <button
-                  type="button"
-                  disabled={busy || !email.includes("@")}
-                  onClick={() => void requestLink()}
-                  className="w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
-                >
-                  {busy
-                    ? t("common.loading")
-                    : backend === "local"
-                      ? t("auth.sendCode")
-                      : t("auth.sendLink")}
-                </button>
-              </div>
-            ) : null}
-
-            {step === "otp" ? (
-              <div className="mt-4 space-y-2">
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value)}
-                  placeholder={t("auth.codePlaceholder")}
-                  className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
-                />
-                {devCode ? (
-                  <p className="text-[11px] text-terminal-accent">
-                    {t("auth.devCode", { code: devCode })}
-                  </p>
-                ) : null}
-                <button
-                  type="button"
-                  disabled={busy || code.trim().length < 4}
-                  onClick={() => void verifyOtp()}
-                  className="w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
-                >
-                  {busy ? t("common.loading") : t("auth.verify")}
-                </button>
-              </div>
-            ) : null}
+            <div className="mt-4 space-y-2">
+              <input
+                type="text"
+                autoComplete="name"
+                autoFocus
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") void signInWithName();
+                }}
+                placeholder={t("auth.namePlaceholder")}
+                className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
+              />
+              {known.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {known.slice(0, 8).map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setDisplayName(n)}
+                      className="rounded-full border border-terminal-border px-2.5 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
+                    >
+                      {n}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
+              <button
+                type="button"
+                disabled={busy || displayName.trim().length < 2}
+                onClick={() => void signInWithName()}
+                className="w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
+              >
+                {busy ? t("common.loading") : t("auth.continueName")}
+              </button>
+            </div>
 
             {info ? (
               <p className="mt-3 text-xs text-terminal-muted">{info}</p>

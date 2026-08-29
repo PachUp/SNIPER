@@ -1,34 +1,38 @@
+import { createHash, randomBytes } from "crypto";
 import { promises as fs } from "fs";
 import path from "path";
-import { createHash, randomBytes, timingSafeEqual } from "crypto";
 import type { AuthUser, CloudPortfolioPayload } from "@/lib/user/types";
 import { emptyCloudPayload } from "@/lib/user/types";
 import { isReadonlyDataStore } from "@/lib/data/store";
 
-type OtpRow = { email: string; hash: string; expiresAt: number };
 type SessionRow = {
   token: string;
   userId: string;
+  /** Synthetic id email — demo uses name@demo.local */
   email: string;
-  displayName?: string;
+  displayName: string;
+  nameKey: string;
   expiresAt: number;
 };
+
 type PortfolioRow = {
   userId: string;
   email: string;
-  displayName?: string;
+  displayName: string;
+  nameKey: string;
   payload: CloudPortfolioPayload;
   updatedAt: string;
 };
 
 type StoreFile = {
-  otps: OtpRow[];
   sessions: SessionRow[];
   portfolios: PortfolioRow[];
 };
 
-const SESSION_DAYS = 30;
-const OTP_MINUTES = 15;
+const SESSION_DAYS = 60;
+
+/** In-memory fallback when Netlify FS is read-only (cold starts lose this). */
+let memoryStore: StoreFile = { sessions: [], portfolios: [] };
 
 function dataRoot(): string {
   const fromEnv = process.env.SNIPER_DATA_DIR?.trim();
@@ -41,110 +45,99 @@ function storePath(): string {
   return path.join(dataRoot(), ".runtime", "user_accounts.json");
 }
 
+export function normalizeNameKey(name: string): string {
+  return name
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .slice(0, 80);
+}
+
+export function formatDisplayName(name: string): string {
+  return name.trim().replace(/\s+/g, " ").slice(0, 80);
+}
+
+function demoEmail(nameKey: string): string {
+  const slug = nameKey.replace(/[^a-z0-9]+/g, ".").replace(/^\.|\.$/g, "") || "user";
+  return `${slug}@demo.local`;
+}
+
+function newId(): string {
+  return createHash("sha256").update(randomBytes(16)).digest("hex").slice(0, 32);
+}
+
 async function readStore(): Promise<StoreFile> {
+  if (isReadonlyDataStore()) {
+    return {
+      sessions: [...memoryStore.sessions],
+      portfolios: [...memoryStore.portfolios],
+    };
+  }
   try {
     const raw = await fs.readFile(storePath(), "utf-8");
-    const data = JSON.parse(raw) as StoreFile;
+    const data = JSON.parse(raw) as Partial<StoreFile> & {
+      otps?: unknown;
+    };
     return {
-      otps: Array.isArray(data.otps) ? data.otps : [],
       sessions: Array.isArray(data.sessions) ? data.sessions : [],
       portfolios: Array.isArray(data.portfolios) ? data.portfolios : [],
     };
   } catch {
-    return { otps: [], sessions: [], portfolios: [] };
+    return { sessions: [], portfolios: [] };
   }
 }
 
 async function writeStore(store: StoreFile): Promise<void> {
-  if (isReadonlyDataStore()) {
-    throw new Error("Local accounts store is read-only on this host");
-  }
+  memoryStore = {
+    sessions: [...store.sessions],
+    portfolios: [...store.portfolios],
+  };
+  if (isReadonlyDataStore()) return;
   const dir = path.dirname(storePath());
   await fs.mkdir(dir, { recursive: true });
   await fs.writeFile(storePath(), JSON.stringify(store, null, 2) + "\n");
 }
 
-function hashCode(code: string): string {
-  return createHash("sha256").update(code.trim()).digest("hex");
-}
-
-function newId(): string {
-  return randomBytes(16).toString("hex");
-}
-
-function normalizeEmail(email: string): string {
-  return email.trim().toLowerCase();
-}
-
-export async function localRequestOtp(
-  emailRaw: string
-): Promise<{ ok: true; devCode?: string } | { ok: false; error: string }> {
-  const email = normalizeEmail(emailRaw);
-  if (!email.includes("@")) return { ok: false, error: "Enter a valid email" };
-
-  const code = String(Math.floor(100000 + Math.random() * 900000));
-  const store = await readStore();
-  const now = Date.now();
-  store.otps = store.otps.filter((o) => o.expiresAt > now && o.email !== email);
-  store.otps.push({
-    email,
-    hash: hashCode(code),
-    expiresAt: now + OTP_MINUTES * 60_000,
-  });
-  await writeStore(store);
-
-  // Soft-launch / local: surface code in logs (and response in non-production).
-  console.info(`[sniper-auth] OTP for ${email}: ${code}`);
-  return {
-    ok: true,
-    devCode:
-      process.env.NODE_ENV !== "production" ||
-      process.env.SNIPER_ACCOUNTS_DEV === "1"
-        ? code
-        : undefined,
-  };
-}
-
-export async function localVerifyOtp(
-  emailRaw: string,
-  code: string
+/** Demo sign-in: full name only — no email / OTP. */
+export async function localSignInByName(
+  nameRaw: string
 ): Promise<
   | { ok: true; user: AuthUser; token: string }
   | { ok: false; error: string }
 > {
-  const email = normalizeEmail(emailRaw);
-  const store = await readStore();
-  const now = Date.now();
-  const otp = store.otps.find((o) => o.email === email && o.expiresAt > now);
-  if (!otp) return { ok: false, error: "Code expired — request a new one" };
-
-  const a = Buffer.from(otp.hash);
-  const b = Buffer.from(hashCode(code));
-  if (a.length !== b.length || !timingSafeEqual(a, b)) {
-    return { ok: false, error: "Wrong code" };
+  const displayName = formatDisplayName(nameRaw);
+  const nameKey = normalizeNameKey(displayName);
+  if (nameKey.length < 2) {
+    return { ok: false, error: "Enter your full name" };
   }
 
-  store.otps = store.otps.filter((o) => o.email !== email);
-  let portfolio = store.portfolios.find((p) => p.email === email);
+  const store = await readStore();
+  const now = Date.now();
+  let portfolio = store.portfolios.find((p) => p.nameKey === nameKey);
   if (!portfolio) {
     portfolio = {
       userId: newId(),
-      email,
+      email: demoEmail(nameKey),
+      displayName,
+      nameKey,
       payload: emptyCloudPayload(),
       updatedAt: new Date().toISOString(),
     };
     store.portfolios.push(portfolio);
+  } else {
+    portfolio.displayName = displayName;
   }
 
-  const token = randomBytes(24).toString("hex");
   store.sessions = store.sessions.filter(
-    (s) => s.expiresAt > now && s.email !== email
+    (s) => s.expiresAt > now && s.nameKey !== nameKey
   );
+  const token = randomBytes(24).toString("hex");
   store.sessions.push({
     token,
     userId: portfolio.userId,
-    email,
-    displayName: portfolio.displayName,
+    email: portfolio.email,
+    displayName,
+    nameKey,
     expiresAt: now + SESSION_DAYS * 24 * 60 * 60_000,
   });
   await writeStore(store);
@@ -154,8 +147,8 @@ export async function localVerifyOtp(
     token,
     user: {
       id: portfolio.userId,
-      email,
-      displayName: portfolio.displayName,
+      email: portfolio.email,
+      displayName,
     },
   };
 }
@@ -177,7 +170,8 @@ export async function localUserFromToken(
     displayName:
       session.displayName ||
       portfolio?.displayName ||
-      portfolio?.payload?.prefs?.displayName,
+      portfolio?.payload?.prefs?.displayName ||
+      "Friend",
   };
 }
 
@@ -203,24 +197,38 @@ export async function localPutPortfolio(
   const store = await readStore();
   const updatedAt = payload.updatedAt || new Date().toISOString();
   const next: CloudPortfolioPayload = { ...payload, updatedAt };
+  const displayName =
+    payload.prefs?.displayName || user.displayName || "Friend";
+  const nameKey = normalizeNameKey(displayName);
   const idx = store.portfolios.findIndex((p) => p.userId === user.id);
   if (idx >= 0) {
     store.portfolios[idx] = {
       ...store.portfolios[idx],
-      email: user.email,
-      displayName: payload.prefs?.displayName || user.displayName,
+      email: user.email || store.portfolios[idx].email,
+      displayName,
+      nameKey,
       payload: next,
       updatedAt,
     };
   } else {
     store.portfolios.push({
       userId: user.id,
-      email: user.email,
-      displayName: payload.prefs?.displayName || user.displayName,
+      email: user.email || demoEmail(nameKey),
+      displayName,
+      nameKey,
       payload: next,
       updatedAt,
     });
   }
   await writeStore(store);
   return next;
+}
+
+/** List known demo names (for optional picker). */
+export async function localListNames(): Promise<string[]> {
+  const store = await readStore();
+  return store.portfolios
+    .map((p) => p.displayName)
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
 }

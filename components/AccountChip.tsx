@@ -26,17 +26,19 @@ export default function AccountChip({
     );
   }
 
+  const label = user.displayName || "Friend";
+
   return (
     <button
       type="button"
-      title={user.email}
+      title={`${label} — tap to sign out`}
       onClick={async () => {
         setCloudSyncEnabled(false);
         await signOut();
       }}
       className="max-w-[7rem] truncate rounded-md border border-terminal-accent/30 bg-terminal-accent/10 px-2 py-1 text-[9px] font-semibold text-terminal-accent"
     >
-      {user.displayName || user.email.split("@")[0]}
+      {label}
     </button>
   );
 }

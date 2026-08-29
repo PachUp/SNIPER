@@ -42,6 +42,7 @@ export function emptyCloudPayload(): CloudPortfolioPayload {
 
 export type AuthUser = {
   id: string;
-  email: string;
+  /** Demo uses synthetic name@demo.local */
+  email?: string;
   displayName?: string;
 };

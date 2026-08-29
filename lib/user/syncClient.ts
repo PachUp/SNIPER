@@ -17,6 +17,10 @@ import {
 import { storageGet, storageSet, storageRemove } from "@/lib/safeStorage";
 import type { BuiltPortfolio, PortfolioHolding } from "@/lib/types";
 import type { CloudPortfolioPayload } from "@/lib/user/types";
+import {
+  getActiveName,
+  saveNamedPayload,
+} from "@/lib/user/namedVault";
 
 const KEY = "sniper.portfolio.v1";
 const SWAPS_KEY = "sniper.swaps.v1";
@@ -41,6 +45,7 @@ export function touchLocalUpdatedAt() {
 }
 
 export function readLocalCloudPayload(): CloudPortfolioPayload {
+  const active = getActiveName();
   return {
     built: loadPortfolio(),
     entries: loadEntries(),
@@ -52,6 +57,7 @@ export function readLocalCloudPayload(): CloudPortfolioPayload {
     prefs: {
       entryCoachDismissed: storageGet(ENTRY_COACH_KEY) === "true",
       guestTrustDismissed: storageGet(GUEST_TRUST_KEY) === "true",
+      displayName: active || undefined,
     },
     updatedAt: storageGet(LOCAL_UPDATED_KEY) || new Date(0).toISOString(),
   };
@@ -105,13 +111,27 @@ export async function pushCloudNow(): Promise<boolean> {
   if (!syncEnabled) return false;
   try {
     const payload = readLocalCloudPayload();
+    const active = getActiveName();
+    if (active) {
+      saveNamedPayload(active, payload);
+    }
     const res = await fetch("/api/me/portfolio", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ payload }),
     });
-    return res.ok;
+    // Named vault is enough for demo even if server PUT fails (Netlify FS).
+    return res.ok || Boolean(active);
   } catch {
+    const active = getActiveName();
+    if (active) {
+      try {
+        saveNamedPayload(active, readLocalCloudPayload());
+        return true;
+      } catch {
+        return false;
+      }
+    }
     return false;
   }
 }

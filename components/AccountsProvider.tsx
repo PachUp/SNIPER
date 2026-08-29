@@ -10,11 +10,19 @@ import {
   type ReactNode,
 } from "react";
 import type { AuthUser, CloudPortfolioPayload } from "@/lib/user/types";
+import { emptyCloudPayload } from "@/lib/user/types";
 import {
   applyCloudPayload,
   readLocalCloudPayload,
+  setCloudSyncEnabled,
   scheduleCloudSync,
 } from "@/lib/user/syncClient";
+import {
+  getActiveName,
+  loadNamedPayload,
+  saveNamedPayload,
+  setActiveName,
+} from "@/lib/user/namedVault";
 
 type AccountsCtx = {
   enabled: boolean;
@@ -51,9 +59,41 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
         backend?: string;
         user?: AuthUser | null;
       };
-      setEnabled(Boolean(data.enabled));
+      const on = Boolean(data.enabled);
+      setEnabled(on);
       setBackend(data.backend || "off");
-      setUser(data.user ?? null);
+
+      if (data.user) {
+        setUser(data.user);
+        if (data.user.displayName) setActiveName(data.user.displayName);
+        setCloudSyncEnabled(true);
+        return;
+      }
+
+      // Demo: cookie may be gone (Netlify cold start) — restore from named vault.
+      const active = getActiveName();
+      if (on && active) {
+        const re = await fetch("/api/auth/name", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ displayName: active }),
+        });
+        if (re.ok) {
+          const body = (await re.json()) as { user?: AuthUser };
+          if (body.user) {
+            setUser(body.user);
+            const vault = loadNamedPayload(active);
+            if (vault.built?.holdings?.length) {
+              applyCloudPayload(vault);
+            }
+            setCloudSyncEnabled(true);
+            return;
+          }
+        }
+      }
+
+      setUser(null);
+      setCloudSyncEnabled(false);
     } catch {
       setEnabled(false);
       setUser(null);
@@ -67,41 +107,70 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
   }, [refresh]);
 
   const signOut = useCallback(async () => {
+    const active = getActiveName();
+    if (active) {
+      try {
+        saveNamedPayload(active, readLocalCloudPayload());
+      } catch {
+        /* ignore */
+      }
+    }
+    setCloudSyncEnabled(false);
     await fetch("/api/auth/session", { method: "DELETE" });
+    setActiveName(null);
+    applyCloudPayload(emptyCloudPayload());
     setUser(null);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("sniper:portfolio"));
+    }
   }, []);
 
   const hydrateFromCloud = useCallback(async () => {
-    const res = await fetch("/api/me/portfolio", { cache: "no-store" });
-    if (res.status === 401 || res.status === 501) return "skipped";
-    if (!res.ok) return "skipped";
-    const data = (await res.json()) as { payload?: CloudPortfolioPayload };
-    const cloud = data.payload;
-    if (!cloud) return "empty";
+    const active = getActiveName();
+    const vault = active ? loadNamedPayload(active) : null;
+    const vaultHas = Boolean(vault?.built?.holdings?.length);
+
+    let cloud: CloudPortfolioPayload | null = null;
+    try {
+      const res = await fetch("/api/me/portfolio", { cache: "no-store" });
+      if (res.ok) {
+        const data = (await res.json()) as { payload?: CloudPortfolioPayload };
+        cloud = data.payload ?? null;
+      }
+    } catch {
+      /* named vault is enough for demo */
+    }
 
     const local = readLocalCloudPayload();
-    const cloudHas = Boolean(cloud.built?.holdings?.length);
+    const cloudHas = Boolean(cloud?.built?.holdings?.length);
     const localHas = Boolean(local.built?.holdings?.length);
 
-    if (!cloudHas && !localHas) return "empty";
+    if (!vaultHas && !cloudHas && !localHas) return "empty";
 
-    if (cloudHas && localHas) {
-      const cloudT = Date.parse(cloud.updatedAt || "") || 0;
-      const localT = Date.parse(local.updatedAt || "") || 0;
-      if (localT > cloudT) {
-        scheduleCloudSync();
-        return "kept_local";
-      }
-    }
+    const vaultT = vault ? Date.parse(vault.updatedAt || "") || 0 : 0;
+    const cloudT = cloud ? Date.parse(cloud.updatedAt || "") || 0 : 0;
+    const localT = Date.parse(local.updatedAt || "") || 0;
 
-    if (cloudHas) {
-      applyCloudPayload(cloud);
+    // Newest wins among vault / server / working local.
+    const bestT = Math.max(vaultT, cloudT, localT);
+    if (vaultHas && vaultT === bestT && vault) {
+      applyCloudPayload(vault);
+      scheduleCloudSync();
       return "applied_cloud";
     }
-
+    if (cloudHas && cloudT === bestT && cloud) {
+      applyCloudPayload(cloud);
+      if (active) saveNamedPayload(active, cloud);
+      return "applied_cloud";
+    }
     if (localHas) {
+      if (active) saveNamedPayload(active, local);
       scheduleCloudSync();
       return "kept_local";
+    }
+    if (vaultHas && vault) {
+      applyCloudPayload(vault);
+      return "applied_cloud";
     }
     return "empty";
   }, []);

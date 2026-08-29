@@ -1,16 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { accountsBackend, isAccountsEnabled } from "@/lib/user/config";
 import { createSupabaseServer } from "@/lib/user/supabase";
-import { localRequestOtp } from "@/lib/user/localStore";
 
 export const dynamic = "force-dynamic";
 
-/** Start email sign-in: Supabase magic link or local OTP. */
+/**
+ * Email sign-in (legacy). Demo uses POST /api/auth/name instead.
+ * Supabase magic-link still works if SNIPER_ACCOUNTS_BACKEND=supabase.
+ */
 export async function POST(req: NextRequest) {
   if (!isAccountsEnabled()) {
     return NextResponse.json(
       { error: "Accounts not enabled" },
       { status: 501 }
+    );
+  }
+
+  const backend = accountsBackend();
+  if (backend === "local") {
+    return NextResponse.json(
+      {
+        error: "Demo uses full-name sign-in. POST /api/auth/name with { displayName }.",
+        use: "/api/auth/name",
+      },
+      { status: 410 }
     );
   }
 
@@ -28,21 +41,6 @@ export async function POST(req: NextRequest) {
   }
   if (!email.includes("@")) {
     return NextResponse.json({ error: "Enter a valid email" }, { status: 400 });
-  }
-
-  const backend = accountsBackend();
-  if (backend === "local") {
-    const result = await localRequestOtp(email);
-    if (!result.ok) {
-      return NextResponse.json({ error: result.error }, { status: 400 });
-    }
-    return NextResponse.json({
-      ok: true,
-      mode: "otp",
-      message: "Check your email for a 6-digit code (local/dev may show it below).",
-      devCode: result.devCode,
-      displayName: displayName || undefined,
-    });
   }
 
   const supabase = createSupabaseServer();

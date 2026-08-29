@@ -241,35 +241,32 @@ const en: Dict = {
   "prelude.s5": "Tap any stock to see what it is, why it’s in, and the levels.",
   "prelude.cta": "GOT IT — LET’S GO",
 
-  // Phase 2 accounts
+  // Phase 2 accounts (demo: full name only)
   "auth.eyebrow": "Your book",
-  "auth.titleSave": "Save this book so it follows you",
-  "auth.titleReturn": "Sign in to open YOURS anywhere",
+  "auth.titleSave": "Save this book under your name",
+  "auth.titleReturn": "Open YOURS with your name",
+  "auth.bodyName":
+    "Enter your full name. We’ll remember this portfolio on this device under that name — no email needed for the demo.",
   "auth.bodySave":
-    "Email a sign-in link. Your picks and levels sync before you set any entry price — guest mode still works without an account.",
+    "Enter your full name. We’ll remember this portfolio on this device under that name — no email needed for the demo.",
   "auth.bodyReturn":
-    "Use the same email on another phone to restore YOURS. No password — just a code or magic link.",
+    "Use the same full name you signed in with to reopen your saved book on this device.",
   "auth.disabled":
-    "Cloud save isn’t configured on this host yet. Your book stays in this browser.",
-  "auth.namePlaceholder": "What should we call you? (optional)",
-  "auth.emailPlaceholder": "you@email.com",
-  "auth.sendCode": "SEND CODE",
-  "auth.sendLink": "EMAIL ME A LINK",
-  "auth.codePlaceholder": "6-digit code",
-  "auth.devCode": "Dev code: {code}",
-  "auth.verify": "VERIFY & SAVE",
-  "auth.otpSent": "Enter the code we sent (or the dev code below).",
-  "auth.magicSent": "Check your email for a sign-in link.",
-  "auth.signedIn": "Signed in — your book can sync now.",
-  "auth.mergedCloud": "Restored your saved book from the cloud.",
-  "auth.mergedLocal": "Kept this browser’s book and uploaded it.",
+    "Name save isn’t configured on this host yet. Your book stays as a guest in this browser.",
+  "auth.namePlaceholder": "Your full name",
+  "auth.nameRequired": "Enter your full name (at least 2 characters).",
+  "auth.continueName": "CONTINUE",
+  "auth.signedIn": "Signed in — your book is saved under your name.",
+  "auth.mergedCloud": "Restored your saved book for that name.",
+  "auth.mergedLocal": "Saved this browser’s book under your name.",
   "auth.skipGuest": "Continue as guest",
   "auth.signIn": "SIGN IN",
-  "auth.saveBanner": "Save YOURS with email so it isn’t lost if you clear this browser.",
+  "auth.saveBanner":
+    "Save YOURS under your name so you can reopen it later on this device.",
   "auth.saveCta": "SAVE",
   "auth.later": "Later",
   "ideas.inBook": "In YOURS",
-  "landing.signInHint": "Sign in to keep YOURS across devices",
+  "landing.signInHint": "Sign in with your name to keep YOURS",
 
   // risk levels
   "risk.Low": "Low",

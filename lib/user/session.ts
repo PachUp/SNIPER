@@ -25,10 +25,10 @@ export async function getAuthUser(): Promise<AuthUser | null> {
   if (!supabase) return null;
   const { data } = await supabase.auth.getUser();
   const u = data.user;
-  if (!u?.email) return null;
+  if (!u) return null;
   return {
     id: u.id,
-    email: u.email,
+    email: u.email || undefined,
     displayName:
       typeof u.user_metadata?.display_name === "string"
         ? u.user_metadata.display_name
@@ -79,7 +79,7 @@ export async function putCloudPortfolio(
   const { error } = await supabase.from("sniper_portfolios").upsert(
     {
       user_id: user.id,
-      email: user.email,
+      email: user.email || null,
       display_name: next.prefs?.displayName || user.displayName || null,
       payload: next,
       updated_at: updatedAt,
