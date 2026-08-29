@@ -243,10 +243,13 @@ const en: Dict = {
 
   // Phase 2 accounts (demo: full name only)
   "auth.eyebrow": "Your book",
+  "auth.titleWho": "Who’s playing?",
   "auth.titleSave": "Save this book under your name",
   "auth.titleReturn": "Open YOURS with your name",
   "auth.bodyName":
-    "Enter your full name. We’ll remember this portfolio on this device under that name — no email needed for the demo.",
+    "Enter your full name (or pick a saved one). We’ll keep this portfolio under that name — type a new name anytime for a new person.",
+  "auth.bodySwitch":
+    "Enter a name to open that person’s book, or type a new name to start fresh. Your current book stays saved under the previous name.",
   "auth.bodySave":
     "Enter your full name. We’ll remember this portfolio on this device under that name — no email needed for the demo.",
   "auth.bodyReturn":
@@ -256,11 +259,13 @@ const en: Dict = {
   "auth.namePlaceholder": "Your full name",
   "auth.nameRequired": "Enter your full name (at least 2 characters).",
   "auth.continueName": "CONTINUE",
+  "auth.savedNames": "Saved names on this device",
   "auth.signedIn": "Signed in — your book is saved under your name.",
   "auth.mergedCloud": "Restored your saved book for that name.",
   "auth.mergedLocal": "Saved this browser’s book under your name.",
   "auth.newNameEmpty": "New name — start a BUILD to save a book under it.",
   "auth.skipGuest": "Continue as guest",
+  "auth.keepCurrent": "Keep current name",
   "auth.signIn": "SIGN IN",
   "auth.saveBanner":
     "Save YOURS under your name so you can reopen it later on this device.",

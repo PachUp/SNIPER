@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAccounts } from "@/components/AccountsProvider";
 import {
   applyCloudPayload,
@@ -31,12 +31,22 @@ export default function SignInModal({
   reason?: "save" | "return";
 }) {
   const { t } = useI18n();
-  const { enabled, refresh } = useAccounts();
-  const [displayName, setDisplayName] = useState(getActiveName() || "");
+  const { enabled, user, refresh } = useAccounts();
+  const [displayName, setDisplayName] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
-  const known = listVaultNames();
+  const [known, setKnown] = useState<string[]>([]);
+
+  // Fresh each open so every visit can pick / type a name.
+  useEffect(() => {
+    if (!open) return;
+    setDisplayName("");
+    setError(null);
+    setInfo(null);
+    setBusy(false);
+    setKnown(listVaultNames());
+  }, [open]);
 
   if (!open) return null;
 
@@ -78,24 +88,22 @@ export default function SignInModal({
         !prev || normalizeNameKey(prev) === normalizeNameKey(name);
 
       if (vaultHas) {
-        // Returning demo user — restore their saved book for this name.
         applyCloudPayload(vault);
         setInfo(t("auth.mergedCloud"));
       } else if (localHas && (sameName || !prev)) {
-        // First save for this name: claim the working / guest book.
         stashWorkingUnderName(name, local);
         setInfo(t("auth.mergedLocal"));
       } else if (localHas && prev && !sameName) {
-        // Switched to a new name with no vault — start clean (old book parked).
         applyCloudPayload(emptyCloudPayload());
         setInfo(t("auth.newNameEmpty"));
       } else {
         applyCloudPayload(emptyCloudPayload());
+        setInfo(t("auth.newNameEmpty"));
       }
 
       await refresh();
-      // Push this name’s book to the server (best-effort). Vault already has it.
       await pushCloudNow();
+      setKnown(listVaultNames());
 
       window.setTimeout(() => {
         onClose();
@@ -115,10 +123,14 @@ export default function SignInModal({
           {t("auth.eyebrow")}
         </p>
         <h2 className="mt-1 text-lg font-bold tracking-wide">
-          {reason === "return" ? t("auth.titleReturn") : t("auth.titleSave")}
+          {t("auth.titleWho")}
         </h2>
         <p className="mt-1.5 text-sm text-terminal-muted">
-          {!enabled ? t("auth.disabled") : t("auth.bodyName")}
+          {!enabled
+            ? t("auth.disabled")
+            : user
+              ? t("auth.bodySwitch")
+              : t("auth.bodyName")}
         </p>
 
         {!enabled ? (
@@ -145,17 +157,22 @@ export default function SignInModal({
                 className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
               />
               {known.length > 0 ? (
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {known.slice(0, 8).map((n) => (
-                    <button
-                      key={n}
-                      type="button"
-                      onClick={() => setDisplayName(n)}
-                      className="rounded-full border border-terminal-border px-2.5 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
-                    >
-                      {n}
-                    </button>
-                  ))}
+                <div className="pt-1">
+                  <p className="mb-1.5 text-[10px] uppercase tracking-wider text-terminal-muted">
+                    {t("auth.savedNames")}
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {known.slice(0, 12).map((n) => (
+                      <button
+                        key={n}
+                        type="button"
+                        onClick={() => setDisplayName(n)}
+                        className="rounded-full border border-terminal-border px-2.5 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
+                      >
+                        {n}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               ) : null}
               <button
@@ -180,7 +197,7 @@ export default function SignInModal({
               onClick={onClose}
               className="mt-4 w-full text-xs tracking-wider text-terminal-muted hover:text-terminal-accent"
             >
-              {t("auth.skipGuest")}
+              {user ? t("auth.keepCurrent") : t("auth.skipGuest")}
             </button>
           </>
         )}

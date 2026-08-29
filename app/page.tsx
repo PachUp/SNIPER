@@ -11,7 +11,7 @@ import { useAccounts } from "@/components/AccountsProvider";
 export default function LandingPage() {
   const { t } = useI18n();
   const router = useRouter();
-  const { enabled, user, loading } = useAccounts();
+  const { enabled, loading } = useAccounts();
   const [hasPortfolio, setHasPortfolio] = useState(false);
   const [ready, setReady] = useState(false);
   const [exiting, setExiting] = useState(false);
@@ -22,15 +22,11 @@ export default function LandingPage() {
     setReady(true);
   }, []);
 
-  // Open name entry every time a guest hits the Netlify landing URL.
+  // Every visit to the site: offer name sign-in / switch (new or returning).
   useEffect(() => {
-    if (user) {
-      setSignInOpen(false);
-      return;
-    }
     if (loading || !enabled) return;
     setSignInOpen(true);
-  }, [loading, enabled, user]);
+  }, [loading, enabled]);
 
   function go(href: string) {
     if (exiting) return;
@@ -40,19 +36,18 @@ export default function LandingPage() {
     }, 220);
   }
 
-  const signInButton =
-    enabled && !user ? (
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          setSignInOpen(true);
-        }}
-        className="relative z-50 inline-flex min-h-11 items-center justify-center rounded-md border border-terminal-accent bg-terminal-accent px-3 py-2 text-[10px] font-bold tracking-[0.16em] text-black transition-transform hover:scale-[1.03] active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terminal-accent"
-      >
-        {t("auth.signIn")}
-      </button>
-    ) : null;
+  const signInButton = enabled ? (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        setSignInOpen(true);
+      }}
+      className="relative z-50 inline-flex min-h-11 items-center justify-center rounded-md border border-terminal-accent bg-terminal-accent px-3 py-2 text-[10px] font-bold tracking-[0.16em] text-black transition-transform hover:scale-[1.03] active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terminal-accent"
+    >
+      {t("auth.signIn")}
+    </button>
+  ) : null;
 
   // Returning users: don't make the whole screen rebuild-on-tap.
   if (ready && hasPortfolio) {
@@ -99,22 +94,22 @@ export default function LandingPage() {
           <p className="mt-5 max-w-sm text-center text-sm tracking-[0.06em] text-terminal-muted">
             {t("landing.returnTagline")}
           </p>
-          <button
-            type="button"
-            onClick={() => go("/dashboard")}
-            className="mt-8 rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.2em] text-black transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97]"
-          >
-            {t("landing.seePortfolio")}
-          </button>
-          {enabled && !user ? (
+          {enabled ? (
             <button
               type="button"
               onClick={() => setSignInOpen(true)}
-              className="mt-4 rounded-full border border-terminal-accent px-8 py-3 text-sm font-bold tracking-[0.16em] text-terminal-accent transition-transform hover:scale-[1.03] active:scale-[0.97]"
+              className="mt-8 rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.16em] text-black transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97]"
             >
               {t("landing.signInCta")}
             </button>
           ) : null}
+          <button
+            type="button"
+            onClick={() => go("/dashboard")}
+            className="mt-4 rounded-full border border-terminal-border px-8 py-3 text-sm font-bold tracking-[0.2em] text-terminal-muted transition-transform hover:border-terminal-accent hover:text-terminal-accent"
+          >
+            {t("landing.seePortfolio")}
+          </button>
           <button
             type="button"
             onClick={() => go("/build")}
@@ -208,7 +203,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {enabled && !user ? (
+      {enabled ? (
         <div
           className="absolute bottom-16 start-0 end-0 z-50 flex justify-center safe-px"
           onClick={(e) => e.stopPropagation()}
