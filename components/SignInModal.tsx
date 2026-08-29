@@ -13,9 +13,13 @@ import {
   getActiveName,
   listVaultNames,
   loadNamedPayload,
+  normalizeNameKey,
+  payloadHasBook,
   saveNamedPayload,
   setActiveName,
+  stashWorkingUnderName,
 } from "@/lib/user/namedVault";
+import { emptyCloudPayload } from "@/lib/user/types";
 
 export default function SignInModal({
   open,
@@ -27,7 +31,7 @@ export default function SignInModal({
   reason?: "save" | "return";
 }) {
   const { t } = useI18n();
-  const { enabled, refresh, hydrateFromCloud } = useAccounts();
+  const { enabled, refresh } = useAccounts();
   const [displayName, setDisplayName] = useState(getActiveName() || "");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,6 +48,17 @@ export default function SignInModal({
       const name = displayName.trim().replace(/\s+/g, " ");
       if (name.length < 2) throw new Error(t("auth.nameRequired"));
 
+      // Park the current book under the previous name before switching.
+      const prev = getActiveName();
+      const working = readLocalCloudPayload();
+      if (
+        prev &&
+        normalizeNameKey(prev) !== normalizeNameKey(name) &&
+        payloadHasBook(working)
+      ) {
+        saveNamedPayload(prev, working);
+      }
+
       const res = await fetch("/api/auth/name", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -56,29 +71,36 @@ export default function SignInModal({
       setCloudSyncEnabled(true);
 
       const vault = loadNamedPayload(name);
-      const vaultHas = Boolean(vault.built?.holdings?.length);
       const local = readLocalCloudPayload();
-      const localHas = Boolean(local.built?.holdings?.length);
+      const vaultHas = payloadHasBook(vault);
+      const localHas = payloadHasBook(local);
+      const sameName =
+        !prev || normalizeNameKey(prev) === normalizeNameKey(name);
 
       if (vaultHas) {
+        // Returning demo user — restore their saved book for this name.
         applyCloudPayload(vault);
         setInfo(t("auth.mergedCloud"));
-      } else if (localHas) {
-        saveNamedPayload(name, local);
+      } else if (localHas && (sameName || !prev)) {
+        // First save for this name: claim the working / guest book.
+        stashWorkingUnderName(name, local);
         setInfo(t("auth.mergedLocal"));
+      } else if (localHas && prev && !sameName) {
+        // Switched to a new name with no vault — start clean (old book parked).
+        applyCloudPayload(emptyCloudPayload());
+        setInfo(t("auth.newNameEmpty"));
+      } else {
+        applyCloudPayload(emptyCloudPayload());
       }
 
       await refresh();
-      const merge = await hydrateFromCloud();
-      if (!vaultHas && merge === "applied_cloud") {
-        setInfo(t("auth.mergedCloud"));
-      }
+      // Push this name’s book to the server (best-effort). Vault already has it.
       await pushCloudNow();
 
       window.setTimeout(() => {
         onClose();
         window.dispatchEvent(new Event("sniper:portfolio"));
-      }, 400);
+      }, 350);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Sign-in failed");
     } finally {

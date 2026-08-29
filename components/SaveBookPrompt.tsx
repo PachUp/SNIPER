@@ -33,7 +33,10 @@ export default function SaveBookPrompt() {
     if (loading) return;
     if (user) {
       setCloudSyncEnabled(true);
-      void hydrateFromCloud().then(() => pushCloudNow());
+      // Restore / claim book for this name, then push — never wipe a real book.
+      void hydrateFromCloud().then(() => {
+        void pushCloudNow();
+      });
       setShowBanner(false);
       setModal(false);
       return;

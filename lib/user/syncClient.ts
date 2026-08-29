@@ -1,7 +1,8 @@
 "use client";
 
 /**
- * Client helpers: snapshot localStorage ↔ cloud payload + debounced PUT.
+ * Client helpers: snapshot localStorage ↔ named vault (+ optional server PUT).
+ * Named vault is the demo source of truth per full name.
  */
 
 import {
@@ -63,7 +64,7 @@ export function readLocalCloudPayload(): CloudPortfolioPayload {
   };
 }
 
-/** Apply cloud snapshot into localStorage without wipe-then-rebuild races. */
+/** Apply snapshot into working localStorage. */
 export function applyCloudPayload(payload: CloudPortfolioPayload) {
   if (payload.built) {
     storageSet(KEY, JSON.stringify(payload.built as BuiltPortfolio));
@@ -98,9 +99,21 @@ export function applyCloudPayload(payload: CloudPortfolioPayload) {
   }
 }
 
+/** Always mirror working book into the active name’s vault (demo persistence). */
+export function mirrorActiveVault() {
+  const active = getActiveName();
+  if (!active) return;
+  const payload = readLocalCloudPayload();
+  if (!payload.built?.holdings?.length) return;
+  saveNamedPayload(active, payload);
+}
+
 export function scheduleCloudSync() {
-  if (!syncEnabled || typeof window === "undefined") return;
+  if (typeof window === "undefined") return;
   touchLocalUpdatedAt();
+  // Name vault first — works even before / without server sync.
+  mirrorActiveVault();
+  if (!syncEnabled) return;
   if (syncTimer != null) window.clearTimeout(syncTimer);
   syncTimer = window.setTimeout(() => {
     void pushCloudNow();
@@ -108,30 +121,34 @@ export function scheduleCloudSync() {
 }
 
 export async function pushCloudNow(): Promise<boolean> {
-  if (!syncEnabled) return false;
+  const active = getActiveName();
+  const payload = readLocalCloudPayload();
+  if (active && payload.built?.holdings?.length) {
+    saveNamedPayload(active, payload);
+  }
+  if (!syncEnabled) return Boolean(active && payload.built?.holdings?.length);
   try {
-    const payload = readLocalCloudPayload();
-    const active = getActiveName();
-    if (active) {
-      saveNamedPayload(active, payload);
-    }
     const res = await fetch("/api/me/portfolio", {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ payload }),
     });
-    // Named vault is enough for demo even if server PUT fails (Netlify FS).
     return res.ok || Boolean(active);
   } catch {
-    const active = getActiveName();
-    if (active) {
-      try {
-        saveNamedPayload(active, readLocalCloudPayload());
-        return true;
-      } catch {
-        return false;
-      }
-    }
-    return false;
+    return Boolean(active && payload.built?.holdings?.length);
   }
+}
+
+/** Flush vault on tab close so a just-built book isn’t lost. */
+export function installVaultFlush() {
+  if (typeof window === "undefined") return;
+  const flush = () => {
+    try {
+      mirrorActiveVault();
+    } catch {
+      /* ignore */
+    }
+  };
+  window.addEventListener("pagehide", flush);
+  window.addEventListener("beforeunload", flush);
 }

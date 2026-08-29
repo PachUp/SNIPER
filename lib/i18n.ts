@@ -259,6 +259,7 @@ const en: Dict = {
   "auth.signedIn": "Signed in — your book is saved under your name.",
   "auth.mergedCloud": "Restored your saved book for that name.",
   "auth.mergedLocal": "Saved this browser’s book under your name.",
+  "auth.newNameEmpty": "New name — start a BUILD to save a book under it.",
   "auth.skipGuest": "Continue as guest",
   "auth.signIn": "SIGN IN",
   "auth.saveBanner":
