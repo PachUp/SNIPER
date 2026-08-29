@@ -613,11 +613,19 @@ export default function DashboardPage() {
 
   if (!portfolio || (portfolio.holdings.length === 0 && added.length === 0)) {
     return (
-      <div className="py-20 text-center">
-        <p className="text-terminal-muted">{t("dash.empty")}</p>
+      <div className="mx-auto max-w-md px-4 py-16 text-center">
+        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
+          YOURS
+        </p>
+        <h1 className="mt-2 text-lg font-bold tracking-wide text-white sm:text-xl">
+          {t("dash.empty")}
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-terminal-muted">
+          {t("dash.emptyBody")}
+        </p>
         <Link
           href="/build"
-          className="mt-4 inline-block rounded-full bg-terminal-accent px-8 py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg"
+          className="mt-6 inline-block rounded-full bg-terminal-accent px-8 py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg transition-transform hover:scale-[1.02] active:scale-[0.98]"
         >
           {t("dash.getStarted")}
         </Link>

@@ -7,6 +7,9 @@ const en: Dict = {
     "Create a smart stock portfolio in under a minute. No experience needed.",
   "landing.tapAnywhere": "TAP ANYWHERE TO START",
   "landing.seePortfolio": "SEE MY PORTFOLIO →",
+  "landing.returnTagline":
+    "Your book is ready in this browser — open it, or build a new one.",
+  "landing.buildNew": "BUILD A NEW PORTFOLIO",
 
   // nav
   "nav.dashboard": "YOURS",
@@ -57,6 +60,8 @@ const en: Dict = {
 
   // dashboard
   "dash.empty": "You haven't made a portfolio yet.",
+  "dash.emptyBody":
+    "Pick a few famous names — we fill up to 12 stocks with clear buy, sell, and exit levels. Takes under a minute.",
   "dash.getStarted": "GET STARTED",
   "dash.title": "Your portfolio",
   "dash.meta": "{n} stocks · created {date}",

@@ -21,33 +21,40 @@ else
 fi
 
 # Fail fast locally — Netlify keeps the old Published deploy if `next build` errors.
-# Concurrent `next dev` corrupts `.next` mid-build (PageNotFoundError / missing chunks).
+# Concurrent `next dev` corrupts `.next` mid-build (PageNotFoundError / missing .nft.json).
 # Stop local Next first, wipe cache, build; retry once if the flake still appears.
 echo "Verifying production build…"
 pkill -f "[n]ext dev" 2>/dev/null || true
 pkill -f "[n]ext-server" 2>/dev/null || true
-sleep 1
+pkill -f "[n]ode.*next" 2>/dev/null || true
+sleep 2
 rm -rf .next
 
 run_prod_build() {
   npm run build >/tmp/sniper-predeploy-build.log 2>&1
 }
 
+is_next_cache_flake() {
+  grep -qE "PageNotFoundError|Cannot find module for page|Failed to collect page data|ENOENT:.*\\.next|\\.nft\\.json|collect-build-traces" \
+    /tmp/sniper-predeploy-build.log 2>/dev/null
+}
+
 if ! run_prod_build; then
-  if grep -q "PageNotFoundError\|Cannot find module for page\|Failed to collect page data" /tmp/sniper-predeploy-build.log 2>/dev/null; then
+  if is_next_cache_flake; then
     echo "Stale .next flake detected — cleaning and retrying build once…"
     pkill -f "[n]ext dev" 2>/dev/null || true
-    sleep 1
+    pkill -f "[n]ext-server" 2>/dev/null || true
+    sleep 2
     rm -rf .next
     if ! run_prod_build; then
       echo "BUILD_FAILED — not pushing. See /tmp/sniper-predeploy-build.log"
-      grep -E "^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile|> Build )" /tmp/sniper-predeploy-build.log | tail -n 12 || true
+      grep -E "^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile|> Build )|ENOENT" /tmp/sniper-predeploy-build.log | tail -n 12 || true
       tail -n 20 /tmp/sniper-predeploy-build.log
       exit 1
     fi
   else
     echo "BUILD_FAILED — not pushing. See /tmp/sniper-predeploy-build.log"
-    grep -E "^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile|> Build )" /tmp/sniper-predeploy-build.log | tail -n 12 || true
+    grep -E "^(Error:|PageNotFoundError:|Module not found|Type error|Failed to compile|> Build )|ENOENT" /tmp/sniper-predeploy-build.log | tail -n 12 || true
     tail -n 20 /tmp/sniper-predeploy-build.log
     exit 1
   fi

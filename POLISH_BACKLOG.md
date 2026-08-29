@@ -16,16 +16,16 @@ Add-from-StockAnalysis is live on https://sniper-proj.netlify.app/
 1. **Landing sells levels** — Tagline names buy / sell / exit (and browser-only soft launch), not generic “smart portfolio.”  
    `app/page.tsx`, `lib/i18n.ts`
 
-2. **Returning users: YOURS first** — With a saved book, don’t make the whole hero “tap = rebuild”; primary CTA → dashboard, BUILD explicit.  
+2. ~~**Returning users: YOURS first**~~ **Done** — With a saved book, primary CTA → dashboard; BUILD explicit.  
    `app/page.tsx`
 
-3. **Wire PICK FOR ME** — i18n key exists unused; one-tap pick 1–4 eligible logos for beginners who freeze.  
+3. ~~**Wire PICK FOR ME**~~ **Done** — One-tap pick eligible logos.  
    `app/build/page.tsx`, `lib/i18n.ts`
 
 4. **Calmer build on mobile** — One primary BUILD CTA (sticky); demote duplicate header button.  
    `app/build/page.tsx`
 
-5. **Richer YOURS empty state** — Explain fill-to-12 + levels, then GET STARTED (mirror news empty).  
+5. ~~**Richer YOURS empty state**~~ **Done** — Explain fill-to-12 + levels, then GET STARTED.  
    `app/(tabs)/dashboard/page.tsx`, `lib/i18n.ts`
 
 6. **Guest trust chip on YOURS** — Dismissible “saved in this browser · not a broker” near entry coach.  
@@ -48,6 +48,6 @@ Add-from-StockAnalysis is live on https://sniper-proj.netlify.app/
 
 ---
 
-## Suggested first ship
+## Suggested next ship
 
-Do **#2 + #3 + #5** in one small PR: safer returning-user landing, PICK FOR ME, clearer empty YOURS.
+Do **#1 + #6 + #7**: landing sells levels, guest trust chip, Ideas/HOUSE empty CTAs.

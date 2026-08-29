@@ -120,6 +120,30 @@ export default function BuildPage() {
     return `${MAX_USER_PICKS} of ${MAX_USER_PICKS} — ready to build`;
   }
 
+  /** One-tap shortlist: shuffle eligible logos into 1–MAX picks. */
+  function pickForMe() {
+    if (eligiblePicks.length === 0) {
+      setError(t("build.noneEligible"));
+      return;
+    }
+    setError(null);
+    const pool = [...eligiblePicks];
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+    const n = Math.min(
+      MAX_USER_PICKS,
+      Math.max(MIN_USER_PICKS, Math.min(3, pool.length))
+    );
+    const next = pool.slice(0, n).map((p) => p.symbol);
+    setPicked(next);
+    if (next[0]) {
+      setPopSymbol(next[0]);
+      window.setTimeout(() => setPopSymbol(null), 380);
+    }
+  }
+
   function goToStyleStep() {
     if (picked.length < MIN_USER_PICKS) {
       setError(t("build.needPick", { min: MIN_USER_PICKS }));
@@ -241,6 +265,16 @@ export default function BuildPage() {
         <p className="mt-2 text-xs font-medium text-terminal-accent">
           {t("build.hintPick")}
         </p>
+      ) : null}
+      {step === "picks" && !loading && eligiblePicks.length > 0 ? (
+        <button
+          type="button"
+          onClick={pickForMe}
+          disabled={building}
+          className="mt-3 text-[11px] font-bold tracking-[0.18em] text-terminal-muted underline-offset-4 transition-colors hover:text-terminal-accent hover:underline disabled:opacity-40"
+        >
+          {t("build.pickForMe")}
+        </button>
       ) : null}
 
       {error && (
