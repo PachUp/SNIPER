@@ -1,8 +1,9 @@
 import { getUniverseMetaMap } from "@/lib/builder/universeMeta";
 import { promises as fs } from "fs";
 import path from "path";
-import { builderFvDir } from "@/lib/builder/config";
+import { builderFvDir, isMockBuilderEnabled } from "@/lib/builder/config";
 import { loadCompanyBlurbs } from "@/lib/builder/blurbs";
+import { loadAddUniverse, type AddUniverseRow } from "@/lib/builder/addUniverse";
 import { readCollection } from "@/lib/data/store";
 import type { Stock } from "@/lib/types";
 
@@ -14,6 +15,8 @@ export type FvSearchHit = {
   price: number;
   fairValue: number;
   upsidePct: number;
+  /** False when levels will be provisional (no desk FV). */
+  hasFv?: boolean;
 };
 
 type RankedRow = {
@@ -96,10 +99,81 @@ function toHit(
     price: row.price,
     fairValue: row.fv,
     upsidePct: row.upside_pct,
+    hasFv: true,
   };
 }
 
-/** Soft-launch fallback when local FvIndustries files are unavailable. */
+function addRowToHit(row: AddUniverseRow): FvSearchHit {
+  return {
+    ticker: row.ticker,
+    name: row.name || row.ticker,
+    industry: row.industry || "",
+    sector: row.sector,
+    price: row.price ?? 0,
+    fairValue: row.fairValue ?? 0,
+    upsidePct: row.upsidePct ?? 0,
+    hasFv: row.hasFv,
+  };
+}
+
+function scoreHit(hit: FvSearchHit, q: string): number {
+  if (!q) return 1;
+  const name = hit.name.toUpperCase();
+  const industry = hit.industry.toUpperCase();
+  const sector = (hit.sector || "").toUpperCase();
+  if (hit.ticker === q) return 100;
+  if (hit.ticker.startsWith(q)) return 80;
+  if (hit.ticker.includes(q)) return 60;
+  if (name.startsWith(q) || name.includes(` ${q}`)) return 50;
+  if (name.includes(q)) return 40;
+  if (industry.includes(q)) return 20;
+  if (sector.includes(q)) return 15;
+  return 0;
+}
+
+/** Soft-launch / full-universe search over committed add_universe.json. */
+async function searchAddUniverse(
+  query: string,
+  opts?: { limit?: number; exclude?: Set<string> }
+): Promise<FvSearchHit[]> {
+  const limit = opts?.limit ?? 12;
+  const exclude = opts?.exclude ?? new Set<string>();
+  const rows = await loadAddUniverse();
+  if (rows.length === 0) return [];
+
+  const q = query.trim().toUpperCase();
+  const available = rows.filter((r) => r.ticker && !exclude.has(r.ticker));
+
+  if (!q) {
+    return available
+      .slice()
+      .sort((a, b) => {
+        if (a.hasFv !== b.hasFv) return a.hasFv ? -1 : 1;
+        return (b.upsidePct || 0) - (a.upsidePct || 0);
+      })
+      .slice(0, limit)
+      .map(addRowToHit);
+  }
+
+  const scored: { hit: FvSearchHit; score: number; upside: number }[] = [];
+  for (const row of available) {
+    const hit = addRowToHit(row);
+    const score = scoreHit(hit, q);
+    if (score > 0) {
+      scored.push({ hit, score, upside: hit.upsidePct });
+    }
+  }
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    if (Boolean(a.hit.hasFv) !== Boolean(b.hit.hasFv)) {
+      return a.hit.hasFv ? -1 : 1;
+    }
+    return b.upside - a.upside;
+  });
+  return scored.slice(0, limit).map(({ hit }) => hit);
+}
+
+/** Last-resort: tiny site catalog only. */
 async function searchCatalog(
   query: string,
   opts?: { limit?: number; exclude?: Set<string> }
@@ -120,6 +194,7 @@ async function searchCatalog(
     price: Number(s.price) || 0,
     fairValue: Number(s.fairValue) || 0,
     upsidePct: Number(s.upsidePct) || 0,
+    hasFv: Number(s.fairValue) > 0,
   });
 
   if (!q) {
@@ -133,17 +208,7 @@ async function searchCatalog(
   const scored: { hit: FvSearchHit; score: number; upside: number }[] = [];
   for (const s of available) {
     const hit = toCatalogHit(s);
-    const name = hit.name.toUpperCase();
-    const industry = hit.industry.toUpperCase();
-    const sector = (hit.sector || "").toUpperCase();
-    let score = 0;
-    if (hit.ticker === q) score = 100;
-    else if (hit.ticker.startsWith(q)) score = 80;
-    else if (hit.ticker.includes(q)) score = 60;
-    else if (name.startsWith(q) || name.includes(` ${q}`)) score = 50;
-    else if (name.includes(q)) score = 40;
-    else if (industry.includes(q)) score = 20;
-    else if (sector.includes(q)) score = 15;
+    const score = scoreHit(hit, q);
     if (score > 0) scored.push({ hit, score, upside: hit.upsidePct });
   }
 
@@ -154,9 +219,18 @@ async function searchCatalog(
   return scored.slice(0, limit).map(({ hit }) => hit);
 }
 
+async function searchDeployable(
+  query: string,
+  opts?: { limit?: number; exclude?: Set<string> }
+): Promise<FvSearchHit[]> {
+  const fromAdd = await searchAddUniverse(query, opts);
+  if (fromAdd.length > 0) return fromAdd;
+  return searchCatalog(query, opts);
+}
+
 /**
- * Search the full FvIndustries universe (~805 symbols) by ticker, industry, or name.
- * Falls back to committed catalog stocks when Fv data is not on this host.
+ * Search add-universe (~1527) / Fv ranked (~805) by ticker, industry, or name.
+ * Soft-launch uses committed add_universe.json (not the tiny site catalog alone).
  */
 export async function searchFvUniverse(
   query: string,
@@ -165,14 +239,18 @@ export async function searchFvUniverse(
   const limit = opts?.limit ?? 12;
   const exclude = opts?.exclude ?? new Set<string>();
 
+  if (isMockBuilderEnabled()) {
+    return searchDeployable(query, opts);
+  }
+
   let ranked: RankedRow[];
   try {
     ranked = await loadRanked();
   } catch {
-    return searchCatalog(query, opts);
+    return searchDeployable(query, opts);
   }
   if (ranked.length === 0) {
-    return searchCatalog(query, opts);
+    return searchDeployable(query, opts);
   }
 
   const [names, universe] = await Promise.all([
@@ -183,35 +261,36 @@ export async function searchFvUniverse(
 
   const available = ranked.filter((r) => r.symbol && !exclude.has(r.symbol));
 
+  let hits: FvSearchHit[];
   if (!q) {
-    return available
+    hits = available
       .slice()
       .sort((a, b) => b.upside_pct - a.upside_pct)
       .slice(0, limit)
       .map((r) => toHit(r, names, universe));
+  } else {
+    const scored: { row: RankedRow; score: number }[] = [];
+    for (const row of available) {
+      const hit = toHit(row, names, universe);
+      const score = scoreHit(hit, q);
+      if (score > 0) scored.push({ row, score });
+    }
+    scored.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return b.row.upside_pct - a.row.upside_pct;
+    });
+    hits = scored.slice(0, limit).map(({ row }) => toHit(row, names, universe));
   }
 
-  const scored: { row: RankedRow; score: number }[] = [];
-  for (const row of available) {
-    const hit = toHit(row, names, universe);
-    const name = hit.name.toUpperCase();
-    const industry = hit.industry.toUpperCase();
-    const sector = (hit.sector || "").toUpperCase();
-    let score = 0;
-    if (row.symbol === q) score = 100;
-    else if (row.symbol.startsWith(q)) score = 80;
-    else if (row.symbol.includes(q)) score = 60;
-    else if (name.startsWith(q) || name.includes(` ${q}`)) score = 50;
-    else if (name.includes(q)) score = 40;
-    else if (industry.includes(q)) score = 20;
-    else if (sector.includes(q)) score = 15;
-    if (score > 0) scored.push({ row, score });
+  // Fill remaining slots from full StockAnalysis add-universe (names without FV).
+  if (q && hits.length < limit) {
+    const seen = new Set([...exclude, ...hits.map((h) => h.ticker)]);
+    const more = await searchAddUniverse(query, {
+      limit: limit - hits.length,
+      exclude: seen,
+    });
+    hits = [...hits, ...more];
   }
 
-  scored.sort((a, b) => {
-    if (b.score !== a.score) return b.score - a.score;
-    return b.row.upside_pct - a.row.upside_pct;
-  });
-
-  return scored.slice(0, limit).map(({ row }) => toHit(row, names, universe));
+  return hits;
 }

@@ -11,6 +11,7 @@
     "deploy:live": "bash scripts/deploy-live.sh",
     "refresh:news": "node scripts/refresh-news.mjs",
     "refresh:levels": "node scripts/refresh-untouched-levels.mjs",
+    "sync:add-universe": "node scripts/sync-add-universe.mjs",
     "verify:live": "bash scripts/verify-live-catalog.sh"
   },
   "dependencies": {

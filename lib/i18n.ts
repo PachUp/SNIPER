@@ -84,7 +84,8 @@ const en: Dict = {
   "dash.addMine": "+ My stock",
   "dash.add": "Add",
   "dash.addHint":
-    "Add up to 2 of your own. Each add may replace a similar name we filled so the portfolio stays balanced.",
+    "Add up to 2 of your own from our full stock list. Names without a desk fair value get provisional buy / sell / exit levels from the live price. Each add may replace a similar name we filled.",
+  "dash.addProvisional": "provisional levels",
   "dash.addSearch": "Search ticker or company name…",
   "dash.addNone": "No matches.",
   "dash.addLeft": "{n} add left",

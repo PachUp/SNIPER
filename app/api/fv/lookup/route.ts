@@ -42,6 +42,9 @@ export async function GET(req: NextRequest) {
     const entry =
       blurb?.entry ||
       (() => {
+        if (fv.provisional) {
+          return `${fv.industry || "Stock"} — provisional buy / sell / exit from live price (no desk fair value yet).`;
+        }
         const up = fv.upside_pct;
         const bits = [
           `${fv.industry}`,
@@ -61,6 +64,8 @@ export async function GET(req: NextRequest) {
       entry,
       reasoning: entry,
       alternatives: catalogAlts,
+      provisional: Boolean(fv.provisional),
+      hasFv: fv.hasFv !== false && !fv.provisional,
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : "Lookup failed";

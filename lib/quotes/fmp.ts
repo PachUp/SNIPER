@@ -74,6 +74,44 @@ export async function fetchQuotes(
   return out;
 }
 
+/** Consensus analyst price target (FMP v4 / stable). */
+export async function fetchPriceTargetAverage(
+  symbol: string
+): Promise<number | null> {
+  const key = apiKey();
+  const sym = String(symbol || "")
+    .toUpperCase()
+    .trim();
+  if (!key || !sym) return null;
+
+  const urls = [
+    `https://financialmodelingprep.com/api/v4/price-target-consensus?symbol=${encodeURIComponent(sym)}&apikey=${encodeURIComponent(key)}`,
+    `https://financialmodelingprep.com/stable/price-target-consensus?symbol=${encodeURIComponent(sym)}&apikey=${encodeURIComponent(key)}`,
+  ];
+
+  for (const url of urls) {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
+      if (!res.ok) continue;
+      const data = (await res.json()) as
+        | Array<Record<string, unknown>>
+        | Record<string, unknown>;
+      const row = Array.isArray(data) ? data[0] : data;
+      if (!row || typeof row !== "object") continue;
+      const avg = Number(
+        row.priceTargetAverage ??
+          row.targetConsensus ??
+          row.targetMean ??
+          row.priceTarget
+      );
+      if (Number.isFinite(avg) && avg > 0) return avg;
+    } catch {
+      // try next URL
+    }
+  }
+  return null;
+}
+
 async function fetchOneHistory(
   symbol: string,
   range: PerfRange,

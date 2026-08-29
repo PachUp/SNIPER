@@ -7,15 +7,18 @@ import {
   builderUniverse,
   isMockBuilderEnabled,
 } from "@/lib/builder/config";
+import { getAddUniverseRow } from "@/lib/builder/addUniverse";
 import {
   getUniverseMeta,
   normalizeGicsSector,
 } from "@/lib/builder/universeMeta";
 import { readCollection } from "@/lib/data/store";
-import { fetchQuotes } from "@/lib/quotes/fmp";
+import { fetchPriceTargetAverage, fetchQuotes } from "@/lib/quotes/fmp";
 import type { GicsSector, Stock } from "@/lib/types";
 
 const execFileAsync = promisify(execFile);
+const PROVISIONAL_UPSIDE = 1.15;
+const SL_FRAC = 0.9;
 
 export type FvLookupResult = {
   symbol: string;
@@ -26,6 +29,10 @@ export type FvLookupResult = {
   beta: number;
   industry: string;
   sector: string;
+  /** Desk / FvIndustries fair value available. */
+  hasFv?: boolean;
+  /** Levels synthesized from FMP (no desk FV). */
+  provisional?: boolean;
 };
 
 function blankIndustry(value: string): boolean {
@@ -33,39 +40,88 @@ function blankIndustry(value: string): boolean {
   return !t || t === "unknown" || t === "n/a" || t === "na" || t === "none";
 }
 
-/** Catalog / soft-launch lookup when Python FvIndustries is unavailable. */
+function round2(n: number): number {
+  return Math.round(n * 100) / 100;
+}
+
+/**
+ * Soft-launch / fallback lookup: site catalog → add_universe → FMP.
+ * With FV: use stored fair value. Without: provisional buy/sell/exit.
+ */
 async function lookupFromCatalog(symbol: string): Promise<FvLookupResult> {
   const sym = symbol.toUpperCase().trim();
-  const stocks = await readCollection<Stock[]>("stocks.json");
-  const s = stocks.find((row) => row.ticker.toUpperCase() === sym);
-  if (!s) {
-    throw new Error(`Symbol ${sym} not found in catalog`);
+  const stocks = await readCollection<Stock[]>("stocks.json").catch(
+    () => [] as Stock[]
+  );
+  const catalog = stocks.find((row) => row.ticker.toUpperCase() === sym);
+  const addRow = await getAddUniverseRow(sym);
+
+  if (!catalog && !addRow) {
+    throw new Error(`Symbol ${sym} not found in add universe`);
   }
 
-  let price = Number(s.price) || 0;
+  let price =
+    Number(catalog?.price) ||
+    Number(addRow?.price) ||
+    0;
+  let liveName: string | undefined;
   try {
     const quotes = await fetchQuotes([sym]);
-    const live = quotes[sym]?.price;
-    if (typeof live === "number" && live > 0) price = live;
+    const live = quotes[sym];
+    if (typeof live?.price === "number" && live.price > 0) price = live.price;
+    if (live?.name) liveName = live.name;
   } catch {
-    // keep catalog price
+    // keep stored price
   }
 
-  const fairValue = Number(s.fairValue) || price;
-  const upsidePct =
-    price > 0 && fairValue > 0
-      ? ((fairValue - price) / price) * 100
-      : Number(s.upsidePct) || 0;
+  const hasFv = Boolean(
+    (catalog && Number(catalog.fairValue) > 0) || addRow?.hasFv
+  );
+  let fairValue = hasFv
+    ? Number(catalog?.fairValue) || Number(addRow?.fairValue) || 0
+    : 0;
+  let provisional = !hasFv || fairValue <= 0;
+
+  if (provisional) {
+    if (!(price > 0)) {
+      throw new Error(`No live price for ${sym}`);
+    }
+    const target = await fetchPriceTargetAverage(sym).catch(() => null);
+    fairValue =
+      target && target > 0 ? target : round2(price * PROVISIONAL_UPSIDE);
+  }
+
+  if (!(price > 0)) price = fairValue > 0 ? round2(fairValue / PROVISIONAL_UPSIDE) : 0;
+  if (!(price > 0) || !(fairValue > 0)) {
+    throw new Error(`Symbol ${sym} missing price / fair value`);
+  }
+
+  const upsidePct = ((fairValue - price) / price) * 100;
+  const sector = normalizeGicsSector(
+    catalog?.sector || addRow?.sector || "Information Technology"
+  );
+  const industry =
+    (!blankIndustry(catalog?.industry || "")
+      ? catalog!.industry
+      : null) ||
+    (!blankIndustry(addRow?.industry || "") ? addRow!.industry : "") ||
+    "";
 
   return {
     symbol: sym,
-    name: s.name || sym,
-    price,
-    fair_value: fairValue,
-    upside_pct: upsidePct,
-    beta: Number(s.beta) || 1,
-    industry: s.industry || "",
-    sector: s.sector || "Information Technology",
+    name:
+      catalog?.name ||
+      (addRow?.name && addRow.name !== sym ? addRow.name : null) ||
+      liveName ||
+      sym,
+    price: round2(price),
+    fair_value: round2(fairValue),
+    upside_pct: Math.round(upsidePct * 10) / 10,
+    beta: Number(catalog?.beta) || Number(addRow?.beta) || 1,
+    industry,
+    sector,
+    hasFv: !provisional,
+    provisional,
   };
 }
 
@@ -97,7 +153,6 @@ export async function lookupSymbolFromFv(
     if (data.error || !data.symbol) {
       throw new Error(data.error || `Symbol ${symbol} not found in FvIndustries`);
     }
-    // Belt-and-suspenders: enrich from universe if Python still returns Unknown.
     const uni = await getUniverseMeta(data.symbol);
     const industry = !blankIndustry(data.industry)
       ? data.industry
@@ -112,6 +167,8 @@ export async function lookupSymbolFromFv(
       name,
       industry,
       sector,
+      hasFv: true,
+      provisional: false,
     };
   } catch (err) {
     try {
@@ -149,10 +206,12 @@ export function stockPatchFromFv(fv: FvLookupResult) {
     upsidePct: fv.upside_pct,
     beta: fv.beta,
     sharpe: 0,
+    provisional: Boolean(fv.provisional),
+    hasFv: fv.hasFv !== false && !fv.provisional,
     levels: {
       ep: Number(price.toFixed(2)),
       tp: Number(fairValue.toFixed(2)),
-      sl: Number((price * 0.9).toFixed(2)),
+      sl: Number((price * SL_FRAC).toFixed(2)),
     },
   };
 }

@@ -63,6 +63,7 @@ type FvSearchHit = {
   price: number;
   fairValue: number;
   upsidePct: number;
+  hasFv?: boolean;
 };
 
 export default function DashboardPage() {
@@ -747,11 +748,16 @@ export default function DashboardPage() {
                 onClick={() => handleAddHit(hit)}
                 className="flex items-center justify-between rounded px-1.5 py-1 text-left text-xs hover:bg-black/50 disabled:opacity-50"
               >
-                <span className="truncate">
+                <span className="min-w-0 truncate">
                   <span className="font-bold">{hit.ticker}</span>
                   <span className="ms-1 text-terminal-muted">
                     {hit.name !== hit.ticker ? hit.name : hit.industry}
                   </span>
+                  {hit.hasFv === false ? (
+                    <span className="ms-1.5 text-[9px] uppercase tracking-wider text-terminal-accent/80">
+                      {t("dash.addProvisional")}
+                    </span>
+                  ) : null}
                 </span>
                 <span className="shrink-0 text-[9px] text-terminal-orange">
                   {t("dash.add")}
