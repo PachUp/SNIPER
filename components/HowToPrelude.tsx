@@ -46,8 +46,8 @@ export default function HowToPrelude() {
   }
 
   return (
-    <div className="fixed inset-0 z-[55] flex items-end justify-center bg-black/75 p-3 sm:items-center sm:p-4">
-      <div className="max-h-[85dvh] w-full max-w-md overflow-y-auto rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl safe-pb">
+    <div className="fixed inset-0 z-[55] flex items-end justify-center bg-black/75 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4">
+      <div className="max-h-[85dvh] w-full max-w-md overflow-y-auto scroll-touch rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl safe-pb">
         <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
           {t("prelude.eyebrow")}
         </p>
@@ -70,7 +70,7 @@ export default function HowToPrelude() {
         <button
           type="button"
           onClick={dismiss}
-          className="mt-5 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.18em] text-black"
+          className="mt-5 min-h-11 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.18em] text-black"
         >
           {t("prelude.cta")}
         </button>

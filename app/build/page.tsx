@@ -211,7 +211,7 @@ export default function BuildPage() {
   const canBuild = !building && picked.length >= MIN_USER_PICKS;
 
   return (
-    <main className="relative mx-auto min-h-[100dvh] max-w-6xl bg-black px-4 py-8 safe-pt safe-pb">
+    <main className="relative mx-auto min-h-screen-ios max-w-6xl bg-black px-4 py-8 safe-pt safe-pb">
       <BuildNameGate />
       {readyBeat ? (
         <div
@@ -454,7 +454,7 @@ export default function BuildPage() {
       )}
 
       {step === "picks" ? (
-        <div className="sticky bottom-4 z-20 mt-8 flex flex-col items-center gap-2 safe-pb">
+        <div className="sticky bottom-4 z-20 mt-8 flex flex-col items-center gap-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
           {!canBuild && !building ? (
             <p className="text-center text-[11px] text-terminal-muted">
               {t("build.hintPick")}

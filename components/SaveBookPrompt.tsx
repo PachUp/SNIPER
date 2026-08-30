@@ -56,7 +56,7 @@ export default function SaveBookPrompt() {
   if (!showBanner || user) return null;
 
   return (
-    <div className="fixed bottom-16 start-3 end-3 z-40 mx-auto max-w-lg sm:bottom-6">
+    <div className="fixed start-3 end-3 z-40 mx-auto max-w-lg bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]">
       <div className="flex items-center justify-between gap-3 rounded-xl border border-terminal-accent/40 bg-terminal-panel/95 px-3 py-2.5 shadow-lg backdrop-blur">
         <p className="text-[11px] leading-snug text-white/90">
           {t("auth.saveBannerBuild")}
@@ -68,14 +68,14 @@ export default function SaveBookPrompt() {
               setLaterThisView(true);
               setShowBanner(false);
             }}
-            className="text-[10px] uppercase tracking-wider text-terminal-muted"
+            className="inline-flex min-h-11 items-center px-2 text-[10px] uppercase tracking-wider text-terminal-muted"
           >
             {t("auth.later")}
           </button>
           <button
             type="button"
             onClick={() => router.push("/build")}
-            className="rounded-md bg-terminal-accent px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-black"
+            className="inline-flex min-h-11 items-center rounded-md bg-terminal-accent px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-black"
           >
             {t("brand.build")}
           </button>

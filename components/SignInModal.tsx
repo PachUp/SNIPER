@@ -140,8 +140,8 @@ export default function SignInModal({
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/75 p-3 sm:items-center sm:p-4">
-      <div className="w-full max-w-md rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl">
+    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/75 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4">
+      <div className="max-h-[min(90dvh,100%)] w-full max-w-md overflow-y-auto scroll-touch rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl safe-pb">
         <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
           {t("auth.eyebrow")}
         </p>
@@ -160,7 +160,7 @@ export default function SignInModal({
           <button
             type="button"
             onClick={onClose}
-            className="mt-5 w-full rounded-lg border border-terminal-border py-2.5 text-sm text-terminal-muted"
+            className="mt-5 min-h-11 w-full rounded-lg border border-terminal-border py-2.5 text-sm text-terminal-muted"
           >
             {t("common.close")}
           </button>
@@ -170,6 +170,10 @@ export default function SignInModal({
               <input
                 type="text"
                 autoComplete="name"
+                autoCapitalize="words"
+                autoCorrect="off"
+                spellCheck={false}
+                enterKeyHint="done"
                 autoFocus
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
@@ -177,7 +181,7 @@ export default function SignInModal({
                   if (e.key === "Enter") void signInWithName();
                 }}
                 placeholder={t("auth.namePlaceholder")}
-                className="w-full rounded-lg border border-terminal-border bg-black px-3 py-2 text-sm outline-none focus:border-terminal-accent"
+                className="min-h-11 w-full rounded-lg border border-terminal-border bg-black px-3 py-2.5 text-base outline-none focus:border-terminal-accent sm:text-sm"
               />
 
               {typed ? (
@@ -220,7 +224,7 @@ export default function SignInModal({
                 type="button"
                 disabled={busy || displayName.trim().length < 2}
                 onClick={() => void signInWithName()}
-                className="w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
+                className="min-h-11 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
               >
                 {busy
                   ? t("common.loading")

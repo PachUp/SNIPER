@@ -10,10 +10,18 @@
   --text: #f5f5f5;
   --muted: #8a8a8a;
   --accent: #f97316;
+  /* iPhone Dynamic Island / home indicator — used by fixed chrome */
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Prefer small/dynamic viewport units on iOS Safari (15/16/17 chrome). */
+  height: 100%;
+  height: -webkit-fill-available;
 }
 
 html,
@@ -31,18 +39,65 @@ body {
   text-rendering: optimizeLegibility;
   /* Avoid iOS rubber-band shifting fixed chrome sideways */
   overscroll-behavior-x: none;
+  min-height: 100%;
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
+  /* Faster taps; kills old 300ms delay on older WebKit */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  /* Stop iOS from auto-inflating text in landscape */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* Notch / home-indicator safe areas (iOS + Android gesture bars) */
+/* Notch / Dynamic Island / home-indicator safe areas (iPhone 15/16/17) */
 .safe-pt {
-  padding-top: env(safe-area-inset-top, 0px);
+  padding-top: var(--sat);
 }
 .safe-pb {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-bottom: var(--sab);
 }
 .safe-px {
-  padding-left: env(safe-area-inset-left, 0px);
-  padding-right: env(safe-area-inset-right, 0px);
+  padding-left: var(--sal);
+  padding-right: var(--sar);
+}
+.safe-bottom-fixed {
+  bottom: calc(1rem + var(--sab));
+}
+.safe-bottom-nav {
+  bottom: calc(4.5rem + var(--sab));
+}
+
+/* Full-height panels that survive iOS URL-bar show/hide */
+.min-h-screen-ios {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
+}
+
+/*
+ * iOS Safari zooms focused inputs if font-size < 16px.
+ * Keep forms readable on phone; tighten on sm+ desktop.
+ */
+@layer base {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+  @media (min-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: inherit;
+    }
+  }
+}
+
+/* Momentum scrolling inside sheets / lists on iOS */
+.scroll-touch {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 * {
@@ -61,6 +116,13 @@ textarea {
     opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::-webkit-scrollbar {
@@ -127,5 +189,22 @@ textarea {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* Respect reduced motion on iPhone Accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .glow {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

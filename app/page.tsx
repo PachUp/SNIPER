@@ -30,7 +30,7 @@ export default function LandingPage() {
   if (ready && hasPortfolio) {
     return (
       <main
-        className={`relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb transition-opacity duration-200 ease-smooth ${
+        className={`relative flex min-h-screen-ios flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb transition-opacity duration-200 ease-smooth ${
           exiting ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -107,7 +107,7 @@ export default function LandingPage() {
           go("/build");
         }
       }}
-      className={`relative flex min-h-[100dvh] cursor-pointer flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb transition-opacity duration-200 ease-smooth ${
+      className={`relative flex min-h-screen-ios cursor-pointer flex-col items-center justify-center overflow-hidden bg-black safe-pt safe-pb transition-opacity duration-200 ease-smooth ${
         exiting ? "opacity-0" : "opacity-100"
       }`}
     >

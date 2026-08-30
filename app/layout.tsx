@@ -13,17 +13,27 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "SNIPER",
-  description:
-    "Build a stock portfolio with clear buy, sell, and exit levels — no experience needed.",
-};
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
   themeColor: "#000000",
+  // Keyboard on iPhone resizes layout so modals/inputs stay visible.
+  interactiveWidget: "resizes-content",
+};
+
+export const metadata: Metadata = {
+  title: "SNIPER",
+  description:
+    "Build a stock portfolio with clear buy, sell, and exit levels — no experience needed.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "SNIPER",
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({

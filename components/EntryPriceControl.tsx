@@ -58,7 +58,7 @@ export default function EditableEp({
               if (e.key === "Enter") commit();
               if (e.key === "Escape") setEditing(false);
             }}
-            className="w-full min-w-0 rounded border border-terminal-orange/60 bg-terminal-bg px-1 py-0.5 text-center text-[10px] text-terminal-text outline-none"
+            className="w-full min-w-[4.5rem] min-h-11 rounded border border-terminal-orange/60 bg-terminal-bg px-1.5 py-1.5 text-center text-base text-terminal-text outline-none sm:min-h-0 sm:text-[10px]"
             aria-label={t("dash.enterPrice")}
           />
           <button
@@ -67,7 +67,7 @@ export default function EditableEp({
               e.stopPropagation();
               commit();
             }}
-            className="shrink-0 rounded bg-terminal-orange px-1.5 py-0.5 text-[9px] font-bold text-black"
+            className="inline-flex min-h-11 shrink-0 items-center rounded bg-terminal-orange px-2 py-1.5 text-[11px] font-bold text-black sm:min-h-0 sm:text-[9px]"
           >
             {t("dash.enterSet")}
           </button>
