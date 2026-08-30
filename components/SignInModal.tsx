@@ -27,14 +27,20 @@ export default function SignInModal({
   open,
   onClose,
   reason = "save",
+  required = false,
+  stayOnPage = false,
 }: {
   open: boolean;
   onClose: () => void;
   reason?: "save" | "return";
+  /** Build screen: name is required — no guest skip. */
+  required?: boolean;
+  /** Stay on current page after sign-in (build gate). */
+  stayOnPage?: boolean;
 }) {
   const { t } = useI18n();
   const router = useRouter();
-  const { enabled, user, refresh } = useAccounts();
+  const { enabled, refresh } = useAccounts();
   const [displayName, setDisplayName] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -113,7 +119,14 @@ export default function SignInModal({
       window.setTimeout(() => {
         onClose();
         window.dispatchEvent(new Event("sniper:portfolio"));
-        if (restored && payloadHasBook(loadNamedPayload(name))) {
+        const hasSaved =
+          restored && payloadHasBook(loadNamedPayload(name));
+        if (stayOnPage) {
+          // Build gate: returning names go to YOURS; new names stay to BUILD.
+          if (hasSaved) router.push("/dashboard");
+          return;
+        }
+        if (hasSaved) {
           router.push("/dashboard");
         } else {
           router.push("/build");
@@ -133,10 +146,14 @@ export default function SignInModal({
           {t("auth.eyebrow")}
         </p>
         <h2 className="mt-1 text-lg font-bold tracking-wide">
-          {t("auth.titleWho")}
+          {required ? t("auth.titleBuild") : t("auth.titleWho")}
         </h2>
         <p className="mt-1.5 text-sm text-terminal-muted">
-          {!enabled ? t("auth.disabled") : t("auth.bodyGate")}
+          {!enabled
+            ? t("auth.disabled")
+            : required
+              ? t("auth.bodyBuild")
+              : t("auth.bodyGate")}
         </p>
 
         {!enabled ? (
@@ -220,13 +237,19 @@ export default function SignInModal({
               <p className="mt-3 text-xs text-terminal-bad">{error}</p>
             ) : null}
 
-            <button
-              type="button"
-              onClick={onClose}
-              className="mt-4 w-full text-xs tracking-wider text-terminal-muted hover:text-terminal-accent"
-            >
-              {user ? t("auth.keepCurrent") : t("auth.skipGuest")}
-            </button>
+            {!required ? (
+              <button
+                type="button"
+                onClick={onClose}
+                className="mt-4 w-full text-xs tracking-wider text-terminal-muted hover:text-terminal-accent"
+              >
+                {t("auth.skipGuest")}
+              </button>
+            ) : (
+              <p className="mt-4 text-center text-[10px] tracking-wide text-terminal-muted">
+                {t("auth.buildRequiredHint")}
+              </p>
+            )}
           </>
         )}
       </div>

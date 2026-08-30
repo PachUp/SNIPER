@@ -6,7 +6,6 @@ import HowToPrelude from "@/components/HowToPrelude";
 import { LanguageProvider } from "@/components/LanguageProvider";
 import { AccountsProvider } from "@/components/AccountsProvider";
 import SaveBookPrompt from "@/components/SaveBookPrompt";
-import NameGate from "@/components/NameGate";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -40,7 +39,6 @@ export default function RootLayout({
             {children}
             <ConsentGate />
             <HowToPrelude />
-            <NameGate />
             <SaveBookPrompt />
           </AccountsProvider>
         </LanguageProvider>

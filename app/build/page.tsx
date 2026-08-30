@@ -14,6 +14,7 @@ import BuildOptionPicker, {
   type BuildStyle,
 } from "@/components/BuildOptionPicker";
 import { BuildWallSkeleton } from "@/components/Skeleton";
+import BuildNameGate from "@/components/BuildNameGate";
 import type { FamousListResult, FamousPick } from "@/lib/builder/map";
 import type { Stock } from "@/lib/types";
 import { storageGet, storageSet } from "@/lib/safeStorage";
@@ -211,6 +212,7 @@ export default function BuildPage() {
 
   return (
     <main className="relative mx-auto min-h-[100dvh] max-w-6xl bg-black px-4 py-8 safe-pt safe-pb">
+      <BuildNameGate />
       {readyBeat ? (
         <div
           className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/95"

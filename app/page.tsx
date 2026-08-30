@@ -5,19 +5,14 @@ import { useEffect, useState } from "react";
 import { loadPortfolio } from "@/lib/clientPortfolio";
 import { useI18n } from "@/components/LanguageProvider";
 import AdminLink from "@/components/AdminLink";
-import SignInModal from "@/components/SignInModal";
-import { useAccounts } from "@/components/AccountsProvider";
 
 export default function LandingPage() {
   const { t } = useI18n();
   const router = useRouter();
-  const { enabled } = useAccounts();
   const [hasPortfolio, setHasPortfolio] = useState(false);
   const [ready, setReady] = useState(false);
   const [exiting, setExiting] = useState(false);
-  const [signInOpen, setSignInOpen] = useState(false);
 
-  // Landing keeps SIGN IN buttons; NameGate opens the modal on every visit.
   useEffect(() => {
     setHasPortfolio(!!loadPortfolio());
     setReady(true);
@@ -30,19 +25,6 @@ export default function LandingPage() {
       router.push(href);
     }, 220);
   }
-
-  const signInButton = enabled ? (
-    <button
-      type="button"
-      onClick={(e) => {
-        e.stopPropagation();
-        setSignInOpen(true);
-      }}
-      className="relative z-50 inline-flex min-h-11 items-center justify-center rounded-md border border-terminal-accent bg-terminal-accent px-3 py-2 text-[10px] font-bold tracking-[0.16em] text-black transition-transform hover:scale-[1.03] active:scale-[0.97] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-terminal-accent"
-    >
-      {t("auth.signIn")}
-    </button>
-  ) : null;
 
   // Returning users: don't make the whole screen rebuild-on-tap.
   if (ready && hasPortfolio) {
@@ -72,8 +54,7 @@ export default function LandingPage() {
           <div className="px-4 py-3 text-xs font-semibold tracking-[0.35em] text-terminal-accent">
             SNIPER
           </div>
-          <div className="flex items-center gap-1.5 px-2 py-1">
-            {signInButton}
+          <div className="px-2 py-1">
             <AdminLink />
           </div>
         </div>
@@ -89,19 +70,10 @@ export default function LandingPage() {
           <p className="mt-5 max-w-sm text-center text-sm tracking-[0.06em] text-terminal-muted">
             {t("landing.returnTagline")}
           </p>
-          {enabled ? (
-            <button
-              type="button"
-              onClick={() => setSignInOpen(true)}
-              className="mt-8 rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.16em] text-black transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97]"
-            >
-              {t("landing.signInCta")}
-            </button>
-          ) : null}
           <button
             type="button"
             onClick={() => go("/dashboard")}
-            className="mt-4 rounded-full border border-terminal-border px-8 py-3 text-sm font-bold tracking-[0.2em] text-terminal-muted transition-transform hover:border-terminal-accent hover:text-terminal-accent"
+            className="mt-8 rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.2em] text-black transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97]"
           >
             {t("landing.seePortfolio")}
           </button>
@@ -119,12 +91,6 @@ export default function LandingPage() {
             {t("landing.softLaunch")}
           </p>
         )}
-
-        <SignInModal
-          open={signInOpen}
-          reason="return"
-          onClose={() => setSignInOpen(false)}
-        />
       </main>
     );
   }
@@ -192,38 +158,16 @@ export default function LandingPage() {
         <div className="px-4 py-3 text-xs font-semibold tracking-[0.35em] text-terminal-accent">
           SNIPER
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-1">
-          {signInButton}
+        <div className="px-2 py-1">
           <AdminLink />
         </div>
       </div>
-
-      {enabled ? (
-        <div
-          className="absolute bottom-16 start-0 end-0 z-50 flex justify-center safe-px"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <button
-            type="button"
-            onClick={() => setSignInOpen(true)}
-            className="rounded-full border border-terminal-accent bg-terminal-accent px-8 py-3 text-sm font-bold tracking-[0.16em] text-black shadow-lg transition-transform hover:scale-[1.03] active:scale-[0.97]"
-          >
-            {t("landing.signInCta")}
-          </button>
-        </div>
-      ) : null}
 
       {process.env.NEXT_PUBLIC_SOFT_LAUNCH === "1" && (
         <p className="pointer-events-none absolute bottom-4 max-w-md px-4 text-center text-[10px] leading-relaxed text-terminal-muted">
           {t("landing.softLaunch")}
         </p>
       )}
-
-      <SignInModal
-        open={signInOpen}
-        reason="return"
-        onClose={() => setSignInOpen(false)}
-      />
     </main>
   );
 }

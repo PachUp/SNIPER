@@ -244,6 +244,10 @@ const en: Dict = {
   // Phase 2 accounts (demo: full name only)
   "auth.eyebrow": "Your book",
   "auth.titleWho": "Who’s playing?",
+  "auth.titleBuild": "Name your book",
+  "auth.bodyBuild":
+    "Enter your full name to start BUILD. Returning names reopen their saved book; a new name starts fresh and keeps what you build.",
+  "auth.buildRequiredHint": "A name is required before you can BUILD.",
   "auth.bodyGate":
     "Enter your full name. If you’ve built here before, we’ll reopen that book. A new name starts a fresh book we’ll save for next time.",
   "auth.recognizeReturning":
@@ -252,6 +256,8 @@ const en: Dict = {
     "New name — after you BUILD, this book stays saved under it.",
   "auth.openSaved": "OPEN MY SAVED BOOK",
   "auth.continueNew": "CONTINUE — NEW BOOK",
+  "auth.saveBannerBuild":
+    "To save YOURS under a name, start BUILD and enter your name there.",
   "auth.titleSave": "Save this book under your name",
   "auth.titleReturn": "Open YOURS with your name",
   "auth.bodyName":
