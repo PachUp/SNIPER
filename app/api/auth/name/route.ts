@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { accountsBackend, isAccountsEnabled } from "@/lib/user/config";
-import { SESSION_COOKIE } from "@/lib/user/session";
-import { localSignInByName } from "@/lib/user/localStore";
+import { SESSION_COOKIE, getAuthUser } from "@/lib/user/session";
+import {
+  localClearSession,
+  localDeletePortfolioByName,
+  localSignInByName,
+  normalizeNameKey,
+} from "@/lib/user/localStore";
 
 export const dynamic = "force-dynamic";
 

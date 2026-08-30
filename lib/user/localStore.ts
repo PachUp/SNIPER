@@ -224,6 +224,30 @@ export async function localPutPortfolio(
   return next;
 }
 
+/** Wipe a demo name’s server port and sessions so hydrate cannot resurrect it. */
+export async function localDeletePortfolioByName(
+  nameRaw: string
+): Promise<
+  | { ok: true; deleted: boolean; nameKey: string }
+  | { ok: false; error: string }
+> {
+  const displayName = formatDisplayName(nameRaw);
+  const nameKey = normalizeNameKey(displayName);
+  if (nameKey.length < 2) {
+    return { ok: false, error: "Enter your full name" };
+  }
+  const store = await readStore();
+  const before = store.portfolios.length;
+  store.portfolios = store.portfolios.filter((p) => p.nameKey !== nameKey);
+  store.sessions = store.sessions.filter((s) => s.nameKey !== nameKey);
+  await writeStore(store);
+  return {
+    ok: true,
+    deleted: store.portfolios.length < before,
+    nameKey,
+  };
+}
+
 /** List known demo names (for optional picker). */
 export async function localListNames(): Promise<string[]> {
   const store = await readStore();

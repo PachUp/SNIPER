@@ -9,7 +9,7 @@ import AccountChip from "@/components/AccountChip";
 import SignInModal from "@/components/SignInModal";
 
 const TABS = [
-  { href: "/dashboard", key: "nav.dashboard", short: "YOURS" },
+  { href: "/dashboard", key: "nav.dashboard", short: "MY PORT" },
   { href: "/breaking-news", key: "nav.news", short: "NEWS" },
   { href: "/ideas", key: "nav.ideas", short: "IDEAS" },
   { href: "/snipers", key: "nav.snipers", short: "HOUSE" },

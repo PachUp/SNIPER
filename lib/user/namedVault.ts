@@ -56,7 +56,7 @@ export function setActiveName(name: string | null) {
   storageSet(ACTIVE_NAME_KEY, name.trim().replace(/\s+/g, " ").slice(0, 80));
 }
 
-/** Names that actually have a saved book (for picker chips). */
+/** Names that actually have a saved port (for picker chips). */
 export function listVaultNames(): string[] {
   const vault = readVault();
   const names = Object.keys(vault)
@@ -109,6 +109,17 @@ export function saveNamedPayload(name: string, payload: CloudPortfolioPayload) {
     updatedAt: now,
   };
   writeVault(vault);
+}
+
+/** Drop a name’s saved port from this device vault. */
+export function deleteNamedPayload(name: string): boolean {
+  const key = normalizeNameKey(name);
+  if (!key) return false;
+  const vault = readVault();
+  if (!(key in vault)) return false;
+  delete vault[key];
+  writeVault(vault);
+  return true;
 }
 
 /** Persist current working book under a name (if it has holdings). */

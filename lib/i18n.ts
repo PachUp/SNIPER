@@ -8,13 +8,13 @@ const en: Dict = {
   "landing.tapAnywhere": "TAP ANYWHERE TO START",
   "landing.seePortfolio": "SEE MY PORTFOLIO →",
   "landing.returnTagline":
-    "Your book is ready in this browser — open it, or build a new one.",
+    "Your port is ready in this browser — open it, or build a new one.",
   "landing.buildNew": "BUILD A NEW PORTFOLIO",
   "landing.softLaunch":
     "Friends / testers only · draft product · not investment advice · saved in this browser only",
 
   // nav
-  "nav.dashboard": "YOURS",
+  "nav.dashboard": "MY PORT",
   "nav.news": "YOUR NEWS",
   "nav.ideas": "IDEAS",
   "nav.snipers": "HOUSE",
@@ -127,7 +127,7 @@ const en: Dict = {
   "news.holdingNeedBook":
     "No portfolio yet. Build one first — then we’ll show news about your stocks in plain English.",
   "news.holdingNone":
-    "No fresh headlines for names you own right now. Check back soon — or open YOURS to review your levels.",
+    "No fresh headlines for names you own right now. Check back soon — or open MY PORT to review your levels.",
   "news.mayAffect": "Your holding",
   "news.yourHolding": "Your holding",
   "news.whyHolding": "this is about a stock you own",
@@ -149,8 +149,8 @@ const en: Dict = {
   // ideas
   "ideas.title": "Ideas",
   "ideas.subtitle":
-    "Desk ideas with buy / sell / exit levels — learn here, then compare with YOURS",
-  "ideas.empty": "No ideas published yet. Build your own book meanwhile — or browse the house book.",
+    "Desk ideas with buy / sell / exit levels — learn here, then compare with MY PORT",
+  "ideas.empty": "No ideas published yet. Build your own port meanwhile — or browse the house book.",
   "ideas.emptyBuild": "BUILD A PORTFOLIO",
   "ideas.emptyHouse": "SEE HOUSE BOOK",
 
@@ -158,9 +158,9 @@ const en: Dict = {
   "snipers.subtitle":
     "House book (not yours) — desk buys already filled · updated {date}",
   "snipers.noHouse":
-    "No house portfolio published yet. This tab is the desk book — not YOURS.",
+    "No house portfolio published yet. This tab is the desk book — not MY PORT.",
   "snipers.emptyBuild": "BUILD YOUR PORTFOLIO",
-  "snipers.emptyYours": "GO TO YOURS",
+  "snipers.emptyYours": "GO TO MY PORT",
   "snipers.holdings": "HOLDINGS",
   "snipers.tradePanels": "HOUSE POSITIONS",
   "snipers.allocTitle": "HOUSE WEIGHT BY SECTOR",
@@ -233,7 +233,7 @@ const en: Dict = {
   "prelude.s1":
     "Pick up to 4 companies you know (BUILD). We fill a balanced portfolio around them.",
   "prelude.s2":
-    "On YOURS, tap Buy on a stock and set the price you paid so we can track performance.",
+    "On MY PORT, tap Buy on a stock and set the price you paid so we can track performance.",
   "prelude.s3":
     "YOUR NEWS explains headlines about stocks you own — in plain English.",
   "prelude.s4":
@@ -242,48 +242,53 @@ const en: Dict = {
   "prelude.cta": "GOT IT — LET’S GO",
 
   // Phase 2 accounts (demo: full name only)
-  "auth.eyebrow": "Your book",
+  "auth.eyebrow": "Your port",
   "auth.titleWho": "Sign in",
   "auth.titleBuild": "Sign in to build",
   "auth.bodyBuild": "Tap your name, or type it — then you’re in.",
   "auth.buildRequiredHint": "Takes a moment.",
   "auth.bodyGate": "Tap your name, or type it — then you’re in.",
   "auth.recognizeReturning": "{n} stocks saved",
-  "auth.recognizeNew": "New book under this name",
+  "auth.recognizeNew": "New port under this name",
   "auth.openSaved": "OPEN",
   "auth.continueNew": "CONTINUE",
   "auth.continueAs": "Continue as {name}",
   "auth.saveBannerBuild":
-    "To save YOURS under a name, start BUILD and enter your name there.",
-  "auth.titleSave": "Save this book under your name",
-  "auth.titleReturn": "Open YOURS with your name",
+    "To save MY PORT under a name, start BUILD and enter your name there.",
+  "auth.titleSave": "Save this port under your name",
+  "auth.titleReturn": "Open MY PORT with your name",
   "auth.bodyName":
     "Enter your full name (or pick a saved one). We’ll keep this portfolio under that name — type a new name anytime for a new person.",
   "auth.bodySwitch":
-    "Enter a name to open that person’s book, or type a new name to start fresh. Your current book stays saved under the previous name.",
+    "Enter a name to open that person’s port, or type a new name to start fresh. Your current port stays saved under the previous name.",
   "auth.bodySave":
     "Enter your full name. We’ll remember this portfolio on this device under that name — no email needed for the demo.",
   "auth.bodyReturn":
-    "Use the same full name you signed in with to reopen your saved book on this device.",
+    "Use the same full name you signed in with to reopen your saved port on this device.",
   "auth.disabled":
-    "Name save isn’t configured on this host yet. Your book stays as a guest in this browser.",
+    "Name save isn’t configured on this host yet. Your port stays as a guest in this browser.",
   "auth.namePlaceholder": "Your name",
   "auth.nameRequired": "Enter your name (at least 2 characters).",
   "auth.continueName": "CONTINUE",
-  "auth.savedNames": "On this phone",
-  "auth.signedIn": "Signed in — your book is saved under your name.",
-  "auth.mergedCloud": "Restored your saved book for that name.",
-  "auth.mergedLocal": "Saved this browser’s book under your name.",
-  "auth.newNameEmpty": "New name — start a BUILD to save a book under it.",
+  "auth.savedNames": "On this device",
+  "auth.signedIn": "Signed in — your port is saved under your name.",
+  "auth.mergedCloud": "Restored your saved port for that name.",
+  "auth.mergedLocal": "Saved this browser’s port under your name.",
+  "auth.newNameEmpty": "New name — start a BUILD to save a port under it.",
+  "auth.deleteAria": "Remove {name}'s port",
+  "auth.deleteConfirm":
+    "Remove {name}'s port? This cannot be undone.",
+  "auth.deleteCancel": "Cancel",
+  "auth.deleteRemove": "Remove",
   "auth.skipGuest": "Not now",
   "auth.keepCurrent": "Keep current name",
   "auth.signIn": "SIGN IN",
   "auth.saveBanner":
-    "Save YOURS under your name so you can reopen it later on this device.",
+    "Save MY PORT under your name so you can reopen it later on this device.",
   "auth.saveCta": "SAVE",
   "auth.later": "Later",
-  "ideas.inBook": "In YOURS",
-  "landing.signInHint": "Sign in with your name to keep YOURS",
+  "ideas.inBook": "In MY PORT",
+  "landing.signInHint": "Sign in with your name to keep MY PORT",
   "landing.signInCta": "SIGN IN WITH YOUR NAME",
 
   // risk levels
@@ -296,10 +301,10 @@ const en: Dict = {
   "level.tp": "Sell target",
   "level.sl": "Safety exit",
   "level.epTip":
-    "Buy around — the planned entry price. On your book, tap Buy to set what you actually paid.",
+    "Buy around — the planned entry price. On your port, tap Buy to set what you actually paid.",
   "level.houseEp": "Bought at",
   "level.houseEpTip":
-    "House entry — the price SNIPER already bought this position at. This is not your personal book.",
+    "House entry — the price SNIPER already bought this position at. This is not your personal port.",
   "level.tpTip":
     "Sell target — where the thesis would take profit if the move plays out.",
   "level.slTip":

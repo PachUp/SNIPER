@@ -626,7 +626,7 @@ export default function DashboardPage() {
     return (
       <div className="mx-auto max-w-md px-4 py-16 text-center">
         <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
-          YOURS
+          MY PORT
         </p>
         <h1 className="mt-2 text-lg font-bold tracking-wide text-white sm:text-xl">
           {t("dash.empty")}
