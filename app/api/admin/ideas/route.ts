@@ -5,6 +5,7 @@ import { appendAudit } from "@/lib/data/store";
 import type { Idea } from "@/lib/types";
 import { warmLogos } from "@/lib/warmLogos";
 import { loadCompanyBlurbs } from "@/lib/builder/blurbs";
+import { applyDeskLevelsToIdea } from "@/lib/ideaDesk";
 
 export const dynamic = "force-dynamic";
 
@@ -26,14 +27,8 @@ async function ideaFromLevels(symbol: string): Promise<Idea> {
   const business = blurb?.headline || stock.business || "";
   const entry = blurb?.entry || stock.reasoning || "";
   const numbers = blurb?.numbers || stock.numbers;
-  const ep = stock.levels.ep;
-  const tp = stock.levels.tp;
-  const upsidePct =
-    ep > 0
-      ? Math.round(((tp - ep) / ep) * 1000) / 10
-      : stock.upsidePct ?? 0;
 
-  return {
+  const drafted: Idea = {
     id: `i${Date.now()}`,
     ticker: stock.ticker,
     name: stock.name || ticker,
@@ -43,13 +38,14 @@ async function ideaFromLevels(symbol: string): Promise<Idea> {
     business,
     entry,
     numbers,
-    upsidePct,
+    upsidePct: stock.upsidePct ?? 0,
     levels: {
-      ep,
-      tp,
-      sl: stock.levels.sl,
+      ep: 0,
+      tp: 0,
+      sl: 0,
     },
   };
+  return applyDeskLevelsToIdea(drafted, stock);
 }
 
 export async function POST(req: NextRequest) {
@@ -91,18 +87,16 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Bulk save curated list — ideas store only; does not touch LEVELS or house book.
+  // Bulk save curated list — stamp EP/TP/SL from LEVELS & STOCKS; does not edit that catalog.
   const incoming: Idea[] = Array.isArray(body?.ideas) ? body.ideas : [];
+  const stocks = await provider.getStocks();
+  const desk = new Map(stocks.map((s) => [s.ticker.toUpperCase(), s]));
   const ideas: Idea[] = incoming.map((idea: Idea) => {
-    const ep = Number(idea?.levels?.ep);
-    const tp = Number(idea?.levels?.tp);
-    if (Number.isFinite(ep) && Number.isFinite(tp) && ep > 0) {
-      return {
-        ...idea,
-        upsidePct: Math.round(((tp - ep) / ep) * 1000) / 10,
-      };
-    }
-    return idea;
+    const ticker = String(idea?.ticker || "").toUpperCase();
+    return applyDeskLevelsToIdea(
+      { ...idea, ticker: ticker || idea.ticker },
+      desk.get(ticker)
+    );
   });
   const saved = await provider.saveIdeas(ideas);
   warmLogos(saved.map((i) => i.ticker));

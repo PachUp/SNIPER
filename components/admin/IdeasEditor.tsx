@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GICS_SECTORS, type Idea, type Levels } from "@/lib/types";
-import { upsidePctFromLevels } from "@/lib/format";
+import { GICS_SECTORS, type Idea } from "@/lib/types";
 import {
   Field,
   NumberInput,
@@ -34,22 +33,6 @@ export default function IdeasEditor() {
 
   function update(id: string, patch: Partial<Idea>) {
     setIdeas((prev) => prev.map((i) => (i.id === id ? { ...i, ...patch } : i)));
-  }
-
-  /** Edit EP/TP/SL and keep Upside % in sync with EP→TP. */
-  function updateLevels(id: string, part: Partial<Levels>) {
-    setIdeas((prev) =>
-      prev.map((i) => {
-        if (i.id !== id) return i;
-        const levels = { ...i.levels, ...part };
-        const upsidePct = upsidePctFromLevels(levels);
-        return {
-          ...i,
-          levels,
-          ...(upsidePct != null ? { upsidePct } : {}),
-        };
-      })
-    );
   }
 
   async function addIdea() {
@@ -134,10 +117,11 @@ export default function IdeasEditor() {
     <div>
       <div className="mb-4 space-y-3">
         <p className="text-xs text-terminal-muted">
-          Add a ticker from <strong>LEVELS &amp; STOCKS</strong> — pulls name,
-          sector, industry, entry thesis, fundamentals, and EP/TP/SL. Edit
-          freely before saving. Ideas are their own list (does not change
-          LEVELS or the snipers book).
+          Add a ticker from <strong>LEVELS &amp; STOCKS</strong>. Name, sector,
+          industry, and EP / TP / SL always come from that catalog (edit them
+          there). Thesis copy is unique to Ideas. Does not change the snipers
+          book. The public Ideas tab shows live market price separately from
+          desk levels.
         </p>
         {addError && (
           <div className="rounded border border-terminal-bad/40 bg-terminal-bad/10 px-3 py-2 text-sm text-terminal-bad">
@@ -221,36 +205,36 @@ export default function IdeasEditor() {
             </div>
 
             <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              <Field label="Upside % (auto EP→TP)">
+              <Field label="Upside % (from LEVELS EP→TP)">
                 <NumberInput
                   value={idea.upsidePct}
                   readOnly
                   tabIndex={-1}
-                  title="Recalculated when you change EP or TP"
+                  title="From LEVELS & STOCKS — edit EP/TP there"
                 />
               </Field>
-              <Field label="EP">
+              <Field label="EP (from LEVELS)">
                 <NumberInput
                   value={idea.levels.ep}
-                  onChange={(e) =>
-                    updateLevels(idea.id, { ep: Number(e.target.value) })
-                  }
+                  readOnly
+                  tabIndex={-1}
+                  title="From LEVELS & STOCKS — edit there"
                 />
               </Field>
-              <Field label="TP">
+              <Field label="TP (from LEVELS)">
                 <NumberInput
                   value={idea.levels.tp}
-                  onChange={(e) =>
-                    updateLevels(idea.id, { tp: Number(e.target.value) })
-                  }
+                  readOnly
+                  tabIndex={-1}
+                  title="From LEVELS & STOCKS — edit there"
                 />
               </Field>
-              <Field label="SL">
+              <Field label="SL (from LEVELS)">
                 <NumberInput
                   value={idea.levels.sl}
-                  onChange={(e) =>
-                    updateLevels(idea.id, { sl: Number(e.target.value) })
-                  }
+                  readOnly
+                  tabIndex={-1}
+                  title="From LEVELS & STOCKS — edit there"
                 />
               </Field>
             </div>

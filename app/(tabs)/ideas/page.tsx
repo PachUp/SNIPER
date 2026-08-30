@@ -13,14 +13,19 @@ import {
   loadRemoved,
   loadSwaps,
 } from "@/lib/clientPortfolio";
+import { fetchLiveQuotesClient } from "@/lib/livePerformance";
 
-function ideaToStock(idea: Idea): Stock {
+function ideaToStock(idea: Idea, livePrice?: number | null): Stock {
+  const live =
+    livePrice != null && Number.isFinite(livePrice) && livePrice > 0
+      ? livePrice
+      : null;
   return {
     ticker: idea.ticker,
     name: idea.name,
     sector: idea.sector,
     industry: idea.industry,
-    price: idea.levels.ep,
+    price: live ?? idea.levels.ep,
     fairValue: idea.levels.tp,
     upsidePct: idea.upsidePct,
     beta: 1,
@@ -53,8 +58,9 @@ export default function IdeasPage() {
   const { t } = useI18n();
   const [ideas, setIdeas] = useState<Idea[]>([]);
   const [loading, setLoading] = useState(true);
-  const [popup, setPopup] = useState<Stock | null>(null);
+  const [popupTicker, setPopupTicker] = useState<string | null>(null);
   const [bookTickers, setBookTickers] = useState<Set<string>>(new Set());
+  const [liveQuotes, setLiveQuotes] = useState<Record<string, number>>({});
 
   useEffect(() => {
     function refreshBook() {
@@ -69,14 +75,42 @@ export default function IdeasPage() {
     fetch("/api/ideas")
       .then((r) => r.json())
       .then((d: Idea[]) => {
-        setIdeas(d);
-        for (const idea of d) {
+        const list = Array.isArray(d) ? d : [];
+        setIdeas(list);
+        for (const idea of list) {
           const img = new Image();
           img.src = `/logos/${encodeURIComponent(idea.ticker)}.png?v=native`;
         }
       })
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    const symbols = ideas.map((i) => i.ticker);
+    if (symbols.length === 0) {
+      setLiveQuotes({});
+      return;
+    }
+    let cancelled = false;
+    fetchLiveQuotesClient(symbols)
+      .then((q) => {
+        if (!cancelled) setLiveQuotes(q);
+      })
+      .catch(() => {
+        if (!cancelled) setLiveQuotes({});
+      });
+    const id = window.setInterval(() => {
+      fetchLiveQuotesClient(symbols)
+        .then((q) => {
+          if (!cancelled) setLiveQuotes(q);
+        })
+        .catch(() => undefined);
+    }, 60_000);
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, [ideas]);
 
   const sorted = useMemo(() => {
     return [...ideas].sort((a, b) => {
@@ -85,6 +119,13 @@ export default function IdeasPage() {
       return aIn - bIn;
     });
   }, [ideas, bookTickers]);
+
+  const popupIdea = popupTicker
+    ? ideas.find((i) => i.ticker.toUpperCase() === popupTicker.toUpperCase())
+    : undefined;
+  const popupLive = popupTicker
+    ? liveQuotes[popupTicker.toUpperCase()] ?? null
+    : null;
 
   return (
     <div className="flex flex-col gap-2 pb-4">
@@ -123,21 +164,27 @@ export default function IdeasPage() {
         <div className="grid auto-rows-min grid-cols-1 content-start gap-1 sm:grid-cols-2 lg:grid-cols-3">
           {sorted.map((idea) => {
             const inBook = bookTickers.has(idea.ticker.toUpperCase());
+            const livePx = liveQuotes[idea.ticker.toUpperCase()] ?? null;
             return (
               <CompactStockRow
                 key={idea.id}
                 ticker={idea.ticker}
                 name={idea.name}
+                livePrice={livePx}
                 badge={inBook ? t("ideas.inBook") : undefined}
-                onClick={() => setPopup(ideaToStock(idea))}
+                onClick={() => setPopupTicker(idea.ticker)}
               />
             );
           })}
         </div>
       )}
 
-      {popup ? (
-        <ReasoningPopup stock={popup} onClose={() => setPopup(null)} />
+      {popupIdea ? (
+        <ReasoningPopup
+          stock={ideaToStock(popupIdea, popupLive)}
+          livePrice={popupLive}
+          onClose={() => setPopupTicker(null)}
+        />
       ) : null}
     </div>
   );

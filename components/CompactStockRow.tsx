@@ -3,11 +3,14 @@
 import type { ReactNode } from "react";
 import TickerLogo from "@/components/TickerLogo";
 import SinceEntryBadge from "@/components/SinceEntryBadge";
+import { money } from "@/lib/format";
 
 type Props = {
   ticker: string;
   name?: string;
   sinceEntry?: number | null;
+  /** Live last price — shown on the row, separate from desk EP. */
+  livePrice?: number | null;
   weightPct?: number | null;
   badge?: string;
   trailing?: ReactNode;
@@ -20,6 +23,7 @@ export default function CompactStockRow({
   ticker,
   name,
   sinceEntry = null,
+  livePrice = null,
   weightPct,
   badge,
   trailing,
@@ -46,6 +50,11 @@ export default function CompactStockRow({
       {badge ? (
         <span className="shrink-0 rounded px-1 py-0.5 text-[8px] uppercase tracking-wider text-white/50">
           {badge}
+        </span>
+      ) : null}
+      {livePrice != null && Number.isFinite(livePrice) && livePrice > 0 ? (
+        <span className="shrink-0 text-[11px] font-medium tabular-nums text-white/80">
+          {money(livePrice)}
         </span>
       ) : null}
       <SinceEntryBadge value={sinceEntry} variant="compact" showEmpty={false} />

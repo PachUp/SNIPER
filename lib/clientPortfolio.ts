@@ -78,7 +78,7 @@ const REMOVED_KEY = "sniper.removed.v1";
 const ADDED_KEY = "sniper.added.v1";
 const REPLACE_STACK_KEY = "sniper.replaceStack.v1";
 
-export const MAX_PERSONAL_ADDS = 2;
+export const MAX_PERSONAL_ADDS = 4;
 
 export type ReplaceRecord = {
   addedTicker: string;
@@ -209,7 +209,7 @@ export function pickStockToEliminate(
   return [...candidates].sort((a, b) => score(a) - score(b))[0] ?? null;
 }
 
-/** Extra personal holdings the user added (cap 2). */
+/** Extra personal holdings the user added (cap 4). */
 export function loadAdded(): PortfolioHolding[] {
   if (typeof window === "undefined") return [];
   try {

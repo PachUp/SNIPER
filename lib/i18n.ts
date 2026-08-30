@@ -91,7 +91,7 @@ const en: Dict = {
   "dash.addMine": "+ My stock",
   "dash.add": "Add",
   "dash.addHint":
-    "Add up to 2 of your own from our full stock list. Names without a desk fair value get provisional buy / sell / exit levels from the live price. Each add may replace a similar name we filled.",
+    "Add up to 4 of your own from our full stock list. Names without a desk fair value get provisional buy / sell / exit levels from the live price. Each add may replace a similar name we filled.",
   "dash.addProvisional": "provisional levels",
   "dash.addSearch": "Search ticker or company name…",
   "dash.addNone": "No matches.",
@@ -243,19 +243,16 @@ const en: Dict = {
 
   // Phase 2 accounts (demo: full name only)
   "auth.eyebrow": "Your book",
-  "auth.titleWho": "Who’s playing?",
-  "auth.titleBuild": "Name your book",
-  "auth.bodyBuild":
-    "Enter your full name to start BUILD. Returning names reopen their saved book; a new name starts fresh and keeps what you build.",
-  "auth.buildRequiredHint": "A name is required before you can BUILD.",
-  "auth.bodyGate":
-    "Enter your full name. If you’ve built here before, we’ll reopen that book. A new name starts a fresh book we’ll save for next time.",
-  "auth.recognizeReturning":
-    "Welcome back — {n} stocks saved under this name.",
-  "auth.recognizeNew":
-    "New name — after you BUILD, this book stays saved under it.",
-  "auth.openSaved": "OPEN MY SAVED BOOK",
-  "auth.continueNew": "CONTINUE — NEW BOOK",
+  "auth.titleWho": "Sign in",
+  "auth.titleBuild": "Sign in to build",
+  "auth.bodyBuild": "Tap your name, or type it — then you’re in.",
+  "auth.buildRequiredHint": "Takes a moment.",
+  "auth.bodyGate": "Tap your name, or type it — then you’re in.",
+  "auth.recognizeReturning": "{n} stocks saved",
+  "auth.recognizeNew": "New book under this name",
+  "auth.openSaved": "OPEN",
+  "auth.continueNew": "CONTINUE",
+  "auth.continueAs": "Continue as {name}",
   "auth.saveBannerBuild":
     "To save YOURS under a name, start BUILD and enter your name there.",
   "auth.titleSave": "Save this book under your name",
@@ -270,15 +267,15 @@ const en: Dict = {
     "Use the same full name you signed in with to reopen your saved book on this device.",
   "auth.disabled":
     "Name save isn’t configured on this host yet. Your book stays as a guest in this browser.",
-  "auth.namePlaceholder": "Your full name",
-  "auth.nameRequired": "Enter your full name (at least 2 characters).",
+  "auth.namePlaceholder": "Your name",
+  "auth.nameRequired": "Enter your name (at least 2 characters).",
   "auth.continueName": "CONTINUE",
-  "auth.savedNames": "Saved names on this device",
+  "auth.savedNames": "On this phone",
   "auth.signedIn": "Signed in — your book is saved under your name.",
   "auth.mergedCloud": "Restored your saved book for that name.",
   "auth.mergedLocal": "Saved this browser’s book under your name.",
   "auth.newNameEmpty": "New name — start a BUILD to save a book under it.",
-  "auth.skipGuest": "Continue as guest",
+  "auth.skipGuest": "Not now",
   "auth.keepCurrent": "Keep current name",
   "auth.signIn": "SIGN IN",
   "auth.saveBanner":
