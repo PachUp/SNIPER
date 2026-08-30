@@ -11,6 +11,7 @@ import {
 } from "@/lib/user/syncClient";
 import { useI18n } from "@/components/LanguageProvider";
 import {
+  deleteNamedPayload,
   getActiveName,
   listVaultNames,
   loadNamedPayload,
@@ -46,6 +47,7 @@ export default function SignInModal({
   const [error, setError] = useState<string | null>(null);
   const [known, setKnown] = useState<string[]>([]);
   const [last, setLast] = useState<string | null>(null);
+  const [pendingDelete, setPendingDelete] = useState<string | null>(null);
 
   useIosSheet(open);
 
@@ -53,6 +55,7 @@ export default function SignInModal({
     if (!open) return;
     setError(null);
     setBusy(false);
+    setPendingDelete(null);
     const names = listVaultNames();
     setKnown(names);
     const prev = getActiveName();
@@ -158,6 +161,67 @@ export default function SignInModal({
     }
   }
 
+  async function deletePort(name: string) {
+    if (busy) return;
+    setBusy(true);
+    setError(null);
+    try {
+      const active = getActiveName();
+      const isActive = Boolean(
+        active && normalizeNameKey(active) === normalizeNameKey(name)
+      );
+
+      if (isActive) {
+        applyCloudPayload(emptyCloudPayload());
+        try {
+          await fetch("/api/me/portfolio", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ payload: emptyCloudPayload() }),
+          });
+        } catch {
+          /* vault + name DELETE still drop the port */
+        }
+      }
+
+      deleteNamedPayload(name);
+
+      try {
+        await fetch("/api/auth/name", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ displayName: name }),
+        });
+      } catch {
+        /* local vault already dropped */
+      }
+
+      if (isActive) {
+        setActiveName(null);
+        setCloudSyncEnabled(false);
+        try {
+          await fetch("/api/auth/session", { method: "DELETE" });
+        } catch {
+          /* ignore */
+        }
+        await refresh();
+        window.dispatchEvent(new Event("sniper:portfolio"));
+      }
+
+      setKnown(listVaultNames());
+      setLast((prev) =>
+        prev && normalizeNameKey(prev) === normalizeNameKey(name)
+          ? null
+          : prev
+      );
+      setPendingDelete(null);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Could not remove port");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <div
       className="fixed inset-0 z-[60] flex items-end justify-center bg-black/75 sm:items-center sm:p-4"
@@ -190,18 +254,54 @@ export default function SignInModal({
           >
             {t("common.close")}
           </button>
+        ) : pendingDelete ? (
+          <div className="mt-4 space-y-3">
+            <p className="text-sm leading-relaxed text-white">
+              {t("auth.deleteConfirm", { name: pendingDelete })}
+            </p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => setPendingDelete(null)}
+                className="min-h-12 flex-1 rounded-xl border border-terminal-border text-sm text-terminal-muted disabled:opacity-40"
+              >
+                {t("auth.deleteCancel")}
+              </button>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => void deletePort(pendingDelete)}
+                className="min-h-12 flex-1 rounded-xl bg-terminal-bad/20 text-sm font-bold tracking-wider text-terminal-bad disabled:opacity-40"
+              >
+                {busy ? t("common.loading") : t("auth.deleteRemove")}
+              </button>
+            </div>
+            {error ? (
+              <p className="text-xs text-terminal-bad">{error}</p>
+            ) : null}
+          </div>
         ) : (
           <>
             <div className="mt-4 space-y-2.5">
               {lastKnown ? (
-                <button
-                  type="button"
-                  disabled={busy}
-                  onClick={() => void signInWithName(lastKnown)}
-                  className="min-h-12 w-full rounded-xl bg-terminal-accent px-3 py-3 text-sm font-bold tracking-[0.08em] text-black disabled:opacity-40"
-                >
-                  {busy ? t("common.loading") : t("auth.continueAs", { name: lastKnown })}
-                </button>
+                <div className="flex items-stretch gap-1.5">
+                  <DeleteX
+                    busy={busy}
+                    label={t("auth.deleteAria", { name: lastKnown })}
+                    onDelete={() => setPendingDelete(lastKnown)}
+                  />
+                  <button
+                    type="button"
+                    disabled={busy}
+                    onClick={() => void signInWithName(lastKnown)}
+                    className="min-h-12 min-w-0 flex-1 rounded-xl bg-terminal-accent px-3 py-3 text-sm font-bold tracking-[0.08em] text-black disabled:opacity-40"
+                  >
+                    {busy
+                      ? t("common.loading")
+                      : t("auth.continueAs", { name: lastKnown })}
+                  </button>
+                </div>
               ) : null}
 
               {otherNames.length > 0 ? (
@@ -213,20 +313,26 @@ export default function SignInModal({
                     {otherNames.slice(0, 20).map((n) => {
                       const meta = peekNamedBook(n);
                       return (
-                        <button
-                          key={n}
-                          type="button"
-                          disabled={busy}
-                          onClick={() => void signInWithName(n)}
-                          className="flex min-h-11 w-full items-center justify-between rounded-xl border border-terminal-border px-3.5 py-2.5 text-left text-sm text-white disabled:opacity-40"
-                        >
-                          <span className="truncate font-semibold">{n}</span>
-                          {meta.count > 0 ? (
-                            <span className="ms-2 shrink-0 text-[11px] text-terminal-accent">
-                              {meta.count}
-                            </span>
-                          ) : null}
-                        </button>
+                        <div key={n} className="flex items-stretch gap-1.5">
+                          <DeleteX
+                            busy={busy}
+                            label={t("auth.deleteAria", { name: n })}
+                            onDelete={() => setPendingDelete(n)}
+                          />
+                          <button
+                            type="button"
+                            disabled={busy}
+                            onClick={() => void signInWithName(n)}
+                            className="flex min-h-11 min-w-0 flex-1 items-center justify-between rounded-xl border border-terminal-border px-3.5 py-2.5 text-left text-sm text-white disabled:opacity-40"
+                          >
+                            <span className="truncate font-semibold">{n}</span>
+                            {meta.count > 0 ? (
+                              <span className="ms-2 shrink-0 text-[11px] text-terminal-accent">
+                                {meta.count}
+                              </span>
+                            ) : null}
+                          </button>
+                        </div>
                       );
                     })}
                   </div>
@@ -301,5 +407,31 @@ export default function SignInModal({
         )}
       </div>
     </div>
+  );
+}
+
+function DeleteX({
+  busy,
+  label,
+  onDelete,
+}: {
+  busy: boolean;
+  label: string;
+  onDelete: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      title={label}
+      disabled={busy}
+      onClick={(e) => {
+        e.stopPropagation();
+        onDelete();
+      }}
+      className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-terminal-border text-lg leading-none text-terminal-muted disabled:opacity-40"
+    >
+      <span aria-hidden>×</span>
+    </button>
   );
 }
