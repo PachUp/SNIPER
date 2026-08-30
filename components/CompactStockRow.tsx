@@ -34,7 +34,7 @@ export default function CompactStockRow({
     <button
       type="button"
       onClick={onClick}
-      className={`flex w-full items-center gap-2 rounded-md border border-terminal-border/70 bg-terminal-bg px-2 py-1.5 text-left transition-colors hover:border-terminal-accent/45 hover:bg-black/80 ${className}`}
+      className={`flex min-h-11 w-full items-center gap-2 rounded-lg border border-terminal-border/70 bg-terminal-bg px-2.5 py-2 text-left hover:border-terminal-accent/45 hover:bg-black/80 ${className}`}
     >
       <TickerLogo symbol={ticker} size={22} priority />
       <span className="min-w-0 flex-1">

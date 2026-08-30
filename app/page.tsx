@@ -23,7 +23,7 @@ export default function LandingPage() {
     setExiting(true);
     window.setTimeout(() => {
       router.push(href);
-    }, 220);
+    }, 60);
   }
 
   // Returning users: don't make the whole screen rebuild-on-tap.
@@ -73,14 +73,14 @@ export default function LandingPage() {
           <button
             type="button"
             onClick={() => go("/dashboard")}
-            className="mt-8 rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.2em] text-black transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97]"
+            className="mt-8 inline-flex min-h-12 items-center rounded-full bg-terminal-accent px-10 py-3.5 text-sm font-bold tracking-[0.2em] text-black"
           >
             {t("landing.seePortfolio")}
           </button>
           <button
             type="button"
             onClick={() => go("/build")}
-            className="mt-4 text-xs tracking-[0.22em] text-terminal-muted underline-offset-4 hover:text-terminal-accent hover:underline"
+            className="mt-3 inline-flex min-h-11 items-center px-4 text-xs tracking-[0.22em] text-terminal-muted underline-offset-4"
           >
             {t("landing.buildNew")}
           </button>

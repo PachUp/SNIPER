@@ -636,7 +636,7 @@ export default function DashboardPage() {
         </p>
         <Link
           href="/build"
-          className="mt-6 inline-block rounded-full bg-terminal-accent px-8 py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg transition-transform hover:scale-[1.02] active:scale-[0.98]"
+            className="mt-6 inline-flex min-h-12 items-center rounded-full bg-terminal-accent px-8 py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg"
         >
           {t("dash.getStarted")}
         </Link>
@@ -667,14 +667,14 @@ export default function DashboardPage() {
             demoteExtras ? "opacity-35" : ""
           }`}
         >
-          <span className="hidden text-[10px] text-terminal-muted sm:inline">
+          <span className="text-[10px] text-terminal-muted sm:text-[10px]">
             {t("dash.addLeft", { n: MAX_PERSONAL_ADDS - added.length })}
           </span>
           <button
             type="button"
             disabled={!canAdd || demoteExtras}
             onClick={() => setAddOpen((v) => !v)}
-            className="rounded-md border border-terminal-orange/40 bg-terminal-orange/10 px-2 py-1 text-[9px] font-bold uppercase tracking-wider text-terminal-orange disabled:opacity-40"
+            className="inline-flex min-h-11 items-center rounded-md border border-terminal-orange/40 bg-terminal-orange/10 px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-terminal-orange disabled:opacity-40"
             title={demoteExtras ? t("dash.entryCoachTitle") : undefined}
           >
             {t("dash.addMine")}
@@ -684,7 +684,7 @@ export default function DashboardPage() {
               clearPortfolio();
               window.location.href = "/build";
             }}
-            className="rounded-md border border-terminal-border px-2 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent disabled:opacity-40"
+            className="inline-flex min-h-11 items-center rounded-md border border-terminal-border px-3 py-2 text-[10px] text-terminal-muted disabled:opacity-40"
             disabled={demoteExtras}
             title={demoteExtras ? t("dash.entryCoachTitle") : undefined}
           >
@@ -707,7 +707,7 @@ export default function DashboardPage() {
           <button
             type="button"
             onClick={dismissGuestTrust}
-            className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-terminal-accent"
+            className="inline-flex min-h-11 shrink-0 items-center px-2 text-[10px] font-bold uppercase tracking-wider text-terminal-accent"
           >
             {t("dash.guestTrustDismiss")}
           </button>
@@ -725,7 +725,7 @@ export default function DashboardPage() {
           <button
             type="button"
             onClick={dismissEntryCoach}
-            className="mt-3 rounded-lg bg-terminal-accent px-4 py-2 text-[11px] font-bold tracking-[0.16em] text-black"
+            className="mt-3 inline-flex min-h-11 items-center rounded-lg bg-terminal-accent px-4 py-2 text-[11px] font-bold tracking-[0.16em] text-black"
           >
             {t("dash.entryCoachCta")}
           </button>
@@ -771,7 +771,7 @@ export default function DashboardPage() {
             value={addQuery}
             onChange={(e) => setAddQuery(e.target.value)}
             placeholder={t("dash.addSearch")}
-            className="mb-1 w-full rounded border border-terminal-border bg-terminal-bg px-2 py-1 text-xs outline-none focus:border-terminal-orange"
+            className="mb-1 min-h-12 w-full rounded-lg border border-terminal-border bg-terminal-bg px-3 py-2.5 text-base outline-none focus:border-terminal-orange"
           />
           <div className="flex max-h-28 flex-col gap-0.5 overflow-y-auto">
             {fvHits.map((hit) => (
@@ -780,7 +780,7 @@ export default function DashboardPage() {
                 type="button"
                 disabled={addingTicker === hit.ticker}
                 onClick={() => handleAddHit(hit)}
-                className="flex items-center justify-between rounded px-1.5 py-1 text-left text-xs hover:bg-black/50 disabled:opacity-50"
+                className="flex min-h-11 items-center justify-between rounded-md px-2 py-2 text-left text-sm disabled:opacity-50"
               >
                 <span className="min-w-0 truncate">
                   <span className="font-bold">{hit.ticker}</span>

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import type { NewsItem } from "@/lib/types";
 import { useI18n } from "@/components/LanguageProvider";
+import { useIosSheet } from "@/lib/useIosSheet";
 
 export default function NewsPopup({
   item,
@@ -17,6 +18,7 @@ export default function NewsPopup({
 }) {
   const { t, ago } = useI18n();
   const good = item.sentiment === "good";
+  useIosSheet(true);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -28,13 +30,14 @@ export default function NewsPopup({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4 safe-pb"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 sm:items-center sm:p-4"
       onClick={onClose}
     >
       <div
-        className="max-h-[88dvh] w-full max-w-md overflow-y-auto scroll-touch rounded-2xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl sm:p-6"
+        className="ios-sheet max-w-md border border-terminal-border bg-terminal-panel px-5 pt-3 shadow-2xl sm:p-6"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="ios-grabber" />
         <div className="flex items-start justify-between gap-3">
           <span
             className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-bold tracking-[0.14em] ${
@@ -47,7 +50,7 @@ export default function NewsPopup({
           </span>
           <button
             onClick={onClose}
-            className="min-h-9 min-w-9 text-terminal-muted active:text-terminal-text"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center text-lg text-terminal-muted"
             aria-label={t("common.close")}
           >
             ✕
@@ -121,7 +124,7 @@ export default function NewsPopup({
             href={item.sourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="rounded-lg bg-terminal-accent px-3.5 py-2 text-[12px] font-bold text-black active:opacity-90"
+            className="inline-flex min-h-11 items-center rounded-lg bg-terminal-accent px-3.5 py-2 text-[12px] font-bold text-black"
           >
             {t("popup.readFull")}
           </a>

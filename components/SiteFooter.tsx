@@ -13,19 +13,19 @@ export default function SiteFooter() {
       <nav className="mt-3 flex justify-center gap-4 text-[11px]">
         <Link
           href="/legal/disclaimer"
-          className="text-terminal-muted hover:text-terminal-accent"
+          className="inline-flex min-h-11 items-center px-1 text-terminal-muted"
         >
           {t("footer.disclaimerLink")}
         </Link>
         <Link
           href="/legal/terms"
-          className="text-terminal-muted hover:text-terminal-accent"
+          className="inline-flex min-h-11 items-center px-1 text-terminal-muted"
         >
           {t("footer.terms")}
         </Link>
         <Link
           href="/legal/privacy"
-          className="text-terminal-muted hover:text-terminal-accent"
+          className="inline-flex min-h-11 items-center px-1 text-terminal-muted"
         >
           {t("footer.privacy")}
         </Link>

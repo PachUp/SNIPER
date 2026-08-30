@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useI18n } from "@/components/LanguageProvider";
 import { storageGet, storageSet } from "@/lib/safeStorage";
+import { useIosSheet } from "@/lib/useIosSheet";
 
 const CONSENT_KEY = "sniper.consent.v1";
 
@@ -21,11 +22,12 @@ export default function ConsentGate() {
     setReady(true);
   }, []);
 
-  // Don't gate legal pages or the password-protected admin desk.
   const excluded =
     pathname?.startsWith("/legal") || pathname?.startsWith("/admin");
+  const show = ready && !accepted && !excluded;
+  useIosSheet(show);
 
-  if (!ready || accepted || excluded) return null;
+  if (!show) return null;
 
   function accept() {
     storageSet(CONSENT_KEY, "true");
@@ -36,8 +38,9 @@ export default function ConsentGate() {
   const canAccept = isAdult && ackAdvice;
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/80 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:items-center safe-pt">
-      <div className="max-h-[90dvh] w-full max-w-md overflow-y-auto scroll-touch rounded-xl border border-terminal-border bg-terminal-panel p-6 shadow-2xl">
+    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/80 sm:items-center sm:p-4">
+      <div className="ios-sheet max-w-md border border-terminal-border bg-terminal-panel px-5 pt-3 shadow-2xl sm:p-6">
+        <div className="ios-grabber" />
         <h2 className="text-lg font-bold tracking-wide">
           {t("consent.title")}
         </h2>
@@ -45,42 +48,42 @@ export default function ConsentGate() {
           {t("consent.body")}
         </p>
 
-        <label className="mt-4 flex min-h-11 items-start gap-3 text-sm">
+        <label className="mt-4 flex min-h-12 items-start gap-3 text-sm">
           <input
             type="checkbox"
             checked={isAdult}
             onChange={(e) => setIsAdult(e.target.checked)}
-            className="mt-1 h-5 w-5 shrink-0 accent-[#f97316]"
+            className="mt-1 h-6 w-6 shrink-0 accent-[#f97316]"
           />
           <span>{t("consent.adult")}</span>
         </label>
 
-        <label className="mt-3 flex min-h-11 items-start gap-3 text-sm">
+        <label className="mt-3 flex min-h-12 items-start gap-3 text-sm">
           <input
             type="checkbox"
             checked={ackAdvice}
             onChange={(e) => setAckAdvice(e.target.checked)}
-            className="mt-1 h-5 w-5 shrink-0 accent-[#f97316]"
+            className="mt-1 h-6 w-6 shrink-0 accent-[#f97316]"
           />
           <span>
             {t("consent.ackPre")}
             <Link
               href="/legal/terms"
-              className="text-terminal-accent underline underline-offset-2"
+              className="inline-flex min-h-11 items-center text-terminal-accent underline underline-offset-2"
             >
               {t("consent.terms")}
             </Link>
             {t("consent.sep")}
             <Link
               href="/legal/privacy"
-              className="text-terminal-accent underline underline-offset-2"
+              className="inline-flex min-h-11 items-center text-terminal-accent underline underline-offset-2"
             >
               {t("consent.privacy")}
             </Link>
             {t("consent.and")}
             <Link
               href="/legal/disclaimer"
-              className="text-terminal-accent underline underline-offset-2"
+              className="inline-flex min-h-11 items-center text-terminal-accent underline underline-offset-2"
             >
               {t("consent.disclaimer")}
             </Link>
@@ -91,14 +94,14 @@ export default function ConsentGate() {
         <button
           onClick={accept}
           disabled={!canAccept}
-          className="mt-5 min-h-11 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.2em] text-terminal-bg disabled:opacity-40"
+          className="mt-5 min-h-12 w-full rounded-xl bg-terminal-accent py-3 text-sm font-bold tracking-[0.2em] text-terminal-bg disabled:opacity-40"
         >
           {t("consent.cta")}
         </button>
         <p className="mt-3 text-center text-[10px] text-terminal-muted">
           <Link
             href="/admin"
-            className="tracking-[0.2em] text-terminal-muted underline-offset-2 hover:text-terminal-accent hover:underline"
+            className="inline-flex min-h-11 items-center tracking-[0.2em] text-terminal-muted underline-offset-2"
           >
             ADMIN
           </Link>

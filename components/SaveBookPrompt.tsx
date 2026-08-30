@@ -57,7 +57,7 @@ export default function SaveBookPrompt() {
 
   return (
     <div className="fixed start-3 end-3 z-40 mx-auto max-w-lg bottom-[calc(4.5rem+env(safe-area-inset-bottom,0px))] sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]">
-      <div className="flex items-center justify-between gap-3 rounded-xl border border-terminal-accent/40 bg-terminal-panel/95 px-3 py-2.5 shadow-lg backdrop-blur">
+      <div className="flex items-center justify-between gap-3 rounded-xl border border-terminal-accent/40 bg-terminal-panel px-3 py-2.5 shadow-lg">
         <p className="text-[11px] leading-snug text-white/90">
           {t("auth.saveBannerBuild")}
         </p>

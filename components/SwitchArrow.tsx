@@ -33,7 +33,7 @@ export default function SwitchArrow({
       <button
         disabled={!canLeft}
         onClick={() => canLeft && onSwitch(pool[idx - 1].ticker)}
-        className="flex h-6 w-6 items-center justify-center rounded border border-terminal-border text-terminal-muted transition-colors hover:border-terminal-good hover:text-terminal-good disabled:cursor-not-allowed disabled:opacity-25"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded-md border border-terminal-border text-lg text-terminal-muted disabled:cursor-not-allowed disabled:opacity-25"
         aria-label={t("switch.saferAria")}
         title={t("switch.saferTitle")}
       >
@@ -45,7 +45,7 @@ export default function SwitchArrow({
       <button
         disabled={!canRight}
         onClick={() => canRight && onSwitch(pool[idx + 1].ticker)}
-        className="flex h-6 w-6 items-center justify-center rounded border border-terminal-border text-terminal-muted transition-colors hover:border-terminal-accent hover:text-terminal-accent disabled:cursor-not-allowed disabled:opacity-25"
+        className="flex min-h-11 min-w-11 items-center justify-center rounded-md border border-terminal-border text-lg text-terminal-muted disabled:cursor-not-allowed disabled:opacity-25"
         aria-label={t("switch.bolderAria")}
         title={t("switch.bolderTitle")}
       >

@@ -140,13 +140,13 @@ export default function SnipersPage() {
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/build"
-            className="inline-block rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
+            className="inline-flex min-h-12 items-center rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
           >
             {t("snipers.emptyBuild")}
           </Link>
           <Link
             href="/dashboard"
-            className="inline-block rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
+            className="inline-flex min-h-12 items-center rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
           >
             {t("snipers.emptyYours")}
           </Link>

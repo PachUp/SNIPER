@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useI18n } from "@/components/LanguageProvider";
 import { storageGet, storageSet } from "@/lib/safeStorage";
+import { useIosSheet } from "@/lib/useIosSheet";
 
 const CONSENT_KEY = "sniper.consent.v1";
 const PRELUDE_KEY = "sniper.prelude.v1";
@@ -37,8 +38,10 @@ export default function HowToPrelude() {
 
   const excluded =
     pathname?.startsWith("/legal") || pathname?.startsWith("/admin");
+  const open = ready && show && !excluded;
+  useIosSheet(open);
 
-  if (!ready || !show || excluded) return null;
+  if (!open) return null;
 
   function dismiss() {
     storageSet(PRELUDE_KEY, "true");
@@ -46,8 +49,9 @@ export default function HowToPrelude() {
   }
 
   return (
-    <div className="fixed inset-0 z-[55] flex items-end justify-center bg-black/75 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4">
-      <div className="max-h-[85dvh] w-full max-w-md overflow-y-auto scroll-touch rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl safe-pb">
+    <div className="fixed inset-0 z-[55] flex items-end justify-center bg-black/75 sm:items-center sm:p-4">
+      <div className="ios-sheet max-w-md border border-terminal-border bg-terminal-panel px-5 pt-3 shadow-2xl sm:p-5">
+        <div className="ios-grabber" />
         <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
           {t("prelude.eyebrow")}
         </p>
@@ -59,7 +63,7 @@ export default function HowToPrelude() {
         <ol className="mt-4 space-y-2.5">
           {STEPS.map((key, i) => (
             <li key={key} className="flex gap-2.5 text-sm leading-snug">
-              <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-terminal-accent/15 text-[11px] font-bold text-terminal-accent">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terminal-accent/15 text-[11px] font-bold text-terminal-accent">
                 {i + 1}
               </span>
               <span className="text-terminal-text">{t(key)}</span>
@@ -70,7 +74,7 @@ export default function HowToPrelude() {
         <button
           type="button"
           onClick={dismiss}
-          className="mt-5 min-h-11 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.18em] text-black"
+          className="mt-5 min-h-12 w-full rounded-xl bg-terminal-accent py-3 text-sm font-bold tracking-[0.18em] text-black"
         >
           {t("prelude.cta")}
         </button>

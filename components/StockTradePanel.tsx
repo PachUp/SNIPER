@@ -122,7 +122,7 @@ export default function StockTradePanel({
       <button
         type="button"
         onClick={onClick}
-        className="self-start text-[12px] font-medium text-terminal-accent hover:underline"
+        className="inline-flex min-h-11 items-center self-start rounded-md px-2 text-[13px] font-medium text-terminal-accent"
       >
         {t("panel.tapMore")}
       </button>

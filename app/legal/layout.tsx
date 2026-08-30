@@ -12,20 +12,20 @@ export default function LegalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto min-h-screen max-w-3xl px-4 py-10">
+    <div className="mx-auto min-h-screen-ios max-w-3xl px-4 py-10 safe-pt safe-pb">
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/"
-          className="text-xs font-semibold tracking-[0.35em] text-terminal-accent hover:text-terminal-orange"
+          className="inline-flex min-h-11 items-center text-xs font-semibold tracking-[0.35em] text-terminal-accent"
         >
           ← SNIPER
         </Link>
-        <nav className="flex gap-3 text-xs">
+        <nav className="flex flex-wrap justify-end gap-1 text-xs">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-terminal-muted hover:text-terminal-accent"
+              className="inline-flex min-h-11 items-center px-2 text-terminal-muted"
             >
               {l.label}
             </Link>

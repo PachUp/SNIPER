@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 
-/** Tiny clickable (i) — explains Buy / Sell / Safety exit. */
+/** Tiny clickable (i) — explains Buy / Sell / Safety exit. Expanded hit slop for iPhone. */
 export default function LevelInfo({ tip }: { tip: string }) {
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -38,7 +38,7 @@ export default function LevelInfo({ tip }: { tip: string }) {
           e.preventDefault();
           setOpen((v) => !v);
         }}
-        className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-white/25 text-[8px] font-bold leading-none text-white/55 hover:border-terminal-accent hover:text-terminal-accent"
+        className="relative inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-white/25 text-[8px] font-bold leading-none text-white/55 before:absolute before:-inset-3 before:content-['']"
       >
         i
       </button>

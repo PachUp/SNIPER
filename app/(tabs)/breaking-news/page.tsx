@@ -144,7 +144,7 @@ export default function BreakingNewsPage() {
           </p>
           <Link
             href="/build"
-            className="mt-5 inline-block rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
+            className="mt-5 inline-flex min-h-12 items-center rounded-full bg-terminal-accent px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-black"
           >
             {t("dash.getStarted")}
           </Link>
@@ -154,7 +154,7 @@ export default function BreakingNewsPage() {
           <p>{t("news.holdingNone")}</p>
           <Link
             href="/dashboard"
-            className="mt-5 inline-block rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
+            className="mt-5 inline-flex min-h-12 items-center rounded-full border border-terminal-accent/40 px-6 py-2.5 text-xs font-bold tracking-[0.18em] text-terminal-accent"
           >
             {t("nav.dashboard")}
           </Link>

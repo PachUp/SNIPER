@@ -18,10 +18,15 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  /* Prefer small/dynamic viewport units on iOS Safari (15/16/17 chrome). */
+  /* Native iOS momentum; CSS smooth-scroll fights Safari on iPhone. */
   height: 100%;
   height: -webkit-fill-available;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 html,
@@ -37,20 +42,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* Avoid iOS rubber-band shifting fixed chrome sideways */
   overscroll-behavior-x: none;
+  overscroll-behavior-y: none;
   min-height: 100%;
   min-height: -webkit-fill-available;
   min-height: 100dvh;
-  /* Faster taps; kills old 300ms delay on older WebKit */
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  /* Stop iOS from auto-inflating text in landscape */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
-/* Notch / Dynamic Island / home-indicator safe areas (iPhone 15/16/17) */
+/* Notch / Dynamic Island / home-indicator safe areas (iPhone 14–17) */
 .safe-pt {
   padding-top: var(--sat);
 }
@@ -68,7 +71,6 @@ body {
   bottom: calc(4.5rem + var(--sab));
 }
 
-/* Full-height panels that survive iOS URL-bar show/hide */
 .min-h-screen-ios {
   min-height: 100vh;
   min-height: -webkit-fill-available;
@@ -94,35 +96,77 @@ body {
   }
 }
 
-/* Momentum scrolling inside sheets / lists on iOS */
 .scroll-touch {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+}
+
+/* iPhone bottom sheets — home-indicator padding, rounded top, grabber */
+.ios-sheet {
+  max-height: min(90dvh, 100%);
+  width: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  border-radius: 1.25rem 1.25rem 0 0;
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+}
+.ios-grabber {
+  margin: 0 auto 0.75rem;
+  height: 5px;
+  width: 2.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.22);
+}
+@media (min-width: 640px) {
+  .ios-sheet {
+    max-width: 28rem;
+    border-radius: 0.75rem;
+    padding-bottom: 1.25rem;
+  }
+  .ios-grabber {
+    display: none;
+  }
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* Color-only transitions — transform/shadow on every control janks iOS Safari */
 a,
 button,
 input,
 select,
 textarea {
   transition:
-    color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    color 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.15s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.15s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 button,
 a,
-[role="button"] {
+[role="button"],
+[role="link"] {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  button:not(:disabled):active,
+  a:active,
+  [role="button"]:active {
+    opacity: 0.82;
+  }
+  .glow {
+    animation-duration: 5.5s;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -155,7 +199,6 @@ a,
   animation: softGlow 3.2s ease-in-out infinite;
 }
 
-/* Force orange/black theme (overrides any stale Tailwind cache). */
 .bg-terminal-bg,
 .bg-terminal-bg\/90 {
   background-color: #000000 !important;
@@ -192,7 +235,6 @@ a,
   }
 }
 
-/* Respect reduced motion on iPhone Accessibility settings */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

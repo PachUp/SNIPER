@@ -8,6 +8,7 @@ import R2rPlDetails from "@/components/R2rPlDetails";
 import TickerLogo from "@/components/TickerLogo";
 import SinceEntryBadge from "@/components/SinceEntryBadge";
 import LevelInfo from "@/components/LevelInfo";
+import { useIosSheet } from "@/lib/useIosSheet";
 
 export default function ReasoningPopup({
   stock,
@@ -28,6 +29,7 @@ export default function ReasoningPopup({
 }) {
   const { t, sector, risk } = useI18n();
   const [showPl, setShowPl] = useState(false);
+  useIosSheet(true);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -42,13 +44,14 @@ export default function ReasoningPopup({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center safe-pb"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 sm:items-center sm:p-4"
       onClick={onClose}
     >
       <div
-        className="max-h-[88dvh] w-full max-w-md overflow-y-auto scroll-touch rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl"
+        className="ios-sheet max-w-md border border-terminal-border bg-terminal-panel px-5 pt-3 shadow-2xl sm:p-5"
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="ios-grabber" />
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
             <div className="flex items-center gap-2.5">
@@ -74,7 +77,7 @@ export default function ReasoningPopup({
           </div>
           <button
             onClick={onClose}
-            className="text-terminal-muted hover:text-terminal-text"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center text-lg text-terminal-muted"
             aria-label={t("common.close")}
           >
             ✕

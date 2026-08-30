@@ -18,7 +18,7 @@ export default function AccountChip({
       <button
         type="button"
         onClick={onSignIn}
-        className="inline-flex min-h-11 items-center rounded-md border border-terminal-accent bg-terminal-accent px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-black hover:brightness-110"
+        className="inline-flex min-h-11 items-center rounded-md border border-terminal-accent bg-terminal-accent px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-black"
       >
         {t("auth.signIn")}
       </button>
@@ -32,7 +32,7 @@ export default function AccountChip({
       type="button"
       title={`${label} — tap to switch name`}
       onClick={onSignIn}
-      className="inline-flex max-w-[8rem] min-h-11 items-center truncate rounded-md border border-terminal-accent/30 bg-terminal-accent/10 px-2.5 py-1.5 text-[10px] font-semibold text-terminal-accent"
+      className="inline-flex max-w-[9rem] min-h-11 items-center truncate rounded-md border border-terminal-accent/30 bg-terminal-accent/10 px-3 py-1.5 text-[10px] font-semibold text-terminal-accent"
     >
       {label}
     </button>

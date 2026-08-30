@@ -233,7 +233,7 @@ export default function BuildPage() {
         <div className="flex items-center gap-2">
           <Link
             href="/"
-            className="text-xs font-semibold tracking-[0.35em] text-terminal-accent"
+            className="inline-flex min-h-11 items-center text-xs font-semibold tracking-[0.35em] text-terminal-accent"
           >
             SNIPER
           </Link>
@@ -241,7 +241,7 @@ export default function BuildPage() {
             type="button"
             onClick={goToStyleStep}
             disabled={!canBuild}
-            className="rounded-md bg-terminal-accent px-2.5 py-1 text-[10px] font-bold tracking-[0.12em] text-black transition-transform active:scale-95 disabled:opacity-40"
+            className="inline-flex min-h-11 items-center rounded-md bg-terminal-accent px-3 py-2 text-[11px] font-bold tracking-[0.12em] text-black disabled:opacity-40"
           >
             {building ? t("build.buildingCta") : t("build.buildMine")}
           </button>
@@ -273,7 +273,7 @@ export default function BuildPage() {
           type="button"
           onClick={pickForMe}
           disabled={building}
-          className="mt-3 text-[11px] font-bold tracking-[0.18em] text-terminal-muted underline-offset-4 transition-colors hover:text-terminal-accent hover:underline disabled:opacity-40"
+          className="mt-3 inline-flex min-h-11 items-center text-[11px] font-bold tracking-[0.18em] text-terminal-muted disabled:opacity-40"
         >
           {t("build.pickForMe")}
         </button>
@@ -330,20 +330,18 @@ export default function BuildPage() {
                         (!on && picked.length >= MAX_USER_PICKS)
                       }
                       onClick={() => p.eligible && toggle(p.symbol)}
-                      className={`group relative rounded-2xl p-1.5 transition-transform duration-300 ease-smooth ${
-                        popping
-                          ? "scale-125"
-                          : on
-                            ? "scale-110 bg-terminal-accent/15"
-                            : p.eligible
-                              ? "hover:scale-105 hover:bg-white/5 active:scale-95"
-                              : "opacity-45 grayscale"
+                      className={`group relative min-h-[3.75rem] min-w-[3.75rem] rounded-2xl p-2 ${
+                        popping || on
+                          ? "bg-terminal-accent/20"
+                          : p.eligible
+                            ? "active:bg-white/10"
+                            : "opacity-45 grayscale"
                       }`}
                       title={p.name || p.symbol}
                     >
                       <TickerLogo
                         symbol={p.symbol}
-                        size={52}
+                        size={56}
                         priority
                         ring={on}
                       />
@@ -374,7 +372,7 @@ export default function BuildPage() {
               <button
                 type="button"
                 onClick={() => setShowPickList((v) => !v)}
-                className="text-[11px] font-semibold tracking-[0.14em] text-terminal-muted transition-colors hover:text-terminal-accent"
+                className="inline-flex min-h-11 items-center text-[11px] font-semibold tracking-[0.14em] text-terminal-muted"
               >
                 {showPickList ? t("build.listHide") : t("build.listToggle")}
                 <span className="ms-1.5 text-terminal-accent">
@@ -410,7 +408,7 @@ export default function BuildPage() {
                           type="button"
                           disabled={blocked}
                           onClick={() => toggle(p.symbol)}
-                          className={`shrink-0 rounded-md px-2 py-1.5 text-[10px] font-bold tracking-wider ${
+                          className={`inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-md text-sm font-bold tracking-wider ${
                             on
                               ? "bg-terminal-accent text-black"
                               : "border border-terminal-border text-terminal-accent"
@@ -454,7 +452,7 @@ export default function BuildPage() {
       )}
 
       {step === "picks" ? (
-        <div className="sticky bottom-4 z-20 mt-8 flex flex-col items-center gap-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+        <div className="sticky bottom-3 z-20 mt-8 flex flex-col items-center gap-2 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
           {!canBuild && !building ? (
             <p className="text-center text-[11px] text-terminal-muted">
               {t("build.hintPick")}
@@ -464,7 +462,7 @@ export default function BuildPage() {
             type="button"
             onClick={goToStyleStep}
             disabled={!canBuild}
-            className="rounded-full bg-terminal-accent px-12 py-3.5 text-sm font-bold tracking-[0.22em] text-black shadow-[0_0_40px_rgba(249,115,22,0.35)] transition-transform duration-300 ease-smooth hover:scale-[1.03] active:scale-[0.97] disabled:scale-100 disabled:opacity-40 disabled:shadow-none"
+            className="inline-flex min-h-12 items-center rounded-full bg-terminal-accent px-12 py-3.5 text-sm font-bold tracking-[0.22em] text-black shadow-[0_0_40px_rgba(249,115,22,0.35)] disabled:opacity-40 disabled:shadow-none"
           >
             {building ? t("build.buildingCta") : t("build.buildMine")}
           </button>
@@ -485,7 +483,7 @@ export default function BuildPage() {
               onClick={() => {
                 toggle(detail.ticker);
               }}
-              className="w-full rounded-md bg-terminal-accent py-2 text-xs font-bold tracking-[0.14em] text-black disabled:opacity-40"
+              className="min-h-12 w-full rounded-xl bg-terminal-accent py-3 text-xs font-bold tracking-[0.14em] text-black disabled:opacity-40"
             >
               {picked.includes(detail.ticker)
                 ? "REMOVE FROM PICKS"

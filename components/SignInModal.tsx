@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAccounts } from "@/components/AccountsProvider";
 import {
@@ -22,51 +22,68 @@ import {
   stashWorkingUnderName,
 } from "@/lib/user/namedVault";
 import { emptyCloudPayload } from "@/lib/user/types";
+import { useIosSheet } from "@/lib/useIosSheet";
 
 export default function SignInModal({
   open,
   onClose,
-  reason = "save",
   required = false,
   stayOnPage = false,
 }: {
   open: boolean;
   onClose: () => void;
   reason?: "save" | "return";
-  /** Build screen: name is required — no guest skip. */
   required?: boolean;
-  /** Stay on current page after sign-in (build gate). */
   stayOnPage?: boolean;
 }) {
   const { t } = useI18n();
   const router = useRouter();
   const { enabled, refresh } = useAccounts();
+  const inputRef = useRef<HTMLInputElement>(null);
   const [displayName, setDisplayName] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [info, setInfo] = useState<string | null>(null);
   const [known, setKnown] = useState<string[]>([]);
+  const [last, setLast] = useState<string | null>(null);
+
+  useIosSheet(open);
 
   useEffect(() => {
     if (!open) return;
-    setDisplayName("");
     setError(null);
-    setInfo(null);
     setBusy(false);
-    setKnown(listVaultNames());
+    const names = listVaultNames();
+    setKnown(names);
+    const prev = getActiveName();
+    setLast(prev);
+    setDisplayName("");
+    if (names.length === 0) {
+      const id = window.setTimeout(() => inputRef.current?.focus(), 80);
+      return () => window.clearTimeout(id);
+    }
   }, [open]);
 
   const peek = useMemo(() => peekNamedBook(displayName), [displayName]);
   const typed = displayName.trim().length >= 2;
+  const lastKnown =
+    last && last.trim().length >= 2
+      ? known.find((n) => normalizeNameKey(n) === normalizeNameKey(last)) ||
+        last
+      : null;
+  const otherNames = lastKnown
+    ? known.filter(
+        (n) => normalizeNameKey(n) !== normalizeNameKey(lastKnown)
+      )
+    : known;
 
   if (!open) return null;
 
-  async function signInWithName() {
+  async function signInWithName(raw?: string) {
+    if (busy) return;
     setBusy(true);
     setError(null);
-    setInfo(null);
     try {
-      const name = displayName.trim().replace(/\s+/g, " ");
+      const name = (raw ?? displayName).trim().replace(/\s+/g, " ");
       if (name.length < 2) throw new Error(t("auth.nameRequired"));
 
       const prev = getActiveName();
@@ -101,37 +118,26 @@ export default function SignInModal({
       if (vaultHas) {
         applyCloudPayload(vault);
         saveNamedPayload(name, vault);
-        setInfo(t("auth.mergedCloud"));
         restored = true;
       } else if (localHas && (sameName || !prev)) {
         stashWorkingUnderName(name, local);
-        setInfo(t("auth.mergedLocal"));
         restored = true;
       } else {
         applyCloudPayload(emptyCloudPayload());
-        setInfo(t("auth.newNameEmpty"));
       }
 
       await refresh();
-      await pushCloudNow();
-      setKnown(listVaultNames());
+      const hasSaved = restored && payloadHasBook(loadNamedPayload(name));
+      onClose();
+      window.dispatchEvent(new Event("sniper:portfolio"));
+      void pushCloudNow();
 
-      window.setTimeout(() => {
-        onClose();
-        window.dispatchEvent(new Event("sniper:portfolio"));
-        const hasSaved =
-          restored && payloadHasBook(loadNamedPayload(name));
-        if (stayOnPage) {
-          // Build gate: returning names go to YOURS; new names stay to BUILD.
-          if (hasSaved) router.push("/dashboard");
-          return;
-        }
-        if (hasSaved) {
-          router.push("/dashboard");
-        } else {
-          router.push("/build");
-        }
-      }, 400);
+      if (stayOnPage) {
+        if (hasSaved) router.push("/dashboard");
+        return;
+      }
+      if (hasSaved) router.push("/dashboard");
+      else router.push("/build");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Sign-in failed");
     } finally {
@@ -140,8 +146,15 @@ export default function SignInModal({
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-end justify-center bg-black/75 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:items-center sm:p-4">
-      <div className="max-h-[min(90dvh,100%)] w-full max-w-md overflow-y-auto scroll-touch rounded-xl border border-terminal-border bg-terminal-panel p-5 shadow-2xl safe-pb">
+    <div
+      className="fixed inset-0 z-[60] flex items-end justify-center bg-black/75 sm:items-center sm:p-4"
+      onClick={!required ? onClose : undefined}
+    >
+      <div
+        className="ios-sheet max-w-md border border-terminal-border bg-terminal-panel px-5 pt-3 shadow-2xl sm:p-5"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="ios-grabber" />
         <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-terminal-accent">
           {t("auth.eyebrow")}
         </p>
@@ -160,28 +173,70 @@ export default function SignInModal({
           <button
             type="button"
             onClick={onClose}
-            className="mt-5 min-h-11 w-full rounded-lg border border-terminal-border py-2.5 text-sm text-terminal-muted"
+            className="mt-5 min-h-12 w-full rounded-xl border border-terminal-border py-3 text-sm text-terminal-muted"
           >
             {t("common.close")}
           </button>
         ) : (
           <>
-            <div className="mt-4 space-y-2">
+            <div className="mt-4 space-y-2.5">
+              {lastKnown ? (
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => void signInWithName(lastKnown)}
+                  className="min-h-12 w-full rounded-xl bg-terminal-accent px-3 py-3 text-sm font-bold tracking-[0.08em] text-black disabled:opacity-40"
+                >
+                  {busy ? t("common.loading") : t("auth.continueAs", { name: lastKnown })}
+                </button>
+              ) : null}
+
+              {otherNames.length > 0 ? (
+                <div>
+                  <p className="mb-1.5 text-[10px] uppercase tracking-wider text-terminal-muted">
+                    {t("auth.savedNames")}
+                  </p>
+                  <div className="flex flex-col gap-1.5">
+                    {otherNames.slice(0, 8).map((n) => {
+                      const meta = peekNamedBook(n);
+                      return (
+                        <button
+                          key={n}
+                          type="button"
+                          disabled={busy}
+                          onClick={() => void signInWithName(n)}
+                          className="flex min-h-11 w-full items-center justify-between rounded-xl border border-terminal-border px-3.5 py-2.5 text-left text-sm text-white disabled:opacity-40"
+                        >
+                          <span className="truncate font-semibold">{n}</span>
+                          {meta.count > 0 ? (
+                            <span className="ms-2 shrink-0 text-[11px] text-terminal-accent">
+                              {meta.count}
+                            </span>
+                          ) : null}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+
               <input
+                ref={inputRef}
                 type="text"
+                name="name"
                 autoComplete="name"
                 autoCapitalize="words"
                 autoCorrect="off"
                 spellCheck={false}
-                enterKeyHint="done"
-                autoFocus
+                enterKeyHint="go"
+                inputMode="text"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") void signInWithName();
                 }}
                 placeholder={t("auth.namePlaceholder")}
-                className="min-h-11 w-full rounded-lg border border-terminal-border bg-black px-3 py-2.5 text-base outline-none focus:border-terminal-accent sm:text-sm"
+                className="min-h-12 w-full rounded-xl border border-terminal-border bg-black px-3.5 py-3 text-base outline-none focus:border-terminal-accent"
               />
 
               {typed ? (
@@ -196,47 +251,22 @@ export default function SignInModal({
                 </p>
               ) : null}
 
-              {known.length > 0 ? (
-                <div className="pt-1">
-                  <p className="mb-1.5 text-[10px] uppercase tracking-wider text-terminal-muted">
-                    {t("auth.savedNames")}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {known.slice(0, 12).map((n) => {
-                      const meta = peekNamedBook(n);
-                      return (
-                        <button
-                          key={n}
-                          type="button"
-                          onClick={() => setDisplayName(n)}
-                          className="rounded-full border border-terminal-border px-2.5 py-1 text-[10px] text-terminal-muted hover:border-terminal-accent hover:text-terminal-accent"
-                        >
-                          {n}
-                          {meta.count > 0 ? ` · ${meta.count}` : ""}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+              {typed || !lastKnown ? (
+                <button
+                  type="button"
+                  disabled={busy || displayName.trim().length < 2}
+                  onClick={() => void signInWithName()}
+                  className="min-h-12 w-full rounded-xl bg-terminal-accent py-3 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
+                >
+                  {busy
+                    ? t("common.loading")
+                    : peek.known
+                      ? t("auth.openSaved")
+                      : t("auth.continueNew")}
+                </button>
               ) : null}
-
-              <button
-                type="button"
-                disabled={busy || displayName.trim().length < 2}
-                onClick={() => void signInWithName()}
-                className="min-h-11 w-full rounded-lg bg-terminal-accent py-2.5 text-sm font-bold tracking-[0.14em] text-black disabled:opacity-40"
-              >
-                {busy
-                  ? t("common.loading")
-                  : peek.known
-                    ? t("auth.openSaved")
-                    : t("auth.continueNew")}
-              </button>
             </div>
 
-            {info ? (
-              <p className="mt-3 text-xs text-terminal-muted">{info}</p>
-            ) : null}
             {error ? (
               <p className="mt-3 text-xs text-terminal-bad">{error}</p>
             ) : null}
@@ -245,7 +275,7 @@ export default function SignInModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="mt-4 w-full text-xs tracking-wider text-terminal-muted hover:text-terminal-accent"
+                className="mt-3 min-h-11 w-full text-sm tracking-wider text-terminal-muted"
               >
                 {t("auth.skipGuest")}
               </button>
