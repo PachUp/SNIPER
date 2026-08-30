@@ -4,6 +4,10 @@ import path from "path";
 import type { AuthUser, CloudPortfolioPayload } from "@/lib/user/types";
 import { emptyCloudPayload } from "@/lib/user/types";
 import { isReadonlyDataStore } from "@/lib/data/store";
+import {
+  readAccountsBlob,
+  writeAccountsBlob,
+} from "@/lib/user/accountBlobs";
 
 type SessionRow = {
   token: string;
@@ -66,36 +70,58 @@ function newId(): string {
   return createHash("sha256").update(randomBytes(16)).digest("hex").slice(0, 32);
 }
 
+function cloneStore(store: StoreFile): StoreFile {
+  return {
+    sessions: [...store.sessions],
+    portfolios: [...store.portfolios],
+  };
+}
+
+function pruneExpired(store: StoreFile, now = Date.now()): StoreFile {
+  return {
+    sessions: store.sessions.filter((s) => s.expiresAt > now),
+    portfolios: store.portfolios,
+  };
+}
+
 async function readStore(): Promise<StoreFile> {
   if (isReadonlyDataStore()) {
-    return {
-      sessions: [...memoryStore.sessions],
-      portfolios: [...memoryStore.portfolios],
-    };
+    const blob = await readAccountsBlob();
+    if (blob) {
+      memoryStore = pruneExpired({
+        sessions: blob.sessions,
+        portfolios: blob.portfolios,
+      });
+    }
+    return cloneStore(memoryStore);
   }
   try {
     const raw = await fs.readFile(storePath(), "utf-8");
     const data = JSON.parse(raw) as Partial<StoreFile> & {
       otps?: unknown;
     };
-    return {
+    return pruneExpired({
       sessions: Array.isArray(data.sessions) ? data.sessions : [],
       portfolios: Array.isArray(data.portfolios) ? data.portfolios : [],
-    };
+    });
   } catch {
     return { sessions: [], portfolios: [] };
   }
 }
 
 async function writeStore(store: StoreFile): Promise<void> {
-  memoryStore = {
-    sessions: [...store.sessions],
-    portfolios: [...store.portfolios],
-  };
-  if (isReadonlyDataStore()) return;
+  const next = pruneExpired(store);
+  memoryStore = cloneStore(next);
+  if (isReadonlyDataStore()) {
+    const ok = await writeAccountsBlob(next);
+    if (!ok) {
+      console.error("[sniper] named port blob write failed");
+    }
+    return;
+  }
   const dir = path.dirname(storePath());
   await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(storePath(), JSON.stringify(store, null, 2) + "\n");
+  await fs.writeFile(storePath(), JSON.stringify(next, null, 2) + "\n");
 }
 
 /** Demo sign-in: full name only — no email / OTP. */
@@ -128,9 +154,7 @@ export async function localSignInByName(
     portfolio.displayName = displayName;
   }
 
-  store.sessions = store.sessions.filter(
-    (s) => s.expiresAt > now && s.nameKey !== nameKey
-  );
+  store.sessions = store.sessions.filter((s) => s.expiresAt > now);
   const token = randomBytes(24).toString("hex");
   store.sessions.push({
     token,

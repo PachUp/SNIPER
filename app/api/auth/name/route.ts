@@ -47,3 +47,49 @@ export async function POST(req: NextRequest) {
   });
   return res;
 }
+
+/** Wipe a name’s server port. Same trust model as name sign-in (no password). */
+export async function DELETE(req: NextRequest) {
+  if (!isAccountsEnabled() || accountsBackend() !== "local") {
+    return NextResponse.json(
+      { error: "Name delete requires local accounts backend" },
+      { status: 501 }
+    );
+  }
+
+  let displayName = "";
+  try {
+    const body = (await req.json()) as { displayName?: string; name?: string };
+    displayName = String(body.displayName || body.name || "").trim();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
+
+  const result = await localDeletePortfolioByName(displayName);
+  if (!result.ok) {
+    return NextResponse.json({ error: result.error }, { status: 400 });
+  }
+
+  const user = await getAuthUser();
+  const signedOut = Boolean(
+    user?.displayName &&
+      normalizeNameKey(user.displayName) === result.nameKey
+  );
+  const res = NextResponse.json({
+    ok: true,
+    deleted: result.deleted,
+    signedOut,
+  });
+  if (signedOut) {
+    const token = cookies().get(SESSION_COOKIE)?.value;
+    await localClearSession(token);
+    res.cookies.set(SESSION_COOKIE, "", {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 0,
+      secure: process.env.NODE_ENV === "production",
+    });
+  }
+  return res;
+}

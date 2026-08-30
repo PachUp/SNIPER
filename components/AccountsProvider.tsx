@@ -25,8 +25,8 @@ import {
   payloadHasBook,
   saveNamedPayload,
   setActiveName,
-  stashWorkingUnderName,
 } from "@/lib/user/namedVault";
+import { pickOwnPort } from "@/lib/user/pickOwnPort";
 
 type AccountsCtx = {
   enabled: boolean;
@@ -61,7 +61,8 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
 
   const hydrateFromCloud = useCallback(async () => {
     const active = getActiveName();
-    const vault = active ? loadNamedPayload(active) : null;
+    if (!active) return "skipped";
+    const vault = loadNamedPayload(active);
     const local = readLocalCloudPayload();
 
     let cloud: CloudPortfolioPayload | null = null;
@@ -72,45 +73,21 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
         cloud = data.payload ?? null;
       }
     } catch {
-      /* vault is enough for demo */
+      /* vault is enough when blobs are down */
     }
 
-    type Cand = { src: "vault" | "cloud" | "local"; t: number; p: CloudPortfolioPayload };
-    const cands: Cand[] = [];
-    if (payloadHasBook(vault) && vault) {
-      cands.push({
-        src: "vault",
-        t: Date.parse(vault.updatedAt || "") || 0,
-        p: vault,
-      });
+    const own = pickOwnPort({ name: active, vault, cloud, local });
+    if (!own) {
+      applyCloudPayload(emptyCloudPayload());
+      return "empty";
     }
-    if (payloadHasBook(cloud) && cloud) {
-      cands.push({
-        src: "cloud",
-        t: Date.parse(cloud.updatedAt || "") || 0,
-        p: cloud,
-      });
+    applyCloudPayload(own);
+    saveNamedPayload(active, own);
+    if (payloadHasBook(own)) {
+      void pushCloudNow();
     }
-    if (payloadHasBook(local)) {
-      cands.push({
-        src: "local",
-        t: Date.parse(local.updatedAt || "") || 0,
-        p: local,
-      });
-    }
-
-    if (cands.length === 0) return "empty";
-
-    // Prefer vault on ties — it’s the durable demo store per name.
-    cands.sort((a, b) => {
-      if (b.t !== a.t) return b.t - a.t;
-      const rank = { vault: 3, local: 2, cloud: 1 } as const;
-      return rank[b.src] - rank[a.src];
-    });
-    const best = cands[0];
-    applyCloudPayload(best.p);
-    if (active) saveNamedPayload(active, best.p);
-    return best.src === "local" ? "kept_local" : "applied_cloud";
+    if (cloud && own === cloud) return "applied_cloud";
+    return "kept_local";
   }, []);
 
   const refresh = useCallback(async () => {
@@ -129,17 +106,7 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
         setUser(data.user);
         if (data.user.displayName) setActiveName(data.user.displayName);
         setCloudSyncEnabled(true);
-        // Ensure working book matches this name’s vault when session already exists.
-        const name = data.user.displayName || getActiveName();
-        if (name) {
-          const vault = loadNamedPayload(name);
-          const local = readLocalCloudPayload();
-          if (payloadHasBook(vault) && !payloadHasBook(local)) {
-            applyCloudPayload(vault);
-          } else if (payloadHasBook(local)) {
-            stashWorkingUnderName(name, local);
-          }
-        }
+        await hydrateFromCloud();
         return;
       }
 
@@ -154,14 +121,8 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
           const body = (await re.json()) as { user?: AuthUser };
           if (body.user) {
             setUser(body.user);
-            const vault = loadNamedPayload(active);
-            const local = readLocalCloudPayload();
-            if (payloadHasBook(vault)) {
-              applyCloudPayload(vault);
-            } else if (payloadHasBook(local)) {
-              stashWorkingUnderName(active, local);
-            }
             setCloudSyncEnabled(true);
+            await hydrateFromCloud();
             return;
           }
         }
@@ -175,7 +136,7 @@ export function AccountsProvider({ children }: { children: ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [hydrateFromCloud]);
 
   useEffect(() => {
     void refresh();

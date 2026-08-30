@@ -19,9 +19,10 @@ import {
   peekNamedBook,
   saveNamedPayload,
   setActiveName,
-  stashWorkingUnderName,
 } from "@/lib/user/namedVault";
 import { emptyCloudPayload } from "@/lib/user/types";
+import type { CloudPortfolioPayload } from "@/lib/user/types";
+import { pickOwnPort } from "@/lib/user/pickOwnPort";
 import { useIosSheet } from "@/lib/useIosSheet";
 
 export default function SignInModal({
@@ -94,6 +95,7 @@ export default function SignInModal({
         payloadHasBook(working)
       ) {
         saveNamedPayload(prev, working);
+        await pushCloudNow();
       }
 
       const res = await fetch("/api/auth/name", {
@@ -107,20 +109,31 @@ export default function SignInModal({
       setActiveName(name);
       setCloudSyncEnabled(true);
 
+      let cloud: CloudPortfolioPayload | null = null;
+      try {
+        const cr = await fetch("/api/me/portfolio", { cache: "no-store" });
+        if (cr.ok) {
+          const body = (await cr.json()) as {
+            payload?: CloudPortfolioPayload;
+          };
+          cloud = body.payload ?? null;
+        }
+      } catch {
+        /* blobs / session may still be warming */
+      }
+
       const vault = loadNamedPayload(name);
-      const local = readLocalCloudPayload();
-      const vaultHas = payloadHasBook(vault);
-      const localHas = payloadHasBook(local);
-      const sameName =
-        !prev || normalizeNameKey(prev) === normalizeNameKey(name);
+      const own = pickOwnPort({
+        name,
+        vault,
+        cloud,
+        local: working,
+      });
 
       let restored = false;
-      if (vaultHas) {
-        applyCloudPayload(vault);
-        saveNamedPayload(name, vault);
-        restored = true;
-      } else if (localHas && (sameName || !prev)) {
-        stashWorkingUnderName(name, local);
+      if (own) {
+        applyCloudPayload(own);
+        saveNamedPayload(name, own);
         restored = true;
       } else {
         applyCloudPayload(emptyCloudPayload());
@@ -130,7 +143,7 @@ export default function SignInModal({
       const hasSaved = restored && payloadHasBook(loadNamedPayload(name));
       onClose();
       window.dispatchEvent(new Event("sniper:portfolio"));
-      void pushCloudNow();
+      if (hasSaved) void pushCloudNow();
 
       if (stayOnPage) {
         if (hasSaved) router.push("/dashboard");
@@ -197,7 +210,7 @@ export default function SignInModal({
                     {t("auth.savedNames")}
                   </p>
                   <div className="flex flex-col gap-1.5">
-                    {otherNames.slice(0, 8).map((n) => {
+                    {otherNames.slice(0, 20).map((n) => {
                       const meta = peekNamedBook(n);
                       return (
                         <button
