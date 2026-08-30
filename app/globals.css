@@ -1,8 +1,12 @@
+@layer pico, base, components, utilities;
+@import "@picocss/pico/css/pico.min.css" layer(pico);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root,
+[data-theme="dark"] {
   color-scheme: dark;
   --bg: #000000;
   --panel: #111111;
@@ -15,12 +19,136 @@
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
+
+  /* Pico tokens → SNIPER black / orange (unlayered so they beat Pico’s layer) */
+  --pico-font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --pico-font-size: 100%;
+  --pico-border-radius: 0.5rem;
+  --pico-background-color: #000000;
+  --pico-color: #f5f5f5;
+  --pico-muted-color: #8a8a8a;
+  --pico-muted-border-color: #222222;
+  --pico-primary: #f97316;
+  --pico-primary-background: #f97316;
+  --pico-primary-border: #f97316;
+  --pico-primary-underline: rgba(249, 115, 22, 0.5);
+  --pico-primary-hover: #fb923c;
+  --pico-primary-hover-background: #ea580c;
+  --pico-primary-hover-border: #ea580c;
+  --pico-primary-focus: rgba(249, 115, 22, 0.45);
+  --pico-primary-inverse: #000000;
+  --pico-secondary: #8a8a8a;
+  --pico-secondary-background: #111111;
+  --pico-secondary-border: #222222;
+  --pico-card-background-color: #111111;
+  --pico-card-border-color: #222222;
+  --pico-form-element-background-color: #000000;
+  --pico-form-element-border-color: #222222;
+  --pico-form-element-color: #f5f5f5;
+  --pico-form-element-placeholder-color: #8a8a8a;
+  --pico-form-element-active-border-color: #f97316;
+  --pico-form-element-focus-color: rgba(249, 115, 22, 0.45);
+  --pico-text-selection-color: rgba(249, 115, 22, 0.28);
+}
+
+/* Pico must not scale the whole UI or squeeze <main> like a blog layout */
+@layer pico {
+  :root,
+  :host,
+  [data-theme="dark"] {
+    --pico-font-size: 100%;
+  }
+  @media (min-width: 576px) {
+    :root,
+    :host {
+      --pico-font-size: 100%;
+    }
+  }
+  @media (min-width: 768px) {
+    :root,
+    :host {
+      --pico-font-size: 100%;
+    }
+  }
+  @media (min-width: 1024px) {
+    :root,
+    :host {
+      --pico-font-size: 100%;
+    }
+  }
+  @media (min-width: 1280px) {
+    :root,
+    :host {
+      --pico-font-size: 100%;
+    }
+  }
+  @media (min-width: 1536px) {
+    :root,
+    :host {
+      --pico-font-size: 100%;
+    }
+  }
+
+  body > header,
+  body > main,
+  body > footer {
+    padding-block: unset;
+    max-width: unset;
+    width: unset;
+    margin-inline: unset;
+  }
+
+  /* Pico treats <nav> as a split toolbar and <article>/<section> as cards. */
+  nav {
+    justify-content: unset;
+  }
+  article {
+    margin: unset;
+    padding: unset;
+    background: unset;
+    box-shadow: unset;
+    border-radius: unset;
+  }
+  section {
+    margin-bottom: unset;
+  }
+
+  button,
+  [type="submit"],
+  [type="reset"],
+  [type="button"],
+  [role="button"] {
+    letter-spacing: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin-bottom: 0;
+    padding: unset;
+    border: unset;
+    border-radius: unset;
+    background-color: unset;
+    color: inherit;
+    box-shadow: none;
+    text-align: inherit;
+  }
+
+  input:not([type="checkbox"], [type="radio"]),
+  select,
+  textarea {
+    margin-bottom: 0;
+  }
+
+  label > :where(input, select, textarea) {
+    margin-top: 0;
+  }
 }
 
 html {
   /* Native iOS momentum; CSS smooth-scroll fights Safari on iPhone. */
   height: 100%;
   height: -webkit-fill-available;
+  font-size: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -166,6 +294,11 @@ a,
   }
   .glow {
     animation-duration: 5.5s;
+  }
+  input,
+  select,
+  textarea {
+    font-size: 16px;
   }
 }
 
